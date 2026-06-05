@@ -4,6 +4,19 @@ import { dirname, resolve } from "node:path";
 const username = "pepeangell5";
 const endpoint = `https://api.github.com/users/${username}/repos?per_page=100&sort=updated`;
 const outputPath = resolve("public/data/repos.json");
+const priorityRepos = [
+  "BWifiKill-ESP32-V4.0",
+  "ESP32-TOOLS-PRO-480x320-V2.0",
+  "CYBERDECK-MINI-ESP32",
+  "BWifiKill-BW16-5Ghz",
+  "BWifiKill-ESP32",
+  "ESP32-TOOLS-MODERN"
+];
+
+function priorityIndex(repo) {
+  const index = priorityRepos.findIndex((name) => name.toLowerCase() === String(repo.name || "").toLowerCase());
+  return index === -1 ? 999 : index;
+}
 
 const normalizeRepo = (repo) => ({
   name: repo.name,
@@ -51,7 +64,9 @@ async function main() {
     }
 
     const data = await response.json();
-    const repos = data.map(normalizeRepo).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+    const repos = data
+      .map(normalizeRepo)
+      .sort((a, b) => priorityIndex(a) - priorityIndex(b) || new Date(b.updated_at) - new Date(a.updated_at));
     await saveRepos(repos);
     console.log(`Saved ${repos.length} public repos to ${outputPath}`);
   } catch (error) {

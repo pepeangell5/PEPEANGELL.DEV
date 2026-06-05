@@ -1,62 +1,62 @@
 [
   {
-    "name": "BWifiKill ESP32",
-    "slug": "bwifikill-esp32",
-    "description": "Proyecto educativo de laboratorio para estudiar WiFi, ESP32, pantallas compactas y flujos de firmware en hardware compatible.",
-    "details": "Base experimental orientada a aprendizaje de firmware, menus embebidos y pruebas controladas con ESP32. El enfoque del sitio es documentar hardware, compatibilidad y uso responsable.",
-    "tags": ["ESP32", "WiFi", "OLED", "Firmware"],
-    "status": "Experimental",
-    "github_url": "https://github.com/pepeangell5",
-    "flasher_url": "#"
-  },
-  {
     "name": "BWifiKill ESP32 V4.0",
     "slug": "bwifikill-esp32-v4",
-    "description": "Revision en desarrollo con mejoras de interfaz, organizacion de funciones y compatibilidad con placas ESP32.",
-    "details": "Version pensada para ordenar mejor modulos, pantallas y pruebas de firmware dentro de entornos autorizados.",
+    "description": "Revision principal de BWifiKill ESP32 con mejoras visuales, animaciones, iconos, optimizacion y mejor fluidez.",
+    "details": "Version prioritaria del laboratorio para documentar compatibilidad, interfaz y flujo de firmware en placas ESP32 dentro de pruebas autorizadas.",
     "tags": ["ESP32", "WiFi", "BLE", "TFT"],
     "status": "In Development",
-    "github_url": "https://github.com/pepeangell5",
-    "flasher_url": "#"
+    "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0",
+    "flasher_url": "/flashers/#bwifikill-esp32-v4"
   },
   {
-    "name": "ESP32 Tools Pro 480x320",
-    "slug": "esp32-tools-pro-480x320",
-    "description": "Panel de herramientas educativas para ESP32 con pantalla TFT ILI9488 480x320 y flujo de flasheo web.",
-    "details": "Proyecto enfocado en interfaz grafica, pruebas de modulos y documentacion de compatibilidad para hardware especifico.",
-    "tags": ["ESP32", "TFT", "ILI9488", "SPI"],
+    "name": "ESP32 Tools Pro 480x320 V2.0",
+    "slug": "esp32-tools-pro-480x320-v2",
+    "description": "Firmware ESP32 Tools Pro con soporte para TFT 480x320, modulos IR, CC1101 y diagnosticos de laboratorio.",
+    "details": "Proyecto enfocado en interfaz grafica, hardware compatible, flujos de firmware y documentacion para pruebas educativas controladas.",
+    "tags": ["ESP32", "TFT", "ILI9488", "CC1101", "IR"],
     "status": "Stable",
-    "github_url": "https://github.com/pepeangell5",
-    "flasher_url": "#"
-  },
-  {
-    "name": "ESP32 Tools Modern",
-    "slug": "esp32-tools-modern",
-    "description": "Concepto moderno para organizar utilidades ESP32, tarjetas de estado y notas de laboratorio.",
-    "details": "Linea de experimentacion para mejorar navegacion, arquitectura de firmware y documentacion tecnica.",
-    "tags": ["ESP32", "UI", "Firmware"],
-    "status": "Demo",
-    "github_url": "https://github.com/pepeangell5"
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
+    "flasher_url": "/flashers/#esp32-tools-pro-480x320-v2"
   },
   {
     "name": "Cyberdeck Mini ESP32",
     "slug": "cyberdeck-mini-esp32",
-    "description": "Mini cyberdeck educativo basado en ESP32 para pruebas de interfaz, energia, pantalla y herramientas portables.",
-    "details": "Construccion de laboratorio para aprender integracion de hardware, firmware y experiencia de usuario embebida.",
+    "description": "Mini cyberdeck educativo basado en ESP32 para herramientas portables, pantalla, energia e interfaz compacta.",
+    "details": "Construccion de laboratorio para aprender integracion de hardware, firmware, UI embebida y experiencia de usuario en formato portable.",
     "tags": ["ESP32", "Cyberdeck", "Display", "Battery"],
     "status": "In Development",
-    "github_url": "https://github.com/pepeangell5",
-    "flasher_url": "#"
+    "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32",
+    "flasher_url": "/flashers/#cyberdeck-mini-esp32"
   },
   {
-    "name": "BW16 RTL8720DN Experiments",
-    "slug": "bw16-rtl8720dn-experiments",
-    "description": "Experimentos con BW16 RTL8720DN para explorar conectividad, toolchains y diferencias frente a ESP32.",
-    "details": "Notas tecnicas y pruebas controladas alrededor del chip RTL8720DN, compilacion y compatibilidad de firmware.",
+    "name": "BWifiKill BW16 5Ghz",
+    "slug": "bwifikill-bw16-5ghz",
+    "description": "Firmware educativo para BW16 RTL8720DN orientado a analisis WiFi y pruebas de laboratorio en entornos controlados.",
+    "details": "Linea de trabajo para documentar toolchain, compatibilidad y comportamiento del BW16 RTL8720DN frente a proyectos ESP32.",
     "tags": ["BW16", "RTL8720DN", "WiFi", "BLE"],
     "status": "Experimental",
-    "github_url": "https://github.com/pepeangell5",
-    "flasher_url": "#"
+    "github_url": "https://github.com/pepeangell5/BWifiKill-BW16-5Ghz",
+    "flasher_url": "/flashers/#bwifikill-bw16-5ghz"
+  },
+  {
+    "name": "BWifiKill ESP32",
+    "slug": "bwifikill-esp32",
+    "description": "Proyecto educativo de laboratorio para estudiar WiFi, ESP32, pantallas compactas y flujos de firmware.",
+    "details": "Base experimental orientada a aprendizaje de firmware, menus embebidos y pruebas controladas con ESP32.",
+    "tags": ["ESP32", "WiFi", "OLED", "Firmware"],
+    "status": "Experimental",
+    "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32",
+    "flasher_url": "/flashers/#bwifikill-esp32"
+  },
+  {
+    "name": "ESP32 Tools Modern",
+    "slug": "esp32-tools-modern",
+    "description": "Version moderna de ESP32 Tools con mejor enfoque visual, graficos y organizacion de interfaz.",
+    "details": "Linea de experimentacion para mejorar navegacion, arquitectura de firmware y documentacion tecnica.",
+    "tags": ["ESP32", "UI", "Firmware"],
+    "status": "Demo",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-MODERN"
   },
   {
     "name": "NRF Link Test",

@@ -17,6 +17,7 @@ interface Props {
 }
 
 const { project } = Astro.props;
+const flasherHref = project.flasher_url?.startsWith("/") ? sitePath(project.flasher_url) : project.flasher_url;
 ---
 
 <article class="card">
@@ -30,6 +31,6 @@ const { project } = Astro.props;
   <div class="button-row">
     <a class="button primary" href={sitePath(`/projects/${project.slug}/`)}>View details</a>
     {project.github_url && <a class="button" href={project.github_url} rel="noreferrer">GitHub</a>}
-    {project.flasher_url && <a class="button" href={project.flasher_url}>Web Flasher</a>}
+    {flasherHref && <a class="button" href={flasherHref}>Web Flasher</a>}
   </div>
 </article>

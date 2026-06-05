@@ -18,11 +18,25 @@ const reposUrl = `${import.meta.env.BASE_URL}data/repos.json`;
     })[char]);
 
   const dateFmt = (value) => value ? new Intl.DateTimeFormat("es-MX", { dateStyle: "medium" }).format(new Date(value)) : "Unknown";
+  const priorityRepos = [
+    "BWifiKill-ESP32-V4.0",
+    "ESP32-TOOLS-PRO-480x320-V2.0",
+    "CYBERDECK-MINI-ESP32",
+    "BWifiKill-BW16-5Ghz",
+    "BWifiKill-ESP32",
+    "ESP32-TOOLS-MODERN"
+  ];
+  const priorityIndex = (repo) => {
+    const index = priorityRepos.findIndex((name) => name.toLowerCase() === String(repo.name || "").toLowerCase());
+    return index === -1 ? 999 : index;
+  };
 
   fetch(reposUrl, { cache: "no-store" })
     .then((response) => response.json())
     .then((repos) => {
-      const latest = [...repos].sort((a, b) => new Date(b.updated_at || 0) - new Date(a.updated_at || 0)).slice(0, 3);
+      const latest = [...repos]
+        .sort((a, b) => priorityIndex(a) - priorityIndex(b) || new Date(b.updated_at || 0) - new Date(a.updated_at || 0))
+        .slice(0, 6);
       latestTarget.innerHTML = latest.length
         ? latest.map((repo) => `
           <article class="card">

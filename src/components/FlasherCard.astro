@@ -3,6 +3,7 @@ import Badge from "./Badge.astro";
 
 interface Flasher {
   name: string;
+  slug: string;
   board: string;
   display: string;
   modules: string[];
@@ -18,7 +19,7 @@ interface Props {
 const { flasher } = Astro.props;
 ---
 
-<article class="card">
+<article class="card" id={flasher.slug}>
   <p class="status">{flasher.status}</p>
   <h3>{flasher.name}</h3>
   <p><strong>Board:</strong> {flasher.board}</p>
@@ -28,7 +29,7 @@ const { flasher } = Astro.props;
   </div>
   <p class="small muted">Flash only compatible hardware. Verifica placa, pantalla, pines y alimentacion antes de usar.</p>
   <div class="button-row">
-    <a class="button primary" href={flasher.flasher_url}>Open flasher</a>
+    <a class="button primary" href={flasher.flasher_url} rel="noreferrer">Firmware / repo</a>
     <a class="button" href={flasher.github_url} rel="noreferrer">GitHub repo</a>
   </div>
 </article>
