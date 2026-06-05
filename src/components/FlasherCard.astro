@@ -18,6 +18,7 @@ interface Props {
 
 const { flasher } = Astro.props;
 const flasherTarget = flasher.flasher_url || flasher.github_url;
+const hasFlasher = Boolean(flasher.flasher_url);
 ---
 
 <article class="card" id={flasher.slug}>
@@ -30,7 +31,7 @@ const flasherTarget = flasher.flasher_url || flasher.github_url;
   </div>
   <p class="small muted">Flash only compatible hardware. Verifica placa, pantalla, pines y alimentación antes de usar.</p>
   <div class="button-row">
-    <a class="button primary" href={flasherTarget} target="_blank" rel="noreferrer noopener">Web flasher</a>
-    {flasherTarget !== flasher.github_url && <a class="button" href={flasher.github_url} target="_blank" rel="noreferrer noopener">GitHub repo</a>}
+    <a class="button primary" href={flasherTarget} target="_blank" rel="noreferrer noopener">{hasFlasher ? "Web flasher" : "GitHub repo"}</a>
+    {hasFlasher && <a class="button" href={flasher.github_url} target="_blank" rel="noreferrer noopener">GitHub repo</a>}
   </div>
 </article>

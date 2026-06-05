@@ -29,8 +29,8 @@ const flasherHref = project.flasher_url?.startsWith("/") ? sitePath(project.flas
   </div>
   <p class="small muted">Uso educativo y en entornos de laboratorio controlados.</p>
   <div class="button-row">
-    <a class="button primary" href={sitePath(`/projects/${project.slug}/`)}>View details</a>
+    <a class="button primary" href={sitePath(`/projects/${project.slug}/`)} target="_blank" rel="noreferrer noopener">View details</a>
     {project.github_url && <a class="button" href={project.github_url} target="_blank" rel="noreferrer noopener">GitHub</a>}
-    {flasherHref && <a class="button" href={flasherHref}>Web Flasher</a>}
+    {flasherHref && <a class="button" href={flasherHref} target="_blank" rel="noreferrer noopener">Web Flasher</a>}
   </div>
 </article>

@@ -33,9 +33,9 @@ const flasherHref = project.flasher_url?.startsWith("/") ? sitePath(project.flas
         <DisclaimerBanner />
       </div>
       <div class="button-row">
-        <a class="button primary" href={sitePath("/projects/")}>Back to projects</a>
+        <a class="button primary" href={sitePath("/projects/")} target="_blank" rel="noreferrer noopener">Back to projects</a>
         {project.github_url && <a class="button" href={project.github_url} target="_blank" rel="noreferrer noopener">GitHub</a>}
-        {flasherHref && <a class="button" href={flasherHref}>Web Flasher</a>}
+        {flasherHref && <a class="button" href={flasherHref} target="_blank" rel="noreferrer noopener">Web Flasher</a>}
       </div>
     </div>
   </section>

@@ -31,6 +31,6 @@ const updated = repo.updated_at ? new Date(repo.updated_at).toLocaleDateString("
   </div>
   {repo.topics && repo.topics.length > 0 && <div class="badge-row">{repo.topics.map((topic) => <Badge label={topic} />)}</div>}
   <div class="button-row">
-    <a class="button primary" href={repo.html_url} rel="noreferrer">Open repo</a>
+    <a class="button primary" href={repo.html_url} target="_blank" rel="noreferrer noopener">Open repo</a>
   </div>
 </article>
