@@ -81,6 +81,20 @@ It runs on:
 
 The workflow installs dependencies, fetches public repos, builds Astro and deploys `dist` to GitHub Pages.
 
+## Visitor Counter
+
+The site is prepared to use GoatCounter for privacy-friendly visit counting.
+
+1. Create a GoatCounter site and choose a public code, for example `pepeangell`.
+2. In GoatCounter settings, enable “Allow adding visitor counts on your website” if you want the public total visible in the footer.
+3. In GitHub repository variables, add:
+
+```text
+PUBLIC_GOATCOUNTER_CODE=your-goatcounter-code
+```
+
+When the variable is present, every page loads GoatCounter and the footer displays the total site visits. GoatCounter counts visits/sessions rather than simple reload hits.
+
 ## Custom Domain
 
 `public/CNAME` contains:

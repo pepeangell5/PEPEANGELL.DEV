@@ -1,10 +1,14 @@
 ---
 import { sitePath } from "../utils/paths";
+import VisitorCounter from "./VisitorCounter.astro";
 ---
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <p class="small">PepeAngell Labs · ESP32, RF, BLE, WiFi y firmware educativo.</p>
+    <div>
+      <p class="small">PepeAngell Labs · ESP32, RF, BLE, WiFi y firmware educativo.</p>
+      <VisitorCounter />
+    </div>
     <p class="small">
       <a href={sitePath("/disclaimer/")}>Disclaimer</a> · <a href="https://github.com/pepeangell5" target="_blank" rel="noreferrer noopener">GitHub</a>
     </p>

@@ -45,6 +45,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          PUBLIC_GOATCOUNTER_CODE: ${{ vars.PUBLIC_GOATCOUNTER_CODE }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

@@ -482,6 +482,32 @@ p {
   gap: 16px;
 }
 
+.visitor-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 7px 10px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  background: rgba(57, 255, 136, 0.07);
+  border: 1px solid rgba(57, 255, 136, 0.2);
+  border-radius: var(--radius);
+}
+
+.visitor-counter::before {
+  width: 18px;
+  aspect-ratio: 1;
+  content: "";
+  background: url("/assets/mascot-neon-cut.png") center / contain no-repeat;
+  filter: drop-shadow(0 0 8px rgba(255, 44, 169, 0.32));
+}
+
+.visitor-counter-value {
+  color: var(--green);
+}
+
 .filters {
   display: grid;
   grid-template-columns: minmax(220px, 1fr) repeat(2, minmax(150px, 220px));

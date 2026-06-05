@@ -1,0 +1,40 @@
+---
+const goatCounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
+---
+
+{
+  goatCounterCode && (
+    <div class="visitor-counter" data-goatcounter-code={goatCounterCode}>
+      <span class="visitor-counter-label">Visitas reales</span>
+      <strong id="visitor-counter-total" class="visitor-counter-value">...</strong>
+    </div>
+  )
+}
+
+{
+  goatCounterCode && (
+    <script is:inline>
+      (() => {
+        const widget = document.querySelector("[data-goatcounter-code]");
+        const value = document.querySelector("#visitor-counter-total");
+        if (!widget || !value) return;
+
+        const code = widget.getAttribute("data-goatcounter-code");
+        const url = `https://${code}.goatcounter.com/counter/TOTAL.json`;
+
+        fetch(url)
+          .then((response) => {
+            if (!response.ok) throw new Error("counter unavailable");
+            return response.json();
+          })
+          .then((data) => {
+            value.textContent = data.count || "0";
+          })
+          .catch(() => {
+            value.textContent = "privado";
+            widget.setAttribute("title", "Activa los conteos publicos en GoatCounter para mostrar el total.");
+          });
+      })();
+    </script>
+  )
+}

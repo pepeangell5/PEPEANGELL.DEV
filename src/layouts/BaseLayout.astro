@@ -12,6 +12,7 @@ interface Props {
 const { title, description } = Astro.props;
 const pageTitle = title === "PepeAngell Labs" ? title : `${title} | PepeAngell Labs`;
 const canonical = new URL(Astro.url.pathname, "https://pepeangell.dev").toString();
+const goatCounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
 ---
 
 <!doctype html>
@@ -30,6 +31,15 @@ const canonical = new URL(Astro.url.pathname, "https://pepeangell.dev").toString
     <meta property="og:site_name" content="PepeAngell Labs" />
     <meta name="theme-color" content="#07090c" />
     <style is:inline set:html={globalStyles}></style>
+    {
+      goatCounterCode && (
+        <script
+          data-goatcounter={`https://${goatCounterCode}.goatcounter.com/count`}
+          async
+          src="https://gc.zgo.at/count.js"
+        />
+      )
+    }
   </head>
   <body>
     <a class="skip-link" href="#main-content">Saltar al contenido</a>
