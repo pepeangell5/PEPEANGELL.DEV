@@ -25,17 +25,49 @@ const flasherHref = project.flasher_url?.startsWith("/") ? sitePath(project.flas
       <p class="eyebrow">Project detail</p>
       <h1>{project.name}</h1>
       <p class="status">{project.status}</p>
-      <p>{project.details}</p>
-      <div class="badge-row">
-        {project.tags.map((tag) => <Badge label={tag} />)}
-      </div>
-      <div class="section compact">
-        <DisclaimerBanner />
-      </div>
-      <div class="button-row">
-        <a class="button primary" href={sitePath("/projects/")} target="_blank" rel="noreferrer noopener">Back to projects</a>
-        {project.github_url && <a class="button" href={project.github_url} target="_blank" rel="noreferrer noopener">GitHub</a>}
-        {flasherHref && <a class="button" href={flasherHref} target="_blank" rel="noreferrer noopener">Web Flasher</a>}
+
+      <div class="detail-sections">
+        <section class="detail-panel" aria-labelledby="overview">
+          <h2 id="overview">Overview</h2>
+          <p>{project.description}</p>
+          <p>{project.details}</p>
+          <div class="badge-row">
+            {project.tags.map((tag) => <Badge label={tag} />)}
+          </div>
+        </section>
+
+        <section class="detail-panel" aria-labelledby="hardware">
+          <h2 id="hardware">Hardware</h2>
+          <ul class="check-list">
+            {project.hardware.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+
+        <section class="detail-panel" aria-labelledby="features">
+          <h2 id="features">Features</h2>
+          <ul class="check-list">
+            {project.features.map((feature) => <li>{feature}</li>)}
+          </ul>
+        </section>
+
+        <section class="detail-panel screenshot-placeholder" aria-labelledby="screenshots">
+          <h2 id="screenshots">Screenshots placeholder</h2>
+          <p>{project.screenshot_note}</p>
+        </section>
+
+        <section class="detail-panel" aria-labelledby="links">
+          <h2 id="links">Links</h2>
+          <div class="button-row">
+            <a class="button primary" href={sitePath("/projects/")} target="_blank" rel="noreferrer noopener">Back to projects</a>
+            {project.github_url && <a class="button" href={project.github_url} target="_blank" rel="noreferrer noopener">GitHub</a>}
+            {flasherHref && <a class="button" href={flasherHref} target="_blank" rel="noreferrer noopener">Web Flasher</a>}
+          </div>
+        </section>
+
+        <section class="detail-panel" aria-labelledby="responsible-use">
+          <h2 id="responsible-use">Responsible use disclaimer</h2>
+          <DisclaimerBanner />
+        </section>
       </div>
     </div>
   </section>

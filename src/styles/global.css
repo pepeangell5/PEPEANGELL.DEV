@@ -146,6 +146,7 @@ main {
 
 .container {
   width: min(1120px, calc(100% - 32px));
+  max-width: calc(100vw - 32px);
   margin: 0 auto;
 }
 
@@ -193,6 +194,18 @@ h2 {
   overflow-wrap: anywhere;
 }
 
+h1::before,
+h2::before {
+  display: inline-block;
+  width: 0.82em;
+  aspect-ratio: 1;
+  margin-right: 0.18em;
+  vertical-align: -0.09em;
+  content: "";
+  background: url("/assets/mascot-neon-cut.png") center / contain no-repeat;
+  filter: drop-shadow(0 0 10px rgba(255, 44, 169, 0.34));
+}
+
 h3 {
   margin-bottom: 10px;
   font-size: 1.08rem;
@@ -201,6 +214,7 @@ h3 {
 p {
   color: var(--muted);
   line-height: 1.65;
+  overflow-wrap: anywhere;
 }
 
 .grid {
@@ -509,7 +523,66 @@ p {
 }
 
 .project-detail {
+  width: min(840px, calc(100vw - 32px));
   max-width: 840px;
+}
+
+.detail-sections {
+  display: grid;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.detail-panel {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  padding: 20px;
+  background:
+    linear-gradient(180deg, rgba(14, 24, 22, 0.82), rgba(6, 10, 10, 0.92)),
+    linear-gradient(90deg, rgba(57, 255, 136, 0.055), transparent);
+  border: 1px solid rgba(57, 255, 136, 0.18);
+  border-radius: var(--radius);
+}
+
+.detail-panel h2 {
+  font-size: clamp(1.35rem, 2.4vw, 2rem);
+}
+
+.check-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 24px;
+  color: var(--muted);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.check-list li::before {
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 900;
+  content: ">";
+}
+
+.screenshot-placeholder {
+  min-height: 180px;
+  display: grid;
+  align-content: center;
+  background:
+    linear-gradient(rgba(57, 255, 136, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 255, 136, 0.06) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(14, 24, 22, 0.86), rgba(6, 10, 10, 0.94));
+  background-size: 22px 22px, 22px 22px, auto;
 }
 
 @keyframes matrix-fall {
@@ -531,6 +604,7 @@ p {
 @media (max-width: 760px) {
   .container {
     width: min(100% - 24px, 1120px);
+    max-width: calc(100vw - 24px);
   }
 
   .section {
@@ -550,17 +624,26 @@ p {
     font-size: 1.42rem;
   }
 
+  h1::before,
+  h2::before {
+    width: 0.72em;
+    margin-right: 0.12em;
+  }
+
   .nav {
     min-height: auto;
     align-items: center;
     flex-direction: row;
+    overflow: hidden;
     padding: 10px 0;
   }
 
   .nav-links {
+    flex: 1;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    width: 100%;
+    width: auto;
+    min-width: 0;
     padding-bottom: 4px;
     overflow-x: auto;
     scrollbar-width: thin;
@@ -640,6 +723,17 @@ p {
 
   .card {
     padding: 16px;
+  }
+
+  .detail-panel {
+    padding: 16px;
+  }
+
+  .detail-panel p,
+  .detail-panel .check-list,
+  .detail-panel .badge-row,
+  .detail-panel .button-row {
+    max-width: calc(100vw - 58px);
   }
 
   .filters {
