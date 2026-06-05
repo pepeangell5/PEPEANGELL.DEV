@@ -25,12 +25,14 @@
 
 html {
   background: var(--bg);
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
 body {
   min-height: 100vh;
   margin: 0;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(57, 255, 136, 0.11), transparent 31rem),
     radial-gradient(circle at 80% 8%, rgba(255, 61, 24, 0.1), transparent 30rem),
@@ -95,9 +97,47 @@ select {
 }
 
 .site-shell {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: clip;
+}
+
+.site-shell::before {
+  position: fixed;
+  inset: -28vh 0 0;
+  z-index: 0;
+  max-width: 100vw;
+  overflow: hidden;
+  pointer-events: none;
+  content:
+    "0101 1010 0011 1110  ESP32  RF  BLE  WiFi  UART  SPI  GPIO\A"
+    "1011 0001 1100 0101  root  lab  scan  auth  hex  payload\A"
+    "0010 1111 0100 1001  0x1A  0xFF  0xC3  0x5A  0x7E\A"
+    "1101 0110 1000 0011  cyberdeck  firmware  flasher  serial\A"
+    "0110 1001 1110 0001  ESP32  RF  BLE  WiFi  UART  SPI  GPIO\A"
+    "1001 0100 0011 1011  root  lab  scan  auth  hex  payload\A";
+  color: rgba(57, 255, 136, 0.055);
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  font-size: clamp(0.72rem, 1.35vw, 1rem);
+  font-weight: 800;
+  line-height: 1.9;
+  white-space: pre;
+  word-spacing: 1.6rem;
+  text-shadow: 0 0 12px rgba(57, 255, 136, 0.2);
+  transform: translateY(0);
+  animation: matrix-fall 26s linear infinite;
+  mask-image: linear-gradient(90deg, transparent 0%, black 16%, black 84%, transparent 100%);
+}
+
+.site-header,
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
 }
 
 main {
@@ -143,12 +183,14 @@ h1 {
   margin-bottom: 18px;
   font-size: clamp(2.75rem, 7vw, 6rem);
   line-height: 0.95;
+  overflow-wrap: anywhere;
 }
 
 h2 {
   margin-bottom: 10px;
   font-size: clamp(1.7rem, 3.2vw, 2.6rem);
   line-height: 1.05;
+  overflow-wrap: anywhere;
 }
 
 h3 {
@@ -333,12 +375,22 @@ p {
   overflow: hidden;
 }
 
+.hero::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(circle at 80% 46%, rgba(255, 44, 169, 0.16), transparent 24rem),
+    linear-gradient(90deg, rgba(5, 7, 8, 0.96) 0%, rgba(5, 7, 8, 0.74) 46%, rgba(5, 7, 8, 0.24) 100%);
+}
+
 .hero::after {
   position: absolute;
-  right: min(7vw, 90px);
-  bottom: 48px;
-  width: min(38vw, 420px);
-  height: min(38vw, 420px);
+  right: min(4vw, 72px);
+  bottom: 24px;
+  width: min(34vw, 390px);
+  height: min(34vw, 390px);
   pointer-events: none;
   content: "";
   background:
@@ -352,26 +404,43 @@ p {
 
 .hero-visual {
   position: absolute;
-  inset: auto 0 0 auto;
-  width: min(58vw, 980px);
+  pointer-events: none;
+  user-select: none;
   max-width: none;
   height: auto;
-  opacity: 0.62;
-  filter: saturate(1.08) contrast(1.05);
-  mask-image: linear-gradient(90deg, transparent 0%, black 28%);
+}
+
+.hero-visual-primary {
+  right: clamp(-118px, -6vw, -56px);
+  bottom: clamp(-88px, -8vw, -48px);
+  width: min(34vw, 480px);
+  opacity: 0.95;
+  filter: drop-shadow(0 0 28px rgba(255, 44, 169, 0.32)) drop-shadow(0 0 32px rgba(57, 255, 136, 0.12));
+}
+
+.hero-visual-secondary {
+  right: min(23vw, 330px);
+  bottom: -74px;
+  width: min(25vw, 330px);
+  opacity: 0.18;
+  filter: blur(1px) saturate(1.1);
+  transform: rotate(-8deg);
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  min-width: 0;
   max-width: 870px;
 }
 
 .hero-subtitle {
+  max-width: 720px;
   color: var(--amber);
   font-size: clamp(1rem, 2.5vw, 1.35rem);
   font-weight: 850;
   font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  overflow-wrap: anywhere;
 }
 
 .hero-description {
@@ -443,6 +512,22 @@ p {
   max-width: 840px;
 }
 
+@keyframes matrix-fall {
+  0% {
+    transform: translateY(-14vh);
+  }
+
+  100% {
+    transform: translateY(14vh);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-shell::before {
+    animation: none;
+  }
+}
+
 @media (max-width: 760px) {
   .container {
     width: min(100% - 24px, 1120px);
@@ -457,12 +542,12 @@ p {
   }
 
   h1 {
-    font-size: clamp(2.2rem, 14vw, 3.4rem);
+    font-size: clamp(2.05rem, 11vw, 2.9rem);
     line-height: 0.98;
   }
 
   h2 {
-    font-size: 1.55rem;
+    font-size: 1.42rem;
   }
 
   .nav {
@@ -488,24 +573,49 @@ p {
   .hero {
     min-height: 0;
     align-items: flex-start;
-    padding: 42px 0 30px;
+    padding: 34px 0 188px;
   }
 
   .hero-content {
     padding-top: 0;
   }
 
-  .hero::after {
-    display: none;
+  .hero-subtitle {
+    max-width: 330px;
+    font-size: 0.96rem;
   }
 
-  .hero-visual {
-    position: absolute;
-    right: -34%;
-    bottom: -6%;
-    width: 128%;
-    opacity: 0.2;
-    mask-image: linear-gradient(90deg, transparent 0%, black 42%);
+  .hero .button-row {
+    max-width: 340px;
+  }
+
+  .hero::after {
+    right: -34px;
+    bottom: 14px;
+    width: 210px;
+    height: 210px;
+    opacity: 0.22;
+  }
+
+  .hero::before {
+    background:
+      radial-gradient(circle at 76% 80%, rgba(255, 44, 169, 0.16), transparent 14rem),
+      linear-gradient(180deg, rgba(5, 7, 8, 0.94) 0%, rgba(5, 7, 8, 0.78) 62%, rgba(5, 7, 8, 0.24) 100%);
+  }
+
+  .hero-visual-primary {
+    right: max(-98px, -22vw);
+    bottom: -110px;
+    width: min(72vw, 300px);
+    opacity: 0.7;
+  }
+
+  .hero-visual-secondary {
+    right: auto;
+    left: -110px;
+    bottom: -96px;
+    width: min(58vw, 240px);
+    opacity: 0.12;
   }
 
   .hero-description {
