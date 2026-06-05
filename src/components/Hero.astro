@@ -1,7 +1,11 @@
+---
+import { sitePath } from "../utils/paths";
+---
+
 <section class="hero">
   <img
     class="hero-visual"
-    src="/assets/lab-hero.png"
+    src={sitePath("/assets/lab-hero.png")}
     alt="Dark embedded hardware lab bench with ESP32 boards, displays and RF modules"
     width="1600"
     height="900"
@@ -15,10 +19,10 @@
       modules, BLE, WiFi, displays, cyberdecks and lab tools.
     </p>
     <div class="button-row">
-      <a class="button primary" href="/projects/">View Projects</a>
-      <a class="button" href="/flashers/">Web Flashers</a>
+      <a class="button primary" href={sitePath("/projects/")}>View Projects</a>
+      <a class="button" href={sitePath("/flashers/")}>Web Flashers</a>
       <a class="button" href="https://github.com/pepeangell5" rel="noreferrer">GitHub</a>
-      <a class="button danger" href="/disclaimer/">Disclaimer</a>
+      <a class="button danger" href={sitePath("/disclaimer/")}>Disclaimer</a>
     </div>
   </div>
 </section>

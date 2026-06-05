@@ -1,4 +1,6 @@
 ---
+import { sitePath } from "../utils/paths";
+
 const links = [
   { href: "/", label: "Inicio" },
   { href: "/projects/", label: "Proyectos" },
@@ -11,18 +13,19 @@ const links = [
 ];
 
 const pathname = Astro.url.pathname;
+const normalizedPathname = pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ""), "") || "/";
 ---
 
 <header class="site-header">
   <div class="container nav">
-    <a class="brand" href="/" aria-label="PepeAngell Labs home">
+    <a class="brand" href={sitePath("/")} aria-label="PepeAngell Labs home">
       <span class="brand-mark" aria-hidden="true">PA</span>
       <span>PepeAngell Labs</span>
     </a>
     <nav class="nav-links" aria-label="Navegacion principal">
       {
         links.map((link) => (
-          <a href={link.href} aria-current={pathname === link.href ? "page" : undefined}>
+          <a href={sitePath(link.href)} aria-current={normalizedPathname === link.href ? "page" : undefined}>
             {link.label}
           </a>
         ))

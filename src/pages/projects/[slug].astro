@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Badge from "../../components/Badge.astro";
 import DisclaimerBanner from "../../components/DisclaimerBanner.astro";
+import { sitePath } from "../../utils/paths";
 import projects from "../../data/projects.json";
 
 export function getStaticPaths() {
@@ -31,7 +32,7 @@ const { project } = Astro.props;
         <DisclaimerBanner />
       </div>
       <div class="button-row">
-        <a class="button primary" href="/projects/">Back to projects</a>
+        <a class="button primary" href={sitePath("/projects/")}>Back to projects</a>
         {project.github_url && <a class="button" href={project.github_url} rel="noreferrer">GitHub</a>}
         {project.flasher_url && <a class="button" href={project.flasher_url}>Web Flasher</a>}
       </div>

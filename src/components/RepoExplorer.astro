@@ -1,3 +1,7 @@
+---
+const reposUrl = `${import.meta.env.BASE_URL}data/repos.json`;
+---
+
 <section class="section compact" aria-label="Explorador de repositorios">
   <div class="filters">
     <label>
@@ -23,7 +27,7 @@
   <div id="repo-list" class="grid cards"></div>
 </section>
 
-<script>
+<script define:vars={{ reposUrl }}>
   const list = document.querySelector("#repo-list");
   const count = document.querySelector("#repo-count");
   const search = document.querySelector("#repo-search");
@@ -88,7 +92,7 @@
 
   const loadRepos = async () => {
     try {
-      const response = await fetch("/data/repos.json", { cache: "no-store" });
+      const response = await fetch(reposUrl, { cache: "no-store" });
       repos = await response.json();
       renderLanguages();
       renderRepos();

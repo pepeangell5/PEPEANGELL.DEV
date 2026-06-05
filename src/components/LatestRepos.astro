@@ -1,8 +1,12 @@
+---
+const reposUrl = `${import.meta.env.BASE_URL}data/repos.json`;
+---
+
 <div id="latest-repos" class="grid cards" aria-live="polite">
   <article class="card"><h3>Cargando repositorios</h3><p>Leyendo /data/repos.json...</p></article>
 </div>
 
-<script>
+<script define:vars={{ reposUrl }}>
   const latestTarget = document.querySelector("#latest-repos");
   const escapeLatest = (value) =>
     String(value ?? "").replace(/[&<>"']/g, (char) => ({
@@ -15,7 +19,7 @@
 
   const dateFmt = (value) => value ? new Intl.DateTimeFormat("es-MX", { dateStyle: "medium" }).format(new Date(value)) : "Unknown";
 
-  fetch("/data/repos.json", { cache: "no-store" })
+  fetch(reposUrl, { cache: "no-store" })
     .then((response) => response.json())
     .then((repos) => {
       const latest = [...repos].sort((a, b) => new Date(b.updated_at || 0) - new Date(a.updated_at || 0)).slice(0, 3);

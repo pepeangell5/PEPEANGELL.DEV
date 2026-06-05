@@ -1,5 +1,6 @@
 ---
 import Badge from "./Badge.astro";
+import { sitePath } from "../utils/paths";
 
 interface Project {
   name: string;
@@ -27,7 +28,7 @@ const { project } = Astro.props;
   </div>
   <p class="small muted">Uso educativo y en entornos de laboratorio controlados.</p>
   <div class="button-row">
-    <a class="button primary" href={`/projects/${project.slug}/`}>View details</a>
+    <a class="button primary" href={sitePath(`/projects/${project.slug}/`)}>View details</a>
     {project.github_url && <a class="button" href={project.github_url} rel="noreferrer">GitHub</a>}
     {project.flasher_url && <a class="button" href={project.flasher_url}>Web Flasher</a>}
   </div>

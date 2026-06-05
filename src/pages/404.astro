@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { sitePath } from "../utils/paths";
 ---
 
 <BaseLayout title="404" description="Pagina no encontrada en PepeAngell Labs.">
@@ -9,8 +10,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <h1>Pagina no encontrada</h1>
       <p>La ruta no existe o todavia no se ha publicado. Puedes volver al inicio o explorar los proyectos.</p>
       <div class="button-row">
-        <a class="button primary" href="/">Inicio</a>
-        <a class="button" href="/projects/">Proyectos</a>
+        <a class="button primary" href={sitePath("/")}>Inicio</a>
+        <a class="button" href={sitePath("/projects/")}>Proyectos</a>
       </div>
     </div>
   </section>

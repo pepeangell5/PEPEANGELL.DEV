@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { sitePath } from "../utils/paths";
 import "../styles/global.css";
 
 interface Props {
@@ -21,7 +22,7 @@ const canonical = new URL(Astro.url.pathname, "https://pepeangell.dev").toString
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={sitePath("/favicon.svg")} type="image/svg+xml" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
