@@ -106,7 +106,7 @@ scripts/             GitHub repo data generation
 
 ## Future Improvements
 
-- Replace placeholder social and flasher links with final public URLs.
+- Replace firmware fallback links with final Web Flasher URLs when those pages are published.
 - Add real project images, wiring photos or screenshots.
 - Expand project detail pages with release notes and hardware compatibility tables.
 - Add generated screenshots or Open Graph images.

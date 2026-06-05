@@ -12,6 +12,10 @@ const priorityRepos = [
   "BWifiKill-ESP32",
   "ESP32-TOOLS-MODERN"
 ];
+const descriptionOverrides = {
+  "ESP32-TOOLS-MODERN": "Versión del firmware ESP32 Tools con mejores gráficos.",
+  "DRONE-FPV-ESP32C3-SUPERMINI": "Creación de un dron casero con control de comunicación por protocolo ESP-NOW."
+};
 
 function priorityIndex(repo) {
   const index = priorityRepos.findIndex((name) => name.toLowerCase() === String(repo.name || "").toLowerCase());
@@ -21,7 +25,7 @@ function priorityIndex(repo) {
 const normalizeRepo = (repo) => ({
   name: repo.name,
   full_name: repo.full_name,
-  description: repo.description,
+  description: descriptionOverrides[repo.name] ?? repo.description,
   html_url: repo.html_url,
   homepage: repo.homepage,
   language: repo.language,

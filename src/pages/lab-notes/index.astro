@@ -6,14 +6,14 @@ import notes from "../../data/lab-notes.json";
 
 <BaseLayout
   title="Lab Notes"
-  description="Notas tecnicas cortas sobre NRF24, OLED, TFT SPI, ESP-NOW, RF, BLE, WiFi y organizacion de repositorios."
+  description="Notas técnicas cortas sobre NRF24, OLED, TFT SPI, ESP-NOW, RF, BLE, WiFi y organización de repositorios."
 >
   <section class="section">
     <div class="container">
       <div class="section-header">
         <p class="eyebrow">Lab notes</p>
-        <h1>Notas tecnicas</h1>
-        <p>Apuntes breves, faciles de ampliar, para documentar decisiones, compatibilidad y aprendizaje practico.</p>
+        <h1>Notas técnicas</h1>
+        <p>Apuntes breves, fáciles de ampliar, para documentar decisiones, compatibilidad y aprendizaje práctico.</p>
       </div>
       <div class="grid cards">
         {notes.map((note) => <NoteCard note={note} />)}

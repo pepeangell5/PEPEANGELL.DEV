@@ -43,11 +43,11 @@ const reposUrl = `${import.meta.env.BASE_URL}data/repos.json`;
             <p class="status">${escapeLatest(repo.language || "GitHub")}</p>
             <h3>${escapeLatest(repo.name)}</h3>
             <p>${escapeLatest(repo.description || "Repositorio publico de PepeAngell Labs.")}</p>
-            <p class="small muted">Updated: ${dateFmt(repo.updated_at)}</p>
-            <a class="button primary" href="${escapeLatest(repo.html_url)}" rel="noreferrer">Open repo</a>
+          <p class="small muted">Updated: ${dateFmt(repo.updated_at)}</p>
+          <a class="button primary" href="${escapeLatest(repo.html_url)}" target="_blank" rel="noreferrer noopener">Open repo</a>
           </article>
         `).join("")
-        : `<article class="card"><h3>Repos listos para sincronizar</h3><p>Ejecuta npm run fetch:repos para llenar esta seccion con repos publicos.</p></article>`;
+        : `<article class="card"><h3>Repos listos para sincronizar</h3><p>Ejecuta npm run fetch:repos para llenar esta sección con repos públicos.</p></article>`;
     })
     .catch(() => {
       latestTarget.innerHTML = `<article class="card"><h3>Repos no disponibles</h3><p>Revisa public/data/repos.json.</p></article>`;

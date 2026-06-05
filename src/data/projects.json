@@ -2,8 +2,8 @@
   {
     "name": "BWifiKill ESP32 V4.0",
     "slug": "bwifikill-esp32-v4",
-    "description": "Revision principal de BWifiKill ESP32 con mejoras visuales, animaciones, iconos, optimizacion y mejor fluidez.",
-    "details": "Version prioritaria del laboratorio para documentar compatibilidad, interfaz y flujo de firmware en placas ESP32 dentro de pruebas autorizadas.",
+    "description": "Revisión principal de BWifiKill ESP32 con mejoras visuales, animaciones, iconos, optimización y mejor fluidez.",
+    "details": "Versión prioritaria del laboratorio para documentar compatibilidad, interfaz y flujo de firmware en placas ESP32 dentro de pruebas autorizadas.",
     "tags": ["ESP32", "WiFi", "BLE", "TFT"],
     "status": "In Development",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0",
@@ -12,8 +12,8 @@
   {
     "name": "ESP32 Tools Pro 480x320 V2.0",
     "slug": "esp32-tools-pro-480x320-v2",
-    "description": "Firmware ESP32 Tools Pro con soporte para TFT 480x320, modulos IR, CC1101 y diagnosticos de laboratorio.",
-    "details": "Proyecto enfocado en interfaz grafica, hardware compatible, flujos de firmware y documentacion para pruebas educativas controladas.",
+    "description": "Firmware ESP32 Tools Pro con soporte para TFT 480x320, módulos IR, CC1101 y diagnósticos de laboratorio.",
+    "details": "Proyecto enfocado en interfaz gráfica, hardware compatible, flujos de firmware y documentación para pruebas educativas controladas.",
     "tags": ["ESP32", "TFT", "ILI9488", "CC1101", "IR"],
     "status": "Stable",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
@@ -22,8 +22,8 @@
   {
     "name": "Cyberdeck Mini ESP32",
     "slug": "cyberdeck-mini-esp32",
-    "description": "Mini cyberdeck educativo basado en ESP32 para herramientas portables, pantalla, energia e interfaz compacta.",
-    "details": "Construccion de laboratorio para aprender integracion de hardware, firmware, UI embebida y experiencia de usuario en formato portable.",
+    "description": "Mini cyberdeck educativo basado en ESP32 para herramientas portables, pantalla, energía e interfaz compacta.",
+    "details": "Construcción de laboratorio para aprender integración de hardware, firmware, UI embebida y experiencia de usuario en formato portable.",
     "tags": ["ESP32", "Cyberdeck", "Display", "Battery"],
     "status": "In Development",
     "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32",
@@ -32,8 +32,8 @@
   {
     "name": "BWifiKill BW16 5Ghz",
     "slug": "bwifikill-bw16-5ghz",
-    "description": "Firmware educativo para BW16 RTL8720DN orientado a analisis WiFi y pruebas de laboratorio en entornos controlados.",
-    "details": "Linea de trabajo para documentar toolchain, compatibilidad y comportamiento del BW16 RTL8720DN frente a proyectos ESP32.",
+    "description": "Firmware educativo para BW16 RTL8720DN orientado a análisis WiFi y pruebas de laboratorio en entornos controlados.",
+    "details": "Línea de trabajo para documentar toolchain, compatibilidad y comportamiento del BW16 RTL8720DN frente a proyectos ESP32.",
     "tags": ["BW16", "RTL8720DN", "WiFi", "BLE"],
     "status": "Experimental",
     "github_url": "https://github.com/pepeangell5/BWifiKill-BW16-5Ghz",
@@ -43,7 +43,7 @@
     "name": "BWifiKill ESP32",
     "slug": "bwifikill-esp32",
     "description": "Proyecto educativo de laboratorio para estudiar WiFi, ESP32, pantallas compactas y flujos de firmware.",
-    "details": "Base experimental orientada a aprendizaje de firmware, menus embebidos y pruebas controladas con ESP32.",
+    "details": "Base experimental orientada a aprendizaje de firmware, menús embebidos y pruebas controladas con ESP32.",
     "tags": ["ESP32", "WiFi", "OLED", "Firmware"],
     "status": "Experimental",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32",
@@ -52,8 +52,8 @@
   {
     "name": "ESP32 Tools Modern",
     "slug": "esp32-tools-modern",
-    "description": "Version moderna de ESP32 Tools con mejor enfoque visual, graficos y organizacion de interfaz.",
-    "details": "Linea de experimentacion para mejorar navegacion, arquitectura de firmware y documentacion tecnica.",
+    "description": "Versión moderna de ESP32 Tools con mejor enfoque visual, gráficos y organización de interfaz.",
+    "details": "Línea de experimentación para mejorar navegación, arquitectura de firmware y documentación técnica.",
     "tags": ["ESP32", "UI", "Firmware"],
     "status": "Demo",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-MODERN"
@@ -61,28 +61,28 @@
   {
     "name": "NRF Link Test",
     "slug": "nrf-link-test",
-    "description": "Pruebas educativas de enlace NRF24L01 para alimentacion, alcance de laboratorio y estabilidad de comunicacion.",
-    "details": "Proyecto de referencia para validar capacitores, modulos PA+LNA y conexiones SPI en bancos de prueba.",
+    "description": "Pruebas educativas de enlace NRF24L01 para alimentación, alcance de laboratorio y estabilidad de comunicación.",
+    "details": "Proyecto de referencia para validar capacitores, módulos PA+LNA y conexiones SPI en bancos de prueba.",
     "tags": ["NRF24", "RF", "SPI", "ESP32"],
     "status": "Experimental",
-    "github_url": "https://github.com/pepeangell5"
+    "github_url": ""
   },
   {
     "name": "ACEBOTT Smart Car Experiments",
     "slug": "acebott-smart-car-experiments",
-    "description": "Experimentos con carro inteligente ACEBOTT para control, sensores, motores y comunicacion entre placas.",
-    "details": "Coleccion educativa para validar sketches, control remoto y telemetria basica en un entorno seguro.",
+    "description": "Experimentos con carro inteligente ACEBOTT para control, sensores, motores y comunicación entre placas.",
+    "details": "Colección educativa para validar sketches, control remoto y telemetría básica en un entorno seguro.",
     "tags": ["ACEBOTT", "ESP32", "Motors", "Sensors"],
     "status": "Demo",
-    "github_url": "https://github.com/pepeangell5"
+    "github_url": ""
   },
   {
     "name": "M5Stack Cardputer ADV Experiments",
     "slug": "m5stack-cardputer-adv-experiments",
-    "description": "Pruebas con M5Stack Cardputer ADV para interfaz portatil, teclado, pantalla y firmware experimental.",
-    "details": "Linea de trabajo enfocada en dispositivos portables y proyectos educativos con UI compacta.",
+    "description": "Pruebas con M5Stack Cardputer ADV para interfaz portátil, teclado, pantalla y firmware experimental.",
+    "details": "Línea de trabajo enfocada en dispositivos portables y proyectos educativos con UI compacta.",
     "tags": ["M5Stack", "Cardputer", "ESP32", "Portable"],
     "status": "Experimental",
-    "github_url": "https://github.com/pepeangell5"
+    "github_url": ""
   }
 ]

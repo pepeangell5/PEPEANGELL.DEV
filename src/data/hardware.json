@@ -1,86 +1,86 @@
 [
   {
     "name": "ESP32 DevKit / ESP32 30-pin",
-    "description": "Placa principal para prototipos, firmware educativo, displays y modulos SPI/I2C.",
+    "description": "Placa principal para prototipos, firmware educativo, displays y módulos SPI/I2C.",
     "voltage": "Usar 5V por USB o 3.3V regulados en pines compatibles.",
     "typical_use": "Base para herramientas ESP32, pruebas WiFi/BLE y web flashers.",
-    "warning": "No alimentar perifericos de 5V directamente en GPIO de 3.3V."
+    "warning": "No alimentar periféricos de 5V directamente en GPIO de 3.3V."
   },
   {
     "name": "ESP32-U",
-    "description": "Variante ESP32 con antena externa para montajes donde importa la ubicacion de antena.",
+    "description": "Variante ESP32 con antena externa para montajes donde importa la ubicación de antena.",
     "voltage": "GPIO a 3.3V.",
     "typical_use": "Pruebas de gabinete, cyberdecks y layouts compactos.",
-    "warning": "Verificar conexion de antena antes de energizar transmisiones de prueba."
+    "warning": "Verificar conexión de antena antes de energizar transmisiones de prueba."
   },
   {
     "name": "BW16 RTL8720DN",
-    "description": "Modulo Realtek para experimentos WiFi/BLE y comparacion de toolchains.",
+    "description": "Módulo Realtek para experimentos WiFi/BLE y comparación de toolchains.",
     "voltage": "3.3V estable.",
-    "typical_use": "BW16 Tools, notas de compilacion y pruebas controladas.",
-    "warning": "Revisar pinout exacto antes de conectar UART o alimentacion."
+    "typical_use": "BWifiKill BW16 5Ghz, notas de compilación y pruebas controladas.",
+    "warning": "Revisar pinout exacto antes de conectar UART o alimentación."
   },
   {
     "name": "NRF24L01",
-    "description": "Modulo RF de 2.4 GHz para enlaces educativos de baja potencia.",
-    "voltage": "3.3V, con alimentacion estable.",
-    "typical_use": "NRF Link Test y practicas SPI.",
-    "warning": "Evitar alimentarlo desde 5V; agregar capacitor cerca del modulo."
+    "description": "Módulo RF de 2.4 GHz para enlaces educativos de baja potencia.",
+    "voltage": "3.3V, con alimentación estable.",
+    "typical_use": "Pruebas SPI, enlaces de laboratorio y validación de capacitores.",
+    "warning": "Evitar alimentarlo desde 5V; agregar capacitor cerca del módulo."
   },
   {
     "name": "NRF24L01 PA+LNA",
-    "description": "Version con amplificacion para pruebas de enlace en banco autorizado.",
+    "description": "Versión con amplificación para pruebas de enlace en banco autorizado.",
     "voltage": "3.3V con corriente suficiente.",
-    "typical_use": "Comparacion de estabilidad y alcance en laboratorio.",
+    "typical_use": "Comparación de estabilidad y alcance en laboratorio.",
     "warning": "Usar solo en entornos permitidos y con antena adecuada."
   },
   {
     "name": "CC1101",
-    "description": "Modulo RF sub-GHz para aprendizaje de integracion y configuracion de radio.",
+    "description": "Módulo RF sub-GHz para aprendizaje de integración y configuración de radio.",
     "voltage": "3.3V.",
     "typical_use": "Experimentos RF documentados en entorno controlado.",
     "warning": "No transmitir fuera de bandas, potencias o permisos aplicables."
   },
   {
     "name": "RF433 transmitter/receiver",
-    "description": "Par de modulos 433 MHz para practicas de recepcion y telemetria basica.",
-    "voltage": "Depende del modulo; revisar hoja de datos.",
-    "typical_use": "Pruebas educativas de senal simple y captura controlada.",
+    "description": "Par de módulos 433 MHz para prácticas de recepción y telemetría básica.",
+    "voltage": "Depende del módulo; revisar hoja de datos.",
+    "typical_use": "Pruebas educativas de señal simple y captura controlada.",
     "warning": "No interferir dispositivos o entornos de terceros."
   },
   {
     "name": "OLED SSD1306 128x64",
-    "description": "Pantalla I2C compacta para menus, estados y prototipos portables.",
-    "voltage": "Muchas placas aceptan 3.3V; verificar modulo.",
-    "typical_use": "Menus ESP32 y diagnostico visual.",
-    "warning": "Confirmar direccion I2C y controlador antes de cargar firmware."
+    "description": "Pantalla I2C compacta para menús, estados y prototipos portables.",
+    "voltage": "Muchas placas aceptan 3.3V; verificar módulo.",
+    "typical_use": "Menús ESP32 y diagnóstico visual.",
+    "warning": "Confirmar dirección I2C y controlador antes de cargar firmware."
   },
   {
     "name": "OLED SH1106 128x64",
-    "description": "Pantalla similar a SSD1306 con diferencias de controlador y libreria.",
-    "voltage": "Verificar modulo, normalmente 3.3V/5V segun breakout.",
+    "description": "Pantalla similar a SSD1306 con diferencias de controlador y librería.",
+    "voltage": "Verificar módulo, normalmente 3.3V/5V según breakout.",
     "typical_use": "Alternativa para interfaces compactas.",
     "warning": "No asumir compatibilidad directa con sketches SSD1306."
   },
   {
     "name": "TFT ILI9488 480x320 SPI",
-    "description": "Pantalla grande SPI para interfaces graficas en proyectos ESP32.",
-    "voltage": "Logica de 3.3V recomendada.",
+    "description": "Pantalla grande SPI para interfaces gráficas en proyectos ESP32.",
+    "voltage": "Lógica de 3.3V recomendada.",
     "typical_use": "ESP32 Tools Pro 480x320.",
     "warning": "Cableado SPI largo puede provocar fallos visuales o ruido."
   },
   {
     "name": "M5Stack Cardputer ADV",
     "description": "Equipo compacto con pantalla y teclado para firmware portable.",
-    "voltage": "Usar carga/alimentacion recomendada por el fabricante.",
+    "voltage": "Usar carga/alimentación recomendada por el fabricante.",
     "typical_use": "Experimentos de interfaz, texto y herramientas de bolsillo.",
-    "warning": "Respetar perfiles de energia y pinout del dispositivo."
+    "warning": "Respetar perfiles de energía y pinout del dispositivo."
   },
   {
     "name": "ACEBOTT Smart Car",
-    "description": "Plataforma movil educativa para motores, sensores y control embebido.",
-    "voltage": "Separar correctamente energia de motores y logica.",
+    "description": "Plataforma móvil educativa para motores, sensores y control embebido.",
+    "voltage": "Separar correctamente energía de motores y lógica.",
     "typical_use": "Pruebas de control remoto, ESP-NOW y sensores.",
-    "warning": "Probar en area despejada y segura."
+    "warning": "Probar en área despejada y segura."
   }
 ]

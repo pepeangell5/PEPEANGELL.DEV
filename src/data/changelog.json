@@ -1,12 +1,33 @@
 [
   {
+    "version": "0.3.0",
+    "date": "2026-06-05",
+    "title": "Responsive, dominio y enlaces",
+    "items": [
+      "Sitio publicado en pepeangell.dev con HTTPS.",
+      "Mejorado el hero para móvil y escritorio.",
+      "Repos principales ordenados al inicio.",
+      "Enlaces de proyectos, redes y flashers revisados."
+    ]
+  },
+  {
+    "version": "0.2.0",
+    "date": "2026-06-05",
+    "title": "GitHub Pages",
+    "items": [
+      "Configurado workflow de despliegue con GitHub Actions.",
+      "Agregado script para actualizar repositorios públicos.",
+      "Generado JSON local de repos para evitar llamadas directas agresivas desde el navegador."
+    ]
+  },
+  {
     "version": "0.1.0",
     "date": "2026-06-05",
-    "title": "Initial site scaffold",
+    "title": "Estructura inicial",
     "items": [
       "Creada estructura Astro para PepeAngell Labs.",
-      "Agregadas paginas principales, datos JSON y workflow de GitHub Pages.",
-      "Preparado script para generar repos publicos desde GitHub."
+      "Agregadas páginas principales, datos JSON y componentes reutilizables.",
+      "Preparada base estática sin backend ni tokens privados."
     ]
   }
 ]

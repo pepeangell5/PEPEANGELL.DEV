@@ -1,32 +1,32 @@
 [
   {
-    "title": "NRF24 capacitor recommendation",
-    "summary": "Colocar un capacitor cerca de VCC/GND del NRF24L01 ayuda a estabilizar la alimentacion durante picos de transmision.",
+    "title": "NRF24: capacitor cerca del módulo",
+    "summary": "Un capacitor entre VCC y GND, colocado cerca del NRF24L01, ayuda a estabilizar la alimentación durante picos de transmisión.",
     "tags": ["NRF24", "Power", "RF"]
   },
   {
-    "title": "OLED SSD1306 vs SH1106 note",
-    "summary": "Ambas pantallas pueden verse iguales fisicamente, pero requieren configuracion o librerias diferentes por controlador.",
+    "title": "OLED SSD1306 vs SH1106",
+    "summary": "Ambas pantallas pueden verse iguales físicamente, pero requieren configuración o librerías diferentes por controlador.",
     "tags": ["OLED", "I2C", "Display"]
   },
   {
-    "title": "ESP32 + TFT SPI notes",
-    "summary": "Mantener cables cortos, revisar pines CS/DC/RST y ajustar velocidad SPI mejora la estabilidad visual.",
+    "title": "ESP32 + TFT SPI",
+    "summary": "Cables cortos, pines CS/DC/RST correctos y una velocidad SPI razonable ayudan a evitar fallos visuales.",
     "tags": ["ESP32", "TFT", "SPI"]
   },
   {
-    "title": "ESP-NOW lab experiments",
-    "summary": "ESP-NOW es util para telemetria local y practicas de comunicacion entre placas dentro de un entorno autorizado.",
+    "title": "ESP-NOW en laboratorio",
+    "summary": "ESP-NOW es útil para telemetría local y comunicación entre placas dentro de entornos propios o autorizados.",
     "tags": ["ESP-NOW", "ESP32", "Telemetry"]
   },
   {
-    "title": "RF/BLE/WiFi educational disclaimer",
-    "summary": "Las pruebas de radio, BLE y WiFi deben limitarse a equipos propios, bancos controlados y escenarios con permiso explicito.",
+    "title": "RF/BLE/WiFi: uso responsable",
+    "summary": "Las pruebas de radio, BLE y WiFi deben limitarse a equipos propios, bancos controlados y escenarios con permiso explícito.",
     "tags": ["Safety", "RF", "WiFi"]
   },
   {
-    "title": "GitHub repo organization notes",
-    "summary": "Mantener README claros, releases etiquetados y nombres consistentes hace que los proyectos sean mas faciles de encontrar y mantener.",
+    "title": "Organización de repos",
+    "summary": "README claros, releases etiquetados y nombres consistentes hacen que los proyectos sean más fáciles de encontrar, probar y mantener.",
     "tags": ["GitHub", "Docs", "Workflow"]
   }
 ]

@@ -2,36 +2,36 @@
   {
     "section": "BWifiKill ESP32",
     "items": [
-      { "title": "Organizar documentacion de hardware compatible", "status": "In progress" },
-      { "title": "Preparar pagina de detalle y enlaces de firmware", "status": "Planned" }
+      { "title": "Completar documentación de hardware compatible", "status": "In progress" },
+      { "title": "Publicar enlaces de firmware y flasher cuando estén listos", "status": "Planned" }
     ]
   },
   {
     "section": "ESP32 Tools Pro",
     "items": [
       { "title": "Validar layout 480x320 con ILI9488", "status": "Testing" },
-      { "title": "Publicar flasher estable", "status": "Planned" }
+      { "title": "Agregar URL pública de Web Flasher", "status": "Planned" }
     ]
   },
   {
     "section": "BW16 Experiments",
     "items": [
       { "title": "Documentar toolchain Realtek/AmebaD", "status": "In progress" },
-      { "title": "Crear notas de compatibilidad", "status": "Planned" }
+      { "title": "Crear tabla de compatibilidad para BW16 RTL8720DN", "status": "Planned" }
     ]
   },
   {
     "section": "Cyberdeck Mini",
     "items": [
-      { "title": "Probar energia, pantalla y controles", "status": "Testing" },
-      { "title": "Publicar galeria tecnica", "status": "Planned" }
+      { "title": "Probar energía, pantalla y controles", "status": "Testing" },
+      { "title": "Publicar galería técnica y notas de armado", "status": "Planned" }
     ]
   },
   {
     "section": "Website improvements",
     "items": [
-      { "title": "Base estatica para GitHub Pages", "status": "Done" },
-      { "title": "Mejorar enlaces reales de repos y flashers", "status": "Planned" }
+      { "title": "Publicación estable en pepeangell.dev", "status": "Done" },
+      { "title": "Reemplazar botones de firmware por flashers reales cuando existan", "status": "Planned" }
     ]
   }
 ]

@@ -34,9 +34,9 @@
     "html_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32",
     "homepage": null,
     "language": "C++",
-    "stargazers_count": 45,
-    "forks_count": 3,
-    "updated_at": "2026-06-05T08:53:43Z",
+    "stargazers_count": 46,
+    "forks_count": 4,
+    "updated_at": "2026-06-05T11:06:44Z",
     "topics": [],
     "archived": false,
     "fork": false
@@ -72,7 +72,7 @@
   {
     "name": "ESP32-TOOLS-MODERN",
     "full_name": "pepeangell5/ESP32-TOOLS-MODERN",
-    "description": "Version del firmware ESP-TOOLS pero con mejores graficos",
+    "description": "Versión del firmware ESP32 Tools con mejores gráficos.",
     "html_url": "https://github.com/pepeangell5/ESP32-TOOLS-MODERN",
     "homepage": null,
     "language": "C++",
@@ -92,7 +92,7 @@
     "language": "Astro",
     "stargazers_count": 0,
     "forks_count": 0,
-    "updated_at": "2026-06-05T10:33:02Z",
+    "updated_at": "2026-06-05T10:55:21Z",
     "topics": [],
     "archived": false,
     "fork": false
@@ -170,7 +170,7 @@
   {
     "name": "DRONE-FPV-ESP32C3-SUPERMINI",
     "full_name": "pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI",
-    "description": "Creacion de un frone casero con control de comunicacion por protocolo ESP-NOW",
+    "description": "Creación de un dron casero con control de comunicación por protocolo ESP-NOW.",
     "html_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI",
     "homepage": null,
     "language": "C++",
