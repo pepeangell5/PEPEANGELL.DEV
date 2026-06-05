@@ -1,0 +1,36 @@
+---
+import Badge from "./Badge.astro";
+
+interface Repo {
+  name: string;
+  description?: string | null;
+  html_url: string;
+  language?: string | null;
+  stargazers_count?: number;
+  forks_count?: number;
+  updated_at?: string;
+  topics?: string[];
+}
+
+interface Props {
+  repo: Repo;
+}
+
+const { repo } = Astro.props;
+const updated = repo.updated_at ? new Date(repo.updated_at).toLocaleDateString("es-MX") : "Unknown";
+---
+
+<article class="card">
+  <p class="status">{repo.language || "GitHub"}</p>
+  <h3>{repo.name}</h3>
+  <p>{repo.description || "Repositorio publico de PepeAngell Labs."}</p>
+  <div class="meta-row">
+    <span>Stars: {repo.stargazers_count || 0}</span>
+    <span>Forks: {repo.forks_count || 0}</span>
+    <span>Updated: {updated}</span>
+  </div>
+  {repo.topics && repo.topics.length > 0 && <div class="badge-row">{repo.topics.map((topic) => <Badge label={topic} />)}</div>}
+  <div class="button-row">
+    <a class="button primary" href={repo.html_url} rel="noreferrer">Open repo</a>
+  </div>
+</article>

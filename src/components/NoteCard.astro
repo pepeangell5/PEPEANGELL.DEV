@@ -1,0 +1,23 @@
+---
+import Badge from "./Badge.astro";
+
+interface Note {
+  title: string;
+  summary: string;
+  tags: string[];
+}
+
+interface Props {
+  note: Note;
+}
+
+const { note } = Astro.props;
+---
+
+<article class="card">
+  <h3>{note.title}</h3>
+  <p>{note.summary}</p>
+  <div class="badge-row">
+    {note.tags.map((tag) => <Badge label={tag} />)}
+  </div>
+</article>

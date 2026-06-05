@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import projects from "../../data/projects.json";
+---
+
+<BaseLayout
+  title="Projects"
+  description="Proyectos educativos de PepeAngell Labs sobre ESP32, RF, BLE, WiFi, cyberdecks, displays y firmware."
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Projects</p>
+        <h1>Proyectos PepeAngell Labs</h1>
+        <p>Catalogo de firmware, hardware y experimentos embebidos listos para documentar, enlazar y expandir.</p>
+      </div>
+      <div class="grid cards">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

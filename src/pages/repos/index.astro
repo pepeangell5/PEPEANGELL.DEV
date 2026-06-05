@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import RepoExplorer from "../../components/RepoExplorer.astro";
+---
+
+<BaseLayout
+  title="GitHub Repos"
+  description="Explorador local de repositorios publicos de pepeangell5, generado desde GitHub y servido como JSON estatico."
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">GitHub repositories</p>
+        <h1>Repos publicos</h1>
+        <p>
+          Datos generados desde la API publica de GitHub y guardados en <code>public/data/repos.json</code>. Puedes buscar,
+          filtrar por lenguaje y ordenar sin exponer tokens ni usar backend.
+        </p>
+      </div>
+      <RepoExplorer />
+    </div>
+  </section>
+</BaseLayout>

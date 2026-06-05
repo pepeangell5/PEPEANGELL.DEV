@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.npm-cache/
+.tmp/
+.codex-devserver*
+.DS_Store
+npm-debug.log*
+*.local

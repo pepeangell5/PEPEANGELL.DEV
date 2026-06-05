@@ -1,0 +1,23 @@
+---
+interface Hardware {
+  name: string;
+  description: string;
+  voltage: string;
+  typical_use: string;
+  warning?: string;
+}
+
+interface Props {
+  item: Hardware;
+}
+
+const { item } = Astro.props;
+---
+
+<article class="card">
+  <h3>{item.name}</h3>
+  <p>{item.description}</p>
+  <p><strong>Voltage notes:</strong> {item.voltage}</p>
+  <p><strong>Typical use:</strong> {item.typical_use}</p>
+  {item.warning && <p class="small muted"><strong>Warning:</strong> {item.warning}</p>}
+</article>

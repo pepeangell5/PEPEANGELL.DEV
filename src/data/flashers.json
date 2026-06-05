@@ -1,0 +1,38 @@
+[
+  {
+    "name": "ESP32 Tools Pro 480x320 V2.0",
+    "board": "ESP32 DevKit / ESP32 30-pin",
+    "display": "TFT ILI9488 480x320 SPI",
+    "modules": ["TFT", "SPI", "ESP32"],
+    "status": "Testing",
+    "flasher_url": "#",
+    "github_url": "https://github.com/pepeangell5"
+  },
+  {
+    "name": "BWifiKill ESP32",
+    "board": "ESP32 compatible",
+    "display": "OLED/TFT depending on build",
+    "modules": ["ESP32", "WiFi", "BLE"],
+    "status": "In Development",
+    "flasher_url": "#",
+    "github_url": "https://github.com/pepeangell5"
+  },
+  {
+    "name": "Cyberdeck Mini ESP32",
+    "board": "Cyberdeck Mini ESP32",
+    "display": "Integrated compact display",
+    "modules": ["ESP32", "Display", "Battery"],
+    "status": "Planned",
+    "flasher_url": "#",
+    "github_url": "https://github.com/pepeangell5"
+  },
+  {
+    "name": "BW16 Tools / Experiments",
+    "board": "BW16 RTL8720DN",
+    "display": "Optional serial/display output",
+    "modules": ["BW16", "RTL8720DN", "WiFi", "BLE"],
+    "status": "Experimental",
+    "flasher_url": "#",
+    "github_url": "https://github.com/pepeangell5"
+  }
+]

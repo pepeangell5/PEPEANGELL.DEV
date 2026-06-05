@@ -1,0 +1,106 @@
+<section class="section compact" aria-label="Explorador de repositorios">
+  <div class="filters">
+    <label>
+      <span class="small muted">Buscar</span>
+      <input id="repo-search" class="field" type="search" placeholder="Nombre, descripcion o topic" />
+    </label>
+    <label>
+      <span class="small muted">Lenguaje</span>
+      <select id="repo-language" class="field">
+        <option value="">Todos</option>
+      </select>
+    </label>
+    <label>
+      <span class="small muted">Ordenar</span>
+      <select id="repo-sort" class="field">
+        <option value="updated">Last updated</option>
+        <option value="stars">Stars</option>
+        <option value="name">Name</option>
+      </select>
+    </label>
+  </div>
+  <div id="repo-count" class="small muted" aria-live="polite"></div>
+  <div id="repo-list" class="grid cards"></div>
+</section>
+
+<script>
+  const list = document.querySelector("#repo-list");
+  const count = document.querySelector("#repo-count");
+  const search = document.querySelector("#repo-search");
+  const language = document.querySelector("#repo-language");
+  const sort = document.querySelector("#repo-sort");
+
+  let repos = [];
+
+  const formatDate = (value) => {
+    if (!value) return "Unknown";
+    return new Intl.DateTimeFormat("es-MX", { dateStyle: "medium" }).format(new Date(value));
+  };
+
+  const escapeHtml = (value) =>
+    String(value ?? "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "\"": "&quot;",
+      "'": "&#039;"
+    })[char]);
+
+  const renderLanguages = () => {
+    const languages = [...new Set(repos.map((repo) => repo.language).filter(Boolean))].sort();
+    language.innerHTML = '<option value="">Todos</option>' + languages.map((item) => `<option>${escapeHtml(item)}</option>`).join("");
+  };
+
+  const renderRepos = () => {
+    const term = search.value.trim().toLowerCase();
+    const selectedLanguage = language.value;
+    const selectedSort = sort.value;
+
+    const filtered = repos
+      .filter((repo) => {
+        const haystack = [repo.name, repo.description, repo.language, ...(repo.topics || [])].join(" ").toLowerCase();
+        return (!term || haystack.includes(term)) && (!selectedLanguage || repo.language === selectedLanguage);
+      })
+      .sort((a, b) => {
+        if (selectedSort === "stars") return (b.stargazers_count || 0) - (a.stargazers_count || 0);
+        if (selectedSort === "name") return String(a.name).localeCompare(String(b.name));
+        return new Date(b.updated_at || 0).getTime() - new Date(a.updated_at || 0).getTime();
+      });
+
+    count.textContent = `${filtered.length} repositorios publicos`;
+    list.innerHTML = filtered.length
+      ? filtered.map((repo) => `
+        <article class="card">
+          <p class="status">${escapeHtml(repo.language || "No language")}</p>
+          <h3>${escapeHtml(repo.name)}</h3>
+          <p>${escapeHtml(repo.description || "Repositorio publico de PepeAngell Labs.")}</p>
+          <div class="meta-row">
+            <span>Stars: ${repo.stargazers_count || 0}</span>
+            <span>Forks: ${repo.forks_count || 0}</span>
+            <span>Updated: ${formatDate(repo.updated_at)}</span>
+          </div>
+          <div class="badge-row">${(repo.topics || []).map((topic) => `<span class="badge">${escapeHtml(topic)}</span>`).join("")}</div>
+          <div class="button-row"><a class="button primary" href="${escapeHtml(repo.html_url)}" rel="noreferrer">Open repo</a></div>
+        </article>
+      `).join("")
+      : `<article class="card"><h3>No hay repos para mostrar</h3><p>Ejecuta npm run fetch:repos para generar public/data/repos.json.</p></article>`;
+  };
+
+  const loadRepos = async () => {
+    try {
+      const response = await fetch("/data/repos.json", { cache: "no-store" });
+      repos = await response.json();
+      renderLanguages();
+      renderRepos();
+    } catch {
+      count.textContent = "No se pudo cargar /data/repos.json";
+      list.innerHTML = `<article class="card"><h3>Error cargando repos</h3><p>Revisa que public/data/repos.json exista.</p></article>`;
+    }
+  };
+
+  search.addEventListener("input", renderRepos);
+  language.addEventListener("change", renderRepos);
+  sort.addEventListener("change", renderRepos);
+
+  loadRepos();
+</script>

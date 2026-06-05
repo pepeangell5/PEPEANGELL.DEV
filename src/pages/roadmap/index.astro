@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import RoadmapItem from "../../components/RoadmapItem.astro";
+import roadmap from "../../data/roadmap.json";
+---
+
+<BaseLayout
+  title="Roadmap"
+  description="Roadmap de PepeAngell Labs para BWifiKill ESP32, ESP32 Tools Pro, BW16, Cyberdeck Mini y mejoras del sitio."
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Roadmap</p>
+        <h1>Plan de trabajo</h1>
+        <p>Seguimiento simple para proyectos, pruebas y mejoras del sitio.</p>
+      </div>
+      <div class="grid">
+        {
+          roadmap.map((group) => (
+            <section class="roadmap-group" aria-labelledby={`roadmap-${group.section}`}>
+              <h2 id={`roadmap-${group.section}`}>{group.section}</h2>
+              <div class="grid cards">
+                {group.items.map((item) => <RoadmapItem item={item} />)}
+              </div>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

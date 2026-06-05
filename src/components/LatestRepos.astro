@@ -1,0 +1,37 @@
+<div id="latest-repos" class="grid cards" aria-live="polite">
+  <article class="card"><h3>Cargando repositorios</h3><p>Leyendo /data/repos.json...</p></article>
+</div>
+
+<script>
+  const latestTarget = document.querySelector("#latest-repos");
+  const escapeLatest = (value) =>
+    String(value ?? "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "\"": "&quot;",
+      "'": "&#039;"
+    })[char]);
+
+  const dateFmt = (value) => value ? new Intl.DateTimeFormat("es-MX", { dateStyle: "medium" }).format(new Date(value)) : "Unknown";
+
+  fetch("/data/repos.json", { cache: "no-store" })
+    .then((response) => response.json())
+    .then((repos) => {
+      const latest = [...repos].sort((a, b) => new Date(b.updated_at || 0) - new Date(a.updated_at || 0)).slice(0, 3);
+      latestTarget.innerHTML = latest.length
+        ? latest.map((repo) => `
+          <article class="card">
+            <p class="status">${escapeLatest(repo.language || "GitHub")}</p>
+            <h3>${escapeLatest(repo.name)}</h3>
+            <p>${escapeLatest(repo.description || "Repositorio publico de PepeAngell Labs.")}</p>
+            <p class="small muted">Updated: ${dateFmt(repo.updated_at)}</p>
+            <a class="button primary" href="${escapeLatest(repo.html_url)}" rel="noreferrer">Open repo</a>
+          </article>
+        `).join("")
+        : `<article class="card"><h3>Repos listos para sincronizar</h3><p>Ejecuta npm run fetch:repos para llenar esta seccion con repos publicos.</p></article>`;
+    })
+    .catch(() => {
+      latestTarget.innerHTML = `<article class="card"><h3>Repos no disponibles</h3><p>Revisa public/data/repos.json.</p></article>`;
+    });
+</script>

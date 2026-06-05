@@ -1,0 +1,22 @@
+---
+interface Entry {
+  version: string;
+  date: string;
+  title: string;
+  items: string[];
+}
+
+interface Props {
+  entry: Entry;
+}
+
+const { entry } = Astro.props;
+---
+
+<article class="card">
+  <p class="status">{entry.date} · v{entry.version}</p>
+  <h3>{entry.title}</h3>
+  <ul>
+    {entry.items.map((item) => <li>{item}</li>)}
+  </ul>
+</article>

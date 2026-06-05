@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HardwareCard from "../../components/HardwareCard.astro";
+import hardware from "../../data/hardware.json";
+---
+
+<BaseLayout
+  title="Hardware"
+  description="Hardware usado por PepeAngell Labs: ESP32, BW16, NRF24, CC1101, OLED, TFT, Cardputer y plataformas educativas."
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Hardware bench</p>
+        <h1>Hardware comun del laboratorio</h1>
+        <p>Notas rapidas de compatibilidad, voltaje, uso tipico y advertencias para los modulos mas usados.</p>
+      </div>
+      <div class="grid cards">
+        {hardware.map((item) => <HardwareCard item={item} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

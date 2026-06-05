@@ -1,0 +1,18 @@
+{
+  "name": "pepeangell-dev",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "fetch:repos": "node scripts/fetch-github-repos.mjs"
+  },
+  "dependencies": {
+    "astro": "^5.10.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0"
+  }
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "section": "BWifiKill ESP32",
+    "items": [
+      { "title": "Organizar documentacion de hardware compatible", "status": "In progress" },
+      { "title": "Preparar pagina de detalle y enlaces de firmware", "status": "Planned" }
+    ]
+  },
+  {
+    "section": "ESP32 Tools Pro",
+    "items": [
+      { "title": "Validar layout 480x320 con ILI9488", "status": "Testing" },
+      { "title": "Publicar flasher estable", "status": "Planned" }
+    ]
+  },
+  {
+    "section": "BW16 Experiments",
+    "items": [
+      { "title": "Documentar toolchain Realtek/AmebaD", "status": "In progress" },
+      { "title": "Crear notas de compatibilidad", "status": "Planned" }
+    ]
+  },
+  {
+    "section": "Cyberdeck Mini",
+    "items": [
+      { "title": "Probar energia, pantalla y controles", "status": "Testing" },
+      { "title": "Publicar galeria tecnica", "status": "Planned" }
+    ]
+  },
+  {
+    "section": "Website improvements",
+    "items": [
+      { "title": "Base estatica para GitHub Pages", "status": "Done" },
+      { "title": "Mejorar enlaces reales de repos y flashers", "status": "Planned" }
+    ]
+  }
+]

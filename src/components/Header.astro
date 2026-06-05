@@ -1,0 +1,32 @@
+---
+const links = [
+  { href: "/", label: "Inicio" },
+  { href: "/projects/", label: "Proyectos" },
+  { href: "/repos/", label: "Repos" },
+  { href: "/flashers/", label: "Flashers" },
+  { href: "/hardware/", label: "Hardware" },
+  { href: "/lab-notes/", label: "Notas" },
+  { href: "/roadmap/", label: "Roadmap" },
+  { href: "/contact/", label: "Contacto" }
+];
+
+const pathname = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="/" aria-label="PepeAngell Labs home">
+      <span class="brand-mark" aria-hidden="true">PA</span>
+      <span>PepeAngell Labs</span>
+    </a>
+    <nav class="nav-links" aria-label="Navegacion principal">
+      {
+        links.map((link) => (
+          <a href={link.href} aria-current={pathname === link.href ? "page" : undefined}>
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>

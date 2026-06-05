@@ -1,0 +1,17 @@
+---
+interface Item {
+  title: string;
+  status: string;
+}
+
+interface Props {
+  item: Item;
+}
+
+const { item } = Astro.props;
+---
+
+<article class="card">
+  <p class="status">{item.status}</p>
+  <h3>{item.title}</h3>
+</article>

@@ -1,0 +1,12 @@
+[
+  {
+    "version": "0.1.0",
+    "date": "2026-06-05",
+    "title": "Initial site scaffold",
+    "items": [
+      "Creada estructura Astro para PepeAngell Labs.",
+      "Agregadas paginas principales, datos JSON y workflow de GitHub Pages.",
+      "Preparado script para generar repos publicos desde GitHub."
+    ]
+  }
+]

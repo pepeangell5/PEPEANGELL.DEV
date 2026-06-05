@@ -1,0 +1,32 @@
+[
+  {
+    "title": "NRF24 capacitor recommendation",
+    "summary": "Colocar un capacitor cerca de VCC/GND del NRF24L01 ayuda a estabilizar la alimentacion durante picos de transmision.",
+    "tags": ["NRF24", "Power", "RF"]
+  },
+  {
+    "title": "OLED SSD1306 vs SH1106 note",
+    "summary": "Ambas pantallas pueden verse iguales fisicamente, pero requieren configuracion o librerias diferentes por controlador.",
+    "tags": ["OLED", "I2C", "Display"]
+  },
+  {
+    "title": "ESP32 + TFT SPI notes",
+    "summary": "Mantener cables cortos, revisar pines CS/DC/RST y ajustar velocidad SPI mejora la estabilidad visual.",
+    "tags": ["ESP32", "TFT", "SPI"]
+  },
+  {
+    "title": "ESP-NOW lab experiments",
+    "summary": "ESP-NOW es util para telemetria local y practicas de comunicacion entre placas dentro de un entorno autorizado.",
+    "tags": ["ESP-NOW", "ESP32", "Telemetry"]
+  },
+  {
+    "title": "RF/BLE/WiFi educational disclaimer",
+    "summary": "Las pruebas de radio, BLE y WiFi deben limitarse a equipos propios, bancos controlados y escenarios con permiso explicito.",
+    "tags": ["Safety", "RF", "WiFi"]
+  },
+  {
+    "title": "GitHub repo organization notes",
+    "summary": "Mantener README claros, releases etiquetados y nombres consistentes hace que los proyectos sean mas faciles de encontrar y mantener.",
+    "tags": ["GitHub", "Docs", "Workflow"]
+  }
+]

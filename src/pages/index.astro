@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import DisclaimerBanner from "../components/DisclaimerBanner.astro";
+import LatestRepos from "../components/LatestRepos.astro";
+import projects from "../data/projects.json";
+
+const featured = projects.slice(0, 3);
+---
+
+<BaseLayout
+  title="PepeAngell Labs"
+  description="Portafolio tecnico de PepeAngell Labs: ESP32, RF, BLE, WiFi, cyberdecks, firmware educativo y herramientas de laboratorio."
+>
+  <Hero />
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Featured projects</p>
+        <h2>Firmware, hardware y laboratorio embebido</h2>
+        <p>Proyectos personales con enfoque educativo, documentacion clara y pruebas dentro de entornos controlados.</p>
+      </div>
+      <div class="grid cards">
+        {featured.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+  </section>
+  <section class="section compact">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">GitHub</p>
+        <h2>Latest public repositories</h2>
+        <p>Esta seccion se alimenta desde el JSON generado por el script de repositorios publicos.</p>
+      </div>
+      <LatestRepos />
+    </div>
+  </section>
+  <section class="section compact">
+    <div class="container">
+      <DisclaimerBanner />
+    </div>
+  </section>
+</BaseLayout>

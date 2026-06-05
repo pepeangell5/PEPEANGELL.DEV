@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FlasherCard from "../../components/FlasherCard.astro";
+import flashers from "../../data/flashers.json";
+---
+
+<BaseLayout
+  title="Web Flashers"
+  description="Web flashers estaticos para firmware educativo en hardware compatible de PepeAngell Labs."
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Web flashers</p>
+        <h1>Flashers para hardware compatible</h1>
+        <p>
+          Tarjetas preparadas para enlazar firmware y flasheadores web. Usar solo con placas, pantallas y modulos
+          compatibles.
+        </p>
+      </div>
+      <div class="grid cards">
+        {flashers.map((flasher) => <FlasherCard flasher={flasher} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

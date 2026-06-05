@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ChangelogItem from "../../components/ChangelogItem.astro";
+import changelog from "../../data/changelog.json";
+---
+
+<BaseLayout
+  title="Changelog"
+  description="Registro de cambios de PepeAngell Labs y estructura preparada para futuras versiones del sitio."
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Changelog</p>
+        <h1>Registro de cambios</h1>
+        <p>Entradas estaticas mantenidas desde JSON para documentar avances del sitio y proyectos.</p>
+      </div>
+      <div class="timeline">
+        {changelog.map((entry) => <ChangelogItem entry={entry} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
