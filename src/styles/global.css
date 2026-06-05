@@ -326,10 +326,10 @@ p {
 
 .hero {
   position: relative;
-  min-height: calc(100vh - 72px);
+  min-height: min(620px, calc(100vh - 72px));
   display: flex;
   align-items: center;
-  padding: 80px 0 64px;
+  padding: 34px 0 38px;
   overflow: hidden;
 }
 
@@ -353,7 +353,7 @@ p {
 .hero-visual {
   position: absolute;
   inset: auto 0 0 auto;
-  width: min(66vw, 1120px);
+  width: min(58vw, 980px);
   max-width: none;
   height: auto;
   opacity: 0.62;
@@ -489,6 +489,10 @@ p {
     min-height: 0;
     align-items: flex-start;
     padding: 42px 0 30px;
+  }
+
+  .hero-content {
+    padding-top: 0;
   }
 
   .hero::after {

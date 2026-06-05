@@ -8,7 +8,7 @@ interface Flasher {
   display: string;
   modules: string[];
   status: string;
-  flasher_url: string;
+  flasher_url?: string;
   github_url: string;
 }
 
@@ -17,6 +17,7 @@ interface Props {
 }
 
 const { flasher } = Astro.props;
+const flasherTarget = flasher.flasher_url || flasher.github_url;
 ---
 
 <article class="card" id={flasher.slug}>
@@ -29,7 +30,7 @@ const { flasher } = Astro.props;
   </div>
   <p class="small muted">Flash only compatible hardware. Verifica placa, pantalla, pines y alimentacion antes de usar.</p>
   <div class="button-row">
-    <a class="button primary" href={flasher.flasher_url} rel="noreferrer">Firmware / repo</a>
-    <a class="button" href={flasher.github_url} rel="noreferrer">GitHub repo</a>
+    <a class="button primary" href={flasherTarget} rel="noreferrer">Web flasher</a>
+    {flasherTarget !== flasher.github_url && <a class="button" href={flasher.github_url} rel="noreferrer">GitHub repo</a>}
   </div>
 </article>

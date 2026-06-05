@@ -6,7 +6,7 @@
     "display": "TFT/OLED depending on build",
     "modules": ["ESP32", "WiFi", "BLE", "Display"],
     "status": "In Development",
-    "flasher_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0",
+    "flasher_url": "",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0"
   },
   {
@@ -16,7 +16,7 @@
     "display": "TFT ILI9488 480x320 SPI",
     "modules": ["TFT", "SPI", "ESP32", "CC1101", "IR"],
     "status": "Testing",
-    "flasher_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
+    "flasher_url": "",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0"
   },
   {
@@ -26,7 +26,7 @@
     "display": "Integrated compact display",
     "modules": ["ESP32", "Display", "Battery"],
     "status": "Planned",
-    "flasher_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32",
+    "flasher_url": "",
     "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32"
   },
   {
@@ -36,7 +36,7 @@
     "display": "Optional serial/display output",
     "modules": ["BW16", "RTL8720DN", "WiFi", "BLE"],
     "status": "Experimental",
-    "flasher_url": "https://github.com/pepeangell5/BWifiKill-BW16-5Ghz",
+    "flasher_url": "",
     "github_url": "https://github.com/pepeangell5/BWifiKill-BW16-5Ghz"
   },
   {
@@ -46,7 +46,7 @@
     "display": "OLED/TFT depending on build",
     "modules": ["ESP32", "WiFi", "BLE"],
     "status": "Experimental",
-    "flasher_url": "https://github.com/pepeangell5/BWifiKill-ESP32",
+    "flasher_url": "",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32"
   }
 ]
