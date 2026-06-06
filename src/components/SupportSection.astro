@@ -1,0 +1,62 @@
+---
+import { sitePath } from "../utils/paths";
+
+const paypalUrl = "https://www.paypal.com/paypalme/pepeangell";
+---
+
+<section class="section support-section">
+  <div class="container">
+    <div class="support-layout">
+      <div class="support-copy">
+        <p class="eyebrow">Apoyo</p>
+        <h1>Apoya PepeAngell Labs</h1>
+        <p>
+          Si mis firmwares, guias, web flashers o pruebas con ESP32 te han servido, puedes apoyar el laboratorio para
+          mantener mas placas, pantallas, modulos RF, componentes y documentacion publica.
+        </p>
+        <div class="button-row">
+          <a class="button primary" href={paypalUrl} target="_blank" rel="noreferrer noopener">Donar con PayPal</a>
+          <a class="button" href={sitePath("/firmware/")} target="_blank" rel="noreferrer noopener">Ver firmwares</a>
+          <a class="button" href={sitePath("/contact/")} target="_blank" rel="noreferrer noopener">Contacto</a>
+        </div>
+      </div>
+
+      <aside class="support-panel" aria-label="Uso de los apoyos">
+        <img
+          class="support-mascot"
+          src={sitePath("/assets/mascot-neon-cut.png")}
+          alt="Mascota rosa de PepeAngell Labs"
+          width="260"
+          height="304"
+        />
+        <div class="support-terminal" aria-hidden="true">
+          <span>$ support --target pepeangell-labs</span>
+          <span>status: community-powered</span>
+          <span>output: docs + firmware + lab notes</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section compact">
+  <div class="container">
+    <div class="grid cards">
+      <article class="card">
+        <p class="status">Hardware</p>
+        <h3>Componentes para pruebas</h3>
+        <p>ESP32, BW16, NRF24L01, pantallas, placas, sensores y piezas para validar firmware real antes de publicarlo.</p>
+      </article>
+      <article class="card">
+        <p class="status">Documentacion</p>
+        <h3>READMEs y guias</h3>
+        <p>Tiempo para mantener conexiones, capturas, listas de componentes, flasheo web y notas de uso responsable.</p>
+      </article>
+      <article class="card">
+        <p class="status">Laboratorio</p>
+        <h3>Proyectos abiertos</h3>
+        <p>Mas pruebas, mas compatibilidad y mejores herramientas educativas para la comunidad de hardware embebido.</p>
+      </article>
+    </div>
+  </div>
+</section>

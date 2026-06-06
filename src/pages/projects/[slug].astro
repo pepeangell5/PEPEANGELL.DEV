@@ -58,7 +58,7 @@ const flasherHref = project.flasher_url?.startsWith("/") ? sitePath(project.flas
         <section class="detail-panel" aria-labelledby="links">
           <h2 id="links">Links</h2>
           <div class="button-row">
-            <a class="button primary" href={sitePath("/projects/")} target="_blank" rel="noreferrer noopener">Back to projects</a>
+            <a class="button primary" href={sitePath("/firmware/")} target="_blank" rel="noreferrer noopener">Ver README en Firmware</a>
             {project.github_url && <a class="button" href={project.github_url} target="_blank" rel="noreferrer noopener">GitHub</a>}
             {flasherHref && <a class="button" href={flasherHref} target="_blank" rel="noreferrer noopener">Web Flasher</a>}
           </div>

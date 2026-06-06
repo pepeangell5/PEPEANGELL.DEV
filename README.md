@@ -53,8 +53,7 @@ Update those files to change project cards, flashers, hardware notes, roadmap en
 
 ```text
 /
-/projects/
-/projects/[slug]/
+/support/
 /firmware/
 /repos/
 /flashers/

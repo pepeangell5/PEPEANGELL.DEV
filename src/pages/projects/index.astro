@@ -1,23 +1,20 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import ProjectCard from "../../components/ProjectCard.astro";
-import projects from "../../data/projects.json";
+import { sitePath } from "../../utils/paths";
+
+const supportUrl = sitePath("/support/");
 ---
 
-<BaseLayout
-  title="Projects"
-  description="Proyectos educativos de PepeAngell Labs sobre ESP32, RF, BLE, WiFi, cyberdecks, displays y firmware."
->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <p class="eyebrow">Projects</p>
-        <h1>Proyectos PepeAngell Labs</h1>
-        <p>Catalogo de firmware, hardware y experimentos embebidos listos para documentar, enlazar y expandir.</p>
-      </div>
-      <div class="grid cards">
-        {projects.map((project) => <ProjectCard project={project} />)}
-      </div>
-    </div>
-  </section>
-</BaseLayout>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apoyo | PepeAngell Labs</title>
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content={`0; url=${supportUrl}`} />
+    <link rel="canonical" href="https://pepeangell.dev/support/" />
+  </head>
+  <body>
+    <p><a href={supportUrl}>Ir a Apoyo</a></p>
+  </body>
+</html>

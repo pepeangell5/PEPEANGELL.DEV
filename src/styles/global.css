@@ -809,6 +809,76 @@ p {
   white-space: pre-wrap;
 }
 
+.support-section {
+  padding-bottom: 36px;
+}
+
+.support-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
+  gap: 28px;
+  align-items: center;
+}
+
+.support-copy {
+  min-width: 0;
+}
+
+.support-copy p {
+  max-width: 760px;
+}
+
+.support-panel {
+  position: relative;
+  min-height: 420px;
+  display: grid;
+  align-content: end;
+  overflow: hidden;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255, 44, 169, 0.18), transparent 14rem),
+    linear-gradient(180deg, rgba(14, 24, 22, 0.9), rgba(6, 10, 10, 0.96));
+  border: 1px solid rgba(57, 255, 136, 0.22);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.support-panel::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(rgba(57, 255, 136, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 255, 136, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.45;
+}
+
+.support-mascot {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  width: min(74%, 260px);
+  height: auto;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 0 28px rgba(255, 44, 169, 0.36));
+}
+
+.support-terminal {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  color: var(--green);
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  font-size: 0.86rem;
+  background: rgba(5, 7, 8, 0.74);
+  border: 1px solid rgba(57, 255, 136, 0.22);
+  border-radius: var(--radius);
+}
+
 @keyframes matrix-fall {
   0% {
     transform: translateY(-14vh);
@@ -1006,5 +1076,17 @@ p {
   .readme-content,
   .readme-toolbar {
     padding: 16px;
+  }
+
+  .support-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .support-panel {
+    min-height: 340px;
+  }
+
+  .support-mascot {
+    width: min(68%, 220px);
   }
 }
