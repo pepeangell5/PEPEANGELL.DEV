@@ -835,6 +835,11 @@ p {
   }
 
   h1 {
+    font-size: clamp(1.9rem, 9vw, 2.45rem);
+    line-height: 1.02;
+  }
+
+  .hero h1 {
     font-size: clamp(2.05rem, 11vw, 2.9rem);
     line-height: 0.98;
   }
@@ -963,8 +968,21 @@ p {
     grid-template-columns: 1fr;
   }
 
+  .readme-explorer,
+  .readme-sidebar,
+  .readme-viewer,
+  .readme-option {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .readme-sidebar {
     position: static;
+    overflow: hidden;
+  }
+
+  .readme-viewer {
+    overflow: hidden;
   }
 
   .readme-list {
