@@ -15,8 +15,8 @@ import { sitePath } from "../utils/paths";
     <div class="container">
       <div class="section-header">
         <p class="eyebrow">Lab access</p>
-        <h2>Firmware, flashers y apoyo</h2>
-        <p>Accesos directos a la documentacion publica, herramientas de flasheo y formas de apoyar PepeAngell Labs.</p>
+        <h2>Firmware, descargas y apoyo</h2>
+        <p>Accesos directos a documentacion publica, binarios, herramientas de flasheo y formas de apoyar PepeAngell Labs.</p>
       </div>
       <div class="grid cards">
         <article class="card highlight">
@@ -33,6 +33,14 @@ import { sitePath } from "../utils/paths";
           <p>Accede a los enlaces de flasheo disponibles y a los repositorios cuando el flasher aun no esta publicado.</p>
           <div class="button-row">
             <a class="button" href={sitePath("/flashers/")} target="_blank" rel="noreferrer noopener">Ver flashers</a>
+          </div>
+        </article>
+        <article class="card">
+          <p class="status">Descargas</p>
+          <h3>Binarios y ZIP</h3>
+          <p>Descarga binarios finales, manifests, releases y ZIP completos de los repositorios principales.</p>
+          <div class="button-row">
+            <a class="button primary" href={sitePath("/downloads/")} target="_blank" rel="noreferrer noopener">Ver descargas</a>
           </div>
         </article>
         <article class="card">

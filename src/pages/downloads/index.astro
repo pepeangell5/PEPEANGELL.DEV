@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DownloadsExplorer from "../../components/DownloadsExplorer.astro";
+import downloads from "../../data/downloads.generated.json";
+---
+
+<BaseLayout
+  title="Descargas"
+  description="Descargas directas de firmware, binarios, Web Flashers, releases y ZIP completos de repositorios principales de PepeAngell Labs."
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Firmware downloads</p>
+        <h1>Descargas de proyectos principales</h1>
+        <p>
+          Accesos directos a Web Flashers, binarios finales, carpetas de firmware, releases y ZIP completos. Usa cada
+          archivo solo con hardware compatible y revisa el README antes de flashear.
+        </p>
+      </div>
+
+      <div class="notice">
+        <strong>Recomendacion:</strong> si el proyecto tiene Web Flasher, usa primero esa opcion. El binario final es
+        el mismo archivo que declara el manifest del flasher.
+      </div>
+
+      <DownloadsExplorer downloads={downloads} />
+    </div>
+  </section>
+</BaseLayout>

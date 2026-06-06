@@ -1,0 +1,138 @@
+---
+import { sitePath } from "../utils/paths";
+
+interface DownloadBinary {
+  label: string;
+  path: string;
+  url: string;
+  offset?: number;
+  chip_family?: string;
+}
+
+interface DownloadEntry {
+  name: string;
+  slug: string;
+  status: string;
+  board: string;
+  display: string;
+  modules: string[];
+  github_url: string;
+  full_name: string;
+  default_branch: string;
+  web_flasher_url?: string;
+  manifest_url?: string;
+  binarios_url: string;
+  releases_url: string;
+  zip_url: string;
+  readme_url: string;
+  web_flasher_binaries: DownloadBinary[];
+}
+
+interface Props {
+  downloads: DownloadEntry[];
+}
+
+const { downloads } = Astro.props;
+---
+
+<section class="downloads" data-downloads>
+  <div class="hardware-search">
+    <label class="small muted" for="downloads-search">Buscar descarga</label>
+    <input id="downloads-search" class="field" type="search" placeholder="BWifiKill, Cyberdeck, ESP32, BW16..." />
+  </div>
+
+  <div class="download-list">
+    {
+      downloads.map((item, index) => (
+        <details
+          class="download-item"
+          id={item.slug}
+          open={index === 0}
+          data-download-item
+          data-search={`${item.name} ${item.full_name} ${item.board} ${item.display} ${(item.modules || []).join(" ")}`}
+        >
+          <summary>
+            <span>
+              <strong>{item.name}</strong>
+              <small>{item.status} · {item.board}</small>
+            </span>
+          </summary>
+
+          <div class="download-detail">
+            <div class="download-meta">
+              <p><strong>Repo:</strong> {item.full_name}</p>
+              <p><strong>Display:</strong> {item.display}</p>
+              <p><strong>Branch:</strong> {item.default_branch}</p>
+              <div class="badges">
+                {item.modules.map((moduleName) => <span class="badge">{moduleName}</span>)}
+              </div>
+            </div>
+
+            <div class="download-actions">
+              {item.web_flasher_url && (
+                <a class="button primary" href={item.web_flasher_url} target="_blank" rel="noreferrer noopener">
+                  Web Flasher
+                </a>
+              )}
+              {item.web_flasher_binaries.map((binary) => (
+                <a class="button primary" href={binary.url} target="_blank" rel="noreferrer noopener" download>
+                  Binario final {binary.chip_family ? `· ${binary.chip_family}` : ""}
+                </a>
+              ))}
+              <a class="button" href={item.binarios_url} target="_blank" rel="noreferrer noopener">
+                Binarios
+              </a>
+              <a class="button" href={item.zip_url} target="_blank" rel="noreferrer noopener" download>
+                ZIP completo
+              </a>
+              <a class="button" href={item.releases_url} target="_blank" rel="noreferrer noopener">
+                Releases
+              </a>
+              <a class="button" href={item.github_url} target="_blank" rel="noreferrer noopener">
+                GitHub
+              </a>
+              <a class="button" href={sitePath(item.readme_url)} target="_blank" rel="noreferrer noopener">
+                README local
+              </a>
+              {item.manifest_url && (
+                <a class="button" href={item.manifest_url} target="_blank" rel="noreferrer noopener">
+                  Manifest
+                </a>
+              )}
+            </div>
+
+            {item.web_flasher_binaries.length > 0 ? (
+              <div class="download-binaries">
+                <h3>Binarios usados por el Web Flasher</h3>
+                {item.web_flasher_binaries.map((binary) => (
+                  <p class="small muted">
+                    {binary.path} · offset {binary.offset ?? 0}
+                  </p>
+                ))}
+              </div>
+            ) : (
+              <p class="small muted">
+                Este repositorio todavia no tiene Web Flasher detectado. Se muestran enlaces para explorar binarios,
+                releases y descargar el repositorio completo.
+              </p>
+            )}
+          </div>
+        </details>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  const search = document.querySelector("#downloads-search");
+  const items = Array.from(document.querySelectorAll("[data-download-item]"));
+
+  search?.addEventListener("input", () => {
+    const query = search.value.trim().toLowerCase();
+
+    items.forEach((item) => {
+      const haystack = item.dataset.search?.toLowerCase() || "";
+      item.hidden = Boolean(query) && !haystack.includes(query);
+    });
+  });
+</script>
