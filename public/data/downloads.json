@@ -15,9 +15,16 @@
     "full_name": "pepeangell5/BWifiKill-ESP32-V4.0",
     "default_branch": "main",
     "web_flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32-V4.0/",
-    "manifest_url": "https://pepeangell5.github.io/BWifiKill-ESP32-V4.0/manifest.json",
     "binarios_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/tree/main/binarios",
-    "releases_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/releases",
+    "release_tag": "bwifikill",
+    "release_assets": [
+      {
+        "name": "BWifiKill-ESP32-V4.0-full.bin",
+        "url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/releases/download/bwifikill/BWifiKill-ESP32-V4.0-full.bin",
+        "size": 1845200,
+        "download_count": 0
+      }
+    ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/archive/refs/heads/main.zip",
     "readme_url": "/firmware/#bwifikill-esp32-v4-0",
     "web_flasher_binaries": [
@@ -47,9 +54,34 @@
     "full_name": "pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
     "default_branch": "main",
     "web_flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V2.0/",
-    "manifest_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V2.0/manifest.json",
     "binarios_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/tree/main/assets/Firmware",
-    "releases_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases",
+    "release_tag": "v2.0",
+    "release_assets": [
+      {
+        "name": "bootloader.bin",
+        "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/bootloader.bin",
+        "size": 17536,
+        "download_count": 12
+      },
+      {
+        "name": "firmware-merged.bin",
+        "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware-merged.bin",
+        "size": 2155568,
+        "download_count": 14
+      },
+      {
+        "name": "firmware.bin",
+        "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware.bin",
+        "size": 2090032,
+        "download_count": 14
+      },
+      {
+        "name": "partitions.bin",
+        "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/partitions.bin",
+        "size": 3072,
+        "download_count": 12
+      }
+    ],
     "zip_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/archive/refs/heads/main.zip",
     "readme_url": "/firmware/#esp32-tools-pro-480x320-v2-0",
     "web_flasher_binaries": [
@@ -77,9 +109,9 @@
     "full_name": "pepeangell5/CYBERDECK-MINI-ESP32",
     "default_branch": "main",
     "web_flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32/",
-    "manifest_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32/manifest.json",
     "binarios_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32/tree/main/archivos%20bin",
-    "releases_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32/releases",
+    "release_tag": "",
+    "release_assets": [],
     "zip_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32/archive/refs/heads/main.zip",
     "readme_url": "/firmware/#cyberdeck-mini-esp32",
     "web_flasher_binaries": [
@@ -108,9 +140,9 @@
     "full_name": "pepeangell5/BWifiKill-BW16-5Ghz",
     "default_branch": "main",
     "web_flasher_url": "",
-    "manifest_url": "",
     "binarios_url": "https://github.com/pepeangell5/BWifiKill-BW16-5Ghz/search?q=extension%3Abin&type=code",
-    "releases_url": "https://github.com/pepeangell5/BWifiKill-BW16-5Ghz/releases",
+    "release_tag": "",
+    "release_assets": [],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-BW16-5Ghz/archive/refs/heads/main.zip",
     "readme_url": "/firmware/#bwifikill-bw16-5ghz",
     "web_flasher_binaries": []
@@ -130,9 +162,16 @@
     "full_name": "pepeangell5/BWifiKill-ESP32",
     "default_branch": "main",
     "web_flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32/",
-    "manifest_url": "https://pepeangell5.github.io/BWifiKill-ESP32/manifest.json",
     "binarios_url": "https://github.com/pepeangell5/BWifiKill-ESP32/search?q=extension%3Abin&type=code",
-    "releases_url": "https://github.com/pepeangell5/BWifiKill-ESP32/releases",
+    "release_tag": "bwifikillV3.3",
+    "release_assets": [
+      {
+        "name": "full_bwifikill_v3.3.bin",
+        "url": "https://github.com/pepeangell5/BWifiKill-ESP32/releases/download/bwifikillV3.3/full_bwifikill_v3.3.bin",
+        "size": 1948320,
+        "download_count": 19
+      }
+    ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32/archive/refs/heads/main.zip",
     "readme_url": "/firmware/#bwifikill-esp32",
     "web_flasher_binaries": [

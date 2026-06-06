@@ -40,7 +40,12 @@ async function fetchJson(url) {
   if (!url) return null;
 
   try {
-    const response = await fetch(url, { headers: { Accept: "application/json" } });
+    const headers = { Accept: "application/json" };
+    if (process.env.GITHUB_TOKEN && url.includes("api.github.com")) {
+      headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+    }
+
+    const response = await fetch(url, { headers });
     if (!response.ok) return null;
     return await response.json();
   } catch {
@@ -55,13 +60,23 @@ function firmwareHash(name) {
     .replace(/^-+|-+$/g, "");
 }
 
-function buildDownloadEntry(flasher, repo, manifest) {
+function releaseAssetsFrom(release) {
+  return (release?.assets || [])
+    .filter((asset) => asset.browser_download_url)
+    .map((asset) => ({
+      name: asset.name,
+      url: asset.browser_download_url,
+      size: asset.size,
+      download_count: asset.download_count
+    }));
+}
+
+function buildDownloadEntry(flasher, repo, manifest, release) {
   const fullName = repo?.full_name || repoNameFromUrl(flasher.github_url);
   const branch = repo?.default_branch || "main";
   const githubUrl = flasher.github_url || repo?.html_url || "";
   const repoBase = githubUrl.replace(/\/$/, "");
   const flasherUrl = flasher.flasher_url || "";
-  const manifestUrl = flasherUrl ? new URL("manifest.json", flasherUrl).href : "";
 
   const webFlasherBinaries = [];
   const binaryFolders = new Set();
@@ -99,9 +114,9 @@ function buildDownloadEntry(flasher, repo, manifest) {
     full_name: fullName,
     default_branch: branch,
     web_flasher_url: flasherUrl,
-    manifest_url: manifestUrl,
     binarios_url: binariosUrl,
-    releases_url: `${repoBase}/releases`,
+    release_tag: release?.tag_name || "",
+    release_assets: releaseAssetsFrom(release),
     zip_url: `${repoBase}/archive/refs/heads/${branch}.zip`,
     readme_url: `/firmware/#${firmwareHash(repoSlug(fullName) || flasher.name)}`,
     web_flasher_binaries: webFlasherBinaries
@@ -124,7 +139,8 @@ async function main() {
     const repo = repoByName.get(fullName);
     const manifestUrl = flasher.flasher_url ? new URL("manifest.json", flasher.flasher_url).href : "";
     const manifest = await fetchJson(manifestUrl);
-    downloads.push(buildDownloadEntry(flasher, repo, manifest));
+    const release = await fetchJson(`https://api.github.com/repos/${fullName}/releases/latest`);
+    downloads.push(buildDownloadEntry(flasher, repo, manifest, release));
   }
 
   await saveJson(srcOutputPath, downloads);

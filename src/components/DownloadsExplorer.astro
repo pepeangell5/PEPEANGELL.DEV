@@ -9,6 +9,13 @@ interface DownloadBinary {
   chip_family?: string;
 }
 
+interface ReleaseAsset {
+  name: string;
+  url: string;
+  size?: number;
+  download_count?: number;
+}
+
 interface DownloadEntry {
   name: string;
   slug: string;
@@ -20,9 +27,8 @@ interface DownloadEntry {
   full_name: string;
   default_branch: string;
   web_flasher_url?: string;
-  manifest_url?: string;
-  binarios_url: string;
-  releases_url: string;
+  release_tag?: string;
+  release_assets: ReleaseAsset[];
   zip_url: string;
   readme_url: string;
   web_flasher_binaries: DownloadBinary[];
@@ -54,7 +60,7 @@ const { downloads } = Astro.props;
           <summary>
             <span>
               <strong>{item.name}</strong>
-              <small>{item.status} · {item.board}</small>
+              <small>{item.status} - {item.board}</small>
             </span>
           </summary>
 
@@ -63,6 +69,7 @@ const { downloads } = Astro.props;
               <p><strong>Repo:</strong> {item.full_name}</p>
               <p><strong>Display:</strong> {item.display}</p>
               <p><strong>Branch:</strong> {item.default_branch}</p>
+              {item.release_tag && <p><strong>Ultima release:</strong> {item.release_tag}</p>}
               <div class="badges">
                 {item.modules.map((moduleName) => <span class="badge">{moduleName}</span>)}
               </div>
@@ -76,17 +83,16 @@ const { downloads } = Astro.props;
               )}
               {item.web_flasher_binaries.map((binary) => (
                 <a class="button primary" href={binary.url} target="_blank" rel="noreferrer noopener" download>
-                  Binario final {binary.chip_family ? `· ${binary.chip_family}` : ""}
+                  Binario final {binary.chip_family ? `- ${binary.chip_family}` : ""}
                 </a>
               ))}
-              <a class="button" href={item.binarios_url} target="_blank" rel="noreferrer noopener">
-                Binarios
-              </a>
+              {item.release_assets.map((asset) => (
+                <a class="button" href={asset.url} target="_blank" rel="noreferrer noopener" download>
+                  Release: {asset.name}
+                </a>
+              ))}
               <a class="button" href={item.zip_url} target="_blank" rel="noreferrer noopener" download>
                 ZIP completo
-              </a>
-              <a class="button" href={item.releases_url} target="_blank" rel="noreferrer noopener">
-                Releases
               </a>
               <a class="button" href={item.github_url} target="_blank" rel="noreferrer noopener">
                 GitHub
@@ -94,11 +100,6 @@ const { downloads } = Astro.props;
               <a class="button" href={sitePath(item.readme_url)} target="_blank" rel="noreferrer noopener">
                 README local
               </a>
-              {item.manifest_url && (
-                <a class="button" href={item.manifest_url} target="_blank" rel="noreferrer noopener">
-                  Manifest
-                </a>
-              )}
             </div>
 
             {item.web_flasher_binaries.length > 0 ? (
@@ -106,14 +107,14 @@ const { downloads } = Astro.props;
                 <h3>Binarios usados por el Web Flasher</h3>
                 {item.web_flasher_binaries.map((binary) => (
                   <p class="small muted">
-                    {binary.path} · offset {binary.offset ?? 0}
+                    {binary.path} - offset {binary.offset ?? 0}
                   </p>
                 ))}
               </div>
             ) : (
               <p class="small muted">
-                Este repositorio todavia no tiene Web Flasher detectado. Se muestran enlaces para explorar binarios,
-                releases y descargar el repositorio completo.
+                Este repositorio todavia no tiene Web Flasher detectado. Se muestran descargas directas disponibles y
+                el ZIP completo del repositorio.
               </p>
             )}
           </div>
