@@ -11,7 +11,8 @@
     "fetch:readmes": "node scripts/fetch-github-readmes.mjs",
     "fetch:downloads": "node scripts/generate-downloads.mjs",
     "fetch:hardware": "node scripts/generate-hardware-wiki.mjs",
-    "fetch:github": "npm run fetch:repos && npm run fetch:readmes && npm run fetch:downloads && npm run fetch:hardware"
+    "fetch:news": "node scripts/fetch-news.mjs",
+    "fetch:github": "npm run fetch:repos && npm run fetch:readmes && npm run fetch:downloads && npm run fetch:hardware && npm run fetch:news"
   },
   "dependencies": {
     "astro": "^5.10.0"

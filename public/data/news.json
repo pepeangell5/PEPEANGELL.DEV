@@ -1,0 +1,221 @@
+{
+  "generated_at": "2026-06-06T10:51:02.643Z",
+  "sources": [
+    {
+      "name": "Hackaday",
+      "url": "https://hackaday.com/blog/feed/"
+    },
+    {
+      "name": "The Hacker News",
+      "url": "https://feeds.feedburner.com/TheHackersNews"
+    },
+    {
+      "name": "BleepingComputer",
+      "url": "https://www.bleepingcomputer.com/feed/"
+    },
+    {
+      "name": "Flipper Blog",
+      "url": "https://blog.flipper.net/rss/"
+    }
+  ],
+  "errors": [],
+  "items": [
+    {
+      "title": "CISA Adds Actively Exploited SolarWinds Serv-U DoS Flaw to KEV Catalog",
+      "url": "https://thehackernews.com/2026/06/cisa-adds-actively-exploited-solarwinds.html",
+      "source": "The Hacker News",
+      "published_at": "2026-06-06T08:14:31.000Z",
+      "summary": "The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has added a high-severity security flaw impacting SolarWinds Serv-U multi-protocol file server software to its Known Exploited Vulnerabilities (KEV) catalog, citing evidence of active exploitatio",
+      "topics": [
+        "Seguridad"
+      ]
+    },
+    {
+      "title": "An Unlikely Host For An 8080 Emulator",
+      "url": "https://hackaday.com/2026/06/06/an-unlikely-host-for-an-8080-emulator/",
+      "source": "Hackaday",
+      "published_at": "2026-06-06T08:00:21.000Z",
+      "summary": "To emulate vintage microprocessor hardware, it’s normal to find a modern host that provides alongside the number-crunching grunt, sufficient physical connections to interface with its support hardware. Thus if you …read more",
+      "topics": [
+        "Gadgets"
+      ]
+    },
+    {
+      "title": "AI Agent Uncovers 21 Zero-Days in FFmpeg; Chrome Patches Record 429 Bugs",
+      "url": "https://thehackernews.com/2026/06/ai-agent-uncovers-21-zero-days-in.html",
+      "source": "The Hacker News",
+      "published_at": "2026-06-06T07:28:30.000Z",
+      "summary": "Two things landed within days of each other this week. A security startup reported 21 previously unknown vulnerabilities in FFmpeg, the media library inside almost everything that touches video, all of them found by an autonomous AI agent. The same week, Googl",
+      "topics": [
+        "Seguridad"
+      ]
+    },
+    {
+      "title": "Cisco Catalyst SD-WAN Manager CVE-2026-20245 Flaw Actively Exploited – No Patch Available",
+      "url": "https://thehackernews.com/2026/06/cisco-catalyst-sd-wan-manager-cve-2026.html",
+      "source": "The Hacker News",
+      "published_at": "2026-06-06T04:19:28.000Z",
+      "summary": "Cisco has warned that a high-severity security flaw impacting Catalyst SD-WAN Manager has come under active exploitation. The vulnerability, tracked as CVE-2026-20245, carries a CVSS score of 7.8 out of a maximum of 10.0. It affects the following deployment ty",
+      "topics": [
+        "Seguridad"
+      ]
+    },
+    {
+      "title": "As It Turns Out, There’s More Than One Cassette Mechanism Being Made After All",
+      "url": "https://hackaday.com/2026/06/05/as-it-turns-out-theres-more-than-one-cassette-mechanism-being-made-after-all/",
+      "source": "Hackaday",
+      "published_at": "2026-06-05T20:00:22.000Z",
+      "summary": "It’s become an accepted truth amongst tapeheads that there’s no point looking at new hardware, because there’s only one tape mechanism being made anywhere in the world anymore, and that …read more",
+      "topics": [
+        "Gadgets"
+      ]
+    },
+    {
+      "title": "CISA: Hackers now exploit SolarWinds Serv-U flaw to crash servers",
+      "url": "https://www.bleepingcomputer.com/news/security/cisa-hackers-now-exploit-solarwinds-serv-u-flaw-to-crash-servers/",
+      "source": "BleepingComputer",
+      "published_at": "2026-06-05T19:15:30.000Z",
+      "summary": "CISA warned today that hackers are now actively exploiting a recently patched high-severity SolarWinds Serv-U flaw to crash servers. [...]",
+      "topics": [
+        "Seguridad"
+      ]
+    },
+    {
+      "title": "Chinese APT deploys new malware to keep access to hacked networks",
+      "url": "https://www.bleepingcomputer.com/news/security/chinese-apt-deploys-new-malware-to-keep-access-to-hacked-networks/",
+      "source": "BleepingComputer",
+      "published_at": "2026-06-05T18:09:47.000Z",
+      "summary": "A Chinese espionage group tracked as UNC5221 has been accessing Microsoft 365 environments using the Brickstorm backdoor and previously undocumented malware named Plenet and AgentPSD. [...]",
+      "topics": [
+        "Seguridad"
+      ]
+    },
+    {
+      "title": "Android Spyware Asin Targets Arabic Users via Fake News, PDF and War Map Apps",
+      "url": "https://thehackernews.com/2026/06/android-spyware-asin-targets-arabic.html",
+      "source": "The Hacker News",
+      "published_at": "2026-06-05T14:53:40.000Z",
+      "summary": "Arabic-speaking users have emerged as the target of a new Android spyware codenamed Asin, according to findings from ESET. The Slovakian cybersecurity company said it first detected the malware spread via multiple campaigns in early 2025, with each attack wave",
+      "topics": [
+        "Seguridad"
+      ]
+    },
+    {
+      "title": "What 2026 DBIR Confirms: Attacks Are Living in the Browser",
+      "url": "https://www.bleepingcomputer.com/news/security/what-2026-dbir-confirms-attacks-are-living-in-the-browser/",
+      "source": "BleepingComputer",
+      "published_at": "2026-06-05T14:00:10.000Z",
+      "summary": "Phishing, shadow AI, malicious extensions, and credential theft increasingly happen inside the browser. Keep Aware explains what the 2026 Verizon DBIR reveals about browser-layer security gaps and modern attacks. [...]",
+      "topics": [
+        "Seguridad"
+      ]
+    },
+    {
+      "title": "New Threat Cluster OP-512 Targets Microsoft IIS Servers with Custom Web Shell Framework",
+      "url": "https://thehackernews.com/2026/06/new-threat-cluster-op-512-targets.html",
+      "source": "The Hacker News",
+      "published_at": "2026-06-05T12:33:38.000Z",
+      "summary": "Cybersecurity researchers have discovered a previously unreported threat cluster dubbed OP-512 (where \"OP\" stands for \"opponent\") that has been observed targeting Microsoft Internet Information Services (IIS) servers to deploy a bespoke web shell framework. Re",
+      "topics": [
+        "Seguridad"
+      ]
+    },
+    {
+      "title": "Dutch Authorities Dismantle Botnet Linked to 17 Million Infected Devices",
+      "url": "https://thehackernews.com/2026/05/dutch-authorities-dismantle-botnet.html",
+      "source": "The Hacker News",
+      "published_at": "2026-05-31T12:22:12.000Z",
+      "summary": "Dutch authorities have announced the takedown of a botnet that enslaved millions of infected devices, including computers, tablets, smartphones, and IoT devices, to carry out malicious attacks. The bot network, per the Dutch Politie and the National Cyber Secu",
+      "topics": [
+        "IoT",
+        "Seguridad"
+      ]
+    },
+    {
+      "title": "Flipper One — we need your help",
+      "url": "https://blog.flipper.net/flipper-one-we-need-your-help/",
+      "source": "Flipper Blog",
+      "published_at": "2026-05-21T10:46:27.000Z",
+      "summary": "With Flipper One, we're reimagining what a Linux cyberdeck can be — it's a huge project. We're opening up the development process and asking the community for help.",
+      "topics": [
+        "Flipper"
+      ]
+    },
+    {
+      "title": "Can Flipper Zero really steal your car? (Spoiler: NO)",
+      "url": "https://blog.flipper.net/can-flipper-zero-steal-your-car/",
+      "source": "Flipper Blog",
+      "published_at": "2025-08-22T18:03:55.000Z",
+      "summary": "You may have seen news reports about the “secret” Flipper Zero firmware that allegedly hacks any car, as covered by The Verge , Gizmodo , 404 Media , and The Drive have all written about it. Let’s dive in to see whether this claim holds up (major spoiler:",
+      "topics": [
+        "Flipper",
+        "Firmware"
+      ]
+    },
+    {
+      "title": "Firmware 1.0 Released",
+      "url": "https://blog.flipper.net/released-firmware-1/",
+      "source": "Flipper Blog",
+      "published_at": "2024-09-10T12:34:32.000Z",
+      "summary": "Meet the first major release of Flipper Zero firmware — version 1.0. In this release, we have completed work on many features that have been in development for 3 years and are now stable. In this post, we’ll show you what’s new in Firmware 1.",
+      "topics": [
+        "Flipper",
+        "Firmware"
+      ]
+    },
+    {
+      "title": "Our Response to the Canadian Government",
+      "url": "https://blog.flipper.net/response-to-canadian-government/",
+      "source": "Flipper Blog",
+      "published_at": "2024-03-19T18:13:04.000Z",
+      "summary": "In just a few years, Flipper Zero has become so popular that it’s now surrounded by many myths. It’s no wonder that people in power are trying to make Flipper Zero illegal. As you might have seen in the news, the Canadian government plans to ban",
+      "topics": [
+        "Flipper"
+      ]
+    },
+    {
+      "title": "Introducing Video Game Module Powered by Raspberry Pi",
+      "url": "https://blog.flipper.net/introducing-video-game-module-powered-by-raspberry-pi/",
+      "source": "Flipper Blog",
+      "published_at": "2024-02-13T14:01:20.000Z",
+      "summary": "We're excited to announce the Video Game Module, our new product developed in collaboration with Raspberry Pi! The module is powered by the first chip designed by Raspberry Pi—the RP2040 microcontroller, the same as in the Raspberry Pi Pico board. We slightly ",
+      "topics": [
+        "IoT"
+      ]
+    },
+    {
+      "title": "1 Month Battery Life with Firmware Update",
+      "url": "https://blog.flipper.net/1-month-battery-life-with-firmware-update/",
+      "source": "Flipper Blog",
+      "published_at": "2023-04-27T21:57:19.000Z",
+      "summary": "We are proud to announce that starting the firmware version 0.82 , your Flipper Zero's battery life will last up to 1 month! It took us 2 years to resolve all firmware issues that prevented Flipper Zero from switching to power-saving mode, resulting in the sam",
+      "topics": [
+        "Flipper",
+        "Firmware"
+      ]
+    },
+    {
+      "title": "New Firmware Update System",
+      "url": "https://blog.flipper.net/new-firmware-update-system/",
+      "source": "Flipper Blog",
+      "published_at": "2022-05-26T16:53:06.000Z",
+      "summary": "Great news everyone. We were working on this for several months and are finally ready to announce a new firmware update subsystem. You can now update firmware and databases on the SD card via Bluetooth using our mobile app! Download the mobile app for Android ",
+      "topics": [
+        "Firmware",
+        "WiFi/BLE"
+      ]
+    },
+    {
+      "title": "Diving into RFID Protocols with Flipper Zero",
+      "url": "https://blog.flipper.net/rfid/",
+      "source": "Flipper Blog",
+      "published_at": "2021-09-22T16:03:02.000Z",
+      "summary": "RFID is a contactless radio-tag technology. It is quite common and you may see it in a lot of places: intercoms, bank cards, public transport passes, office passes, they are used to track domestic animals, for toll collection, etc. The two main RFID tag types ",
+      "topics": [
+        "Flipper",
+        "RF",
+        "NFC/RFID"
+      ]
+    }
+  ]
+}

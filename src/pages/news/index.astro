@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import NewsFeed from "../../components/NewsFeed.astro";
+import news from "../../data/news.generated.json";
+---
+
+<BaseLayout
+  title="Noticias"
+  description="Noticias recientes sobre firmware, gadgets, Flipper, hardware hacking, RF, IoT, ESP32 y ciberseguridad."
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">News feed</p>
+        <h1>Noticias</h1>
+        <p>
+          Lecturas recientes sobre firmware, gadgets, Flipper, hardware hacking, RF, WiFi/BLE, ESP32, IoT y
+          ciberseguridad. Esta seccion se actualiza desde fuentes RSS al generar la pagina.
+        </p>
+      </div>
+
+      <NewsFeed items={news.items} generatedAt={news.generated_at} />
+    </div>
+  </section>
+</BaseLayout>

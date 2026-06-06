@@ -1,22 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import NoteCard from "../../components/NoteCard.astro";
-import notes from "../../data/lab-notes.json";
 ---
 
 <BaseLayout
-  title="Lab Notes"
-  description="Notas técnicas cortas sobre NRF24, OLED, TFT SPI, ESP-NOW, RF, BLE, WiFi y organización de repositorios."
+  title="Noticias"
+  description="La seccion de notas fue reemplazada por noticias recientes sobre firmware, gadgets, Flipper y hardware hacking."
 >
   <section class="section">
     <div class="container">
       <div class="section-header">
-        <p class="eyebrow">Lab notes</p>
-        <h1>Notas técnicas</h1>
-        <p>Apuntes breves, fáciles de ampliar, para documentar decisiones, compatibilidad y aprendizaje práctico.</p>
+        <p class="eyebrow">Seccion actualizada</p>
+        <h1>Notas ahora es Noticias</h1>
+        <p>
+          La seccion de notas fue sustituida por un feed de noticias recientes sobre firmware, gadgets, Flipper,
+          RF, WiFi/BLE, ESP32 y ciberseguridad.
+        </p>
       </div>
-      <div class="grid cards">
-        {notes.map((note) => <NoteCard note={note} />)}
+      <div class="button-row">
+        <a class="button primary" href="/news/">Ir a Noticias</a>
       </div>
     </div>
   </section>

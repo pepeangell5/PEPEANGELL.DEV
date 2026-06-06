@@ -1,0 +1,129 @@
+---
+interface NewsItem {
+  title: string;
+  url: string;
+  source: string;
+  published_at?: string | null;
+  summary?: string;
+  topics?: string[];
+}
+
+interface Props {
+  items: NewsItem[];
+  generatedAt?: string;
+}
+
+const { items, generatedAt } = Astro.props;
+const allTopics = [...new Set(items.flatMap((item) => item.topics ?? []))].sort();
+
+const dateFormatter = new Intl.DateTimeFormat("es-MX", {
+  year: "numeric",
+  month: "short",
+  day: "2-digit"
+});
+
+function displayDate(value?: string | null) {
+  if (!value) {
+    return "Fecha no disponible";
+  }
+
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? "Fecha no disponible" : dateFormatter.format(date);
+}
+---
+
+<div class="news-feed" data-news-feed>
+  <div class="news-controls" aria-label="Filtros de noticias">
+    <label class="hardware-search">
+      <span class="eyebrow">Buscar</span>
+      <input class="field" type="search" placeholder="Flipper, firmware, ESP32, RF..." data-news-search />
+    </label>
+
+    <div class="news-topic-row" aria-label="Temas">
+      <button class="news-topic active" type="button" data-news-topic="all">Todo</button>
+      {allTopics.map((topic) => <button class="news-topic" type="button" data-news-topic={topic}>{topic}</button>)}
+    </div>
+  </div>
+
+  {
+    generatedAt && (
+      <p class="small muted">
+        Actualizado automaticamente en el ultimo deploy: {displayDate(generatedAt)}. Las noticias abren en sitios externos.
+      </p>
+    )
+  }
+
+  <div class="news-list" data-news-list>
+    {
+      items.map((item) => (
+        <article
+          class="news-card"
+          data-news-item
+          data-topics={(item.topics ?? []).join("|")}
+          data-search={`${item.title} ${item.source} ${(item.topics ?? []).join(" ")} ${item.summary ?? ""}`.toLowerCase()}
+        >
+          <div class="news-meta">
+            <span>{item.source}</span>
+            <span>{displayDate(item.published_at)}</span>
+          </div>
+          <h2>{item.title}</h2>
+          {item.summary && <p>{item.summary}</p>}
+          {
+            item.topics && item.topics.length > 0 && (
+              <div class="badge-row">
+                {item.topics.map((topic) => <span class="badge">{topic}</span>)}
+              </div>
+            )
+          }
+          <div class="button-row">
+            <a class="button primary" href={item.url} target="_blank" rel="noreferrer">Leer noticia</a>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <p class="news-empty muted" data-news-empty hidden>No hay noticias que coincidan con ese filtro.</p>
+</div>
+
+<script>
+  const root = document.querySelector("[data-news-feed]");
+
+  if (root) {
+    const searchInput = root.querySelector("[data-news-search]");
+    const topicButtons = [...root.querySelectorAll("[data-news-topic]")];
+    const items = [...root.querySelectorAll("[data-news-item]")];
+    const empty = root.querySelector("[data-news-empty]");
+    let activeTopic = "all";
+
+    const update = () => {
+      const query = searchInput?.value?.trim().toLowerCase() ?? "";
+      let visibleCount = 0;
+
+      for (const item of items) {
+        const text = item.getAttribute("data-search") ?? "";
+        const topics = item.getAttribute("data-topics") ?? "";
+        const matchesTopic = activeTopic === "all" || topics.split("|").includes(activeTopic);
+        const matchesSearch = !query || text.includes(query);
+        const visible = matchesTopic && matchesSearch;
+
+        item.toggleAttribute("hidden", !visible);
+        visibleCount += visible ? 1 : 0;
+      }
+
+      empty?.toggleAttribute("hidden", visibleCount > 0);
+    };
+
+    searchInput?.addEventListener("input", update);
+
+    for (const button of topicButtons) {
+      button.addEventListener("click", () => {
+        activeTopic = button.getAttribute("data-news-topic") ?? "all";
+        for (const topicButton of topicButtons) {
+          topicButton.classList.toggle("active", topicButton === button);
+        }
+        update();
+      });
+    }
+  }
+</script>
