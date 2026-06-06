@@ -6,7 +6,7 @@ import news from "../../data/news.generated.json";
 
 <BaseLayout
   title="Noticias"
-  description="Noticias recientes sobre firmware, gadgets, Flipper, hardware hacking, RF, IoT, ESP32 y ciberseguridad."
+  description="Noticias recientes sobre firmware, gadgets, Cardputer, M5Stack, Hashcat, Pwnagotchi, Flipper, RF, IoT, ESP32 y ciberseguridad."
 >
   <section class="section">
     <div class="container">
@@ -14,12 +14,13 @@ import news from "../../data/news.generated.json";
         <p class="eyebrow">News feed</p>
         <h1>Noticias</h1>
         <p>
-          Lecturas recientes sobre firmware, gadgets, Flipper, hardware hacking, RF, WiFi/BLE, ESP32, IoT y
-          ciberseguridad. Esta seccion se actualiza desde fuentes RSS al generar la pagina.
+          Lecturas recientes sobre firmware, gadgets, Cardputer, M5Stack, Hashcat, Pwnagotchi, Flipper, hardware
+          hacking, RF, WiFi/BLE, ESP32, IoT y ciberseguridad. Solo se muestran noticias publicadas en los ultimos 30
+          dias y se actualizan desde fuentes RSS al generar la pagina.
         </p>
       </div>
 
-      <NewsFeed items={news.items} generatedAt={news.generated_at} />
+      <NewsFeed items={news.items} generatedAt={news.generated_at} maxAgeDays={news.max_age_days} />
     </div>
   </section>
 </BaseLayout>

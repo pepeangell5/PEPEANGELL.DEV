@@ -1,5 +1,6 @@
 {
-  "generated_at": "2026-06-06T10:51:02.643Z",
+  "generated_at": "2026-06-06T11:05:45.978Z",
+  "max_age_days": 30,
   "sources": [
     {
       "name": "Hackaday",
@@ -16,20 +17,46 @@
     {
       "name": "Flipper Blog",
       "url": "https://blog.flipper.net/rss/"
+    },
+    {
+      "name": "Adafruit Blog",
+      "url": "https://blog.adafruit.com/feed/"
+    },
+    {
+      "name": "Raspberry Pi News",
+      "url": "https://www.raspberrypi.com/news/feed/"
+    },
+    {
+      "name": "Arduino Blog",
+      "url": "https://blog.arduino.cc/feed/"
+    },
+    {
+      "name": "Hackster News",
+      "url": "https://www.hackster.io/news.atom"
+    },
+    {
+      "name": "Hashcat Releases",
+      "url": "https://github.com/hashcat/hashcat/releases.atom"
+    },
+    {
+      "name": "Bettercap Releases",
+      "url": "https://github.com/bettercap/bettercap/releases.atom"
+    },
+    {
+      "name": "Pwnagotchi Releases",
+      "url": "https://github.com/jayofelony/pwnagotchi/releases.atom"
+    },
+    {
+      "name": "M5Cardputer Releases",
+      "url": "https://github.com/m5stack/M5Cardputer/releases.atom"
+    },
+    {
+      "name": "ESP32 Marauder Releases",
+      "url": "https://github.com/justcallmekoko/ESP32Marauder/releases.atom"
     }
   ],
   "errors": [],
   "items": [
-    {
-      "title": "CISA Adds Actively Exploited SolarWinds Serv-U DoS Flaw to KEV Catalog",
-      "url": "https://thehackernews.com/2026/06/cisa-adds-actively-exploited-solarwinds.html",
-      "source": "The Hacker News",
-      "published_at": "2026-06-06T08:14:31.000Z",
-      "summary": "The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has added a high-severity security flaw impacting SolarWinds Serv-U multi-protocol file server software to its Known Exploited Vulnerabilities (KEV) catalog, citing evidence of active exploitatio",
-      "topics": [
-        "Seguridad"
-      ]
-    },
     {
       "title": "An Unlikely Host For An 8080 Emulator",
       "url": "https://hackaday.com/2026/06/06/an-unlikely-host-for-an-8080-emulator/",
@@ -38,26 +65,6 @@
       "summary": "To emulate vintage microprocessor hardware, it’s normal to find a modern host that provides alongside the number-crunching grunt, sufficient physical connections to interface with its support hardware. Thus if you …read more",
       "topics": [
         "Gadgets"
-      ]
-    },
-    {
-      "title": "AI Agent Uncovers 21 Zero-Days in FFmpeg; Chrome Patches Record 429 Bugs",
-      "url": "https://thehackernews.com/2026/06/ai-agent-uncovers-21-zero-days-in.html",
-      "source": "The Hacker News",
-      "published_at": "2026-06-06T07:28:30.000Z",
-      "summary": "Two things landed within days of each other this week. A security startup reported 21 previously unknown vulnerabilities in FFmpeg, the media library inside almost everything that touches video, all of them found by an autonomous AI agent. The same week, Googl",
-      "topics": [
-        "Seguridad"
-      ]
-    },
-    {
-      "title": "Cisco Catalyst SD-WAN Manager CVE-2026-20245 Flaw Actively Exploited – No Patch Available",
-      "url": "https://thehackernews.com/2026/06/cisco-catalyst-sd-wan-manager-cve-2026.html",
-      "source": "The Hacker News",
-      "published_at": "2026-06-06T04:19:28.000Z",
-      "summary": "Cisco has warned that a high-severity security flaw impacting Catalyst SD-WAN Manager has come under active exploitation. The vulnerability, tracked as CVE-2026-20245, carries a CVSS score of 7.8 out of a maximum of 10.0. It affects the following deployment ty",
-      "topics": [
-        "Seguridad"
       ]
     },
     {
@@ -71,53 +78,150 @@
       ]
     },
     {
-      "title": "CISA: Hackers now exploit SolarWinds Serv-U flaw to crash servers",
-      "url": "https://www.bleepingcomputer.com/news/security/cisa-hackers-now-exploit-solarwinds-serv-u-flaw-to-crash-servers/",
-      "source": "BleepingComputer",
-      "published_at": "2026-06-05T19:15:30.000Z",
-      "summary": "CISA warned today that hackers are now actively exploiting a recently patched high-severity SolarWinds Serv-U flaw to crash servers. [...]",
+      "title": "The Python on Microcontrollers Newsletter: subscribe for free",
+      "url": "https://blog.adafruit.com/2026/06/05/the-python-on-microcontrollers-newsletter-subscribe-for-free-6-5/",
+      "source": "Adafruit Blog",
+      "published_at": "2026-06-05T19:41:25.000Z",
+      "summary": "The Python for Microcontrollers Newsletter is the place for the latest news involving Python on hardware (microcontrollers AND single board computers like Raspberry Pi). This ad-free, spam-free weekly email is filled with CircuitPython, MicroPython, and Python",
       "topics": [
-        "Seguridad"
+        "Dev boards",
+        "Gadgets"
       ]
     },
     {
-      "title": "Chinese APT deploys new malware to keep access to hacked networks",
-      "url": "https://www.bleepingcomputer.com/news/security/chinese-apt-deploys-new-malware-to-keep-access-to-hacked-networks/",
-      "source": "BleepingComputer",
-      "published_at": "2026-06-05T18:09:47.000Z",
-      "summary": "A Chinese espionage group tracked as UNC5221 has been accessing Microsoft 365 environments using the Brickstorm backdoor and previously undocumented malware named Plenet and AgentPSD. [...]",
+      "title": "UncleStem's AR Sandbox Turns Kinetic Sand Into a Live Topographic Map",
+      "url": "https://www.hackster.io/news/unclestem-s-ar-sandbox-turns-kinetic-sand-into-a-live-topographic-map-d692a8a2c03d",
+      "source": "Hackster News",
+      "published_at": "2026-06-05T16:36:22.000Z",
+      "summary": "UncleStem used a ToF sensor and a pico projector to turn kinetic sand into a live AR map that responds instantly as you form the landscape.",
       "topics": [
-        "Seguridad"
+        "IoT"
       ]
     },
     {
-      "title": "Android Spyware Asin Targets Arabic Users via Fake News, PDF and War Map Apps",
-      "url": "https://thehackernews.com/2026/06/android-spyware-asin-targets-arabic.html",
-      "source": "The Hacker News",
-      "published_at": "2026-06-05T14:53:40.000Z",
-      "summary": "Arabic-speaking users have emerged as the target of a new Android spyware codenamed Asin, according to findings from ESET. The Slovakian cybersecurity company said it first detected the malware spread via multiple campaigns in early 2025, with each attack wave",
+      "title": "A New $59 Pocket-Sized Tool Cures All Your I²C Headaches",
+      "url": "https://www.hackster.io/news/a-new-59-pocket-sized-tool-cures-all-your-i-c-headaches-fd812aacebd5",
+      "source": "Hackster News",
+      "published_at": "2026-06-05T15:08:33.000Z",
+      "summary": "The $59 I²C Doctor scans, debugs, and stress-tests I²C connections in seconds to solve hardware mysteries fast.",
       "topics": [
-        "Seguridad"
+        "Gadgets"
       ]
     },
     {
-      "title": "What 2026 DBIR Confirms: Attacks Are Living in the Browser",
-      "url": "https://www.bleepingcomputer.com/news/security/what-2026-dbir-confirms-attacks-are-living-in-the-browser/",
-      "source": "BleepingComputer",
-      "published_at": "2026-06-05T14:00:10.000Z",
-      "summary": "Phishing, shadow AI, malicious extensions, and credential theft increasingly happen inside the browser. Keep Aware explains what the 2026 Verizon DBIR reveals about browser-layer security gaps and modern attacks. [...]",
+      "title": "This Custom Smart Home Controller Looks Like a Century-Old Antique",
+      "url": "https://www.hackster.io/news/this-custom-smart-home-controller-looks-like-a-century-old-antique-665ddaa1d0b4",
+      "source": "Hackster News",
+      "published_at": "2026-06-05T13:31:17.000Z",
+      "summary": "Tired of ugly smart home tech? This antique-inspired control hub combines leather, bronze, and E Ink for a unique appearance.",
       "topics": [
-        "Seguridad"
+        "IoT"
       ]
     },
     {
-      "title": "New Threat Cluster OP-512 Targets Microsoft IIS Servers with Custom Web Shell Framework",
-      "url": "https://thehackernews.com/2026/06/new-threat-cluster-op-512-targets.html",
-      "source": "The Hacker News",
-      "published_at": "2026-06-05T12:33:38.000Z",
-      "summary": "Cybersecurity researchers have discovered a previously unreported threat cluster dubbed OP-512 (where \"OP\" stands for \"opponent\") that has been observed targeting Microsoft Internet Information Services (IIS) servers to deploy a bespoke web shell framework. Re",
+      "title": "Peppe’s ghost LiDAR scanner",
+      "url": "https://www.raspberrypi.com/news/peppes-ghost-lidar-scanner/",
+      "source": "Raspberry Pi News",
+      "published_at": "2026-06-05T12:40:58.000Z",
+      "summary": "This LiDAR sensor's maker thinks that its 3D-printed shell evokes a \"jumbo-sized juice container or Ghostbusters gizmo\" The post Peppe’s ghost LiDAR scanner appeared first on Raspberry Pi .",
       "topics": [
-        "Seguridad"
+        "Dev boards",
+        "IoT"
+      ]
+    },
+    {
+      "title": "BugBuster Gives AI the Tools to Debug Physical Hardware",
+      "url": "https://www.hackster.io/news/bugbuster-gives-ai-the-tools-to-debug-physical-hardware-f4fd22236ce4",
+      "source": "Hackster News",
+      "published_at": "2026-06-04T13:25:23.000Z",
+      "summary": "BugBuster is an open source hardware platform that lets AI models safely measure and control real hardware for autonomous debugging.",
+      "topics": [
+        "Gadgets"
+      ]
+    },
+    {
+      "title": "Morse Micro Tailors Its Second-Gen Wi-Fi HaLow Modules for the American Market: Meet the MM8108-M20",
+      "url": "https://www.hackster.io/news/morse-micro-tailors-its-second-gen-wi-fi-halow-modules-for-the-american-market-meet-the-mm8108-m20-cebab04e60fa",
+      "source": "Hackster News",
+      "published_at": "2026-06-04T10:24:09.000Z",
+      "summary": "Company's MM8108 second-generation Wi-Fi HaLow chip now available in a module tweaked specifically for North America.",
+      "topics": [
+        "WiFi/BLE"
+      ]
+    },
+    {
+      "title": "JP’s Product Pick of the Week 6/2/26 @adafruit @johnedgarpark #adafruit #newproductpick",
+      "url": "https://blog.adafruit.com/2026/06/03/jps-product-pick-of-the-week-6-2-26-adafruit-johnedgarpark-adafruit-newproductpick/",
+      "source": "Adafruit Blog",
+      "published_at": "2026-06-03T13:33:24.000Z",
+      "summary": "If you missed this week’s livestream of John Park’s Product Pick(s) of the Week, not to worry, here’s the video. This week’s pick is the Adafruit TMP119 High-Precision ±0.03°C I2C Temperature Sensor – STEMMA QT / Qwiic! Watch the video to find out about the Ad",
+      "topics": [
+        "IoT"
+      ]
+    },
+    {
+      "title": "Tossed That Old TV? Keep the Remote — And Turn It Into a Macro-Capable Custom USB Input Device",
+      "url": "https://www.hackster.io/news/tossed-that-old-tv-keep-the-remote-and-turn-it-into-a-macro-capable-custom-usb-input-device-836875866f15",
+      "source": "Hackster News",
+      "published_at": "2026-06-03T11:34:28.000Z",
+      "summary": "A Raspberry Pi RP2040 and an infrared receiver is all you need to keep your old TV remotes out of landfill, thanks to developer Brisk4t.",
+      "topics": [
+        "Dev boards",
+        "Gadgets"
+      ]
+    },
+    {
+      "title": "Patching guitar amp firmware",
+      "url": "https://blog.adafruit.com/2026/06/01/patching-guitar-amp-firmware/",
+      "source": "Adafruit Blog",
+      "published_at": "2026-06-01T20:22:13.000Z",
+      "summary": "Michael Forney has been having a lot of fun with reverse engineering lately. I was looking over the service manual for my guitar amp, a Yamaha THR10c, and saw references to a UART header in the schematic, I got excited. I wondered if anything cool was hiding i",
+      "topics": [
+        "Firmware"
+      ]
+    },
+    {
+      "title": "Arduino CLI JSON fetcher",
+      "url": "https://blog.adafruit.com/2026/06/01/arduino-cli-json-fetcher/",
+      "source": "Adafruit Blog",
+      "published_at": "2026-06-01T20:12:21.000Z",
+      "summary": "Arduino CLI JSON Fetcher (PHP) is a simple tool that executes a command in PHP arduino-cli board listall --json, saves the retrieved JSON as “raw” and “formatted,” and outputs the formatted JSON to standard output. Page https://tanakamasayuki.github.io/arduino",
+      "topics": [
+        "Firmware",
+        "Dev boards"
+      ]
+    },
+    {
+      "title": "ICYMI – Adafruit IoT Monthly: Temu IoT Doorbell, Cloud Ham Radio Repeaters, and More!",
+      "url": "https://blog.adafruit.com/2026/06/01/icymi-adafruit-iot-monthly-todo-todo-and-more-2/",
+      "source": "Adafruit Blog",
+      "published_at": "2026-06-01T20:00:30.000Z",
+      "summary": "ICYMI (In case you missed it) – the IoT Monthly Newsletter from AdafruitDaily.com went out this morning! If you missed it, subscribe now! – You’ll get one newsletter each month. The next newsletter will be out in a month, and being subscribed is the best way t",
+      "topics": [
+        "RF",
+        "IoT"
+      ]
+    },
+    {
+      "title": "Adafruit’s Top 10 Blog Posts of May 2026 #StateOfTheFruit #AdafruitTopTen",
+      "url": "https://blog.adafruit.com/2026/06/01/adafruits-top-10-blog-posts-of-may-2026-stateofthefruit-adafruittopten/",
+      "source": "Adafruit Blog",
+      "published_at": "2026-06-01T16:39:26.000Z",
+      "summary": "1. Stormlight Spheres From Brandon Sanderson’s Stormlight Archive 2. The “Mac Nano” powered by the Raspberry Pi CM0 3. RFID Jukebox with ESP32 4. CERN open-sources its entire KiCad component library 5. Explaining Different Microcontrollers 6. Project Hail Mary",
+      "topics": [
+        "ESP32",
+        "Dev boards",
+        "NFC/RFID"
+      ]
+    },
+    {
+      "title": "OSHWA's Open Hardware Summit 2026: Hottest Hardware Event of the Year?",
+      "url": "https://www.hackster.io/news/oshwa-s-open-hardware-summit-2026-hottest-hardware-event-of-the-year-2586bcb2f407",
+      "source": "Hackster News",
+      "published_at": "2026-06-01T12:40:46.000Z",
+      "summary": "The annual convention of open source hardware hackers and enthusiasts for talks, workshops, and exhibits made a hot Berlin even hotter!",
+      "topics": [
+        "Gadgets"
       ]
     },
     {
@@ -132,89 +236,91 @@
       ]
     },
     {
+      "title": "Arcade Fightstick #AdafruitLearnGuide",
+      "url": "https://blog.adafruit.com/2026/05/30/arcade-fightstick-adafruitlearnguide/",
+      "source": "Adafruit Blog",
+      "published_at": "2026-05-30T20:00:23.000Z",
+      "summary": "Hadoken! Build a custom arcade-style USB fightstick in a 3D printed case using an Adafruit KB2040 board and GP2040-CE firmware. You can use it to play games on consoles, such as Switch, PlayStation, and Xbox, as well as Raspberry Pi-based RetroPie emulators an",
+      "topics": [
+        "Firmware",
+        "Dev boards"
+      ]
+    },
+    {
+      "title": "Case – Raspberry Pi Zero 2W with 2×16 LCD Display #3DThursday #3DPrinting",
+      "url": "https://blog.adafruit.com/2026/05/28/case-raspberry-pi-zero-2w-with-2x16-lcd-display-3dthursday-3dprinting/",
+      "source": "Adafruit Blog",
+      "published_at": "2026-05-28T21:00:43.000Z",
+      "summary": "Shared by Szczybyrybobry on Maker World: A compact Pi Zero 2W case with an integrated HD44780 2×16 LCD over I2C, perfect for IoT or home automation projects that need to display system status, performance indicators, or other data. Features a carbon-texture fi",
+      "topics": [
+        "Dev boards",
+        "IoT"
+      ]
+    },
+    {
+      "title": "a4672eb_nightly",
+      "url": "https://github.com/justcallmekoko/ESP32Marauder/releases/tag/nightly_a4672eb",
+      "source": "ESP32 Marauder Releases",
+      "published_at": "2026-05-28T04:35:49.000Z",
+      "summary": "justcallmekokollc.com This is an automated pre-release / beta created by CI. Please see GPS Modification to find out how to add GPS capabilities to your Marauder. Flipper Zero Marauder Companion App: Be sure to install the latest version of the Marauder Compan",
+      "topics": [
+        "Flipper",
+        "Cardputer/M5Stack",
+        "Firmware",
+        "ESP32",
+        "Gadgets",
+        "WiFi/BLE"
+      ]
+    },
+    {
+      "title": "f8cf4ee_nightly",
+      "url": "https://github.com/justcallmekoko/ESP32Marauder/releases/tag/nightly_f8cf4ee",
+      "source": "ESP32 Marauder Releases",
+      "published_at": "2026-05-25T04:38:08.000Z",
+      "summary": "justcallmekokollc.com This is an automated pre-release / beta created by CI. Please see GPS Modification to find out how to add GPS capabilities to your Marauder. Flipper Zero Marauder Companion App: Be sure to install the latest version of the Marauder Compan",
+      "topics": [
+        "Flipper",
+        "Cardputer/M5Stack",
+        "Firmware",
+        "ESP32",
+        "Gadgets",
+        "WiFi/BLE"
+      ]
+    },
+    {
+      "title": "v1.12.1",
+      "url": "https://github.com/justcallmekoko/ESP32Marauder/releases/tag/v1.12.1",
+      "source": "ESP32 Marauder Releases",
+      "published_at": "2026-05-25T00:21:22.000Z",
+      "summary": "What's Changed Rework beacon content for Flock advertising by @justcallmekoko in #1254 Add Channel Hop to Flock Sniff by @justcallmekoko in #1255 Blank probe requests show hidden by @justcallmekoko in #1256 buildButtons uses char instead of string by @justcall",
+      "topics": [
+        "Flipper",
+        "Cardputer/M5Stack",
+        "Firmware",
+        "ESP32",
+        "Gadgets",
+        "WiFi/BLE"
+      ]
+    },
+    {
       "title": "Flipper One — we need your help",
       "url": "https://blog.flipper.net/flipper-one-we-need-your-help/",
       "source": "Flipper Blog",
       "published_at": "2026-05-21T10:46:27.000Z",
       "summary": "With Flipper One, we're reimagining what a Linux cyberdeck can be — it's a huge project. We're opening up the development process and asking the community for help.",
       "topics": [
-        "Flipper"
-      ]
-    },
-    {
-      "title": "Can Flipper Zero really steal your car? (Spoiler: NO)",
-      "url": "https://blog.flipper.net/can-flipper-zero-steal-your-car/",
-      "source": "Flipper Blog",
-      "published_at": "2025-08-22T18:03:55.000Z",
-      "summary": "You may have seen news reports about the “secret” Flipper Zero firmware that allegedly hacks any car, as covered by The Verge , Gizmodo , 404 Media , and The Drive have all written about it. Let’s dive in to see whether this claim holds up (major spoiler:",
-      "topics": [
         "Flipper",
-        "Firmware"
+        "Gadgets"
       ]
     },
     {
-      "title": "Firmware 1.0 Released",
-      "url": "https://blog.flipper.net/released-firmware-1/",
-      "source": "Flipper Blog",
-      "published_at": "2024-09-10T12:34:32.000Z",
-      "summary": "Meet the first major release of Flipper Zero firmware — version 1.0. In this release, we have completed work on many features that have been in development for 3 years and are now stable. In this post, we’ll show you what’s new in Firmware 1.",
+      "title": "v2.41.7",
+      "url": "https://github.com/bettercap/bettercap/releases/tag/v2.41.7",
+      "source": "Bettercap Releases",
+      "published_at": "2026-05-11T09:51:39.000Z",
+      "summary": "🐛 Fixes 🛡️ Fixed mysql.server panic on crafted client handshake (remote DoS) 🛡️ Fixed zerogod IPP chunked body panic via OOB uint64 allocation ( #1263 ) Close connection on panic recovery in the TCP acceptor Fixed flags value ( 0x0c → 0xc0 ) in prefix optio",
       "topics": [
-        "Flipper",
-        "Firmware"
-      ]
-    },
-    {
-      "title": "Our Response to the Canadian Government",
-      "url": "https://blog.flipper.net/response-to-canadian-government/",
-      "source": "Flipper Blog",
-      "published_at": "2024-03-19T18:13:04.000Z",
-      "summary": "In just a few years, Flipper Zero has become so popular that it’s now surrounded by many myths. It’s no wonder that people in power are trying to make Flipper Zero illegal. As you might have seen in the news, the Canadian government plans to ban",
-      "topics": [
-        "Flipper"
-      ]
-    },
-    {
-      "title": "Introducing Video Game Module Powered by Raspberry Pi",
-      "url": "https://blog.flipper.net/introducing-video-game-module-powered-by-raspberry-pi/",
-      "source": "Flipper Blog",
-      "published_at": "2024-02-13T14:01:20.000Z",
-      "summary": "We're excited to announce the Video Game Module, our new product developed in collaboration with Raspberry Pi! The module is powered by the first chip designed by Raspberry Pi—the RP2040 microcontroller, the same as in the Raspberry Pi Pico board. We slightly ",
-      "topics": [
-        "IoT"
-      ]
-    },
-    {
-      "title": "1 Month Battery Life with Firmware Update",
-      "url": "https://blog.flipper.net/1-month-battery-life-with-firmware-update/",
-      "source": "Flipper Blog",
-      "published_at": "2023-04-27T21:57:19.000Z",
-      "summary": "We are proud to announce that starting the firmware version 0.82 , your Flipper Zero's battery life will last up to 1 month! It took us 2 years to resolve all firmware issues that prevented Flipper Zero from switching to power-saving mode, resulting in the sam",
-      "topics": [
-        "Flipper",
-        "Firmware"
-      ]
-    },
-    {
-      "title": "New Firmware Update System",
-      "url": "https://blog.flipper.net/new-firmware-update-system/",
-      "source": "Flipper Blog",
-      "published_at": "2022-05-26T16:53:06.000Z",
-      "summary": "Great news everyone. We were working on this for several months and are finally ready to announce a new firmware update subsystem. You can now update firmware and databases on the SD card via Bluetooth using our mobile app! Download the mobile app for Android ",
-      "topics": [
-        "Firmware",
-        "WiFi/BLE"
-      ]
-    },
-    {
-      "title": "Diving into RFID Protocols with Flipper Zero",
-      "url": "https://blog.flipper.net/rfid/",
-      "source": "Flipper Blog",
-      "published_at": "2021-09-22T16:03:02.000Z",
-      "summary": "RFID is a contactless radio-tag technology. It is quite common and you may see it in a lot of places: intercoms, bank cards, public transport passes, office passes, they are used to track domestic animals, for toll collection, etc. The two main RFID tag types ",
-      "topics": [
-        "Flipper",
-        "RF",
-        "NFC/RFID"
+        "Pwnagotchi"
       ]
     }
   ]

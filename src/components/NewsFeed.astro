@@ -11,9 +11,10 @@ interface NewsItem {
 interface Props {
   items: NewsItem[];
   generatedAt?: string;
+  maxAgeDays?: number;
 }
 
-const { items, generatedAt } = Astro.props;
+const { items, generatedAt, maxAgeDays = 30 } = Astro.props;
 const allTopics = [...new Set(items.flatMap((item) => item.topics ?? []))].sort();
 
 const dateFormatter = new Intl.DateTimeFormat("es-MX", {
@@ -49,39 +50,42 @@ function displayDate(value?: string | null) {
     generatedAt && (
       <p class="small muted">
         Actualizado automaticamente en el ultimo deploy: {displayDate(generatedAt)}. Las noticias abren en sitios externos.
+        Solo se muestran publicaciones de los ultimos {maxAgeDays} dias.
       </p>
     )
   }
 
-  <div class="news-list" data-news-list>
-    {
-      items.map((item) => (
-        <article
-          class="news-card"
-          data-news-item
-          data-topics={(item.topics ?? []).join("|")}
-          data-search={`${item.title} ${item.source} ${(item.topics ?? []).join(" ")} ${item.summary ?? ""}`.toLowerCase()}
-        >
-          <div class="news-meta">
-            <span>{item.source}</span>
-            <span>{displayDate(item.published_at)}</span>
-          </div>
-          <h2>{item.title}</h2>
-          {item.summary && <p>{item.summary}</p>}
-          {
-            item.topics && item.topics.length > 0 && (
+  {
+    items.length > 0 ? (
+      <div class="news-list" data-news-list>
+        {items.map((item) => (
+          <article
+            class="news-card"
+            data-news-item
+            data-topics={(item.topics ?? []).join("|")}
+            data-search={`${item.title} ${item.source} ${(item.topics ?? []).join(" ")} ${item.summary ?? ""}`.toLowerCase()}
+          >
+            <div class="news-meta">
+              <span>{item.source}</span>
+              <span>{displayDate(item.published_at)}</span>
+            </div>
+            <h2>{item.title}</h2>
+            {item.summary && <p>{item.summary}</p>}
+            {item.topics && item.topics.length > 0 && (
               <div class="badge-row">
                 {item.topics.map((topic) => <span class="badge">{topic}</span>)}
               </div>
-            )
-          }
-          <div class="button-row">
-            <a class="button primary" href={item.url} target="_blank" rel="noreferrer">Leer noticia</a>
-          </div>
-        </article>
-      ))
-    }
-  </div>
+            )}
+            <div class="button-row">
+              <a class="button primary" href={item.url} target="_blank" rel="noreferrer noopener">Leer noticia</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <p class="news-empty muted">No se encontraron noticias publicadas en los ultimos {maxAgeDays} dias. El feed se revisa en cada deploy diario.</p>
+    )
+  }
 
   <p class="news-empty muted" data-news-empty hidden>No hay noticias que coincidan con ese filtro.</p>
 </div>

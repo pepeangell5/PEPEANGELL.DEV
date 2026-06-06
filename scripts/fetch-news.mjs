@@ -2,27 +2,63 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
 const outputPaths = [resolve("src/data/news.generated.json"), resolve("public/data/news.json")];
+const maxAgeDays = 30;
+const maxAgeMs = maxAgeDays * 24 * 60 * 60 * 1000;
+const now = new Date();
+const cutoffTime = now.getTime() - maxAgeMs;
 
 const feeds = [
   { name: "Hackaday", url: "https://hackaday.com/blog/feed/" },
   { name: "The Hacker News", url: "https://feeds.feedburner.com/TheHackersNews" },
   { name: "BleepingComputer", url: "https://www.bleepingcomputer.com/feed/" },
-  { name: "Flipper Blog", url: "https://blog.flipper.net/rss/" }
+  { name: "Flipper Blog", url: "https://blog.flipper.net/rss/" },
+  { name: "Adafruit Blog", url: "https://blog.adafruit.com/feed/" },
+  { name: "Raspberry Pi News", url: "https://www.raspberrypi.com/news/feed/" },
+  { name: "Arduino Blog", url: "https://blog.arduino.cc/feed/" },
+  { name: "Hackster News", url: "https://www.hackster.io/news.atom" },
+  { name: "Hashcat Releases", url: "https://github.com/hashcat/hashcat/releases.atom" },
+  { name: "Bettercap Releases", url: "https://github.com/bettercap/bettercap/releases.atom" },
+  { name: "Pwnagotchi Releases", url: "https://github.com/jayofelony/pwnagotchi/releases.atom" },
+  { name: "M5Cardputer Releases", url: "https://github.com/m5stack/M5Cardputer/releases.atom" },
+  { name: "ESP32 Marauder Releases", url: "https://github.com/justcallmekoko/ESP32Marauder/releases.atom" }
 ];
 
 const topicRules = [
   { topic: "Flipper", terms: ["flipper zero", "flipper one", "flipper"] },
+  { topic: "Cardputer/M5Stack", terms: ["cardputer", "m5cardputer", "m5stack", "m5stick", "m5core", "m5stamp", "m5paper", "m5dial"] },
+  { topic: "Hashcat", terms: ["hashcat", "password cracking", "password recovery"] },
+  { topic: "Pwnagotchi", terms: ["pwnagotchi", "bettercap"] },
   { topic: "Firmware", terms: ["firmware", "embedded", "bootloader", "ota"] },
-  { topic: "ESP32", terms: ["esp32", "esp8266", "espressif"] },
-  { topic: "Gadgets", terms: ["gadget", "device", "handheld", "hardware"] },
-  { topic: "RF", terms: ["rf", "radio", "sdr", "sub-ghz", "sub ghz", "nrf24", "lora"] },
+  { topic: "ESP32", terms: ["esp32", "esp8266", "esp32-s3", "esp32-c3", "espressif", "marauder"] },
+  { topic: "Dev boards", terms: ["arduino", "raspberry pi", "rp2040", "rp2350", "risc-v", "microcontroller", "single-board computer"] },
+  { topic: "Gadgets", terms: ["gadget", "device", "handheld", "hardware", "cyberdeck", "linux handheld", "pocket computer"] },
+  { topic: "RF", terms: ["rf", "radio", "sdr", "sub-ghz", "sub ghz", "nrf24", "lora", "meshtastic", "hackrf", "yard stick", "yardstick", "proxmark", "proxmark3"] },
   { topic: "WiFi/BLE", terms: ["wifi", "wi-fi", "bluetooth", "ble"] },
   { topic: "NFC/RFID", terms: ["nfc", "rfid"] },
-  { topic: "IoT", terms: ["iot", "smart home", "sensor", "microcontroller"] },
+  { topic: "IoT", terms: ["iot", "smart home", "sensor", "lilygo", "t-deck", "t-embed", "t-display", "seeed studio"] },
   { topic: "Seguridad", terms: ["security", "cybersecurity", "vulnerability", "exploit", "malware", "hacking"] }
 ];
 
-const preferredTerms = ["flipper", "firmware", "esp32", "embedded", "hardware", "rf", "wifi", "bluetooth", "iot"];
+const preferredTerms = [
+  "flipper",
+  "cardputer",
+  "m5stack",
+  "hashcat",
+  "pwnagotchi",
+  "bettercap",
+  "firmware",
+  "esp32",
+  "embedded",
+  "hardware",
+  "rf",
+  "wifi",
+  "bluetooth",
+  "iot",
+  "hackrf",
+  "proxmark",
+  "meshtastic",
+  "lilygo"
+];
 
 const htmlEntities = new Map([
   ["amp", "&"],
@@ -87,6 +123,44 @@ function scoreItem(item) {
 
 function hasOnlySecurity(item) {
   return item.topics.length === 1 && item.topics[0] === "Seguridad";
+}
+
+function isRecent(item) {
+  if (!item.published_at) {
+    return false;
+  }
+
+  const publishedTime = Date.parse(item.published_at);
+  return Number.isFinite(publishedTime) && publishedTime >= cutoffTime && publishedTime <= now.getTime() + 60 * 60 * 1000;
+}
+
+function dedupeItems(items) {
+  const byKey = new Map();
+
+  for (const rawItem of items.map(normalizeItem)) {
+    if (!rawItem.title || !rawItem.url || rawItem.topics.length === 0 || !isRecent(rawItem)) {
+      continue;
+    }
+
+    const key = rawItem.url.toLowerCase().replace(/[#?].*$/, "") || rawItem.title.toLowerCase();
+    const current = byKey.get(key);
+    if (!current || Date.parse(rawItem.published_at) > Date.parse(current.published_at) || scoreItem(rawItem) > scoreItem(current)) {
+      byKey.set(key, rawItem);
+    }
+  }
+
+  const byTitle = new Map();
+
+  for (const item of byKey.values()) {
+    const titleKey = item.title.toLowerCase().replace(/\s+/g, " ").trim();
+    const current = byTitle.get(titleKey);
+
+    if (!current || Date.parse(item.published_at) > Date.parse(current.published_at) || scoreItem(item) > scoreItem(current)) {
+      byTitle.set(titleKey, item);
+    }
+  }
+
+  return [...byTitle.values()];
 }
 
 function balancedSelection(items, limit) {
@@ -219,30 +293,14 @@ for (const feed of feeds) {
   }
 }
 
-const byKey = new Map();
-for (const rawItem of allItems.map(normalizeItem)) {
-  if (!rawItem.title || !rawItem.url || rawItem.topics.length === 0) {
-    continue;
-  }
-
-  const key = rawItem.url.toLowerCase().replace(/[#?].*$/, "") || rawItem.title.toLowerCase();
-  const current = byKey.get(key);
-  if (!current || scoreItem(rawItem) > scoreItem(current)) {
-    byKey.set(key, rawItem);
-  }
-}
-
-let items = [...byKey.values()]
-  .filter((item) => scoreItem(item) > 0);
+const existingItems = await readExisting();
+let items = dedupeItems([...allItems, ...existingItems]).filter((item) => scoreItem(item) > 0);
 
 items = balancedSelection(items, 24);
 
-if (items.length === 0) {
-  items = await readExisting();
-}
-
 const payload = {
-  generated_at: new Date().toISOString(),
+  generated_at: now.toISOString(),
+  max_age_days: maxAgeDays,
   sources: feeds.map((feed) => ({ name: feed.name, url: feed.url })),
   errors,
   items
