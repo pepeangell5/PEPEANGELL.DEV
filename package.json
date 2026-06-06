@@ -7,7 +7,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "fetch:repos": "node scripts/fetch-github-repos.mjs"
+    "fetch:repos": "node scripts/fetch-github-repos.mjs",
+    "fetch:readmes": "node scripts/fetch-github-readmes.mjs",
+    "fetch:github": "npm run fetch:repos && npm run fetch:readmes"
   },
   "dependencies": {
     "astro": "^5.10.0"

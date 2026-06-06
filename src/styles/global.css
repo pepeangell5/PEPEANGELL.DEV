@@ -611,6 +611,199 @@ p {
   background-size: 22px 22px, 22px 22px, auto;
 }
 
+.readme-explorer {
+  display: grid;
+  grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.readme-sidebar,
+.readme-viewer {
+  min-width: 0;
+  background:
+    linear-gradient(180deg, rgba(14, 24, 22, 0.9), rgba(6, 10, 10, 0.96)),
+    linear-gradient(90deg, rgba(57, 255, 136, 0.055), transparent);
+  border: 1px solid rgba(57, 255, 136, 0.18);
+  border-radius: var(--radius);
+}
+
+.readme-sidebar {
+  position: sticky;
+  top: 90px;
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+}
+
+.readme-list {
+  display: grid;
+  gap: 8px;
+  max-height: 620px;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.readme-option {
+  display: grid;
+  gap: 3px;
+  width: 100%;
+  min-height: 58px;
+  padding: 10px;
+  color: var(--text);
+  text-align: left;
+  background: rgba(15, 20, 26, 0.82);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.readme-option:hover,
+.readme-option.active {
+  border-color: var(--green);
+  background: rgba(57, 255, 136, 0.1);
+}
+
+.readme-option span {
+  color: var(--soft);
+  font-size: 0.82rem;
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+}
+
+.readme-viewer {
+  overflow: hidden;
+}
+
+.readme-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px;
+  border-bottom: 1px solid rgba(57, 255, 136, 0.16);
+}
+
+.readme-toolbar h2 {
+  margin-bottom: 8px;
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+}
+
+.readme-content {
+  padding: 18px;
+}
+
+.markdown-body {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.markdown-body > :first-child {
+  margin-top: 0;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  margin: 1.35em 0 0.55em;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.markdown-body h1::before,
+.markdown-body h2::before {
+  display: none;
+}
+
+.markdown-body h1 {
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+}
+
+.markdown-body h2 {
+  font-size: clamp(1.35rem, 2.7vw, 2rem);
+}
+
+.markdown-body h3 {
+  font-size: 1.18rem;
+}
+
+.markdown-body p,
+.markdown-body li {
+  color: var(--muted);
+}
+
+.markdown-body a {
+  color: var(--green);
+  text-decoration-color: rgba(57, 255, 136, 0.42);
+}
+
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid rgba(57, 255, 136, 0.18);
+  border-radius: var(--radius);
+}
+
+.markdown-body pre {
+  max-width: 100%;
+  padding: 14px;
+  overflow: auto;
+  color: #d9ffe8;
+  background: #050708;
+  border: 1px solid rgba(57, 255, 136, 0.18);
+  border-radius: var(--radius);
+}
+
+.markdown-body code {
+  color: #d9ffe8;
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+}
+
+.markdown-body :not(pre) > code {
+  padding: 2px 5px;
+  background: rgba(57, 255, 136, 0.1);
+  border-radius: 5px;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.markdown-body th,
+.markdown-body td {
+  padding: 8px 10px;
+  border: 1px solid rgba(57, 255, 136, 0.18);
+}
+
+.markdown-body blockquote {
+  margin-left: 0;
+  padding: 10px 14px;
+  border-left: 3px solid var(--green);
+  background: rgba(57, 255, 136, 0.07);
+}
+
+.readme-raw {
+  margin: 0 18px 18px;
+  padding: 12px;
+  border: 1px solid rgba(57, 255, 136, 0.16);
+  border-radius: var(--radius);
+}
+
+.readme-raw summary {
+  color: var(--green);
+  cursor: pointer;
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+}
+
+.readme-raw pre {
+  max-height: 420px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
 @keyframes matrix-fall {
   0% {
     transform: translateY(-14vh);
@@ -764,5 +957,22 @@ p {
 
   .filters {
     grid-template-columns: 1fr;
+  }
+
+  .readme-explorer {
+    grid-template-columns: 1fr;
+  }
+
+  .readme-sidebar {
+    position: static;
+  }
+
+  .readme-list {
+    max-height: 360px;
+  }
+
+  .readme-content,
+  .readme-toolbar {
+    padding: 16px;
   }
 }

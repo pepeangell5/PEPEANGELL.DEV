@@ -38,8 +38,8 @@ jobs:
             npm install
           fi
 
-      - name: Fetch public GitHub repositories
-        run: npm run fetch:repos
+      - name: Fetch public GitHub repositories and READMEs
+        run: npm run fetch:github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

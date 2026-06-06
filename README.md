@@ -12,10 +12,10 @@ npm run dev
 npm run build
 ```
 
-To update the local GitHub repositories JSON:
+To update the local GitHub repositories and README JSON:
 
 ```bash
-npm run fetch:repos
+npm run fetch:github
 ```
 
 The script reads public repositories from:
@@ -28,6 +28,7 @@ It writes normalized data to:
 
 ```text
 public/data/repos.json
+public/data/readmes.json
 ```
 
 If GitHub is unavailable, the script preserves the existing JSON file when possible. In GitHub Actions it can use `GITHUB_TOKEN`, but no token is exposed to the frontend.
@@ -54,6 +55,7 @@ Update those files to change project cards, flashers, hardware notes, roadmap en
 /
 /projects/
 /projects/[slug]/
+/firmware/
 /repos/
 /flashers/
 /hardware/
@@ -80,6 +82,7 @@ It runs on:
 - Daily schedule
 
 The workflow installs dependencies, fetches public repos, builds Astro and deploys `dist` to GitHub Pages.
+The build also downloads public GitHub READMEs and renders them into a local firmware documentation viewer.
 
 ## Visitor Counter
 

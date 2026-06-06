@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FirmwareReadmeExplorer from "../../components/FirmwareReadmeExplorer.astro";
+---
+
+<BaseLayout
+  title="Firmware READMEs"
+  description="Visor local de README públicos de los firmwares y proyectos GitHub de PepeAngell Labs."
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Firmware docs</p>
+        <h1>README de proyectos GitHub</h1>
+        <p>
+          Explora la documentación pública de cada firmware sin salir de PepeAngell Labs. Selecciona un proyecto para ver
+          componentes, funciones, conexiones y notas tal como vienen en su README.
+        </p>
+      </div>
+      <FirmwareReadmeExplorer />
+    </div>
+  </section>
+</BaseLayout>

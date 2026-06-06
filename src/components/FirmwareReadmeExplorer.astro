@@ -1,0 +1,169 @@
+---
+const readmesUrl = `${import.meta.env.BASE_URL}data/readmes.json`;
+---
+
+<section class="readme-explorer" data-readme-explorer>
+  <aside class="readme-sidebar" aria-label="Seleccionar firmware">
+    <label class="small muted" for="readme-search">Buscar firmware</label>
+    <input id="readme-search" class="field" type="search" placeholder="ESP32, BW16, NRF..." />
+    <div class="readme-list" data-readme-list></div>
+  </aside>
+
+  <article class="readme-viewer">
+    <div class="readme-toolbar">
+      <div>
+        <p class="eyebrow" data-readme-full-name>GitHub README</p>
+        <h2 data-readme-title>Cargando README</h2>
+        <p class="small muted" data-readme-description>Descargando información pública desde GitHub.</p>
+      </div>
+      <div class="button-row">
+        <a class="button" href="#" target="_blank" rel="noreferrer noopener" data-readme-repo>GitHub repo</a>
+        <a class="button primary" href="#" target="_blank" rel="noreferrer noopener" data-readme-original>README original</a>
+      </div>
+    </div>
+
+    <div class="readme-content markdown-body" data-readme-content>
+      <p class="muted">Selecciona un firmware para ver su README dentro de PepeAngell Labs.</p>
+    </div>
+
+    <details class="readme-raw">
+      <summary>Ver Markdown original</summary>
+      <pre data-readme-raw></pre>
+    </details>
+  </article>
+</section>
+
+<script define:vars={{ readmesUrl }}>
+  const state = {
+    readmes: [],
+    active: null,
+    query: ""
+  };
+
+  const list = document.querySelector("[data-readme-list]");
+  const search = document.querySelector("#readme-search");
+  const title = document.querySelector("[data-readme-title]");
+  const description = document.querySelector("[data-readme-description]");
+  const fullName = document.querySelector("[data-readme-full-name]");
+  const repoLink = document.querySelector("[data-readme-repo]");
+  const originalLink = document.querySelector("[data-readme-original]");
+  const content = document.querySelector("[data-readme-content]");
+  const raw = document.querySelector("[data-readme-raw]");
+
+  function slugify(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+
+  function escapeHtml(value) {
+    return String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;");
+  }
+
+  function filteredReadmes() {
+    const query = state.query.trim().toLowerCase();
+    if (!query) return state.readmes;
+
+    return state.readmes.filter((readme) => {
+      const haystack = [
+        readme.name,
+        readme.full_name,
+        readme.description,
+        readme.language,
+        ...(readme.topics || [])
+      ]
+        .join(" ")
+        .toLowerCase();
+      return haystack.includes(query);
+    });
+  }
+
+  function renderList() {
+    const items = filteredReadmes();
+
+    if (items.length === 0) {
+      list.innerHTML = '<p class="small muted">No hay README que coincidan con la búsqueda.</p>';
+      return;
+    }
+
+    list.innerHTML = items
+      .map((readme) => {
+        const active = state.active?.full_name === readme.full_name ? " active" : "";
+        return `
+          <button class="readme-option${active}" type="button" data-readme-id="${readme.full_name}">
+            <strong>${escapeHtml(readme.name)}</strong>
+            <span>${escapeHtml(readme.language || "Firmware")}</span>
+          </button>
+        `;
+      })
+      .join("");
+  }
+
+  function prepareReadmeLinks() {
+    content.querySelectorAll("a[href]").forEach((link) => {
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noreferrer noopener");
+    });
+  }
+
+  function selectReadme(readme) {
+    if (!readme) return;
+
+    state.active = readme;
+    title.textContent = readme.name;
+    description.textContent = readme.description || "README público del repositorio.";
+    fullName.textContent = readme.full_name;
+    repoLink.href = readme.html_url;
+    originalLink.href = readme.readme_html_url || readme.html_url;
+    content.innerHTML = readme.html || "<p>No hay contenido disponible.</p>";
+    raw.textContent = readme.markdown || "";
+    prepareReadmeLinks();
+    renderList();
+
+    const slug = slugify(readme.name);
+    if (window.location.hash !== `#${slug}`) {
+      history.replaceState(null, "", `#${slug}`);
+    }
+  }
+
+  function selectFromHash() {
+    const hash = slugify(window.location.hash.replace(/^#/, ""));
+    const selected = state.readmes.find((readme) => slugify(readme.name) === hash) || state.readmes[0];
+    selectReadme(selected);
+  }
+
+  list.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-readme-id]");
+    if (!button) return;
+
+    const readme = state.readmes.find((item) => item.full_name === button.dataset.readmeId);
+    selectReadme(readme);
+  });
+
+  search.addEventListener("input", () => {
+    state.query = search.value;
+    renderList();
+  });
+
+  window.addEventListener("hashchange", selectFromHash);
+
+  fetch(readmesUrl)
+    .then((response) => {
+      if (!response.ok) throw new Error("No se pudo cargar readmes.json");
+      return response.json();
+    })
+    .then((readmes) => {
+      state.readmes = Array.isArray(readmes) ? readmes : [];
+      renderList();
+      selectFromHash();
+    })
+    .catch(() => {
+      content.innerHTML = "<p>No se pudieron cargar los README públicos en este momento.</p>";
+      repoLink.style.display = "none";
+      originalLink.style.display = "none";
+    });
+</script>

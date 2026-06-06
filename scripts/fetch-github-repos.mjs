@@ -12,6 +12,7 @@ const priorityRepos = [
   "BWifiKill-ESP32",
   "ESP32-TOOLS-MODERN"
 ];
+
 const descriptionOverrides = {
   "ESP32-TOOLS-MODERN": "Versión del firmware ESP32 Tools con mejores gráficos.",
   "DRONE-FPV-ESP32C3-SUPERMINI": "Creación de un dron casero con control de comunicación por protocolo ESP-NOW."
@@ -28,6 +29,7 @@ const normalizeRepo = (repo) => ({
   description: descriptionOverrides[repo.name] ?? repo.description,
   html_url: repo.html_url,
   homepage: repo.homepage,
+  default_branch: repo.default_branch,
   language: repo.language,
   stargazers_count: repo.stargazers_count,
   forks_count: repo.forks_count,
