@@ -105,9 +105,32 @@ const readmesUrl = `${import.meta.env.BASE_URL}data/readmes.json`;
 
   function prepareReadmeLinks() {
     content.querySelectorAll("a[href]").forEach((link) => {
+      const href = link.getAttribute("href") || "";
+
+      if (href.startsWith("#")) {
+        link.removeAttribute("target");
+        link.removeAttribute("rel");
+        link.dataset.readmeAnchor = href.slice(1);
+        return;
+      }
+
       link.setAttribute("target", "_blank");
       link.setAttribute("rel", "noreferrer noopener");
     });
+  }
+
+  function cssEscape(value) {
+    if (window.CSS?.escape) return window.CSS.escape(value);
+    return String(value).replace(/["\\]/g, "\\$&");
+  }
+
+  function scrollToReadmeAnchor(anchor) {
+    const id = decodeURIComponent(anchor || "");
+    const target = content.querySelector(`#${cssEscape(id)}`);
+    if (!target) return false;
+
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    return true;
   }
 
   function selectReadme(readme) {
@@ -147,6 +170,14 @@ const readmesUrl = `${import.meta.env.BASE_URL}data/readmes.json`;
   search.addEventListener("input", () => {
     state.query = search.value;
     renderList();
+  });
+
+  content.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href^='#']");
+    if (!link) return;
+
+    event.preventDefault();
+    scrollToReadmeAnchor(link.getAttribute("href").slice(1));
   });
 
   window.addEventListener("hashchange", selectFromHash);
