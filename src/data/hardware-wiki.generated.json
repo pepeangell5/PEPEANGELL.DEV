@@ -1,0 +1,604 @@
+[
+  {
+    "name": "BW16 RTL8720DN",
+    "category": "MCU",
+    "aliases": [
+      "BW16",
+      "RTL8720DN",
+      "BW16 RTL8720DN"
+    ],
+    "description": "Módulo Realtek con WiFi/BLE usado para comparar toolchains y firmwares orientados a pruebas WiFi de laboratorio.",
+    "voltage": "3.3V estable.",
+    "usage": "BWifiKill BW16 5GHz, pruebas seriales y compatibilidad de plataforma.",
+    "warning": "Revisar pinout exacto antes de conectar UART, alimentación o display.",
+    "sources": [
+      "BWifiKill BW16 5Ghz",
+      "BWifiKill-BW16-5Ghz"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "ESP32 DevKit / ESP32-WROOM",
+    "category": "MCU",
+    "aliases": [
+      "ESP32 DevKit",
+      "ESP32-WROOM",
+      "ESP32 compatible",
+      "ESP32 30-pin",
+      "ESP32 DevKit V1",
+      "ESP32 Dev Module"
+    ],
+    "description": "Placa principal para prototipos ESP32 con WiFi, BLE, GPIO, SPI, I2C y UART. Es la base de muchos firmwares del laboratorio.",
+    "voltage": "USB/VIN normalmente a 5V; GPIO y lógica a 3.3V.",
+    "usage": "Firmware ESP32, pantallas OLED/TFT, NRF24L01, CC1101, botones y herramientas portables.",
+    "warning": "No conectar señales de 5V directo a GPIO. Verificar pinout de la placa exacta antes de flashear o cablear.",
+    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/esp32U.png",
+    "image_alt": "Placa ESP32 usada en BWifiKill",
+    "sources": [
+      "BWifiKill ESP32",
+      "BWifiKill ESP32 V4.0",
+      "BWifiKill-ESP32",
+      "BWifiKill-ESP32-V4.0",
+      "DRONE-FPV-ESP32C3-SUPERMINI",
+      "ESP32 Tools Pro 480x320 V2.0",
+      "ESP32_DUAL_NRF_CHAT",
+      "ESP32-TOOLS",
+      "ESP32-TOOLS-MODERN",
+      "ESP32-TOOLS-PRO-480x320",
+      "ESP32-TOOLS-PRO-480x320-V2.0",
+      "pepeangell5"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "ESP32-C3 Super Mini",
+    "category": "MCU",
+    "aliases": [
+      "ESP32-C3",
+      "ESP32C3",
+      "ESP32-C3 SuperMini",
+      "ESP32C3 SUPERMINI"
+    ],
+    "description": "Placa compacta basada en ESP32-C3, útil para proyectos pequeños, drones, telemetría y pruebas de firmware de bajo tamaño.",
+    "voltage": "3.3V en GPIO; alimentación USB o regulada según placa.",
+    "usage": "Prototipos compactos, drones FPV y nodos pequeños.",
+    "warning": "El pinout cambia respecto a ESP32 DevKit clásico; revisar GPIO disponibles antes de reutilizar firmware.",
+    "sources": [
+      "DRONE-FPV-ESP32C3-SUPERMINI"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "ESP32-U con antena externa",
+    "category": "MCU",
+    "aliases": [
+      "ESP32-U",
+      "ESP32 U",
+      "antena externa"
+    ],
+    "description": "Variante ESP32 con conector para antena externa, útil cuando el montaje queda dentro de gabinete o se necesita orientar mejor la antena.",
+    "voltage": "GPIO a 3.3V; alimentación según la placa.",
+    "usage": "Montajes compactos, cyberdecks y pruebas donde la posición de antena importa.",
+    "warning": "No energizar transmisiones sin antena conectada cuando el módulo lo requiere.",
+    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/esp32U.png",
+    "image_alt": "ESP32-U con antena externa",
+    "sources": [
+      "ESP32 Tools Modern",
+      "ESP32_DUAL_NRF_CHAT"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "M5Stack Cardputer / Cardputer ADV",
+    "category": "MCU",
+    "aliases": [
+      "M5Stack Cardputer",
+      "M5Cardputer",
+      "Cardputer",
+      "Cardputer ADV"
+    ],
+    "description": "Dispositivo compacto con ESP32-S3, pantalla, teclado y batería integrada. Sirve para herramientas portables y pruebas de interfaz.",
+    "voltage": "Usar carga y alimentación recomendada por M5Stack.",
+    "usage": "IR remote, herramientas portátiles, interfaces con teclado y prototipos de bolsillo.",
+    "warning": "Respetar pinout Grove y límites del dispositivo; no asumir que todos los GPIO están libres.",
+    "image_url": "https://raw.githubusercontent.com/pepeangell5/IR_REMOTE_CARDPUTER_ADV/main/assets/3.jpg",
+    "image_alt": "M5Stack Cardputer con módulo IR",
+    "sources": [
+      "IR_REMOTE_CARDPUTER_ADV",
+      "M5Stack Cardputer ADV Experiments",
+      "pepeangell5"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "OLED SH1106 128x64",
+    "category": "Display",
+    "aliases": [
+      "SH1106",
+      "OLED SH1106"
+    ],
+    "description": "Pantalla OLED similar físicamente a SSD1306, pero con controlador diferente. Requiere librería o configuración compatible.",
+    "voltage": "Depende del breakout; revisar si VCC acepta 3.3V o 5V.",
+    "usage": "Alternativa para interfaces compactas cuando no se usa SSD1306.",
+    "warning": "No asumir compatibilidad directa con sketches SSD1306.",
+    "sources": [],
+    "auto_detected": false
+  },
+  {
+    "name": "OLED SSD1306 I2C 128x64",
+    "category": "Display",
+    "aliases": [
+      "OLED SSD1306",
+      "SSD1306",
+      "Pantalla OLED SSD1306",
+      "Pantalla OLED",
+      "OLED SSD1306 I2C 128x64",
+      "OLED/TFT"
+    ],
+    "description": "Pantalla OLED compacta I2C de 128x64 pixeles. Es común para menús, estado del sistema y proyectos portables.",
+    "voltage": "Muchos módulos trabajan con 3.3V; algunos breakouts toleran 5V en VCC.",
+    "usage": "BWifiKill ESP32 V4.0, menús compactos, indicadores y herramientas con pocos botones.",
+    "warning": "Confirmar dirección I2C, normalmente 0x3C o 0x3D, y controlador real antes de cargar firmware.",
+    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/Pines_pantalla.png",
+    "image_alt": "Pines de pantalla OLED SSD1306",
+    "sources": [
+      "BWifiKill ESP32",
+      "BWifiKill-ESP32",
+      "BWifiKill-ESP32-V4.0",
+      "DRONE-FPV-ESP32C3-SUPERMINI",
+      "ESP32_DUAL_NRF_CHAT",
+      "ESP32_PC_MONITOR",
+      "pepeangell5"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "TFT ILI9488 480x320 SPI",
+    "category": "Display",
+    "aliases": [
+      "TFT ILI9488 480x320 SPI",
+      "ILI9488",
+      "480x320",
+      "TFT 480x320",
+      "pantalla9488"
+    ],
+    "description": "Pantalla TFT de 3.5 pulgadas aproximadas con controlador ILI9488 y comunicación SPI. Permite interfaces gráficas grandes en ESP32.",
+    "voltage": "Lógica recomendada a 3.3V; algunos breakouts aceptan alimentación de 5V pero señales de 3.3V.",
+    "usage": "ESP32 Tools Pro 480x320, dashboards gráficos, menús grandes y visualización de herramientas RF/WiFi.",
+    "warning": "El cableado SPI largo o flojo puede causar parpadeos, colores incorrectos o fallos visuales.",
+    "image_url": "https://raw.githubusercontent.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/main/img/componentes/pantalla9488.png",
+    "image_alt": "Pantalla TFT ILI9488 480x320",
+    "sources": [
+      "ESP32 Tools Pro 480x320 V2.0",
+      "ESP32-TOOLS-MODERN",
+      "ESP32-TOOLS-PRO-480x320",
+      "ESP32-TOOLS-PRO-480x320-V2.0",
+      "pepeangell5"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "TFT ST7789 SPI",
+    "category": "Display",
+    "aliases": [
+      "ST7789",
+      "TFT ST7789",
+      "ST7789 TFT"
+    ],
+    "description": "Pantalla TFT SPI compacta usada en proyectos portables y dispositivos pequeños.",
+    "voltage": "Lógica de 3.3V recomendada.",
+    "usage": "Interfaces embebidas compactas y prototipos con ESP32.",
+    "warning": "Verificar resolución, offset y orden de colores del módulo concreto.",
+    "sources": [
+      "CYBERDECK-MINI-ESP32",
+      "IPHONE-CONTROL-ESP32",
+      "pepeangell5"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "CC1101 sub-GHz SPI",
+    "category": "RF",
+    "aliases": [
+      "CC1101",
+      "Módulo CC1101",
+      "Modulo CC1101"
+    ],
+    "description": "Módulo RF sub-GHz controlado por SPI, usado para aprendizaje de integración de radio y pruebas de laboratorio.",
+    "voltage": "3.3V.",
+    "usage": "Diagnóstico RF, integración SPI y proyectos ESP32 Tools Pro.",
+    "warning": "Respetar bandas, potencias y permisos aplicables antes de transmitir.",
+    "image_url": "https://raw.githubusercontent.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/main/img/componentes/cc1101.png",
+    "image_alt": "Módulo CC1101",
+    "sources": [
+      "ESP32 Tools Pro 480x320 V2.0",
+      "ESP32-TOOLS-PRO-480x320-V2.0",
+      "pepeangell5"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "Doble módulo nRF24L01",
+    "category": "RF",
+    "aliases": [
+      "2NRF24",
+      "Dual nRF",
+      "dos nRF",
+      "dos NRF24",
+      "Dual nRF Scope"
+    ],
+    "description": "Configuración con dos módulos nRF24 en el mismo ESP32. Comparten SPI y usan pines CE/CSN separados.",
+    "voltage": "Ambos módulos a 3.3V estable.",
+    "usage": "Lecturas simultáneas, Dual nRF Scope, nRF Chat y pruebas de canales bajos/altos.",
+    "warning": "Separar CE/CSN y cuidar la alimentación; dos módulos consumen más que uno.",
+    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/2NRF24.png",
+    "image_alt": "Configuración con dos módulos nRF24",
+    "sources": [
+      "BWifiKill-ESP32-V4.0",
+      "ESP32-TOOLS-PRO-480x320-V2.0",
+      "pepeangell5"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "Módulos RF433 transmisor/receptor",
+    "category": "RF",
+    "aliases": [
+      "RF433",
+      "433 MHz",
+      "RF433 transmitter",
+      "RF433 receiver"
+    ],
+    "description": "Par de módulos de 433MHz para prácticas simples de recepción, telemetría y aprendizaje de señales básicas.",
+    "voltage": "Depende del módulo; revisar hoja de datos del breakout.",
+    "usage": "Pruebas educativas de señal simple y captura controlada.",
+    "warning": "No interferir dispositivos ajenos ni transmitir fuera de permisos.",
+    "sources": [
+      "ESP32-TOOLS-PRO-480x320-V2.0",
+      "pepeangell5"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "nRF24L01+ 2.4GHz",
+    "category": "RF",
+    "aliases": [
+      "nRF24L01+",
+      "nRF24L01",
+      "NRF24",
+      "Modulo nRF24L01+",
+      "Módulo nRF24L01+"
+    ],
+    "description": "Módulo RF de 2.4GHz por SPI para enlaces de baja potencia entre microcontroladores.",
+    "voltage": "3.3V obligatorio; no alimentar con 5V.",
+    "usage": "BWifiKill, nRF Link, nRF Chat, pruebas de enlace, lectura pasiva y ejercicios RF.",
+    "warning": "Necesita alimentación estable; agregar capacitor cercano entre VCC y GND mejora la estabilidad.",
+    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/NRF24.png",
+    "image_alt": "Módulo nRF24L01+",
+    "sources": [
+      "BWifiKill-ESP32",
+      "BWifiKill-ESP32-V4.0",
+      "CYBERDECK-MINI-ESP32",
+      "ESP32_DUAL_NRF_CHAT",
+      "ESP32-TOOLS",
+      "ESP32-TOOLS-MODERN",
+      "ESP32-TOOLS-PRO-480x320",
+      "ESP32-TOOLS-PRO-480x320-V2.0",
+      "IPHONE-CONTROL-ESP32",
+      "NRF Link Test",
+      "pepeangell5"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "nRF24L01+ PA+LNA con antena",
+    "category": "RF",
+    "aliases": [
+      "NRF24L01 PA+LNA",
+      "nRF24L01 PA+LNA",
+      "PA+LNA",
+      "NRF24 PA LNA"
+    ],
+    "description": "Versión del nRF24L01+ con amplificador y antena externa para pruebas de enlace con mayor sensibilidad y alcance.",
+    "voltage": "3.3V con corriente suficiente y buena regulación.",
+    "usage": "Comparación de estabilidad, alcance en laboratorio y pruebas con antena externa.",
+    "warning": "Usar solo en entornos permitidos, con antena adecuada y sin interferir dispositivos de terceros.",
+    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/2NRF24.png",
+    "image_alt": "Dos módulos nRF24 usados en laboratorio",
+    "sources": [
+      "NRF Link Test"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "Módulo IR transmisor/receptor",
+    "category": "IR",
+    "aliases": [
+      "Módulo IR",
+      "Modulo IR",
+      "IR Unit",
+      "M5Stack IR Unit",
+      "IR receiver",
+      "IR transmitter",
+      "Transmisor IR",
+      "Receptor IR"
+    ],
+    "description": "Conjunto de receptor y LED infrarrojo para capturar, analizar y reenviar señales IR en pruebas propias.",
+    "voltage": "Depende del módulo; normalmente señales compatibles con 3.3V en microcontroladores.",
+    "usage": "IR_REMOTE Cardputer ADV, clonación educativa de mandos y pruebas de protocolos IR.",
+    "warning": "Usar para dispositivos propios o pruebas autorizadas.",
+    "image_url": "https://raw.githubusercontent.com/pepeangell5/IR_REMOTE_CARDPUTER_ADV/main/assets/2.jpg",
+    "image_alt": "Módulo IR transmisor y receptor",
+    "sources": [
+      "ESP32 Tools Pro 480x320 V2.0",
+      "ESP32-TOOLS-PRO-480x320-V2.0",
+      "IR_REMOTE_CARDPUTER_ADV"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "Batería LiPo 3.7V",
+    "category": "Power",
+    "aliases": [
+      "Bateria LiPo",
+      "Batería LiPo",
+      "LiPo",
+      "bateria"
+    ],
+    "description": "Batería recargable de una celda para hacer portátiles los proyectos con ESP32.",
+    "voltage": "3.7V nominal; 4.2V cargada.",
+    "usage": "Cyberdecks, BWifiKill portable y montajes con TP4056 + step-up.",
+    "warning": "Evitar cortos, golpes, sobrecarga o descarga excesiva.",
+    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/bateria.png",
+    "image_alt": "Batería LiPo",
+    "sources": [
+      "BWifiKill-ESP32-V4.0",
+      "Cyberdeck Mini ESP32",
+      "CYBERDECK-MINI-ESP32",
+      "DRONE-FPV-ESP32C3-SUPERMINI",
+      "ESP32-TOOLS",
+      "ESP32-TOOLS-PRO-480x320",
+      "ESP32-TOOLS-PRO-480x320-V2.0",
+      "IPHONE-CONTROL-ESP32",
+      "M5Stack Cardputer ADV Experiments"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "Capacitor electrolítico 10uF a 100uF",
+    "category": "Power",
+    "aliases": [
+      "Capacitor",
+      "Capacitor de desacoplo",
+      "10 uF",
+      "100 uF",
+      "10uF",
+      "100uF"
+    ],
+    "description": "Capacitor colocado cerca de módulos sensibles para reducir caídas de voltaje y picos de ruido.",
+    "voltage": "Elegir un voltaje nominal mayor al voltaje del circuito.",
+    "usage": "Estabilizar nRF24L01 y módulos RF durante picos de transmisión.",
+    "warning": "Respetar polaridad en capacitores electrolíticos.",
+    "sources": [
+      "BWifiKill-ESP32-V4.0",
+      "ESP32_DUAL_NRF_CHAT",
+      "ESP32-TOOLS-PRO-480x320",
+      "ESP32-TOOLS-PRO-480x320-V2.0",
+      "NRF Link Test"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "Step-up 5V MT3608",
+    "category": "Power",
+    "aliases": [
+      "Step-up 5V",
+      "Step-up",
+      "MT3608",
+      "boost converter"
+    ],
+    "description": "Convertidor elevador DC-DC para subir el voltaje de una batería LiPo a 5V y alimentar la entrada VIN/5V del ESP32.",
+    "voltage": "Entrada desde LiPo; salida ajustada a 5V antes de conectar.",
+    "usage": "Alimentación portátil de ESP32 desde batería.",
+    "warning": "Ajustar la salida con multímetro antes de conectar el ESP32.",
+    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/stepup.png",
+    "image_alt": "Módulo step-up 5V",
+    "sources": [
+      "BWifiKill-ESP32-V4.0",
+      "DRONE-FPV-ESP32C3-SUPERMINI",
+      "ESP32-TOOLS",
+      "ESP32-TOOLS-PRO-480x320",
+      "ESP32-TOOLS-PRO-480x320-V2.0"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "TP4056 cargador LiPo",
+    "category": "Power",
+    "aliases": [
+      "TP4056",
+      "cargador TP4056"
+    ],
+    "description": "Módulo cargador para baterías LiPo de una celda. Suele incluir entradas B+/B- y salida OUT+/OUT- según versión.",
+    "voltage": "Entrada 5V; batería LiPo 3.7V nominal.",
+    "usage": "Montajes portátiles con batería LiPo y step-up hacia ESP32.",
+    "warning": "Usar baterías en buen estado y módulos con protección cuando el montaje lo requiera.",
+    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/tp4056.png",
+    "image_alt": "Módulo cargador TP4056",
+    "sources": [
+      "BWifiKill-ESP32-V4.0",
+      "ESP32-TOOLS",
+      "ESP32-TOOLS-PRO-480x320",
+      "ESP32-TOOLS-PRO-480x320-V2.0"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "Botones táctiles momentáneos",
+    "category": "Input",
+    "aliases": [
+      "Botones tactiles",
+      "Botones táctiles",
+      "push button",
+      "UP, DOWN, OK, BACK",
+      "botones",
+      "Botón UP",
+      "Boton UP",
+      "Botón DOWN",
+      "Boton DOWN",
+      "Botón OK",
+      "Boton OK",
+      "Botón BACK",
+      "Boton BACK",
+      "Botón AUX",
+      "Boton AUX"
+    ],
+    "description": "Botones momentáneos usados para navegación de menús y acciones del firmware.",
+    "voltage": "Conectar normalmente entre GPIO y GND usando INPUT_PULLUP.",
+    "usage": "Menús OLED/TFT, navegación, confirmación y acciones secundarias.",
+    "warning": "Evitar cables demasiado largos sin filtrado si hay rebotes o lecturas falsas.",
+    "sources": [
+      "BWifiKill-BW16-5Ghz",
+      "BWifiKill-ESP32",
+      "BWifiKill-ESP32-V4.0",
+      "CYBERDECK-MINI-ESP32",
+      "ESP32_DUAL_NRF_CHAT",
+      "ESP32_PC_MONITOR",
+      "ESP32-TOOLS",
+      "ESP32-TOOLS-MODERN",
+      "ESP32-TOOLS-PRO-480x320",
+      "ESP32-TOOLS-PRO-480x320-V2.0",
+      "IPHONE-CONTROL-ESP32"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "Interruptor deslizable / switch",
+    "category": "Input",
+    "aliases": [
+      "Interruptor",
+      "switch",
+      "encendido general"
+    ],
+    "description": "Interruptor físico para cortar o habilitar la alimentación principal del montaje.",
+    "voltage": "Debe soportar la corriente del circuito.",
+    "usage": "Encendido general en montajes portátiles.",
+    "warning": "Colocarlo en la línea correcta de alimentación y aislar terminales expuestos.",
+    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/interruptor.png",
+    "image_alt": "Interruptor usado en montaje portátil",
+    "sources": [
+      "BWifiKill-ESP32-V4.0",
+      "ESP32-TOOLS",
+      "ESP32-TOOLS-PRO-480x320",
+      "ESP32-TOOLS-PRO-480x320-V2.0",
+      "IPHONE-CONTROL-ESP32"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "Cable USB de datos",
+    "category": "Prototyping",
+    "aliases": [
+      "USB",
+      "cable USB",
+      "USB cable",
+      "puerto serial"
+    ],
+    "description": "Cable usado para alimentar, flashear y monitorear placas por serial.",
+    "voltage": "5V desde USB.",
+    "usage": "Web Flasher, PlatformIO, monitor serial y alimentación inicial.",
+    "warning": "Muchos cables son solo de carga; usar cable de datos para flashear.",
+    "sources": [
+      "BWifiKill-BW16-5Ghz",
+      "BWifiKill-ESP32",
+      "BWifiKill-ESP32-V4.0",
+      "CYBERDECK-MINI-ESP32",
+      "ESP32 Tools Modern",
+      "ESP32_PC_MONITOR",
+      "ESP32-TOOLS",
+      "ESP32-TOOLS-PRO-480x320",
+      "ESP32-TOOLS-PRO-480x320-V2.0",
+      "IPHONE-CONTROL-ESP32"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "Cables Dupont jumper",
+    "category": "Prototyping",
+    "aliases": [
+      "Cables Dupont",
+      "jumpers",
+      "cables",
+      "jumper wires"
+    ],
+    "description": "Cables de prototipado macho-macho, macho-hembra o hembra-hembra para conectar módulos al ESP32.",
+    "voltage": "Depende del circuito; adecuados para señales y corrientes pequeñas.",
+    "usage": "Conexiones SPI, I2C, alimentación y pruebas rápidas.",
+    "warning": "Cables largos pueden introducir ruido en SPI o señales RF.",
+    "sources": [
+      "BWifiKill-ESP32-V4.0",
+      "ESP32-TOOLS",
+      "ESP32-TOOLS-PRO-480x320",
+      "ESP32-TOOLS-PRO-480x320-V2.0"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "PCB universal / protoboard",
+    "category": "Prototyping",
+    "aliases": [
+      "PCB",
+      "protoboard",
+      "placapcb",
+      "PCB / protoboard"
+    ],
+    "description": "Base física para montar, probar o soldar componentes antes de hacer una placa final.",
+    "voltage": "Depende del circuito montado.",
+    "usage": "Prototipos de BWifiKill, cableado de módulos, pruebas de pinout y montajes compactos.",
+    "warning": "Revisar continuidad y evitar puentes accidentales antes de energizar.",
+    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/placapcb.png",
+    "image_alt": "PCB o protoboard para montaje",
+    "sources": [
+      "BWifiKill-ESP32-V4.0",
+      "ESP32-TOOLS",
+      "ESP32-TOOLS-PRO-480x320",
+      "ESP32-TOOLS-PRO-480x320-V2.0"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "Controlador de motores",
+    "category": "Actuators",
+    "aliases": [
+      "Controlador de motores",
+      "motor driver",
+      "motores"
+    ],
+    "description": "Driver para manejar motores DC o ruedas en plataformas educativas.",
+    "voltage": "Separar alimentación de motor y lógica según driver.",
+    "usage": "ACEBOTT Smart Car y proyectos móviles.",
+    "warning": "No alimentar motores desde el regulador pequeño del microcontrolador.",
+    "sources": [
+      "ACEBOTT Smart Car Experiments",
+      "DRONE-FPV-ESP32C3-SUPERMINI"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "Kit ACEBOTT Smart Car",
+    "category": "Actuators",
+    "aliases": [
+      "ACEBOTT Smart Car",
+      "Kit ACEBOTT",
+      "smart car"
+    ],
+    "description": "Plataforma móvil educativa con chasis, motores, sensores y controlador para pruebas de robótica.",
+    "voltage": "Depende del kit; separar potencia de motores y lógica.",
+    "usage": "Experimentos de control, sensores, ESP-NOW y comunicación entre placas.",
+    "warning": "Probar en área despejada y segura.",
+    "sources": [
+      "ACEBOTT Smart Car Experiments"
+    ],
+    "auto_detected": false
+  }
+]

@@ -29,6 +29,8 @@ It writes normalized data to:
 ```text
 public/data/repos.json
 public/data/readmes.json
+public/data/hardware-wiki.json
+src/data/hardware-wiki.generated.json
 ```
 
 If GitHub is unavailable, the script preserves the existing JSON file when possible. In GitHub Actions it can use `GITHUB_TOKEN`, but no token is exposed to the frontend.
@@ -39,6 +41,7 @@ Most visible content is stored in JSON files:
 
 ```text
 src/data/projects.json
+src/data/hardware-catalog.json
 src/data/flashers.json
 src/data/hardware.json
 src/data/lab-notes.json
@@ -48,6 +51,7 @@ public/data/repos.json
 ```
 
 Update those files to change project cards, flashers, hardware notes, roadmap entries and changelog items without editing Astro components.
+`src/data/hardware-catalog.json` is the curated component database. `npm run fetch:hardware` cross-checks it with public READMEs and updates the hardware wiki.
 
 ## Routes
 

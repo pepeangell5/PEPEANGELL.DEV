@@ -809,6 +809,144 @@ p {
   white-space: pre-wrap;
 }
 
+.hardware-wiki {
+  display: grid;
+  gap: 28px;
+}
+
+.hardware-search {
+  width: min(100%, 560px);
+  display: grid;
+  gap: 8px;
+}
+
+.hardware-category {
+  display: grid;
+  gap: 12px;
+}
+
+.hardware-category h2 {
+  margin-bottom: 0;
+  font-size: clamp(1.25rem, 2.4vw, 1.8rem);
+}
+
+.hardware-list {
+  display: grid;
+  gap: 10px;
+}
+
+.hardware-wiki-item {
+  min-width: 0;
+  background:
+    linear-gradient(180deg, rgba(14, 24, 22, 0.9), rgba(6, 10, 10, 0.96)),
+    linear-gradient(90deg, rgba(57, 255, 136, 0.055), transparent);
+  border: 1px solid rgba(57, 255, 136, 0.18);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.hardware-wiki-item[hidden],
+.hardware-category[hidden] {
+  display: none;
+}
+
+.hardware-wiki-item summary {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  color: var(--text);
+  font-weight: 850;
+  cursor: pointer;
+  list-style: none;
+}
+
+.hardware-wiki-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.hardware-wiki-item summary::after {
+  flex: 0 0 auto;
+  color: var(--green);
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  content: "+";
+}
+
+.hardware-wiki-item[open] summary {
+  border-bottom: 1px solid rgba(57, 255, 136, 0.16);
+}
+
+.hardware-wiki-item[open] summary::after {
+  content: "-";
+}
+
+.hardware-detail {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+  gap: 18px;
+  padding: 18px;
+}
+
+.hardware-media {
+  min-width: 0;
+}
+
+.hardware-media img,
+.hardware-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: rgba(5, 7, 8, 0.72);
+  border: 1px solid rgba(57, 255, 136, 0.18);
+  border-radius: var(--radius);
+}
+
+.hardware-placeholder {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 8px;
+  padding: 18px;
+  color: var(--muted);
+  text-align: center;
+  background:
+    linear-gradient(rgba(57, 255, 136, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 255, 136, 0.06) 1px, transparent 1px),
+    rgba(5, 7, 8, 0.72);
+  background-size: 20px 20px, 20px 20px, auto;
+}
+
+.hardware-placeholder span {
+  color: var(--green);
+  font-weight: 850;
+}
+
+.hardware-copy {
+  min-width: 0;
+}
+
+.hardware-copy dl {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 14px;
+}
+
+.hardware-copy dt {
+  margin-bottom: 3px;
+  color: var(--green);
+  font-size: 0.82rem;
+  font-weight: 850;
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+}
+
+.hardware-copy dd {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 .support-section {
   padding-bottom: 36px;
 }
@@ -1076,6 +1214,16 @@ p {
   .readme-content,
   .readme-toolbar {
     padding: 16px;
+  }
+
+  .hardware-detail {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+
+  .hardware-wiki-item summary {
+    min-height: 52px;
+    padding: 12px 14px;
   }
 
   .support-layout {

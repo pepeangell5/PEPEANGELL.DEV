@@ -1,0 +1,113 @@
+---
+interface HardwareItem {
+  name: string;
+  category: string;
+  description: string;
+  voltage: string;
+  usage: string;
+  warning?: string;
+  image_url?: string;
+  image_alt?: string;
+  sources?: string[];
+  auto_detected?: boolean;
+}
+
+interface Props {
+  items: HardwareItem[];
+}
+
+const { items } = Astro.props;
+const categories = [...new Set(items.map((item) => item.category))];
+---
+
+<section class="hardware-wiki" data-hardware-wiki>
+  <div class="hardware-search">
+    <label class="small muted" for="hardware-search">Buscar componente</label>
+    <input id="hardware-search" class="field" type="search" placeholder="ESP32, ILI9488, TP4056, nRF24..." />
+  </div>
+
+  {
+    categories.map((category) => {
+      const categoryItems = items.filter((item) => item.category === category);
+      return (
+        <section class="hardware-category" data-hardware-category>
+          <h2>{category}</h2>
+          <div class="hardware-list">
+            {categoryItems.map((item) => (
+              <details
+                class="hardware-wiki-item"
+                data-hardware-item
+                data-search={`${item.name} ${item.category} ${item.description} ${item.voltage} ${item.usage}`}
+              >
+                <summary>
+                  <span>{item.name}</span>
+                </summary>
+                <div class="hardware-detail">
+                  <div class="hardware-media">
+                    {item.image_url ? (
+                      <img src={item.image_url} alt={item.image_alt || item.name} loading="lazy" />
+                    ) : (
+                      <div class="hardware-placeholder" aria-label={`Imagen pendiente de ${item.name}`}>
+                        <span>{item.name}</span>
+                        <small>imagen pendiente</small>
+                      </div>
+                    )}
+                  </div>
+                  <div class="hardware-copy">
+                    <p>{item.description}</p>
+                    <dl>
+                      <div>
+                        <dt>Voltaje / energia</dt>
+                        <dd>{item.voltage}</dd>
+                      </div>
+                      <div>
+                        <dt>Uso en el laboratorio</dt>
+                        <dd>{item.usage}</dd>
+                      </div>
+                      {item.warning && (
+                        <div>
+                          <dt>Nota de seguridad</dt>
+                          <dd>{item.warning}</dd>
+                        </div>
+                      )}
+                    </dl>
+                    <p class="small muted">
+                      {item.sources?.length
+                        ? `Detectado en ${item.sources.length} documento(s) del laboratorio.`
+                        : "Base curada para componentes compatibles; pendiente de detectar en README público."}
+                    </p>
+                    {item.auto_detected && <p class="status">Detectado automaticamente desde README.</p>}
+                  </div>
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      );
+    })
+  }
+</section>
+
+<script>
+  const root = document.querySelector("[data-hardware-wiki]");
+  const search = document.querySelector("#hardware-search");
+  const items = Array.from(document.querySelectorAll("[data-hardware-item]"));
+  const categories = Array.from(document.querySelectorAll("[data-hardware-category]"));
+
+  search?.addEventListener("input", () => {
+    const query = search.value.trim().toLowerCase();
+
+    items.forEach((item) => {
+      const haystack = item.dataset.search?.toLowerCase() || "";
+      item.hidden = Boolean(query) && !haystack.includes(query);
+    });
+
+    categories.forEach((category) => {
+      const visibleItems = category.querySelectorAll("[data-hardware-item]:not([hidden])");
+      category.hidden = visibleItems.length === 0;
+    });
+
+    if (!root) return;
+    root.dataset.hasQuery = query ? "true" : "false";
+  });
+</script>

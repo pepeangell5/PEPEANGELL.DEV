@@ -1,23 +1,24 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import HardwareCard from "../../components/HardwareCard.astro";
-import hardware from "../../data/hardware.json";
+import HardwareWiki from "../../components/HardwareWiki.astro";
+import hardwareItems from "../../data/hardware-wiki.generated.json";
 ---
 
 <BaseLayout
-  title="Hardware"
-  description="Hardware usado por PepeAngell Labs: ESP32, BW16, NRF24, CC1101, OLED, TFT, Cardputer y plataformas educativas."
+  title="Hardware Wiki"
+  description="Wiki de componentes usados en los proyectos PepeAngell Labs: ESP32, pantallas, modulos RF, energia, cables y prototipado."
 >
   <section class="section">
     <div class="container">
       <div class="section-header">
-        <p class="eyebrow">Hardware bench</p>
-        <h1>Hardware comun del laboratorio</h1>
-        <p>Notas rápidas de compatibilidad, voltaje, uso típico y advertencias para los módulos más usados.</p>
+        <p class="eyebrow">Hardware wiki</p>
+        <h1>Componentes del laboratorio</h1>
+        <p>
+          Lista tipo wiki de componentes, modulos, pantallas, energia y prototipado usados en los proyectos. Abre cada
+          componente para ver descripcion, imagen, voltaje, uso tipico y advertencias.
+        </p>
       </div>
-      <div class="grid cards">
-        {hardware.map((item) => <HardwareCard item={item} />)}
-      </div>
+      <HardwareWiki items={hardwareItems} />
     </div>
   </section>
 </BaseLayout>
