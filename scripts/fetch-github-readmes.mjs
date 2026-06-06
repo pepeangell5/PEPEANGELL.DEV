@@ -36,13 +36,28 @@ function decodeBase64(content) {
 }
 
 function isExternalUrl(url) {
-  return /^(https?:|mailto:|tel:|data:|#|\/)/i.test(url);
+  return /^(https?:|mailto:|tel:|data:|#|\/\/)/i.test(url);
+}
+
+function splitRelativeUrl(url) {
+  const value = String(url || "");
+  const match = value.match(/^([^?#]*)([?#].*)?$/);
+  return {
+    path: match?.[1] || "",
+    suffix: match?.[2] || ""
+  };
+}
+
+function cleanRelativePath(url) {
+  const { path, suffix } = splitRelativeUrl(url);
+  const clean = path.replace(/^\.\//, "").replace(/^\/+/, "");
+  return `${encodeURI(clean)}${suffix}`;
 }
 
 function normalizeRelativeUrl(url, repo) {
   if (isExternalUrl(url)) return url;
 
-  const clean = url.replace(/^\.\//, "");
+  const clean = cleanRelativePath(url);
   const branch = repo.default_branch || "main";
   return `https://github.com/${repo.full_name}/blob/${branch}/${clean}`;
 }
@@ -50,16 +65,26 @@ function normalizeRelativeUrl(url, repo) {
 function normalizeRelativeImage(url, repo) {
   if (isExternalUrl(url)) return url;
 
-  const clean = url.replace(/^\.\//, "");
+  const clean = cleanRelativePath(url);
   const branch = repo.default_branch || "main";
   return `https://raw.githubusercontent.com/${repo.full_name}/${branch}/${clean}`;
 }
 
 function rewriteMarkdownUrls(markdown, repo) {
-  return markdown.replace(/(!?)\[([^\]]*)\]\(([^)\s]+)(\s+"[^"]*")?\)/g, (match, bang, label, url, title = "") => {
-    const normalized = bang ? normalizeRelativeImage(url, repo) : normalizeRelativeUrl(url, repo);
-    return `${bang}[${label}](${normalized}${title})`;
-  });
+  const withMarkdownLinks = markdown.replace(
+    /(!?)\[([^\]]*)\]\(([^)\s]+)(\s+"[^"]*")?\)/g,
+    (match, bang, label, url, title = "") => {
+      const normalized = bang ? normalizeRelativeImage(url, repo) : normalizeRelativeUrl(url, repo);
+      return `${bang}[${label}](${normalized}${title})`;
+    }
+  );
+
+  return withMarkdownLinks.replace(/<img\b[^>]*>/gi, (tag) =>
+    tag.replace(/(\bsrc\s*=\s*)(["'])([^"']+)\2/i, (match, prefix, quote, url) => {
+      const normalized = normalizeRelativeImage(url, repo);
+      return `${prefix}${quote}${normalized}${quote}`;
+    })
+  );
 }
 
 async function readJson(path, fallback) {
