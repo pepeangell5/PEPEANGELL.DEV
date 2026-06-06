@@ -145,9 +145,10 @@ main {
 }
 
 .container {
-  width: min(1120px, calc(100% - 32px));
-  max-width: calc(100vw - 32px);
+  width: 100%;
+  max-width: 1120px;
   margin: 0 auto;
+  padding: 0 16px;
 }
 
 .section {
@@ -826,8 +827,8 @@ p {
 
 @media (max-width: 760px) {
   .container {
-    width: min(100% - 24px, 1120px);
-    max-width: calc(100vw - 24px);
+    max-width: 1120px;
+    padding: 0 12px;
   }
 
   .section {
