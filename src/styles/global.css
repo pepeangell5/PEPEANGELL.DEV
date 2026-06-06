@@ -893,6 +893,18 @@ p {
   min-width: 0;
 }
 
+.hardware-credit {
+  display: inline-flex;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-decoration: none;
+}
+
+.hardware-credit:hover {
+  color: var(--green);
+}
+
 .hardware-media img,
 .hardware-placeholder {
   width: 100%;

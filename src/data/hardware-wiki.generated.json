@@ -11,6 +11,9 @@
     "voltage": "3.3V estable.",
     "usage": "BWifiKill BW16 5GHz, pruebas seriales y compatibilidad de plataforma.",
     "warning": "Revisar pinout exacto antes de conectar UART, alimentación o display.",
+    "image_url": "/assets/hardware/bw16-rtl8720dn.png",
+    "image_alt": "BW16 RTL8720DN development board",
+    "image_credit_url": "https://www.amebaiot.com.cn/en/amebad-bw16-arduino-getting-started/",
     "sources": [
       "BWifiKill BW16 5Ghz",
       "BWifiKill-BW16-5Ghz"
@@ -57,14 +60,46 @@
       "ESP32-C3",
       "ESP32C3",
       "ESP32-C3 SuperMini",
-      "ESP32C3 SUPERMINI"
+      "ESP32C3 SUPERMINI",
+      "ESP32 C3 Super Mini",
+      "ESP32 C3 SuperMini"
     ],
-    "description": "Placa compacta basada en ESP32-C3, útil para proyectos pequeños, drones, telemetría y pruebas de firmware de bajo tamaño.",
-    "voltage": "3.3V en GPIO; alimentación USB o regulada según placa.",
-    "usage": "Prototipos compactos, drones FPV y nodos pequeños.",
-    "warning": "El pinout cambia respecto a ESP32 DevKit clásico; revisar GPIO disponibles antes de reutilizar firmware.",
+    "description": "Placa compacta basada en ESP32-C3 RISC-V, útil para proyectos pequeños, drones, telemetría y pruebas de firmware donde el espacio importa.",
+    "voltage": "3.3V en GPIO; alimentación por USB-C o pin 5V según la placa.",
+    "usage": "DRONE-FPV-ESP32C3-SUPERMINI, prototipos compactos y nodos pequeños.",
+    "warning": "El pinout cambia respecto a ESP32 DevKit clásico; revisar GPIO disponibles y pines de arranque antes de reutilizar firmware.",
+    "image_url": "/assets/hardware/esp32-c3-supermini.png",
+    "image_alt": "ESP32-C3 Super Mini",
+    "image_credit_url": "https://www.makerguides.com/esp32-c3-supermini-board/",
     "sources": [
       "DRONE-FPV-ESP32C3-SUPERMINI"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "ESP32-S3 DevKitC-1 N8",
+    "category": "MCU",
+    "aliases": [
+      "ESP32-S3",
+      "ESP32S3",
+      "ESP32-S3 DevKitC-1",
+      "ESP32-S3 DevKitC-1 N8",
+      "S3 DevKitC",
+      "ESP32-S3-WROOM-1",
+      "ESP32-S3-WROOM-1 N8"
+    ],
+    "description": "Placa de desarrollo ESP32-S3 usada como base para cyberdecks y proyectos con pantalla TFT, GPS, encoder e interfaces más completas. Integra WiFi, Bluetooth LE, USB y más GPIO que un ESP32 clásico.",
+    "voltage": "Alimentación por USB o 5V; lógica GPIO a 3.3V.",
+    "usage": "CYBERDECK-MINI-ESP32, IPHONE-CONTROL-ESP32 y montajes con ST7789, NEO-6M, encoder rotativo y batería.",
+    "warning": "No todos los pines son equivalentes a ESP32 clásico. Confirmar pinout, modo de arranque y pines reservados antes de soldar o flashear.",
+    "image_url": "/assets/hardware/esp32-s3-devkitc-1.png",
+    "image_alt": "ESP32-S3 DevKitC-1",
+    "image_credit_url": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.0.html",
+    "sources": [
+      "CYBERDECK-MINI-ESP32",
+      "IPHONE-CONTROL-ESP32",
+      "IR_REMOTE_CARDPUTER_ADV",
+      "pepeangell5"
     ],
     "auto_detected": false
   },
@@ -121,6 +156,9 @@
     "voltage": "Depende del breakout; revisar si VCC acepta 3.3V o 5V.",
     "usage": "Alternativa para interfaces compactas cuando no se usa SSD1306.",
     "warning": "No asumir compatibilidad directa con sketches SSD1306.",
+    "image_url": "/assets/hardware/oled-sh1106.jpg",
+    "image_alt": "OLED SH1106 128x64",
+    "image_credit_url": "https://shillehtek.com/products/1-3-i2c-blue-oled-display-module-4-pin-sh1106",
     "sources": [],
     "auto_detected": false
   },
@@ -178,17 +216,72 @@
     "auto_detected": false
   },
   {
-    "name": "TFT ST7789 SPI",
+    "name": "TFT LCD Shield 2.4 ILI9341 paralelo 8-bit",
+    "category": "Display",
+    "aliases": [
+      "TFT LCD Shield 2.4",
+      "ILI9341 paralelo",
+      "ILI9341 8-bit",
+      "ILI9341 8 bit",
+      "TFT 2.4 ILI9341",
+      "TFT LCD Shield 2.4 ILI9341",
+      "Display 320x240",
+      "TFT 320x240"
+    ],
+    "description": "Shield TFT de 2.4 pulgadas con controlador ILI9341 y bus paralelo de 8 bits. Suele montarse como shield tipo Arduino y usa más pines que una pantalla SPI.",
+    "voltage": "Depende del shield; normalmente alimentación 5V en formato Arduino, con lógica adaptada en el módulo.",
+    "usage": "ESP32-TOOLS clásico y pruebas con interfaz gráfica 320x240.",
+    "warning": "Consume muchos GPIO. Verificar mapeo del shield, controlador real y compatibilidad de niveles antes de conectarlo al ESP32.",
+    "image_url": "/assets/hardware/tft-ili9341-shield.jpg",
+    "image_alt": "Shield TFT ILI9341 2.4 pulgadas",
+    "image_credit_url": "https://domoticx.net/webshop/display-tft-24-240320-spi-ili9341-met-xpt2046-touch-screen-arduino-shield/",
+    "sources": [
+      "ESP32-TOOLS"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "TFT ST7735 SPI vertical",
+    "category": "Display",
+    "aliases": [
+      "ST7735",
+      "ST7735 TFT",
+      "TFT ST7735",
+      "Pantalla ST7735",
+      "ST7735 SPI",
+      "TFT vertical"
+    ],
+    "description": "Pantalla TFT SPI pequeña, común en módulos de 1.8 pulgadas y resoluciones tipo 128x160. Sirve para menús compactos y salida visual básica.",
+    "voltage": "Muchos módulos aceptan VCC 3.3V/5V, pero las señales SPI deben ser compatibles con 3.3V.",
+    "usage": "BWifiKill-BW16-5Ghz y pruebas de interfaz compacta.",
+    "warning": "Algunos módulos ST7735 requieren offsets o configuración de color específica; si la imagen sale corrida, revisar variante del panel.",
+    "image_url": "/assets/hardware/tft-st7735-spi.jpg",
+    "image_alt": "Pantalla TFT ST7735 SPI",
+    "image_credit_url": "https://electropeak.com/learn/interfacing-1-8-inch-st7735r-spi-tft-lcd-display-module-with-arduino/",
+    "sources": [
+      "BWifiKill-BW16-5Ghz"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "TFT ST7789 SPI 240x320",
     "category": "Display",
     "aliases": [
       "ST7789",
       "TFT ST7789",
-      "ST7789 TFT"
+      "ST7789 TFT",
+      "TFT ST7789 SPI",
+      "ST7789 240x320",
+      "TFT ST7789 240x320",
+      "TFT ST7789 SPI 240x320"
     ],
-    "description": "Pantalla TFT SPI compacta usada en proyectos portables y dispositivos pequeños.",
-    "voltage": "Lógica de 3.3V recomendada.",
-    "usage": "Interfaces embebidas compactas y prototipos con ESP32.",
-    "warning": "Verificar resolución, offset y orden de colores del módulo concreto.",
+    "description": "Pantalla TFT SPI de 240x320 pixeles con controlador ST7789. Es buena para cyberdecks compactos porque ofrece color, buena lectura y pocas líneas de señal.",
+    "voltage": "Lógica de 3.3V recomendada; revisar si el breakout acepta VCC a 5V.",
+    "usage": "CYBERDECK-MINI-ESP32, IPHONE-CONTROL-ESP32 e interfaces portables con ESP32-S3.",
+    "warning": "Verificar resolución, offset, rotación y orden de colores del módulo concreto antes de compilar.",
+    "image_url": "/assets/hardware/tft-st7789-240x320.jpg",
+    "image_alt": "Pantalla TFT ST7789 240x320 SPI",
+    "image_credit_url": "https://www.cdtech-display.com/products/2-0-st7789-ips-lcd-display-240x320-580-nits-4-wire-spi/",
     "sources": [
       "CYBERDECK-MINI-ESP32",
       "IPHONE-CONTROL-ESP32",
@@ -253,6 +346,9 @@
     "voltage": "Depende del módulo; revisar hoja de datos del breakout.",
     "usage": "Pruebas educativas de señal simple y captura controlada.",
     "warning": "No interferir dispositivos ajenos ni transmitir fuera de permisos.",
+    "image_url": "/assets/hardware/rf433-module.webp",
+    "image_alt": "Modulos RF433 transmisor y receptor",
+    "image_credit_url": "https://lastminuteengineers.com/433mhz-rf-wireless-arduino-tutorial/",
     "sources": [
       "ESP32-TOOLS-PRO-480x320-V2.0",
       "pepeangell5"
@@ -337,6 +433,31 @@
     "auto_detected": false
   },
   {
+    "name": "GPS NEO-6M GY-GPS-6MU2",
+    "category": "Sensors",
+    "aliases": [
+      "GPS NEO-6M",
+      "NEO-6M",
+      "GY-GPS-6MU2",
+      "GY-GPS6MV2",
+      "GY-NEO6MV2",
+      "GPS NEO6M",
+      "NEO6M"
+    ],
+    "description": "Módulo GPS por UART con chip NEO-6M y antena cerámica externa. Entrega tramas NMEA para obtener posición, velocidad y hora en proyectos portables.",
+    "voltage": "Muchos breakouts aceptan 3.3V a 5V en VCC; la lógica UART debe respetar el módulo usado.",
+    "usage": "CYBERDECK-MINI-ESP32 e IPHONE-CONTROL-ESP32 para telemetría, ubicación y pruebas de navegación.",
+    "warning": "La antena necesita vista al cielo. No invertir TX/RX y evitar alimentar el módulo con voltaje fuera de especificación.",
+    "image_url": "/assets/hardware/gps-neo6m.webp",
+    "image_alt": "Módulo GPS NEO-6M GY-GPS-6MU2",
+    "image_credit_url": "https://arduino-projekte.info/products/ublox-gy-neo6mv2-gps-modul-neo-6m",
+    "sources": [
+      "CYBERDECK-MINI-ESP32",
+      "IPHONE-CONTROL-ESP32"
+    ],
+    "auto_detected": false
+  },
+  {
     "name": "Batería LiPo 3.7V",
     "category": "Power",
     "aliases": [
@@ -379,6 +500,9 @@
     "voltage": "Elegir un voltaje nominal mayor al voltaje del circuito.",
     "usage": "Estabilizar nRF24L01 y módulos RF durante picos de transmisión.",
     "warning": "Respetar polaridad en capacitores electrolíticos.",
+    "image_url": "/assets/hardware/capacitor-electrolytic.jpg",
+    "image_alt": "Capacitor electrolitico radial",
+    "image_credit_url": "https://tekshack.com/products/100uf-electrolytic-capacitor-272-1028",
     "sources": [
       "BWifiKill-ESP32-V4.0",
       "ESP32_DUAL_NRF_CHAT",
@@ -434,6 +558,48 @@
     "auto_detected": false
   },
   {
+    "name": "Botón táctil momentáneo de 2 pines",
+    "category": "Input",
+    "aliases": [
+      "boton de 2 pines",
+      "botón de 2 pines",
+      "2-pin push button",
+      "2 pin tactile",
+      "DIP-2",
+      "push button 2 pin"
+    ],
+    "description": "Pulsador momentáneo de dos terminales. Es directo de cablear: al presionarlo cierra el contacto entre sus dos pines.",
+    "voltage": "Señal de GPIO a 3.3V en ESP32; normalmente se conecta entre GPIO y GND con INPUT_PULLUP.",
+    "usage": "Acciones simples, reset auxiliar, navegación básica y pruebas en protoboard.",
+    "warning": "Usar resistencia pull-up/pull-down o INPUT_PULLUP para evitar entradas flotantes.",
+    "image_url": "/assets/hardware/button-2pin.png",
+    "image_alt": "Botón táctil momentáneo de 2 pines",
+    "image_credit_url": "https://www.protechtrader.com/2-Pin-Round-Momentary-Tactile-SPST-Push-Button-Switch",
+    "sources": [],
+    "auto_detected": false
+  },
+  {
+    "name": "Botón táctil momentáneo de 4 pines",
+    "category": "Input",
+    "aliases": [
+      "boton de 4 pines",
+      "botón de 4 pines",
+      "4-pin push button",
+      "4 pin tactile",
+      "tact switch 4 pin",
+      "6x6 tact switch"
+    ],
+    "description": "Pulsador momentáneo común de 6x6 mm con cuatro patas. Internamente las patas están duplicadas por pares; se usa igual que un botón de dos terminales, pero con mejor soporte mecánico.",
+    "voltage": "Señal de GPIO a 3.3V en ESP32; normalmente entre GPIO y GND con INPUT_PULLUP.",
+    "usage": "Botones UP, DOWN, OK, BACK y navegación física en firmwares con OLED/TFT.",
+    "warning": "Identificar los pares internos antes de soldar; si se cablean dos patas del mismo lado, el botón no cambiará de estado.",
+    "image_url": "/assets/hardware/button-4pin.png",
+    "image_alt": "Botón táctil momentáneo de 4 pines",
+    "image_credit_url": "https://rapidroboticsaustralia.com.au/products/spst-push-button-tactile-switch-4-pins",
+    "sources": [],
+    "auto_detected": false
+  },
+  {
     "name": "Botones táctiles momentáneos",
     "category": "Input",
     "aliases": [
@@ -453,10 +619,13 @@
       "Botón AUX",
       "Boton AUX"
     ],
-    "description": "Botones momentáneos usados para navegación de menús y acciones del firmware.",
+    "description": "Familia de botones momentáneos usados para navegación de menús y acciones del firmware. Pueden ser de 2 o 4 pines según el montaje.",
     "voltage": "Conectar normalmente entre GPIO y GND usando INPUT_PULLUP.",
     "usage": "Menús OLED/TFT, navegación, confirmación y acciones secundarias.",
     "warning": "Evitar cables demasiado largos sin filtrado si hay rebotes o lecturas falsas.",
+    "image_url": "/assets/hardware/button-4pin.png",
+    "image_alt": "Botones tactiles momentaneos",
+    "image_credit_url": "https://rapidroboticsaustralia.com.au/products/spst-push-button-tactile-switch-4-pins",
     "sources": [
       "BWifiKill-BW16-5Ghz",
       "BWifiKill-ESP32",
@@ -468,6 +637,33 @@
       "ESP32-TOOLS-MODERN",
       "ESP32-TOOLS-PRO-480x320",
       "ESP32-TOOLS-PRO-480x320-V2.0",
+      "IPHONE-CONTROL-ESP32"
+    ],
+    "auto_detected": false
+  },
+  {
+    "name": "Encoder rotativo KY-040 con botón",
+    "category": "Input",
+    "aliases": [
+      "Encoder rotativo",
+      "rotary encoder",
+      "KY-040",
+      "encoder",
+      "Encoder CLK",
+      "Encoder DT",
+      "Encoder SW",
+      "rotativo con boton",
+      "rotativo con botón"
+    ],
+    "description": "Encoder incremental con canales CLK/DT y pulsador integrado. Permite navegar menús, ajustar valores y confirmar acciones con una sola perilla.",
+    "voltage": "Normalmente se usa con lógica de 3.3V o 5V según módulo; en ESP32 usar pull-ups y señales a 3.3V.",
+    "usage": "CYBERDECK-MINI-ESP32, IPHONE-CONTROL-ESP32 y controles compactos para pantallas TFT.",
+    "warning": "Aplicar antirrebote por software y revisar que CLK, DT y SW estén conectados a GPIO válidos.",
+    "image_url": "/assets/hardware/encoder-ky040.jpg",
+    "image_alt": "Encoder rotativo KY-040",
+    "image_credit_url": "https://www.parallax.com/product/ky-040-rotary-encoder-module-15x16-5-mm-with-knob/",
+    "sources": [
+      "CYBERDECK-MINI-ESP32",
       "IPHONE-CONTROL-ESP32"
     ],
     "auto_detected": false
@@ -508,6 +704,9 @@
     "voltage": "5V desde USB.",
     "usage": "Web Flasher, PlatformIO, monitor serial y alimentación inicial.",
     "warning": "Muchos cables son solo de carga; usar cable de datos para flashear.",
+    "image_url": "/assets/hardware/usb-data-cable.jpg",
+    "image_alt": "Cable USB de datos",
+    "image_credit_url": "https://commons.wikimedia.org/wiki/File:Blu_USB_2.0_%26_Micro-USB_cable,_Hillegersberg,_Rotterdam_(2023)_01.jpg",
     "sources": [
       "BWifiKill-BW16-5Ghz",
       "BWifiKill-ESP32",
@@ -535,6 +734,9 @@
     "voltage": "Depende del circuito; adecuados para señales y corrientes pequeñas.",
     "usage": "Conexiones SPI, I2C, alimentación y pruebas rápidas.",
     "warning": "Cables largos pueden introducir ruido en SPI o señales RF.",
+    "image_url": "/assets/hardware/dupont-jumpers.jpg",
+    "image_alt": "Cables Dupont jumper",
+    "image_credit_url": "https://commons.wikimedia.org/wiki/File:FF_Jumper_Wires.jpg",
     "sources": [
       "BWifiKill-ESP32-V4.0",
       "ESP32-TOOLS",
@@ -578,6 +780,9 @@
     "voltage": "Separar alimentación de motor y lógica según driver.",
     "usage": "ACEBOTT Smart Car y proyectos móviles.",
     "warning": "No alimentar motores desde el regulador pequeño del microcontrolador.",
+    "image_url": "/assets/hardware/motor-driver-l298n.jpg",
+    "image_alt": "Modulo controlador de motores L298N",
+    "image_credit_url": "https://www.sunfounder.com/products/l298n-motor-driver-board",
     "sources": [
       "ACEBOTT Smart Car Experiments",
       "DRONE-FPV-ESP32C3-SUPERMINI"
@@ -596,6 +801,9 @@
     "voltage": "Depende del kit; separar potencia de motores y lógica.",
     "usage": "Experimentos de control, sensores, ESP-NOW y comunicación entre placas.",
     "warning": "Probar en área despejada y segura.",
+    "image_url": "/assets/hardware/acebott-smart-car.png",
+    "image_alt": "Kit ACEBOTT Smart Car",
+    "image_credit_url": "https://acebottteam.github.io/acebott-docs-master/kit/Explorer%20Series/QD001.html",
     "sources": [
       "ACEBOTT Smart Car Experiments"
     ],

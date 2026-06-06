@@ -8,7 +8,7 @@ const readmesPath = resolve("public/data/readmes.json");
 const srcOutputPath = resolve("src/data/hardware-wiki.generated.json");
 const publicOutputPath = resolve("public/data/hardware-wiki.json");
 
-const categoryOrder = ["MCU", "Display", "RF", "IR", "Power", "Input", "Prototyping", "Actuators", "Detectado"];
+const categoryOrder = ["MCU", "Display", "RF", "IR", "Sensors", "Power", "Input", "Prototyping", "Actuators", "Detectado"];
 
 function normalize(value) {
   return String(value || "")
@@ -52,7 +52,7 @@ function isLikelyComponent(value) {
   if (/^(componente|component|cantidad|notas?|nota|modulo|conexi[oó]n recomendada|oled|esp32)$/i.test(text)) return false;
   if (/^\d+$/.test(text)) return false;
   if (/\b(SDA|SCL|GPIO|Pin|vista|acci[oó]n|funci[oó]n)\b/i.test(text)) return false;
-  return /esp32|bw16|rtl|oled|ssd|sh1106|tft|ili|st7789|nrf|cc1101|rf433|ir|tp4056|step|bater|lipo|capacitor|bot[oó]n|interruptor|pcb|proto|cable|dupont|usb|motor|sensor|cardputer|acebott/i.test(text);
+  return /esp32|bw16|rtl|oled|ssd|sh1106|tft|ili|st7789|st7735|nrf|cc1101|rf433|ir|gps|neo-?6m|encoder|rotativo|tp4056|step|bater|lipo|capacitor|bot[oó]n|interruptor|pcb|proto|cable|dupont|usb|motor|sensor|cardputer|acebott/i.test(text);
 }
 
 function extractHardwareTableItems(markdown, repoName) {

@@ -8,6 +8,7 @@ interface HardwareItem {
   warning?: string;
   image_url?: string;
   image_alt?: string;
+  image_credit_url?: string;
   sources?: string[];
   auto_detected?: boolean;
 }
@@ -45,7 +46,14 @@ const categories = [...new Set(items.map((item) => item.category))];
                 <div class="hardware-detail">
                   <div class="hardware-media">
                     {item.image_url ? (
-                      <img src={item.image_url} alt={item.image_alt || item.name} loading="lazy" />
+                      <>
+                        <img src={item.image_url} alt={item.image_alt || item.name} loading="lazy" />
+                        {item.image_credit_url && (
+                          <a class="hardware-credit" href={item.image_credit_url} target="_blank" rel="noreferrer">
+                            Fuente de imagen
+                          </a>
+                        )}
+                      </>
                     ) : (
                       <div class="hardware-placeholder" aria-label={`Imagen pendiente de ${item.name}`}>
                         <span>{item.name}</span>
