@@ -1,0 +1,136 @@
+[
+  {
+    "name": "BWifiKill ESP32 V4.0",
+    "slug": "bwifikill-esp32-v4",
+    "board": "ESP32 compatible",
+    "display": "TFT/OLED depending on build",
+    "modules": [
+      "ESP32",
+      "WiFi",
+      "BLE",
+      "Display"
+    ],
+    "status": "In Development",
+    "flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32-V4.0/",
+    "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0",
+    "updated_at": "2026-06-07T16:31:14Z",
+    "source": "manual"
+  },
+  {
+    "name": "ESP32 Tools Pro 480x320 V2.0",
+    "slug": "esp32-tools-pro-480x320-v2",
+    "board": "ESP32 DevKit / ESP32 30-pin",
+    "display": "TFT ILI9488 480x320 SPI",
+    "modules": [
+      "TFT",
+      "SPI",
+      "ESP32",
+      "CC1101",
+      "IR",
+      "WiFi",
+      "BLE",
+      "RF"
+    ],
+    "status": "Testing",
+    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V2.0/",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
+    "updated_at": "2026-06-08T01:34:40Z",
+    "source": "manual"
+  },
+  {
+    "name": "Cyberdeck Mini ESP32",
+    "slug": "cyberdeck-mini-esp32",
+    "board": "Cyberdeck Mini ESP32",
+    "display": "Integrated compact display",
+    "modules": [
+      "ESP32",
+      "Display",
+      "Battery"
+    ],
+    "status": "Planned",
+    "flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32/",
+    "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32",
+    "updated_at": "2026-06-07T22:59:40Z",
+    "source": "manual"
+  },
+  {
+    "name": "BWifiKill BW16 5Ghz",
+    "slug": "bwifikill-bw16-5ghz",
+    "board": "BW16 RTL8720DN",
+    "display": "Optional serial/display output",
+    "modules": [
+      "BW16",
+      "RTL8720DN",
+      "WiFi",
+      "BLE",
+      "IR"
+    ],
+    "status": "Experimental",
+    "flasher_url": "",
+    "github_url": "https://github.com/pepeangell5/BWifiKill-BW16-5Ghz",
+    "updated_at": "2026-06-07T02:55:57Z",
+    "source": "manual"
+  },
+  {
+    "name": "BWifiKill ESP32",
+    "slug": "bwifikill-esp32",
+    "board": "ESP32 compatible",
+    "display": "OLED/TFT depending on build",
+    "modules": [
+      "ESP32",
+      "WiFi",
+      "BLE"
+    ],
+    "status": "Experimental",
+    "flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32/",
+    "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32",
+    "updated_at": "2026-06-07T10:01:29Z",
+    "source": "manual"
+  },
+  {
+    "name": "ESP32 TOOLS PRO 480x320",
+    "slug": "esp32-tools-pro-480x320",
+    "board": "ESP32 compatible",
+    "display": "TFT ILI9488 480x320 SPI",
+    "modules": [
+      "ESP32",
+      "TFT",
+      "IR"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320",
+    "updated_at": "2026-06-05T14:42:57Z",
+    "source": "auto"
+  },
+  {
+    "name": "ESP32 TOOLS",
+    "slug": "esp32-tools",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32",
+      "WiFi"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS/",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS",
+    "updated_at": "2026-05-28T08:06:23Z",
+    "source": "auto"
+  },
+  {
+    "name": "ESP32 TOOLS MODERN",
+    "slug": "esp32-tools-modern",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32",
+      "IR"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-MODERN/",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-MODERN",
+    "updated_at": "2026-05-28T08:06:20Z",
+    "source": "auto"
+  }
+]

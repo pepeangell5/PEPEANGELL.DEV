@@ -22,7 +22,7 @@
         "name": "BWifiKill-ESP32-V4.0-full.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/releases/download/bwifikill/BWifiKill-ESP32-V4.0-full.bin",
         "size": 1845200,
-        "download_count": 0
+        "download_count": 9
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/archive/refs/heads/main.zip",
@@ -48,7 +48,10 @@
       "SPI",
       "ESP32",
       "CC1101",
-      "IR"
+      "IR",
+      "WiFi",
+      "BLE",
+      "RF"
     ],
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
     "full_name": "pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
@@ -61,25 +64,25 @@
         "name": "bootloader.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/bootloader.bin",
         "size": 17536,
-        "download_count": 12
+        "download_count": 14
       },
       {
         "name": "firmware-merged.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware-merged.bin",
         "size": 2155568,
-        "download_count": 14
+        "download_count": 16
       },
       {
         "name": "firmware.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware.bin",
         "size": 2090032,
-        "download_count": 14
+        "download_count": 18
       },
       {
         "name": "partitions.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/partitions.bin",
         "size": 3072,
-        "download_count": 12
+        "download_count": 14
       }
     ],
     "zip_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/archive/refs/heads/main.zip",
@@ -134,7 +137,8 @@
       "BW16",
       "RTL8720DN",
       "WiFi",
-      "BLE"
+      "BLE",
+      "IR"
     ],
     "github_url": "https://github.com/pepeangell5/BWifiKill-BW16-5Ghz",
     "full_name": "pepeangell5/BWifiKill-BW16-5Ghz",
@@ -169,7 +173,7 @@
         "name": "full_bwifikill_v3.3.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32/releases/download/bwifikillV3.3/full_bwifikill_v3.3.bin",
         "size": 1948320,
-        "download_count": 19
+        "download_count": 24
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32/archive/refs/heads/main.zip",
@@ -183,5 +187,276 @@
         "chip_family": "ESP32"
       }
     ]
+  },
+  {
+    "name": "ESP32 TOOLS PRO 480x320",
+    "slug": "esp32-tools-pro-480x320",
+    "status": "Web flasher",
+    "board": "ESP32 compatible",
+    "display": "TFT ILI9488 480x320 SPI",
+    "modules": [
+      "ESP32",
+      "TFT",
+      "IR"
+    ],
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320",
+    "full_name": "pepeangell5/ESP32-TOOLS-PRO-480x320",
+    "default_branch": "main",
+    "web_flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/",
+    "binarios_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320/tree/main/firmware",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#esp32-tools-pro-480x320",
+    "web_flasher_binaries": [
+      {
+        "label": "firmware-merged.bin",
+        "path": "firmware/firmware-merged.bin",
+        "url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/firmware/firmware-merged.bin",
+        "offset": 0,
+        "chip_family": "ESP32"
+      }
+    ]
+  },
+  {
+    "name": "ESP32 TOOLS",
+    "slug": "esp32-tools",
+    "status": "Web flasher",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32",
+      "WiFi"
+    ],
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS",
+    "full_name": "pepeangell5/ESP32-TOOLS",
+    "default_branch": "main",
+    "web_flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS/",
+    "binarios_url": "https://github.com/pepeangell5/ESP32-TOOLS/tree/main/firmware",
+    "release_tag": "esp32-tools",
+    "release_assets": [
+      {
+        "name": "firmware-merged.bin",
+        "url": "https://github.com/pepeangell5/ESP32-TOOLS/releases/download/esp32-tools/firmware-merged.bin",
+        "size": 1961040,
+        "download_count": 9
+      }
+    ],
+    "zip_url": "https://github.com/pepeangell5/ESP32-TOOLS/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#esp32-tools",
+    "web_flasher_binaries": [
+      {
+        "label": "firmware-merged.bin",
+        "path": "firmware/firmware-merged.bin",
+        "url": "https://pepeangell5.github.io/ESP32-TOOLS/firmware/firmware-merged.bin",
+        "offset": 0,
+        "chip_family": "ESP32"
+      }
+    ]
+  },
+  {
+    "name": "ESP32 TOOLS MODERN",
+    "slug": "esp32-tools-modern",
+    "status": "Web flasher",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32",
+      "IR"
+    ],
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-MODERN",
+    "full_name": "pepeangell5/ESP32-TOOLS-MODERN",
+    "default_branch": "main",
+    "web_flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-MODERN/",
+    "binarios_url": "https://github.com/pepeangell5/ESP32-TOOLS-MODERN/tree/main/firmware",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/ESP32-TOOLS-MODERN/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#esp32-tools-modern",
+    "web_flasher_binaries": [
+      {
+        "label": "firmware-merged.bin",
+        "path": "firmware/firmware-merged.bin",
+        "url": "https://pepeangell5.github.io/ESP32-TOOLS-MODERN/firmware/firmware-merged.bin",
+        "offset": 0,
+        "chip_family": "ESP32"
+      }
+    ]
+  },
+  {
+    "name": "IPHONE CONTROL ESP32",
+    "slug": "iphone-control-esp32",
+    "status": "Repositorio",
+    "board": "ESP32-S3 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32-S3",
+      "ESP32",
+      "BLE",
+      "USB"
+    ],
+    "github_url": "https://github.com/pepeangell5/IPHONE-CONTROL-ESP32",
+    "full_name": "pepeangell5/IPHONE-CONTROL-ESP32",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/IPHONE-CONTROL-ESP32/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/IPHONE-CONTROL-ESP32/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#iphone-control-esp32",
+    "web_flasher_binaries": []
+  },
+  {
+    "name": "ESP8266 DEAUTHER",
+    "slug": "esp8266-deauther",
+    "status": "Repositorio",
+    "board": "ESP8266 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP8266",
+      "WiFi"
+    ],
+    "github_url": "https://github.com/pepeangell5/ESP8266-DEAUTHER",
+    "full_name": "pepeangell5/ESP8266-DEAUTHER",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/ESP8266-DEAUTHER/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/ESP8266-DEAUTHER/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#esp8266-deauther",
+    "web_flasher_binaries": []
+  },
+  {
+    "name": "BWifiKill ESP32 ESCLAVO",
+    "slug": "bwifikill-esp32-esclavo",
+    "status": "Repositorio",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32",
+      "WiFi",
+      "IR"
+    ],
+    "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32-ESCLAVO",
+    "full_name": "pepeangell5/BWifiKill-ESP32-ESCLAVO",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/BWifiKill-ESP32-ESCLAVO/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32-ESCLAVO/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#bwifikill-esp32-esclavo",
+    "web_flasher_binaries": []
+  },
+  {
+    "name": "ESP32 DUAL NRF CHAT",
+    "slug": "esp32-dual-nrf-chat",
+    "status": "Repositorio",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32",
+      "RF",
+      "NRF24"
+    ],
+    "github_url": "https://github.com/pepeangell5/ESP32_DUAL_NRF_CHAT",
+    "full_name": "pepeangell5/ESP32_DUAL_NRF_CHAT",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/ESP32_DUAL_NRF_CHAT/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/ESP32_DUAL_NRF_CHAT/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#esp32-dual-nrf-chat",
+    "web_flasher_binaries": []
+  },
+  {
+    "name": "IR REMOTE CARDPUTER ADV",
+    "slug": "ir-remote-cardputer-adv",
+    "status": "Repositorio",
+    "board": "M5Stack Cardputer",
+    "display": "M5Stack Cardputer integrated display",
+    "modules": [
+      "Cardputer",
+      "IR"
+    ],
+    "github_url": "https://github.com/pepeangell5/IR_REMOTE_CARDPUTER_ADV",
+    "full_name": "pepeangell5/IR_REMOTE_CARDPUTER_ADV",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/IR_REMOTE_CARDPUTER_ADV/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/IR_REMOTE_CARDPUTER_ADV/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#ir-remote-cardputer-adv",
+    "web_flasher_binaries": []
+  },
+  {
+    "name": "SMART CAR QD001",
+    "slug": "smart-car-qd001",
+    "status": "Repositorio",
+    "board": "Arduino compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32",
+      "IR",
+      "ESP-NOW"
+    ],
+    "github_url": "https://github.com/pepeangell5/SMART-CAR-QD001",
+    "full_name": "pepeangell5/SMART-CAR-QD001",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/SMART-CAR-QD001/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/SMART-CAR-QD001/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#smart-car-qd001",
+    "web_flasher_binaries": []
+  },
+  {
+    "name": "DRONE FPV ESP32C3 SUPERMINI",
+    "slug": "drone-fpv-esp32c3-supermini",
+    "status": "Repositorio",
+    "board": "ESP32-C3 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32-C3",
+      "ESP32",
+      "ESP-NOW",
+      "Drone"
+    ],
+    "github_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI",
+    "full_name": "pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#drone-fpv-esp32c3-supermini",
+    "web_flasher_binaries": []
+  },
+  {
+    "name": "ESP32 PC MONITOR",
+    "slug": "esp32-pc-monitor",
+    "status": "Repositorio",
+    "board": "ESP32 compatible",
+    "display": "OLED SSD1306",
+    "modules": [
+      "ESP32",
+      "OLED",
+      "Display"
+    ],
+    "github_url": "https://github.com/pepeangell5/ESP32_PC_MONITOR",
+    "full_name": "pepeangell5/ESP32_PC_MONITOR",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/ESP32_PC_MONITOR/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/ESP32_PC_MONITOR/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#esp32-pc-monitor",
+    "web_flasher_binaries": []
   }
 ]

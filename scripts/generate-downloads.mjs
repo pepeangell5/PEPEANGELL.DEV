@@ -1,10 +1,11 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
-const flashersPath = resolve("src/data/flashers.json");
+const flashersPath = resolve("src/data/flashers.generated.json");
 const reposPath = resolve("public/data/repos.json");
 const srcOutputPath = resolve("src/data/downloads.generated.json");
 const publicOutputPath = resolve("public/data/downloads.json");
+const excludedRepoNames = new Set(["PEPEANGELL.DEV", "pepeangell5"]);
 
 async function readJson(path, fallback) {
   try {
@@ -58,6 +59,88 @@ function firmwareHash(name) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+function titleFromRepoName(name) {
+  return String(name || "")
+    .replace(/[-_]+/g, " ")
+    .replace(/\b(v\d+(?:\.\d+)*)\b/gi, (match) => match.toUpperCase())
+    .replace(/\b(esp32|esp8266|bw16|rf|ble|wifi|ghz|tft|oled|gps|nrf|cc1101|ir|fpv|pc)\b/gi, (match) =>
+      match.toUpperCase()
+    )
+    .replace(/\b\w/g, (match) => match.toUpperCase());
+}
+
+function textFor(repo) {
+  return `${repo?.name || ""} ${repo?.description || ""} ${(repo?.topics || []).join(" ")} ${repo?.language || ""}`.toLowerCase();
+}
+
+function inferModules(repo) {
+  const text = textFor(repo);
+  const modules = new Set();
+  const rules = [
+    ["ESP32-S3", ["esp32-s3", "esp32s3"]],
+    ["ESP32-C3", ["esp32-c3", "esp32c3", "esp32c3-supermini"]],
+    ["ESP32", ["esp32", "espressif"]],
+    ["ESP8266", ["esp8266"]],
+    ["BW16", ["bw16"]],
+    ["RTL8720DN", ["rtl8720dn"]],
+    ["WiFi", ["wifi", "wi-fi", "wireless", "deauther"]],
+    ["BLE", ["ble", "bluetooth"]],
+    ["RF", ["rf", "radio", "sub-ghz", "subghz"]],
+    ["NRF24", ["nrf24", "nrf24l01"]],
+    ["CC1101", ["cc1101"]],
+    ["TFT", ["tft", "ili9488", "ili9341", "st7789"]],
+    ["OLED", ["oled", "ssd1306", "sh1106"]],
+    ["Display", ["display", "screen", "lcd", "pantalla"]],
+    ["Cardputer", ["cardputer"]],
+    ["GPS", ["gps", "neo-6m", "neo 6m"]],
+    ["IR", ["infrared", "ir", "remote"]],
+    ["ESP-NOW", ["esp-now", "espnow"]],
+    ["Drone", ["drone", "fpv"]],
+    ["USB", ["usb", "rubberducky", "keyboard"]]
+  ];
+
+  for (const [label, terms] of rules) {
+    if (terms.some((term) => text.includes(term))) {
+      modules.add(label);
+    }
+  }
+
+  return modules.size > 0 ? [...modules].slice(0, 8) : ["Proyecto"];
+}
+
+function inferBoard(repo) {
+  const text = textFor(repo);
+  if (text.includes("cardputer")) return "M5Stack Cardputer";
+  if (text.includes("esp32-s3") || text.includes("esp32s3")) return "ESP32-S3 compatible";
+  if (text.includes("esp32-c3") || text.includes("esp32c3")) return "ESP32-C3 compatible";
+  if (text.includes("esp8266")) return "ESP8266 compatible";
+  if (text.includes("bw16") || text.includes("rtl8720dn")) return "BW16 RTL8720DN";
+  if (text.includes("arduino")) return "Arduino compatible";
+  if (text.includes("esp32")) return "ESP32 compatible";
+  return "Hardware compatible";
+}
+
+function inferDisplay(repo) {
+  const text = textFor(repo);
+  if (text.includes("ili9488") || text.includes("480x320")) return "TFT ILI9488 480x320 SPI";
+  if (text.includes("ili9341")) return "TFT ILI9341 SPI";
+  if (text.includes("st7789")) return "TFT ST7789 SPI";
+  if (text.includes("oled") || text.includes("ssd1306")) return "OLED SSD1306";
+  if (text.includes("cardputer")) return "M5Stack Cardputer integrated display";
+  if (text.includes("display") || text.includes("screen") || text.includes("pantalla")) return "Display depending on build";
+  return "Optional serial/display output";
+}
+
+function shouldIncludeRepo(repo, includedFullNames) {
+  return (
+    repo?.full_name &&
+    !repo.archived &&
+    !repo.fork &&
+    !includedFullNames.has(repo.full_name) &&
+    !excludedRepoNames.has(repo.name)
+  );
 }
 
 function releaseAssetsFrom(release) {
@@ -123,6 +206,31 @@ function buildDownloadEntry(flasher, repo, manifest, release) {
   };
 }
 
+function buildRepoDownloadEntry(repo, release) {
+  const branch = repo.default_branch || "main";
+  const repoBase = String(repo.html_url || `https://github.com/${repo.full_name}`).replace(/\/$/, "");
+  const repoName = repoSlug(repo.full_name);
+
+  return {
+    name: titleFromRepoName(repo.name),
+    slug: firmwareHash(repo.name),
+    status: "Repositorio",
+    board: inferBoard(repo),
+    display: inferDisplay(repo),
+    modules: inferModules(repo),
+    github_url: repoBase,
+    full_name: repo.full_name,
+    default_branch: branch,
+    web_flasher_url: "",
+    binarios_url: `${repoBase}/search?q=extension%3Abin&type=code`,
+    release_tag: release?.tag_name || "",
+    release_assets: releaseAssetsFrom(release),
+    zip_url: `${repoBase}/archive/refs/heads/${branch}.zip`,
+    readme_url: `/firmware/#${firmwareHash(repoName || repo.name)}`,
+    web_flasher_binaries: []
+  };
+}
+
 async function saveJson(path, data) {
   await mkdir(dirname(path), { recursive: true });
   await writeFile(path, `${JSON.stringify(data, null, 2)}\n`, "utf8");
@@ -133,6 +241,7 @@ async function main() {
   const repos = await readJson(reposPath, []);
   const repoByName = new Map(repos.map((repo) => [repo.full_name, repo]));
   const downloads = [];
+  const includedFullNames = new Set();
 
   for (const flasher of flashers) {
     const fullName = repoNameFromUrl(flasher.github_url);
@@ -141,6 +250,15 @@ async function main() {
     const manifest = await fetchJson(manifestUrl);
     const release = await fetchJson(`https://api.github.com/repos/${fullName}/releases/latest`);
     downloads.push(buildDownloadEntry(flasher, repo, manifest, release));
+    if (fullName) includedFullNames.add(fullName);
+  }
+
+  for (const repo of repos) {
+    if (!shouldIncludeRepo(repo, includedFullNames)) continue;
+
+    const release = await fetchJson(`https://api.github.com/repos/${repo.full_name}/releases/latest`);
+    downloads.push(buildRepoDownloadEntry(repo, release));
+    includedFullNames.add(repo.full_name);
   }
 
   await saveJson(srcOutputPath, downloads);
