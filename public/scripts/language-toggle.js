@@ -1,9 +1,8 @@
 (() => {
-  const storageKey = "pepeangell-labs-language";
+  const storageKey = "pepeangell-labs-language-v2";
   const excludedSelector = "script, style, code, pre, [data-no-translate], .readme-raw, .support-terminal";
   const originalTextNodes = new WeakMap();
   const originalAttributes = new WeakMap();
-  let applying = false;
 
   const translations = new Map(
     Object.entries({
@@ -320,11 +319,9 @@
   }
 
   function applyLanguage(lang) {
-    applying = true;
     document.documentElement.lang = lang;
     walk(document.body, lang);
     updateToggle(lang);
-    applying = false;
   }
 
   const savedLanguage = localStorage.getItem(storageKey);
@@ -339,19 +336,13 @@
     applyLanguage(currentLanguage);
   });
 
-  const observer = new MutationObserver((mutations) => {
-    if (applying) return;
-    applying = true;
-    for (const mutation of mutations) {
-      mutation.addedNodes.forEach((node) => walk(node, currentLanguage));
-      if (mutation.type === "characterData") walk(mutation.target, currentLanguage);
-    }
-    updateToggle(currentLanguage);
-    applying = false;
-  });
-
   document.addEventListener("DOMContentLoaded", () => {
     applyLanguage(currentLanguage);
-    observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+
+    // Some sections render from local JSON after load. Re-apply a few times without
+    // observing the whole DOM, keeping the page responsive.
+    [300, 900, 1800].forEach((delay) => {
+      window.setTimeout(() => applyLanguage(currentLanguage), delay);
+    });
   });
 })();
