@@ -23,7 +23,9 @@ const goatCounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href={sitePath("/favicon.svg")} type="image/svg+xml" />
+    <link rel="icon" href={sitePath("/favicon.ico?v=20260615-1")} sizes="any" />
+    <link rel="icon" href={sitePath("/favicon-32.png?v=20260615-1")} type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href={sitePath("/favicon-192.png?v=20260615-1")} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
