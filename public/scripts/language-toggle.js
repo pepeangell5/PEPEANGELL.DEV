@@ -1,6 +1,8 @@
 (() => {
   const storageKey = "pepeangell-labs-language";
   const excludedSelector = "script, style, code, pre, [data-no-translate], .readme-raw, .support-terminal";
+  const originalTextNodes = new WeakMap();
+  const originalAttributes = new WeakMap();
   let applying = false;
 
   const translations = new Map(
@@ -263,8 +265,8 @@
 
   function translateTextNode(node, lang) {
     if (shouldSkip(node)) return;
-    if (!node.__paOriginalText) node.__paOriginalText = node.nodeValue;
-    node.nodeValue = translatedText(node.__paOriginalText, lang);
+    if (!originalTextNodes.has(node)) originalTextNodes.set(node, node.nodeValue);
+    node.nodeValue = translatedText(originalTextNodes.get(node), lang);
   }
 
   function translateAttributes(element, lang) {
@@ -272,9 +274,15 @@
 
     for (const attr of ["placeholder", "aria-label", "title", "alt"]) {
       if (!element.hasAttribute(attr)) continue;
-      const key = `paOriginal${attr}`;
-      if (!element.dataset[key]) element.dataset[key] = element.getAttribute(attr) || "";
-      element.setAttribute(attr, translatedText(element.dataset[key], lang));
+
+      let originals = originalAttributes.get(element);
+      if (!originals) {
+        originals = {};
+        originalAttributes.set(element, originals);
+      }
+
+      if (!(attr in originals)) originals[attr] = element.getAttribute(attr) || "";
+      element.setAttribute(attr, translatedText(originals[attr], lang));
     }
   }
 
