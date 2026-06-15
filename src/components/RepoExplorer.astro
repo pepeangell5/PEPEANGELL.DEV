@@ -50,7 +50,7 @@ const reposUrl = `${import.meta.env.BASE_URL}data/repos.json`;
   };
 
   const formatDate = (value) => {
-    if (!value) return "Unknown";
+    if (!value) return "Desconocido";
     return new Intl.DateTimeFormat("es-MX", { dateStyle: "medium" }).format(new Date(value));
   };
 
@@ -95,10 +95,10 @@ const reposUrl = `${import.meta.env.BASE_URL}data/repos.json`;
           <div class="meta-row">
             <span>Stars: ${repo.stargazers_count || 0}</span>
             <span>Forks: ${repo.forks_count || 0}</span>
-            <span>Updated: ${formatDate(repo.updated_at)}</span>
+            <span>Actualizado: ${formatDate(repo.updated_at)}</span>
           </div>
           <div class="badge-row">${(repo.topics || []).map((topic) => `<span class="badge">${escapeHtml(topic)}</span>`).join("")}</div>
-          <div class="button-row"><a class="button primary" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noreferrer noopener">Open repo</a></div>
+          <div class="button-row"><a class="button primary" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noreferrer noopener">Abrir repo</a></div>
         </article>
       `).join("")
       : `<article class="card"><h3>No hay repos para mostrar</h3><p>Ejecuta npm run fetch:repos para generar public/data/repos.json.</p></article>`;

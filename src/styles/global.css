@@ -341,7 +341,7 @@ p {
   min-height: 72px;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
+  gap: 14px;
 }
 
 .brand {
@@ -365,6 +365,7 @@ p {
 
 .nav-links {
   display: flex;
+  flex: 1;
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 8px;
@@ -383,6 +384,35 @@ p {
 .nav-links a[aria-current="page"] {
   color: var(--text);
   background: rgba(57, 255, 136, 0.1);
+}
+
+.language-toggle {
+  flex: 0 0 auto;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 3px;
+  background: rgba(15, 20, 26, 0.88);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.language-toggle button {
+  min-width: 38px;
+  min-height: 30px;
+  padding: 5px 9px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.language-toggle button[aria-pressed="true"] {
+  color: #031108;
+  background: linear-gradient(135deg, var(--green), var(--amber));
 }
 
 .hero {
@@ -1288,6 +1318,15 @@ p {
     padding-bottom: 4px;
     overflow-x: auto;
     scrollbar-width: thin;
+  }
+
+  .language-toggle {
+    align-self: flex-start;
+  }
+
+  .language-toggle button {
+    min-width: 34px;
+    padding: 5px 7px;
   }
 
   .brand span:last-child {

@@ -1,5 +1,6 @@
 ---
 import { sitePath } from "../utils/paths";
+import LanguageToggle from "./LanguageToggle.astro";
 
 const links = [
   { href: "/", label: "Inicio" },
@@ -32,5 +33,6 @@ const normalizedPathname = pathname.replace(import.meta.env.BASE_URL.replace(/\/
         ))
       }
     </nav>
+    <LanguageToggle />
   </div>
 </header>

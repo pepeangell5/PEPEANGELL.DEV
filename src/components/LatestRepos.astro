@@ -17,7 +17,7 @@ const reposUrl = `${import.meta.env.BASE_URL}data/repos.json`;
       "'": "&#039;"
     })[char]);
 
-  const dateFmt = (value) => value ? new Intl.DateTimeFormat("es-MX", { dateStyle: "medium" }).format(new Date(value)) : "Unknown";
+  const dateFmt = (value) => value ? new Intl.DateTimeFormat("es-MX", { dateStyle: "medium" }).format(new Date(value)) : "Desconocido";
   const priorityRepos = [
     "BWifiKill-ESP32-V4.0",
     "ESP32-TOOLS-PRO-480x320-V2.0",
@@ -43,8 +43,8 @@ const reposUrl = `${import.meta.env.BASE_URL}data/repos.json`;
             <p class="status">${escapeLatest(repo.language || "GitHub")}</p>
             <h3>${escapeLatest(repo.name)}</h3>
             <p>${escapeLatest(repo.description || "Repositorio publico de PepeAngell Labs.")}</p>
-          <p class="small muted">Updated: ${dateFmt(repo.updated_at)}</p>
-          <a class="button primary" href="${escapeLatest(repo.html_url)}" target="_blank" rel="noreferrer noopener">Open repo</a>
+          <p class="small muted">Actualizado: ${dateFmt(repo.updated_at)}</p>
+          <a class="button primary" href="${escapeLatest(repo.html_url)}" target="_blank" rel="noreferrer noopener">Abrir repo</a>
           </article>
         `).join("")
         : `<article class="card"><h3>Repos listos para sincronizar</h3><p>Ejecuta npm run fetch:repos para llenar esta sección con repos públicos.</p></article>`;
