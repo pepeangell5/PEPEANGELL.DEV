@@ -16,7 +16,18 @@ interface ReleaseAsset {
   download_count?: number;
 }
 
+interface DownloadDocument {
+  name: string;
+  file_name: string;
+  folder: string;
+  path: string;
+  size?: number;
+  download_url: string;
+  github_url: string;
+}
+
 interface DownloadEntry {
+  type?: string;
   name: string;
   slug: string;
   status: string;
@@ -32,6 +43,7 @@ interface DownloadEntry {
   zip_url: string;
   readme_url: string;
   web_flasher_binaries: DownloadBinary[];
+  documents?: DownloadDocument[];
 }
 
 interface Props {
@@ -39,6 +51,18 @@ interface Props {
 }
 
 const { downloads } = Astro.props;
+
+function formatBytes(size?: number) {
+  if (!size) return "";
+  const units = ["B", "KB", "MB", "GB"];
+  let value = size;
+  let index = 0;
+  while (value >= 1024 && index < units.length - 1) {
+    value /= 1024;
+    index += 1;
+  }
+  return `${value.toFixed(value >= 10 || index === 0 ? 0 : 1)} ${units[index]}`;
+}
 ---
 
 <section class="downloads" data-downloads>
@@ -55,7 +79,7 @@ const { downloads } = Astro.props;
           id={item.slug}
           open={index === 0}
           data-download-item
-          data-search={`${item.name} ${item.full_name} ${item.board} ${item.display} ${(item.modules || []).join(" ")}`}
+          data-search={`${item.name} ${item.full_name} ${item.board} ${item.display} ${(item.modules || []).join(" ")} ${(item.documents || []).map((doc) => `${doc.name} ${doc.file_name} ${doc.folder}`).join(" ")}`}
         >
           <summary>
             <span>
@@ -69,40 +93,79 @@ const { downloads } = Astro.props;
               <p><strong>Repo:</strong> {item.full_name}</p>
               <p><strong>Display:</strong> {item.display}</p>
               <p><strong>Branch:</strong> {item.default_branch}</p>
+              {item.type === "documents" && <p><strong>Archivos:</strong> {item.documents?.length || 0}</p>}
               {item.release_tag && <p><strong>Ultima release:</strong> {item.release_tag}</p>}
               <div class="badges">
                 {item.modules.map((moduleName) => <span class="badge">{moduleName}</span>)}
               </div>
             </div>
 
-            <div class="download-actions">
-              {item.web_flasher_url && (
-                <a class="button primary" href={item.web_flasher_url} target="_blank" rel="noreferrer noopener">
-                  Web Flasher
+            {item.type === "documents" ? (
+              <>
+                <div class="download-actions">
+                  <a class="button primary" href={item.github_url} target="_blank" rel="noreferrer noopener">
+                    Abrir biblioteca
+                  </a>
+                  <a class="button" href={item.zip_url} target="_blank" rel="noreferrer noopener" download>
+                    ZIP completo
+                  </a>
+                </div>
+                <div class="document-downloads">
+                  {item.documents && item.documents.length > 0 ? (
+                    item.documents.map((doc) => (
+                      <article class="document-download">
+                        <div>
+                          <strong>{doc.name}</strong>
+                          <p class="small muted">
+                            {doc.folder} / {doc.file_name}
+                            {doc.size ? ` - ${formatBytes(doc.size)}` : ""}
+                          </p>
+                        </div>
+                        <div class="button-row">
+                          <a class="button primary" href={doc.download_url} target="_blank" rel="noreferrer noopener" download>
+                            Descargar
+                          </a>
+                          <a class="button" href={doc.github_url} target="_blank" rel="noreferrer noopener">
+                            Ver en GitHub
+                          </a>
+                        </div>
+                      </article>
+                    ))
+                  ) : (
+                    <p class="small muted">Aun no hay documentos publicados en esta biblioteca.</p>
+                  )}
+                </div>
+              </>
+            ) : (
+              <div class="download-actions">
+                {item.web_flasher_url && (
+                  <a class="button primary" href={item.web_flasher_url} target="_blank" rel="noreferrer noopener">
+                    Web Flasher
+                  </a>
+                )}
+                {item.web_flasher_binaries.map((binary) => (
+                  <a class="button primary" href={binary.url} target="_blank" rel="noreferrer noopener" download>
+                    Binario final {binary.chip_family ? `- ${binary.chip_family}` : ""}
+                  </a>
+                ))}
+                {item.release_assets.map((asset) => (
+                  <a class="button" href={asset.url} target="_blank" rel="noreferrer noopener" download>
+                    Release: {asset.name}
+                  </a>
+                ))}
+                <a class="button" href={item.zip_url} target="_blank" rel="noreferrer noopener" download>
+                  ZIP completo
                 </a>
-              )}
-              {item.web_flasher_binaries.map((binary) => (
-                <a class="button primary" href={binary.url} target="_blank" rel="noreferrer noopener" download>
-                  Binario final {binary.chip_family ? `- ${binary.chip_family}` : ""}
+                <a class="button" href={item.github_url} target="_blank" rel="noreferrer noopener">
+                  GitHub
                 </a>
-              ))}
-              {item.release_assets.map((asset) => (
-                <a class="button" href={asset.url} target="_blank" rel="noreferrer noopener" download>
-                  Release: {asset.name}
+                <a class="button" href={sitePath(item.readme_url)} target="_blank" rel="noreferrer noopener">
+                  README local
                 </a>
-              ))}
-              <a class="button" href={item.zip_url} target="_blank" rel="noreferrer noopener" download>
-                ZIP completo
-              </a>
-              <a class="button" href={item.github_url} target="_blank" rel="noreferrer noopener">
-                GitHub
-              </a>
-              <a class="button" href={sitePath(item.readme_url)} target="_blank" rel="noreferrer noopener">
-                README local
-              </a>
-            </div>
+              </div>
+            )}
 
-            {item.web_flasher_binaries.length > 0 ? (
+            {item.type !== "documents" && item.web_flasher_binaries.length > 0 ? (
               <div class="download-binaries">
                 <h3>Binarios usados por el Web Flasher</h3>
                 {item.web_flasher_binaries.map((binary) => (
@@ -111,12 +174,12 @@ const { downloads } = Astro.props;
                   </p>
                 ))}
               </div>
-            ) : (
+            ) : item.type !== "documents" ? (
               <p class="small muted">
                 Este repositorio todavia no tiene Web Flasher detectado. Se muestran descargas directas disponibles y
                 el ZIP completo del repositorio.
               </p>
-            )}
+            ) : null}
           </div>
         </details>
       ))

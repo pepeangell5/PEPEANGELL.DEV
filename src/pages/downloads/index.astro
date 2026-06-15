@@ -6,22 +6,22 @@ import downloads from "../../data/downloads.generated.json";
 
 <BaseLayout
   title="Descargas"
-  description="Descargas directas de firmware, binarios, Web Flashers, releases y ZIP completos de repositorios de PepeAngell Labs."
+  description="Descargas directas de documentacion, firmware, binarios, Web Flashers, releases y ZIP completos de PepeAngell Labs."
 >
   <section class="section">
     <div class="container">
       <div class="section-header">
-        <p class="eyebrow">Firmware downloads</p>
-        <h1>Descargas de proyectos y repos</h1>
+        <p class="eyebrow">Downloads library</p>
+        <h1>Descargas de documentos, proyectos y repos</h1>
         <p>
-          Accesos directos a Web Flashers, binarios finales, releases y ZIP completos. Los repos nuevos se agregan
-          automaticamente aunque todavia no tengan flasher detectado.
+          Documentos publicos, Web Flashers, binarios finales, releases y ZIP completos. La biblioteca de documentos
+          se actualiza desde GitHub conforme subas archivos o carpetas nuevas.
         </p>
       </div>
 
       <div class="notice">
-        <strong>Recomendacion:</strong> si el proyecto tiene Web Flasher, usa primero esa opcion. El binario final es
-        el mismo archivo que usa el flasher para instalar el firmware.
+        <strong>Recomendacion:</strong> descarga documentacion desde la biblioteca cuando necesites manuales, guias o
+        archivos de apoyo. Si el proyecto tiene Web Flasher, usa primero esa opcion para instalar firmware.
       </div>
 
       <DownloadsExplorer downloads={downloads} />

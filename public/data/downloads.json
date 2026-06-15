@@ -1,5 +1,39 @@
 [
   {
+    "type": "documents",
+    "name": "Documentacion y descargas",
+    "slug": "documentos-descargas",
+    "status": "Documentos",
+    "board": "PDFs, guias y recursos",
+    "display": "Archivos publicados desde GitHub",
+    "modules": [
+      "PDF",
+      "Documentacion",
+      "Descargas"
+    ],
+    "github_url": "https://github.com/pepeangell5/Documentos-Descargas",
+    "full_name": "pepeangell5/Documentos-Descargas",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/Documentos-Descargas/archive/refs/heads/main.zip",
+    "readme_url": "",
+    "web_flasher_binaries": [],
+    "documents": [
+      {
+        "name": "Manual BWifiKill ESP32 V4 Construccion",
+        "file_name": "Manual_BWifiKill_ESP32_V4_Construccion.pdf",
+        "folder": "Manual-BWIFIKILL-ESP32-V4.0",
+        "path": "Manual-BWIFIKILL-ESP32-V4.0/Manual_BWifiKill_ESP32_V4_Construccion.pdf",
+        "size": 6157728,
+        "download_url": "https://raw.githubusercontent.com/pepeangell5/Documentos-Descargas/main/Manual-BWIFIKILL-ESP32-V4.0/Manual_BWifiKill_ESP32_V4_Construccion.pdf",
+        "github_url": "https://github.com/pepeangell5/Documentos-Descargas/blob/main/Manual-BWIFIKILL-ESP32-V4.0/Manual_BWifiKill_ESP32_V4_Construccion.pdf"
+      }
+    ]
+  },
+  {
     "name": "BWifiKill ESP32 V4.0",
     "slug": "bwifikill-esp32-v4",
     "status": "In Development",
@@ -22,7 +56,7 @@
         "name": "BWifiKill-ESP32-V4.0-full.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/releases/download/bwifikill/BWifiKill-ESP32-V4.0-full.bin",
         "size": 1845200,
-        "download_count": 9
+        "download_count": 32
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/archive/refs/heads/main.zip",
@@ -64,25 +98,25 @@
         "name": "bootloader.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/bootloader.bin",
         "size": 17536,
-        "download_count": 14
+        "download_count": 24
       },
       {
         "name": "firmware-merged.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware-merged.bin",
         "size": 2155568,
-        "download_count": 16
+        "download_count": 26
       },
       {
         "name": "firmware.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware.bin",
         "size": 2090032,
-        "download_count": 18
+        "download_count": 26
       },
       {
         "name": "partitions.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/partitions.bin",
         "size": 3072,
-        "download_count": 14
+        "download_count": 22
       }
     ],
     "zip_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/archive/refs/heads/main.zip",
@@ -173,7 +207,7 @@
         "name": "full_bwifikill_v3.3.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32/releases/download/bwifikillV3.3/full_bwifikill_v3.3.bin",
         "size": 1948320,
-        "download_count": 24
+        "download_count": 33
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32/archive/refs/heads/main.zip",

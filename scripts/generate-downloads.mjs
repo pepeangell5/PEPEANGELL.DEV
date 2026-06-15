@@ -5,7 +5,9 @@ const flashersPath = resolve("src/data/flashers.generated.json");
 const reposPath = resolve("public/data/repos.json");
 const srcOutputPath = resolve("src/data/downloads.generated.json");
 const publicOutputPath = resolve("public/data/downloads.json");
-const excludedRepoNames = new Set(["PEPEANGELL.DEV", "pepeangell5"]);
+const documentsRepoFullName = "pepeangell5/Documentos-Descargas";
+const excludedRepoNames = new Set(["PEPEANGELL.DEV", "pepeangell5", "Documentos-Descargas"]);
+const excludedDocumentNames = new Set(["readme.md", "license", "license.md"]);
 
 async function readJson(path, fallback) {
   try {
@@ -231,6 +233,70 @@ function buildRepoDownloadEntry(repo, release) {
   };
 }
 
+function fileNameFromPath(path) {
+  return String(path || "").split("/").pop() || "";
+}
+
+function folderNameFromPath(path) {
+  const parts = String(path || "").split("/");
+  return parts.length > 1 ? parts.slice(0, -1).join("/") : "Raiz";
+}
+
+function readableFileTitle(path) {
+  const name = fileNameFromPath(path).replace(/\.[^.]+$/, "");
+  return titleFromRepoName(name);
+}
+
+function rawGithubUrl(fullName, branch, path) {
+  return `https://raw.githubusercontent.com/${fullName}/${encodeURIComponent(branch)}/${encodeGithubTreePath(path)}`;
+}
+
+function githubBlobUrl(fullName, branch, path) {
+  return `https://github.com/${fullName}/blob/${encodeURIComponent(branch)}/${encodeGithubTreePath(path)}`;
+}
+
+async function buildDocumentsDownloadEntry(repo) {
+  const fullName = repo?.full_name || documentsRepoFullName;
+  const branch = repo?.default_branch || "main";
+  const repoBase = String(repo?.html_url || `https://github.com/${fullName}`).replace(/\/$/, "");
+  const tree = await fetchJson(`https://api.github.com/repos/${fullName}/git/trees/${branch}?recursive=1`);
+  const documents = (tree?.tree || [])
+    .filter((entry) => entry.type === "blob" && entry.path)
+    .filter((entry) => !excludedDocumentNames.has(fileNameFromPath(entry.path).toLowerCase()))
+    .filter((entry) => !fileNameFromPath(entry.path).startsWith("."))
+    .map((entry) => ({
+      name: readableFileTitle(entry.path),
+      file_name: fileNameFromPath(entry.path),
+      folder: folderNameFromPath(entry.path),
+      path: entry.path,
+      size: entry.size || 0,
+      download_url: rawGithubUrl(fullName, branch, entry.path),
+      github_url: githubBlobUrl(fullName, branch, entry.path)
+    }))
+    .sort((a, b) => a.folder.localeCompare(b.folder) || a.file_name.localeCompare(b.file_name));
+
+  return {
+    type: "documents",
+    name: "Documentacion y descargas",
+    slug: "documentos-descargas",
+    status: "Documentos",
+    board: "PDFs, guias y recursos",
+    display: "Archivos publicados desde GitHub",
+    modules: ["PDF", "Documentacion", "Descargas"],
+    github_url: repoBase,
+    full_name: fullName,
+    default_branch: branch,
+    web_flasher_url: "",
+    binarios_url: "",
+    release_tag: "",
+    release_assets: [],
+    zip_url: `${repoBase}/archive/refs/heads/${branch}.zip`,
+    readme_url: "",
+    web_flasher_binaries: [],
+    documents
+  };
+}
+
 async function saveJson(path, data) {
   await mkdir(dirname(path), { recursive: true });
   await writeFile(path, `${JSON.stringify(data, null, 2)}\n`, "utf8");
@@ -242,6 +308,16 @@ async function main() {
   const repoByName = new Map(repos.map((repo) => [repo.full_name, repo]));
   const downloads = [];
   const includedFullNames = new Set();
+  const documentsRepo =
+    repoByName.get(documentsRepoFullName) || {
+      full_name: documentsRepoFullName,
+      name: "Documentos-Descargas",
+      html_url: `https://github.com/${documentsRepoFullName}`,
+      default_branch: "main"
+    };
+
+  downloads.push(await buildDocumentsDownloadEntry(documentsRepo));
+  includedFullNames.add(documentsRepoFullName);
 
   for (const flasher of flashers) {
     const fullName = repoNameFromUrl(flasher.github_url);

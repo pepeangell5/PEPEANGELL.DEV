@@ -1079,6 +1079,32 @@ p {
   font-size: 1rem;
 }
 
+.document-downloads {
+  display: grid;
+  gap: 10px;
+}
+
+.document-download {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px;
+  background: rgba(5, 7, 8, 0.44);
+  border: 1px solid rgba(57, 255, 136, 0.16);
+  border-radius: var(--radius);
+}
+
+.document-download p {
+  margin: 4px 0 0;
+}
+
+.document-download .button-row {
+  flex: 0 0 auto;
+  justify-content: flex-end;
+}
+
 .news-feed {
   display: grid;
   gap: 18px;
@@ -1470,5 +1496,14 @@ p {
 
   .support-mascot {
     width: min(68%, 220px);
+  }
+
+  .document-download {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .document-download .button-row {
+    justify-content: flex-start;
   }
 }

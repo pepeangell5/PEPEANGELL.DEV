@@ -86,15 +86,28 @@
         "Flash only compatible hardware. Verify board, display, pins and power before use.",
       "GitHub repo": "GitHub repo",
       "Descargas de proyectos y repos": "Project and repo downloads",
+      "Descargas de documentos, proyectos y repos": "Document, project and repo downloads",
+      "Documentacion y descargas": "Documentation and downloads",
+      "PDFs, guias y recursos": "PDFs, guides and resources",
+      "Archivos publicados desde GitHub": "Files published from GitHub",
+      "Documentos publicos, Web Flashers, binarios finales, releases y ZIP completos. La biblioteca de documentos se actualiza desde GitHub conforme subas archivos o carpetas nuevas.":
+        "Public documents, Web Flashers, final binaries, releases and full ZIP files. The document library updates from GitHub as you upload new files or folders.",
       "Accesos directos a Web Flashers, binarios finales, releases y ZIP completos. Los repos nuevos se agregan automaticamente aunque todavia no tengan flasher detectado.":
         "Direct access to Web Flashers, final binaries, releases and full ZIP files. New repos are added automatically even when no flasher has been detected yet.",
       "Accesos directos a Web Flashers, binarios finales, releases y ZIP completos. Los repos nuevos se agregan automáticamente aunque todavía no tengan flasher detectado.":
         "Direct access to Web Flashers, final binaries, releases and full ZIP files. New repos are added automatically even when no flasher has been detected yet.",
       "Recomendacion:": "Recommendation:",
       "Recomendación:": "Recommendation:",
+      "descarga documentacion desde la biblioteca cuando necesites manuales, guias o archivos de apoyo. Si el proyecto tiene Web Flasher, usa primero esa opcion para instalar firmware.":
+        "download documentation from the library when you need manuals, guides or support files. If the project has a Web Flasher, use that option first to install firmware.",
       "si el proyecto tiene Web Flasher, usa primero esa opcion. El binario final es el mismo archivo que usa el flasher para instalar el firmware.":
         "if the project has a Web Flasher, use that option first. The final binary is the same file the flasher uses to install the firmware.",
       "Buscar descarga": "Search download",
+      "Archivos:": "Files:",
+      "Abrir biblioteca": "Open library",
+      "Descargar": "Download",
+      "Ver en GitHub": "View on GitHub",
+      "Aun no hay documentos publicados en esta biblioteca.": "No documents have been published in this library yet.",
       "Ultima release:": "Latest release:",
       "Última release:": "Latest release:",
       "Binario final": "Final binary",
