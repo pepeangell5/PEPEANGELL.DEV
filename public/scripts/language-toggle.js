@@ -118,6 +118,8 @@
       "Reiniciar": "Reset",
       "Escribe cualquier tecla": "Type any key",
       "Haz clic aqui y comienza a escribir...": "Click here and start typing...",
+      "Escribe codigo": "Write code",
+      "Comienza a programar...": "Start coding...",
       "Entrada para simulacion de codigo": "Code simulation input",
       "Ultima release:": "Latest release:",
       "Última release:": "Latest release:",
