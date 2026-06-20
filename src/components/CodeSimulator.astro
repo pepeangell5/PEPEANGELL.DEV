@@ -1,0 +1,96 @@
+---
+import { sitePath } from "../utils/paths";
+---
+
+<section class="code-simulator" data-code-simulator>
+  <div class="matrix-rail matrix-rail-left" aria-hidden="true">
+    <span>01001101 ESP32 0xFF WiFi GPIO</span>
+    <span>10110110 BLE MQTT 0x3A UART</span>
+    <span>00101101 NRF24 SPI AUTH TLS</span>
+    <span>11010011 ESP-NOW RF PACKET</span>
+  </div>
+
+  <div class="simulator-console">
+    <div class="simulator-topbar">
+      <div class="simulator-traffic" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="simulator-session">
+        <span class="simulator-live-dot" aria-hidden="true"></span>
+        <span>LAB SESSION</span>
+        <strong>ACTIVE</strong>
+      </div>
+      <span class="simulator-clock" data-simulator-clock>00:00:00</span>
+    </div>
+
+    <div class="simulator-commandbar">
+      <label for="simulator-snippet">Codigo</label>
+      <select id="simulator-snippet" class="simulator-select" data-simulator-select aria-label="Elegir codigo"></select>
+      <button class="simulator-control" type="button" data-simulator-random>Otro codigo</button>
+      <button class="simulator-control" type="button" data-simulator-reset>Reiniciar</button>
+      <button class="simulator-control simulator-speed" type="button" data-simulator-speed>x1</button>
+    </div>
+
+    <div class="simulator-workspace">
+      <div class="simulator-editor">
+        <div class="simulator-tabs">
+          <span class="simulator-tab" data-simulator-file>network_lab.cpp</span>
+          <span class="simulator-language" data-simulator-language>C++ / ESP32</span>
+        </div>
+
+        <div class="simulator-code-shell" data-simulator-code-shell>
+          <pre class="simulator-lines" data-simulator-lines aria-hidden="true">1</pre>
+          <pre class="simulator-code"><code data-simulator-code></code></pre>
+        </div>
+
+        <div class="simulator-statusbar">
+          <span data-simulator-status>LISTO</span>
+          <span>UTF-8</span>
+          <span>ESP32 LAB</span>
+          <span data-simulator-percent>0%</span>
+        </div>
+      </div>
+
+      <aside class="simulator-side-panel">
+        <img
+          class="simulator-mascot"
+          src={sitePath("/assets/mascot-neon-cut.png")}
+          alt="Mascota rosa de PepeAngell Labs con lentes pixelados"
+        />
+        <div class="simulator-metrics" aria-live="polite">
+          <div><span>SCENARIO</span><strong data-simulator-scenario>WiFi Scanner</strong></div>
+          <div><span>KEYSTROKES</span><strong data-simulator-keystrokes>0000</strong></div>
+          <div><span>LINES</span><strong data-simulator-line-count>0001</strong></div>
+          <div><span>STREAM</span><strong class="simulator-online">ONLINE</strong></div>
+        </div>
+        <div class="simulator-terminal-log" aria-hidden="true">
+          <span>&gt; initializing visual core</span>
+          <span>&gt; loading esp32 toolchain</span>
+          <span>&gt; syntax engine ready</span>
+          <span class="simulator-online">&gt; waiting for input_</span>
+        </div>
+      </aside>
+    </div>
+
+    <div class="simulator-inputbar">
+      <label for="simulator-input">Escribe cualquier tecla</label>
+      <textarea
+        id="simulator-input"
+        data-simulator-input
+        rows="1"
+        spellcheck="false"
+        autocomplete="off"
+        aria-label="Entrada para simulacion de codigo"
+        placeholder="Haz clic aqui y comienza a escribir..."
+      ></textarea>
+      <div class="simulator-progress" aria-hidden="true"><span data-simulator-progress></span></div>
+    </div>
+  </div>
+
+  <div class="matrix-rail matrix-rail-right" aria-hidden="true">
+    <span>11100010 FREERTOS 0x01 CORE</span>
+    <span>00110101 HTTPS OTA CERT WIFI</span>
+    <span>10101001 CHANNEL RSSI FRAME</span>
+    <span>01011100 SENSOR JSON ASYNC</span>
+  </div>
+</section>
+
+<script src={sitePath("/scripts/code-simulator.js?v=20260620-1")}></script>

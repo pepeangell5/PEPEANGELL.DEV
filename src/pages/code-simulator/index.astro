@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CodeSimulator from "../../components/CodeSimulator.astro";
+---
+
+<BaseLayout
+  title="Code Simulator"
+  description="Simulador visual de codigo ESP32 y redes: cada tecla revela codigo real de distintos escenarios educativos."
+>
+  <section class="section code-simulator-section">
+    <div class="container">
+      <div class="section-header simulator-page-header">
+        <p class="eyebrow">Interactive developer console</p>
+        <h1>Code Simulator</h1>
+        <p>
+          Elige un escenario, presiona cualquier tecla y observa como aparece codigo real de ESP32 y redes en una
+          consola visual de laboratorio.
+        </p>
+      </div>
+
+      <CodeSimulator />
+    </div>
+  </section>
+</BaseLayout>
