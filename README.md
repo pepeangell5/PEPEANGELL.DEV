@@ -87,6 +87,7 @@ Update those files to change project cards, flashers, hardware notes, roadmap en
 ```text
 /
 /support/
+/shop/
 /firmware/
 /repos/
 /flashers/

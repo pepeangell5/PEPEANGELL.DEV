@@ -1,0 +1,121 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DisclaimerBanner from "../../components/DisclaimerBanner.astro";
+import { sitePath } from "../../utils/paths";
+
+const paypalUrl = "https://www.paypal.com/paypalme/pepeangell";
+
+const products = [
+  {
+    name: "ESP32 DevKit RF Lab Kit",
+    status: "Kit programado",
+    board: "ESP32 DevKit 30 pines",
+    description:
+      "Placa ESP32 DevKit preparada para laboratorio RF educativo, con firmware PepeAngell Labs instalado y modulos NRF24 listos para pruebas controladas.",
+    parts: ["ESP32 DevKit 30 pines", "2x NRF24 PA+LNA", "Bateria 3V", "Modulo de carga", "Step-up a 5V", "Firmware instalado"],
+    note: "Formato clasico, comodo para protoboard, pruebas de mesa y modificaciones."
+  },
+  {
+    name: "ESP32-C3 Super Mini RF Lab Kit",
+    status: "Kit compacto",
+    board: "ESP32-C3 Super Mini",
+    description:
+      "Version compacta del kit RF educativo, usando ESP32-C3 Super Mini con dos NRF24 PA+LNA y firmware PepeAngell Labs preinstalado.",
+    parts: ["ESP32-C3 Super Mini", "2x NRF24 PA+LNA", "Bateria 3V", "Modulo de carga", "Step-up a 5V", "Firmware instalado"],
+    note: "Ideal cuando buscas una placa mas pequena para montajes compactos."
+  }
+];
+---
+
+<BaseLayout
+  title="Tienda"
+  description="Kits fisicos programados por PepeAngell Labs con ESP32, NRF24 PA+LNA y firmware instalado para laboratorio educativo controlado."
+>
+  <section class="section shop-hero">
+    <div class="container shop-hero-layout">
+      <div class="shop-copy">
+        <p class="eyebrow">Lab shop</p>
+        <h1>Kits ESP32 programados</h1>
+        <p>
+          Placas preparadas con firmware PepeAngell Labs para pruebas educativas, laboratorio controlado y aprendizaje
+          de hardware embebido. Los pagos se realizan por PayPal y la disponibilidad se confirma antes del envio.
+        </p>
+        <div class="button-row">
+          <a class="button primary" href={paypalUrl} target="_blank" rel="noreferrer noopener">Pagar con PayPal</a>
+          <a class="button" href={sitePath("/contact/")} target="_blank" rel="noreferrer noopener">Preguntar disponibilidad</a>
+        </div>
+      </div>
+      <aside class="shop-panel" aria-label="Resumen de compra">
+        <p class="status">Pago directo</p>
+        <h2>paypal.me/pepeangell</h2>
+        <p>Antes de pagar, confirma disponibilidad, precio final y envio. En la nota del pago escribe el nombre del kit.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section compact">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Productos</p>
+        <h2>Kits disponibles</h2>
+        <p>Primera seleccion de placas fisicas con firmware instalado. Precios y existencias se pueden ajustar cuando definas inventario.</p>
+      </div>
+
+      <div class="grid shop-grid">
+        {
+          products.map((product) => (
+            <article class="card shop-card">
+              <div class="shop-card-top">
+                <p class="status">{product.status}</p>
+                <span class="shop-chip">{product.board}</span>
+              </div>
+              <h3>{product.name}</h3>
+              <p>{product.description}</p>
+
+              <div class="shop-parts">
+                <p class="small">Incluye:</p>
+                <ul>
+                  {product.parts.map((part) => <li>{part}</li>)}
+                </ul>
+              </div>
+
+              <p class="shop-note">{product.note}</p>
+              <div class="button-row">
+                <a class="button primary" href={paypalUrl} target="_blank" rel="noreferrer noopener">Comprar por PayPal</a>
+                <a class="button" href={sitePath("/contact/")} target="_blank" rel="noreferrer noopener">Dudas del kit</a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section compact">
+    <div class="container">
+      <div class="grid cards">
+        <article class="card highlight">
+          <p class="status">Proceso</p>
+          <h3>Compra simple</h3>
+          <p>Confirma disponibilidad, realiza el pago por PayPal y comparte tus datos de envio por el canal acordado.</p>
+        </article>
+        <article class="card">
+          <p class="status">Firmware</p>
+          <h3>Listo para probar</h3>
+          <p>El kit se entrega programado. Puede requerir bateria cargada, antenas conectadas y uso responsable en entorno permitido.</p>
+        </article>
+        <article class="card">
+          <p class="status">Uso responsable</p>
+          <h3>Laboratorio controlado</h3>
+          <p>Estos kits son para investigacion, aprendizaje y pruebas autorizadas. No se deben usar contra sistemas ajenos.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section compact">
+    <div class="container">
+      <DisclaimerBanner />
+    </div>
+  </section>
+</BaseLayout>

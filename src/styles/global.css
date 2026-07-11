@@ -294,6 +294,97 @@ p {
   border-color: rgba(217, 48, 29, 0.45);
 }
 
+.shop-hero {
+  padding-top: 74px;
+}
+
+.shop-hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 22px;
+  align-items: stretch;
+}
+
+.shop-copy,
+.shop-panel {
+  min-width: 0;
+  padding: 22px;
+  background:
+    linear-gradient(180deg, rgba(14, 24, 22, 0.95), rgba(6, 10, 10, 0.97)),
+    linear-gradient(110deg, rgba(57, 255, 136, 0.1), transparent 56%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.shop-panel {
+  border-color: rgba(57, 255, 136, 0.35);
+}
+
+.shop-panel h2 {
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  overflow-wrap: anywhere;
+}
+
+.shop-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.shop-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.shop-card-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shop-chip {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  padding: 4px 9px;
+  color: var(--green);
+  font-size: 0.78rem;
+  font-weight: 800;
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  background: rgba(57, 255, 136, 0.08);
+  border: 1px solid rgba(57, 255, 136, 0.24);
+  border-radius: 999px;
+}
+
+.shop-parts {
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+}
+
+.shop-parts p {
+  margin-bottom: 8px;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.shop-parts ul {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.shop-note {
+  margin-top: auto;
+  padding-top: 4px;
+  color: var(--soft);
+}
+
 .badge-row {
   display: flex;
   flex-wrap: wrap;
@@ -1911,6 +2002,11 @@ p {
   .grid.cards {
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  .shop-hero-layout,
+  .shop-grid {
+    grid-template-columns: 1fr;
   }
 
   .card {
