@@ -10,6 +10,7 @@
       "Inicio": "Home",
       "Apoyo": "Support",
       "Firmware": "Firmware",
+      "Tienda": "Shop",
       "Repos": "Repos",
       "Flashers": "Flashers",
       "Hardware": "Hardware",
@@ -189,9 +190,61 @@
         "Follow announcements, availability and community conversations on Telegram.",
       "Canal": "Channel",
       "Grupo": "Group",
+      "Open GitHub": "Open GitHub",
+      "Open Instagram": "Open Instagram",
+      "Open Facebook": "Open Facebook",
       "Updates visuales, avances de laboratorio y publicaciones cortas de proyectos.":
         "Visual updates, lab progress and short project posts.",
       "Comunidad y publicaciones relacionadas con ESP32 Tools.": "Community and posts related to ESP32 Tools.",
+      "Lab shop": "Lab shop",
+      "Kits ESP32 programados": "Programmed ESP32 kits",
+      "Placas preparadas con firmware RF-KILL para pruebas educativas, laboratorio controlado y aprendizaje de hardware embebido. Los pagos se realizan por PayPal y la disponibilidad se confirma antes del envio.":
+        "Boards prepared with RF-KILL firmware for educational testing, controlled lab work and embedded hardware learning. Payments are handled through PayPal and availability is confirmed before shipping.",
+      "Pagar con PayPal": "Pay with PayPal",
+      "Preguntar disponibilidad": "Ask availability",
+      "Pago directo": "Direct payment",
+      "Resumen de compra": "Purchase summary",
+      "Antes de pagar, confirma disponibilidad, precio final y envio. En la nota del pago escribe el nombre del kit.":
+        "Before paying, confirm availability, final price and shipping. In the payment note, write the kit name.",
+      "Productos": "Products",
+      "Kits disponibles": "Available kits",
+      "Primera seleccion de placas fisicas con firmware instalado. Precios y existencias se pueden ajustar cuando definas inventario.":
+        "First selection of physical boards with installed firmware. Prices and stock can be adjusted when inventory is defined.",
+      "Kit programado": "Programmed kit",
+      "Kit compacto": "Compact kit",
+      "ESP32 DevKit 30 pines": "ESP32 DevKit 30 pins",
+      "ESP32-C3 Super Mini": "ESP32-C3 Super Mini",
+      "RF-KILL ESP32 DevKit Kit": "RF-KILL ESP32 DevKit Kit",
+      "RF-KILL ESP32-C3 Super Mini Kit": "RF-KILL ESP32-C3 Super Mini Kit",
+      "Kit fisico basado en ESP32-WROOM DevKit con firmware RF-KILL instalado para demostracion academica, laboratorio RF controlado y practicas autorizadas.":
+        "Physical kit based on an ESP32-WROOM DevKit with RF-KILL firmware installed for academic demonstration, controlled RF lab work and authorized practice.",
+      "Version compacta con ESP32-C3 Super Mini y firmware RF-KILL headless: arranque automatico sin pantalla ni botones para laboratorio educativo controlado.":
+        "Compact version with ESP32-C3 Super Mini and headless RF-KILL firmware: automatic startup without screen or buttons for controlled educational lab work.",
+      "Incluye:": "Includes:",
+      "ESP32-WROOM DevKit 30 pines": "ESP32-WROOM DevKit 30 pins",
+      "2x nRF24L01+ PA+LNA": "2x nRF24L01+ PA+LNA",
+      "Bus SPI compartido para ambos modulos": "Shared SPI bus for both modules",
+      "Bateria 3V": "3V battery",
+      "Modulo de carga": "Charging module",
+      "Step-up a 5V": "5V step-up",
+      "Firmware RF-KILL instalado": "RF-KILL firmware installed",
+      "Formato clasico, comodo para pruebas de mesa, modificaciones y laboratorio controlado.":
+        "Classic format, convenient for bench testing, modifications and controlled lab work.",
+      "Ideal cuando buscas una placa mas pequena con arranque automatico para montajes compactos.":
+        "Ideal when you need a smaller board with automatic startup for compact builds.",
+      "Comprar por PayPal": "Buy with PayPal",
+      "Dudas del kit": "Kit questions",
+      "Proceso": "Process",
+      "Compra simple": "Simple purchase",
+      "Confirma disponibilidad, realiza el pago por PayPal y comparte tus datos de envio por el canal acordado.":
+        "Confirm availability, pay through PayPal and share your shipping details through the agreed channel.",
+      "Listo para probar": "Ready to test",
+      "El kit se entrega programado. Puede requerir bateria cargada, antenas conectadas y uso responsable en entorno permitido.":
+        "The kit is delivered programmed. It may require a charged battery, connected antennas and responsible use in a permitted environment.",
+      "Uso responsable": "Responsible use",
+      "Laboratorio controlado": "Controlled lab",
+      "Estos kits son para investigacion, aprendizaje y pruebas autorizadas. No se deben usar contra sistemas ajenos.":
+        "These kits are for research, learning and authorized testing. They must not be used against systems you do not own or control.",
       "Apoya PepeAngell Labs": "Support PepeAngell Labs",
       "Si mis firmwares, guias, web flashers o pruebas con ESP32 te han servido, puedes apoyar el laboratorio para mantener mas placas, pantallas, modulos RF, componentes y documentacion publica.":
         "If my firmware, guides, web flashers or ESP32 tests have helped you, you can support the lab to keep more boards, displays, RF modules, components and public documentation going.",
