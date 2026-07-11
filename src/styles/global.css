@@ -462,12 +462,23 @@ p {
 .nav-links {
   display: flex;
   flex: 1;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  min-width: 0;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   gap: 8px;
 }
 
+.nav-links::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
 .nav-links a {
+  flex: 0 0 auto;
   padding: 8px 10px;
   color: var(--muted);
   font-size: 0.9rem;
@@ -1881,7 +1892,7 @@ p {
   }
 
   main {
-    padding-top: 126px;
+    padding-top: 72px;
   }
 
   h1 {
@@ -1923,13 +1934,11 @@ p {
 
   .nav-links {
     flex: 1;
-    flex-wrap: nowrap;
     justify-content: flex-start;
     width: auto;
     min-width: 0;
-    padding-bottom: 4px;
+    padding-bottom: 0;
     overflow-x: auto;
-    scrollbar-width: thin;
   }
 
   .language-toggle {
