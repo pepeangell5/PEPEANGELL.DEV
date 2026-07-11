@@ -322,8 +322,15 @@ p {
   border-color: rgba(57, 255, 136, 0.35);
 }
 
+.shop-copy h1 {
+  max-width: 100%;
+  font-size: clamp(2.4rem, 5.4vw, 4.6rem);
+  line-height: 0.98;
+}
+
 .shop-panel h2 {
-  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  font-size: clamp(1.18rem, 1.8vw, 1.55rem);
+  line-height: 1.12;
   overflow-wrap: anywhere;
 }
 
@@ -469,10 +476,14 @@ p {
 
 .nav {
   display: flex;
+  width: 100%;
+  max-width: 1440px;
   min-height: 72px;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 10px;
+  padding-right: 14px;
+  padding-left: 14px;
 }
 
 .brand {
@@ -502,10 +513,12 @@ p {
   flex-wrap: nowrap;
   justify-content: flex-start;
   min-width: 0;
+  max-width: 100%;
   overflow-x: auto;
+  overscroll-behavior-inline: contain;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  gap: 8px;
+  gap: 6px;
 }
 
 .nav-links::-webkit-scrollbar {
@@ -516,7 +529,7 @@ p {
 
 .nav-links a {
   flex: 0 0 auto;
-  padding: 8px 10px;
+  padding: 8px 9px;
   color: var(--muted);
   font-size: 0.9rem;
   font-weight: 750;
@@ -557,6 +570,21 @@ p {
 .language-toggle button[aria-pressed="true"] {
   color: #031108;
   background: linear-gradient(135deg, var(--green), var(--amber));
+}
+
+@media (max-width: 1220px) {
+  .brand span:last-child {
+    display: none;
+  }
+
+  .nav-links {
+    gap: 4px;
+  }
+
+  .nav-links a {
+    padding: 7px 8px;
+    font-size: 0.84rem;
+  }
 }
 
 .hero {
