@@ -373,6 +373,29 @@ p {
   border-radius: 999px;
 }
 
+.shop-firmware {
+  display: grid;
+  gap: 3px;
+  padding: 12px 14px;
+  color: var(--soft);
+  background: rgba(57, 255, 136, 0.06);
+  border: 1px solid rgba(57, 255, 136, 0.18);
+  border-radius: var(--radius);
+}
+
+.shop-firmware span {
+  color: var(--green);
+  font-size: 0.72rem;
+  font-weight: 900;
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  text-transform: uppercase;
+}
+
+.shop-firmware strong {
+  color: var(--text);
+  line-height: 1.35;
+}
+
 .shop-parts {
   padding: 14px;
   background: rgba(255, 255, 255, 0.035);

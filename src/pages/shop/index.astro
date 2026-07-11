@@ -7,26 +7,46 @@ const paypalUrl = "https://www.paypal.com/paypalme/pepeangell";
 
 const products = [
   {
-    name: "ESP32 DevKit RF Lab Kit",
+    name: "RF-KILL ESP32 DevKit Kit",
     status: "Kit programado",
     board: "ESP32 DevKit 30 pines",
+    firmware: "RF-KILL ESP32-WROOM DevKit V2.0",
+    repoUrl: "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT",
     description:
-      "Placa ESP32 DevKit preparada para laboratorio RF educativo, con firmware PepeAngell Labs instalado y modulos NRF24 listos para pruebas controladas.",
+      "Kit fisico basado en ESP32-WROOM DevKit con firmware RF-KILL instalado para demostracion academica, laboratorio RF controlado y practicas autorizadas.",
     image: "/assets/shop/esp32-devkit-kit.jpg",
-    imageAlt: "Kit con ESP32 DevKit 30 pines y dos modulos NRF24 PA+LNA con antenas",
-    parts: ["ESP32 DevKit 30 pines", "2x NRF24 PA+LNA", "Bateria 3V", "Modulo de carga", "Step-up a 5V", "Firmware instalado"],
-    note: "Formato clasico, comodo para protoboard, pruebas de mesa y modificaciones."
+    imageAlt: "Kit RF-KILL con ESP32 DevKit 30 pines y dos modulos NRF24 PA+LNA con antenas",
+    parts: [
+      "ESP32-WROOM DevKit 30 pines",
+      "2x nRF24L01+ PA+LNA",
+      "Bus SPI compartido para ambos modulos",
+      "Bateria 3V",
+      "Modulo de carga",
+      "Step-up a 5V",
+      "Firmware RF-KILL instalado"
+    ],
+    note: "Formato clasico, comodo para pruebas de mesa, modificaciones y laboratorio controlado."
   },
   {
-    name: "ESP32-C3 Super Mini RF Lab Kit",
+    name: "RF-KILL ESP32-C3 Super Mini Kit",
     status: "Kit compacto",
     board: "ESP32-C3 Super Mini",
+    firmware: "RF-KILL ESP32-C3 SuperMini",
+    repoUrl: "https://github.com/pepeangell5/RF-KILL",
     description:
-      "Version compacta del kit RF educativo, usando ESP32-C3 Super Mini con dos NRF24 PA+LNA y firmware PepeAngell Labs preinstalado.",
+      "Version compacta con ESP32-C3 Super Mini y firmware RF-KILL headless: arranque automatico sin pantalla ni botones para laboratorio educativo controlado.",
     image: "/assets/shop/esp32-c3-supermini-kit.jpg",
-    imageAlt: "Kit compacto con ESP32-C3 Super Mini y dos modulos NRF24 PA+LNA con antenas",
-    parts: ["ESP32-C3 Super Mini", "2x NRF24 PA+LNA", "Bateria 3V", "Modulo de carga", "Step-up a 5V", "Firmware instalado"],
-    note: "Ideal cuando buscas una placa mas pequena para montajes compactos."
+    imageAlt: "Kit RF-KILL compacto con ESP32-C3 Super Mini y dos modulos NRF24 PA+LNA con antenas",
+    parts: [
+      "ESP32-C3 Super Mini",
+      "2x nRF24L01+ PA+LNA",
+      "Bus SPI compartido para ambos modulos",
+      "Bateria 3V",
+      "Modulo de carga",
+      "Step-up a 5V",
+      "Firmware RF-KILL instalado"
+    ],
+    note: "Ideal cuando buscas una placa mas pequena con arranque automatico para montajes compactos."
   }
 ];
 ---
@@ -41,7 +61,7 @@ const products = [
         <p class="eyebrow">Lab shop</p>
         <h1>Kits ESP32 programados</h1>
         <p>
-          Placas preparadas con firmware PepeAngell Labs para pruebas educativas, laboratorio controlado y aprendizaje
+          Placas preparadas con firmware RF-KILL para pruebas educativas, laboratorio controlado y aprendizaje
           de hardware embebido. Los pagos se realizan por PayPal y la disponibilidad se confirma antes del envio.
         </p>
         <div class="button-row">
@@ -82,6 +102,10 @@ const products = [
                 <span class="shop-chip">{product.board}</span>
               </div>
               <h3>{product.name}</h3>
+              <div class="shop-firmware">
+                <span>Firmware</span>
+                <strong>{product.firmware}</strong>
+              </div>
               <p>{product.description}</p>
 
               <div class="shop-parts">
@@ -94,6 +118,7 @@ const products = [
               <p class="shop-note">{product.note}</p>
               <div class="button-row">
                 <a class="button primary" href={paypalUrl} target="_blank" rel="noreferrer noopener">Comprar por PayPal</a>
+                <a class="button" href={product.repoUrl} target="_blank" rel="noreferrer noopener">Ver firmware</a>
                 <a class="button" href={sitePath("/contact/")} target="_blank" rel="noreferrer noopener">Dudas del kit</a>
               </div>
             </article>
