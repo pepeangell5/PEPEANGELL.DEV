@@ -337,6 +337,20 @@ p {
   gap: 12px;
 }
 
+.shop-product-image {
+  display: block;
+  width: 100%;
+  height: clamp(260px, 32vw, 380px);
+  object-fit: contain;
+  object-position: center;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(57, 255, 136, 0.08), transparent 48%),
+    rgba(3, 6, 6, 0.72);
+  border: 1px solid rgba(57, 255, 136, 0.18);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+}
+
 .shop-card-top {
   display: flex;
   flex-wrap: wrap;

@@ -12,6 +12,8 @@ const products = [
     board: "ESP32 DevKit 30 pines",
     description:
       "Placa ESP32 DevKit preparada para laboratorio RF educativo, con firmware PepeAngell Labs instalado y modulos NRF24 listos para pruebas controladas.",
+    image: "/assets/shop/esp32-devkit-kit.jpg",
+    imageAlt: "Kit con ESP32 DevKit 30 pines y dos modulos NRF24 PA+LNA con antenas",
     parts: ["ESP32 DevKit 30 pines", "2x NRF24 PA+LNA", "Bateria 3V", "Modulo de carga", "Step-up a 5V", "Firmware instalado"],
     note: "Formato clasico, comodo para protoboard, pruebas de mesa y modificaciones."
   },
@@ -21,6 +23,8 @@ const products = [
     board: "ESP32-C3 Super Mini",
     description:
       "Version compacta del kit RF educativo, usando ESP32-C3 Super Mini con dos NRF24 PA+LNA y firmware PepeAngell Labs preinstalado.",
+    image: "/assets/shop/esp32-c3-supermini-kit.jpg",
+    imageAlt: "Kit compacto con ESP32-C3 Super Mini y dos modulos NRF24 PA+LNA con antenas",
     parts: ["ESP32-C3 Super Mini", "2x NRF24 PA+LNA", "Bateria 3V", "Modulo de carga", "Step-up a 5V", "Firmware instalado"],
     note: "Ideal cuando buscas una placa mas pequena para montajes compactos."
   }
@@ -65,6 +69,14 @@ const products = [
         {
           products.map((product) => (
             <article class="card shop-card">
+              <img
+                class="shop-product-image"
+                src={sitePath(product.image)}
+                alt={product.imageAlt}
+                width="900"
+                height="1200"
+                loading="lazy"
+              />
               <div class="shop-card-top">
                 <p class="status">{product.status}</p>
                 <span class="shop-chip">{product.board}</span>
