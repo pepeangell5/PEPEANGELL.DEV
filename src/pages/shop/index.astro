@@ -4,6 +4,8 @@ import DisclaimerBanner from "../../components/DisclaimerBanner.astro";
 import { sitePath } from "../../utils/paths";
 
 const paypalUrl = "https://www.paypal.com/paypalme/pepeangell";
+const telegramChannelUrl = "https://t.me/+PnOGmQQDL05kN2Ix";
+const telegramGroupUrl = "https://t.me/esp32_tools";
 
 const products = [
   {
@@ -66,6 +68,8 @@ const products = [
         </p>
         <div class="button-row">
           <a class="button primary" href={paypalUrl} target="_blank" rel="noreferrer noopener">Pagar con PayPal</a>
+          <a class="button" href={telegramChannelUrl} target="_blank" rel="noreferrer noopener">Canal Telegram</a>
+          <a class="button" href={telegramGroupUrl} target="_blank" rel="noreferrer noopener">Grupo Telegram</a>
           <a class="button" href={sitePath("/contact/")} target="_blank" rel="noreferrer noopener">Preguntar disponibilidad</a>
         </div>
       </div>
@@ -140,6 +144,15 @@ const products = [
           <p class="status">Firmware</p>
           <h3>Listo para probar</h3>
           <p>El kit se entrega programado. Puede requerir bateria cargada, antenas conectadas y uso responsable en entorno permitido.</p>
+        </article>
+        <article class="card">
+          <p class="status">Comunidad</p>
+          <h3>Telegram ESP32 Tools</h3>
+          <p>Sigue avisos, disponibilidad y conversaciones de la comunidad desde Telegram.</p>
+          <div class="button-row">
+            <a class="button primary" href={telegramChannelUrl} target="_blank" rel="noreferrer noopener">Canal</a>
+            <a class="button" href={telegramGroupUrl} target="_blank" rel="noreferrer noopener">Grupo</a>
+          </div>
         </article>
         <article class="card">
           <p class="status">Uso responsable</p>

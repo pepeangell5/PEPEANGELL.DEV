@@ -1,10 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const telegramChannelUrl = "https://t.me/+PnOGmQQDL05kN2Ix";
+const telegramGroupUrl = "https://t.me/esp32_tools";
 ---
 
 <BaseLayout
   title="Contact"
-  description="Enlaces de contacto para PepeAngell Labs: GitHub, Instagram, Facebook, YouTube y email."
+  description="Enlaces de contacto para PepeAngell Labs: GitHub, Instagram, Facebook, Telegram y comunidad ESP32 Tools."
 >
   <section class="section">
     <div class="container">
@@ -16,8 +19,18 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <div class="grid cards">
         <article class="card">
           <h3>GitHub</h3>
-          <p>Repositorios públicos, firmware, notas y proyectos.</p>
+          <p>Repositorios publicos, firmware, notas y proyectos.</p>
           <a class="button primary" href="https://github.com/pepeangell5" target="_blank" rel="noreferrer noopener">Open GitHub</a>
+        </article>
+        <article class="card highlight">
+          <h3>Canal de Telegram</h3>
+          <p>Avisos, lanzamientos, publicaciones y novedades de PepeAngell Labs.</p>
+          <a class="button primary" href={telegramChannelUrl} target="_blank" rel="noreferrer noopener">Abrir canal</a>
+        </article>
+        <article class="card">
+          <h3>Grupo de Telegram</h3>
+          <p>Comunidad ESP32 Tools para dudas, avances, pruebas y conversacion tecnica.</p>
+          <a class="button primary" href={telegramGroupUrl} target="_blank" rel="noreferrer noopener">Abrir grupo</a>
         </article>
         <article class="card">
           <h3>Instagram</h3>

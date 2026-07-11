@@ -172,6 +172,23 @@
       "Enlaces oficiales para seguir proyectos, repositorios y actualizaciones de PepeAngell Labs.":
         "Official links to follow PepeAngell Labs projects, repositories and updates.",
       "Repositorios públicos, firmware, notas y proyectos.": "Public repositories, firmware, notes and projects.",
+      "Repositorios publicos, firmware, notas y proyectos.": "Public repositories, firmware, notes and projects.",
+      "Canal de Telegram": "Telegram channel",
+      "Avisos, lanzamientos, publicaciones y novedades de PepeAngell Labs.":
+        "Announcements, releases, posts and PepeAngell Labs updates.",
+      "Abrir canal": "Open channel",
+      "Grupo de Telegram": "Telegram group",
+      "Comunidad ESP32 Tools para dudas, avances, pruebas y conversacion tecnica.":
+        "ESP32 Tools community for questions, progress, testing and technical conversation.",
+      "Abrir grupo": "Open group",
+      "Canal Telegram": "Telegram channel",
+      "Grupo Telegram": "Telegram group",
+      "Comunidad": "Community",
+      "Telegram ESP32 Tools": "Telegram ESP32 Tools",
+      "Sigue avisos, disponibilidad y conversaciones de la comunidad desde Telegram.":
+        "Follow announcements, availability and community conversations on Telegram.",
+      "Canal": "Channel",
+      "Grupo": "Group",
       "Updates visuales, avances de laboratorio y publicaciones cortas de proyectos.":
         "Visual updates, lab progress and short project posts.",
       "Comunidad y publicaciones relacionadas con ESP32 Tools.": "Community and posts related to ESP32 Tools.",
