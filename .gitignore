@@ -4,6 +4,7 @@ dist/
 .npm-cache/
 .tmp/
 .codex-devserver*
+.codex-*.log
 .DS_Store
 npm-debug.log*
 *.local

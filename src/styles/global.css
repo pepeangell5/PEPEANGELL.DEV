@@ -142,6 +142,7 @@ main,
 
 main {
   flex: 1;
+  padding-top: 72px;
 }
 
 .container {
@@ -419,9 +420,11 @@ p {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 10;
+  right: 0;
+  left: 0;
+  z-index: 30;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(7, 9, 12, 0.86);
   backdrop-filter: blur(16px);
@@ -445,13 +448,15 @@ p {
 }
 
 .brand-mark {
-  display: grid;
-  width: 34px;
-  height: 34px;
-  place-items: center;
-  color: #140900;
-  background: linear-gradient(135deg, var(--green), var(--amber));
-  border-radius: 8px;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  padding: 2px;
+  background: rgba(57, 255, 136, 0.08);
+  border: 1px solid rgba(57, 255, 136, 0.22);
+  border-radius: 10px;
+  filter: drop-shadow(0 0 10px rgba(255, 44, 169, 0.28));
 }
 
 .nav-links {
@@ -1873,6 +1878,10 @@ p {
 
   .section.compact {
     padding: 24px 0;
+  }
+
+  main {
+    padding-top: 126px;
   }
 
   h1 {
