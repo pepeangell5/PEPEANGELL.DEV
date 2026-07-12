@@ -581,6 +581,43 @@ p {
   background: linear-gradient(135deg, var(--green), var(--amber));
 }
 
+.nav-menu-toggle {
+  display: none;
+  flex: 0 0 auto;
+  width: 42px;
+  height: 38px;
+  place-items: center;
+  gap: 4px;
+  padding: 8px;
+  background: rgba(15, 20, 26, 0.88);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.nav-menu-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--green);
+  border-radius: 999px;
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.nav-menu-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-menu-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-menu-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
 @media (max-width: 1220px) {
   .brand span:last-child {
     display: none;
@@ -593,6 +630,49 @@ p {
   .nav-links a {
     padding: 7px 8px;
     font-size: 0.84rem;
+  }
+}
+
+@media (max-width: 1120px) {
+  .nav {
+    overflow: visible;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 72px;
+    right: 12px;
+    left: 12px;
+    display: none;
+    max-height: calc(100vh - 92px);
+    overflow: auto;
+    flex: none;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px;
+    background: rgba(7, 9, 12, 0.98);
+    border: 1px solid rgba(57, 255, 136, 0.22);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    width: 100%;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    font-size: 0.92rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .nav-menu-toggle {
+    display: grid;
+    margin-left: auto;
   }
 }
 
@@ -2002,21 +2082,17 @@ p {
     min-height: auto;
     align-items: center;
     flex-direction: row;
-    overflow: hidden;
-    padding: 10px 0;
+    overflow: visible;
+    padding: 10px 12px;
   }
 
   .nav-links {
-    flex: 1;
-    justify-content: flex-start;
-    width: auto;
-    min-width: 0;
-    padding-bottom: 0;
-    overflow-x: auto;
+    top: 64px;
+    max-height: calc(100vh - 84px);
   }
 
   .language-toggle {
-    align-self: flex-start;
+    align-self: center;
   }
 
   .language-toggle button {
