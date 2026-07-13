@@ -1,0 +1,56 @@
+name: Refresh public catalogs
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-public-catalogs
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refresh repositories, READMEs, flashers and downloads
+        run: npm run fetch:catalogs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit refreshed catalogs
+        run: |
+          git add \
+            public/data/repos.json \
+            public/data/readmes.json \
+            public/data/flashers.json \
+            public/data/downloads.json \
+            src/data/flashers.generated.json \
+            src/data/downloads.generated.json
+
+          if git diff --cached --quiet; then
+            echo "Catalogs are already current."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: refresh public GitHub catalogs"
+          git push origin main
