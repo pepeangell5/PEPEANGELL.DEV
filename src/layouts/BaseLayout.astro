@@ -3,6 +3,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { sitePath } from "../utils/paths";
 import globalStyles from "../styles/global.css?inline";
+import lightContrastStyles from "../styles/light-contrast.css?inline";
 
 interface Props {
   title: string;
@@ -44,6 +45,7 @@ const goatCounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
       })();
     </script>
     <style is:inline set:html={globalStyles}></style>
+    <style is:inline set:html={lightContrastStyles}></style>
     {
       goatCounterCode && (
         <script

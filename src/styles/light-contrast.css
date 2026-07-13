@@ -1,0 +1,11 @@
+html[data-theme="light"] {
+  --green: #b31574;
+  --green-soft: #9f0f65;
+}
+
+html[data-theme="light"] .markdown-body :not(pre) > code {
+  color: #7e104c;
+  background: #ffe3f2;
+  border: 1px solid rgba(179, 21, 116, 0.24);
+  box-decoration-break: clone;
+}
