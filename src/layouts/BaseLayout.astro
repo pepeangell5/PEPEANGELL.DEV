@@ -61,7 +61,7 @@ const goatCounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
       <main id="main-content">
         <slot />
       </main>
-      {!singleScreen && <Footer />}
+      <Footer />
     </div>
     <script src={sitePath("/scripts/language-toggle.js?v=20260620-1")} defer></script>
   </body>

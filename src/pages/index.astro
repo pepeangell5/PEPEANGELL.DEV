@@ -10,3 +10,69 @@ import Hero from "../components/Hero.astro";
 >
   <Hero />
 </BaseLayout>
+
+<style is:global>
+  body.single-screen .site-shell {
+    height: 100svh;
+    min-height: 0;
+  }
+
+  body.single-screen main {
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  body.single-screen .site-footer {
+    flex: 0 0 auto;
+    padding: 8px 0;
+  }
+
+  body.single-screen .footer-inner,
+  body.single-screen .footer-inner > div {
+    align-items: center;
+  }
+
+  body.single-screen .footer-inner > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+  }
+
+  body.single-screen .site-footer p,
+  body.single-screen .visitor-counter {
+    margin: 0;
+  }
+
+  body.single-screen .site-footer p {
+    line-height: 1.35;
+  }
+
+  @media (max-width: 760px) {
+    body.single-screen .hero-mascot {
+      min-height: 332px;
+      margin-top: 12px;
+    }
+
+    body.single-screen .footer-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 4px 12px;
+    }
+
+    body.single-screen .footer-inner > div {
+      display: contents;
+    }
+
+    body.single-screen .footer-inner > p {
+      grid-column: 1 / -1;
+      justify-self: end;
+    }
+
+    body.single-screen .site-footer .small,
+    body.single-screen .visitor-counter {
+      font-size: 0.76rem;
+    }
+  }
+</style>

@@ -2,14 +2,10 @@
 const goatCounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
 ---
 
-{
-  goatCounterCode && (
-    <div class="visitor-counter" data-goatcounter-code={goatCounterCode}>
-      <span class="visitor-counter-label">Visitas reales</span>
-      <strong id="visitor-counter-total" class="visitor-counter-value">...</strong>
-    </div>
-  )
-}
+<div class="visitor-counter" data-goatcounter-code={goatCounterCode || undefined}>
+  <span class="visitor-counter-label">Visitas reales</span>
+  <strong id="visitor-counter-total" class="visitor-counter-value">{goatCounterCode ? "..." : "privado"}</strong>
+</div>
 
 {
   goatCounterCode && (
