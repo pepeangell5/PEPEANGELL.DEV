@@ -193,6 +193,27 @@ main {
   padding-top: 72px;
 }
 
+body.single-screen {
+  height: 100svh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+body.single-screen .site-shell,
+body.single-screen main {
+  height: 100svh;
+  min-height: 0;
+}
+
+body.single-screen main {
+  flex: 0 0 100svh;
+}
+
+body.single-screen .hero {
+  height: 100%;
+  min-height: 0;
+}
+
 .container {
   width: 100%;
   max-width: 1120px;

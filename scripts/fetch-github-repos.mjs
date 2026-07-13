@@ -8,6 +8,8 @@ const priorityRepos = [
   "BWifiKill-ESP32-V4.0",
   "ESP32-TOOLS-PRO-480x320-V2.0",
   "CYBERDECK-MINI-ESP32",
+  "RF-KILL-ESP32-DEVKIT",
+  "RF-KILL",
   "BWifiKill-BW16-5Ghz",
   "BWifiKill-ESP32",
   "ESP32-TOOLS-MODERN"

@@ -8,9 +8,10 @@ interface Props {
   title: string;
   description: string;
   robots?: string;
+  singleScreen?: boolean;
 }
 
-const { title, description, robots } = Astro.props;
+const { title, description, robots, singleScreen = false } = Astro.props;
 const pageTitle = title === "ESP32-TOOLS" ? title : `${title} | ESP32-TOOLS`;
 const canonical = new URL(Astro.url.pathname, "https://pepeangell.dev").toString();
 const goatCounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
@@ -53,14 +54,14 @@ const goatCounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
       )
     }
   </head>
-  <body>
+  <body class={singleScreen ? "single-screen" : undefined}>
     <a class="skip-link" href="#main-content">Saltar al contenido</a>
     <div class="site-shell">
       <Header />
       <main id="main-content">
         <slot />
       </main>
-      <Footer />
+      {!singleScreen && <Footer />}
     </div>
     <script src={sitePath("/scripts/language-toggle.js?v=20260620-1")} defer></script>
   </body>

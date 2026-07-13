@@ -1,72 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
-import DisclaimerBanner from "../components/DisclaimerBanner.astro";
-import LatestRepos from "../components/LatestRepos.astro";
-import { sitePath } from "../utils/paths";
 ---
 
 <BaseLayout
   title="ESP32-TOOLS"
   description="Portafolio tecnico de ESP32-TOOLS: ESP32, RF, BLE, WiFi, cyberdecks, firmware educativo y herramientas de laboratorio."
+  singleScreen
 >
   <Hero />
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <p class="eyebrow">Lab access</p>
-        <h2>Firmware, descargas y apoyo</h2>
-        <p>Accesos directos a documentacion publica, binarios, herramientas de flasheo y formas de apoyar ESP32-TOOLS.</p>
-      </div>
-      <div class="grid cards">
-        <article class="card highlight">
-          <p class="status">READMEs</p>
-          <h3>Firmware documentado</h3>
-          <p>Explora componentes, funciones, conexiones y notas de cada firmware sin salir de la pagina.</p>
-          <div class="button-row">
-            <a class="button primary" href={sitePath("/firmware/")} target="_blank" rel="noreferrer noopener">Ver firmware</a>
-          </div>
-        </article>
-        <article class="card">
-          <p class="status">Web flashers</p>
-          <h3>Instalacion web</h3>
-          <p>Accede a los enlaces de flasheo disponibles y a los repositorios cuando el flasher aun no esta publicado.</p>
-          <div class="button-row">
-            <a class="button" href={sitePath("/flashers/")} target="_blank" rel="noreferrer noopener">Ver flashers</a>
-          </div>
-        </article>
-        <article class="card">
-          <p class="status">Descargas</p>
-          <h3>Binarios y ZIP</h3>
-          <p>Descarga binarios finales, manifests, releases y ZIP completos de los repositorios principales.</p>
-          <div class="button-row">
-            <a class="button primary" href={sitePath("/downloads/")} target="_blank" rel="noreferrer noopener">Ver descargas</a>
-          </div>
-        </article>
-        <article class="card">
-          <p class="status">Apoyo</p>
-          <h3>Ayuda al laboratorio</h3>
-          <p>Apoya nuevas pruebas, componentes, documentacion y mantenimiento de proyectos educativos.</p>
-          <div class="button-row">
-            <a class="button primary" href={sitePath("/support/")} target="_blank" rel="noreferrer noopener">Apoyar</a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-  <section class="section compact">
-    <div class="container">
-      <div class="section-header">
-        <p class="eyebrow">GitHub</p>
-        <h2>Latest public repositories</h2>
-        <p>Esta sección muestra primero los repos principales del laboratorio y se actualiza desde datos públicos de GitHub.</p>
-      </div>
-      <LatestRepos />
-    </div>
-  </section>
-  <section class="section compact">
-    <div class="container">
-      <DisclaimerBanner />
-    </div>
-  </section>
 </BaseLayout>
