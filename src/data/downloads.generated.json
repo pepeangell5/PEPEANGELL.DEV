@@ -295,6 +295,42 @@
     ]
   },
   {
+    "name": "ESP32 TOOLS",
+    "slug": "esp32-tools",
+    "status": "Web flasher",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32",
+      "WiFi"
+    ],
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS",
+    "full_name": "pepeangell5/ESP32-TOOLS",
+    "default_branch": "main",
+    "web_flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS/",
+    "binarios_url": "https://github.com/pepeangell5/ESP32-TOOLS/tree/main/firmware",
+    "release_tag": "esp32-tools",
+    "release_assets": [
+      {
+        "name": "firmware-merged.bin",
+        "url": "https://github.com/pepeangell5/ESP32-TOOLS/releases/download/esp32-tools/firmware-merged.bin",
+        "size": 1961040,
+        "download_count": 10
+      }
+    ],
+    "zip_url": "https://github.com/pepeangell5/ESP32-TOOLS/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#esp32-tools",
+    "web_flasher_binaries": [
+      {
+        "label": "firmware-merged.bin",
+        "path": "firmware/firmware-merged.bin",
+        "url": "https://pepeangell5.github.io/ESP32-TOOLS/firmware/firmware-merged.bin",
+        "offset": 0,
+        "chip_family": "ESP32"
+      }
+    ]
+  },
+  {
     "name": "RF KILL ESP32 DEVKIT",
     "slug": "rf-kill-esp32-devkit",
     "status": "Web flasher",
@@ -318,7 +354,7 @@
         "name": "rf-kill-esp32-devkit-web-v2.bin",
         "url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT/releases/download/RF-KILL-DEVKIT/rf-kill-esp32-devkit-web-v2.bin",
         "size": 336752,
-        "download_count": 5
+        "download_count": 6
       }
     ],
     "zip_url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT/archive/refs/heads/main.zip",
@@ -357,42 +393,6 @@
         "label": "firmware-merged.bin",
         "path": "firmware/firmware-merged.bin",
         "url": "https://pepeangell5.github.io/ESP32-TOOLS-MODERN/firmware/firmware-merged.bin",
-        "offset": 0,
-        "chip_family": "ESP32"
-      }
-    ]
-  },
-  {
-    "name": "ESP32 TOOLS",
-    "slug": "esp32-tools",
-    "status": "Web flasher",
-    "board": "ESP32 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP32",
-      "WiFi"
-    ],
-    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS",
-    "full_name": "pepeangell5/ESP32-TOOLS",
-    "default_branch": "main",
-    "web_flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS/",
-    "binarios_url": "https://github.com/pepeangell5/ESP32-TOOLS/tree/main/firmware",
-    "release_tag": "esp32-tools",
-    "release_assets": [
-      {
-        "name": "firmware-merged.bin",
-        "url": "https://github.com/pepeangell5/ESP32-TOOLS/releases/download/esp32-tools/firmware-merged.bin",
-        "size": 1961040,
-        "download_count": 10
-      }
-    ],
-    "zip_url": "https://github.com/pepeangell5/ESP32-TOOLS/archive/refs/heads/main.zip",
-    "readme_url": "/firmware/#esp32-tools",
-    "web_flasher_binaries": [
-      {
-        "label": "firmware-merged.bin",
-        "path": "firmware/firmware-merged.bin",
-        "url": "https://pepeangell5.github.io/ESP32-TOOLS/firmware/firmware-merged.bin",
         "offset": 0,
         "chip_family": "ESP32"
       }
