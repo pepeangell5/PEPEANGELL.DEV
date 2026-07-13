@@ -1,6 +1,17 @@
 name: Refresh public catalogs
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/refresh-catalogs.yml"
+      - "scripts/fetch-github-repos.mjs"
+      - "scripts/fetch-github-readmes.mjs"
+      - "scripts/generate-flashers.mjs"
+      - "scripts/generate-downloads.mjs"
+      - "package.json"
+      - "package-lock.json"
   workflow_dispatch:
   schedule:
     - cron: "23 */6 * * *"
