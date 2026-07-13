@@ -7,10 +7,11 @@ import globalStyles from "../styles/global.css?inline";
 interface Props {
   title: string;
   description: string;
+  robots?: string;
 }
 
-const { title, description } = Astro.props;
-const pageTitle = title === "PepeAngell Labs" ? title : `${title} | PepeAngell Labs`;
+const { title, description, robots } = Astro.props;
+const pageTitle = title === "ESP32-TOOLS" ? title : `${title} | ESP32-TOOLS`;
 const canonical = new URL(Astro.url.pathname, "https://pepeangell.dev").toString();
 const goatCounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
 ---
@@ -22,6 +23,7 @@ const goatCounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    {robots && <meta name="robots" content={robots} />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" href={sitePath("/favicon.ico?v=20260615-2")} sizes="any" />
     <link rel="icon" href={sitePath("/favicon-32.png?v=20260615-2")} type="image/png" sizes="32x32" />
@@ -30,8 +32,16 @@ const goatCounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
-    <meta property="og:site_name" content="PepeAngell Labs" />
+    <meta property="og:site_name" content="ESP32-TOOLS" />
     <meta name="theme-color" content="#07090c" />
+    <script is:inline>
+      (() => {
+        try {
+          const theme = localStorage.getItem("pepeangell-labs-theme-v1");
+          if (theme === "light") document.documentElement.dataset.theme = "light";
+        } catch {}
+      })();
+    </script>
     <style is:inline set:html={globalStyles}></style>
     {
       goatCounterCode && (

@@ -14,7 +14,7 @@
     "voltage": "USB/VIN normalmente a 5V; GPIO y lógica a 3.3V.",
     "usage": "Firmware ESP32, pantallas OLED/TFT, NRF24L01, CC1101, botones y herramientas portables.",
     "warning": "No conectar señales de 5V directo a GPIO. Verificar pinout de la placa exacta antes de flashear o cablear.",
-    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/esp32U.png",
+    "image_url": "/assets/hardware/esp32-u.png",
     "image_alt": "Placa ESP32 usada en BWifiKill"
   },
   {
@@ -29,7 +29,7 @@
     "voltage": "GPIO a 3.3V; alimentación según la placa.",
     "usage": "Montajes compactos, cyberdecks y pruebas donde la posición de antena importa.",
     "warning": "No energizar transmisiones sin antena conectada cuando el módulo lo requiere.",
-    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/esp32U.png",
+    "image_url": "/assets/hardware/esp32-u.png",
     "image_alt": "ESP32-U con antena externa"
   },
   {
@@ -61,7 +61,7 @@
     "voltage": "Usar carga y alimentación recomendada por M5Stack.",
     "usage": "IR remote, herramientas portátiles, interfaces con teclado y prototipos de bolsillo.",
     "warning": "Respetar pinout Grove y límites del dispositivo; no asumir que todos los GPIO están libres.",
-    "image_url": "https://raw.githubusercontent.com/pepeangell5/IR_REMOTE_CARDPUTER_ADV/main/assets/3.jpg",
+    "image_url": "/assets/hardware/m5stack-cardputer.jpg",
     "image_alt": "M5Stack Cardputer con módulo IR"
   },
   {
@@ -78,7 +78,7 @@
     "voltage": "Lógica recomendada a 3.3V; algunos breakouts aceptan alimentación de 5V pero señales de 3.3V.",
     "usage": "ESP32 Tools Pro 480x320, dashboards gráficos, menús grandes y visualización de herramientas RF/WiFi.",
     "warning": "El cableado SPI largo o flojo puede causar parpadeos, colores incorrectos o fallos visuales.",
-    "image_url": "https://raw.githubusercontent.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/main/img/componentes/pantalla9488.png",
+    "image_url": "/assets/hardware/tft-ili9488.png",
     "image_alt": "Pantalla TFT ILI9488 480x320"
   },
   {
@@ -96,7 +96,7 @@
     "voltage": "Muchos módulos trabajan con 3.3V; algunos breakouts toleran 5V en VCC.",
     "usage": "BWifiKill ESP32 V4.0, menús compactos, indicadores y herramientas con pocos botones.",
     "warning": "Confirmar dirección I2C, normalmente 0x3C o 0x3D, y controlador real antes de cargar firmware.",
-    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/Pines_pantalla.png",
+    "image_url": "/assets/hardware/oled-ssd1306.png",
     "image_alt": "Pines de pantalla OLED SSD1306"
   },
   {
@@ -128,7 +128,7 @@
     "voltage": "3.3V obligatorio; no alimentar con 5V.",
     "usage": "BWifiKill, nRF Link, nRF Chat, pruebas de enlace, lectura pasiva y ejercicios RF.",
     "warning": "Necesita alimentación estable; agregar capacitor cercano entre VCC y GND mejora la estabilidad.",
-    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/NRF24.png",
+    "image_url": "/assets/hardware/nrf24l01.png",
     "image_alt": "Módulo nRF24L01+"
   },
   {
@@ -144,7 +144,7 @@
     "voltage": "3.3V con corriente suficiente y buena regulación.",
     "usage": "Comparación de estabilidad, alcance en laboratorio y pruebas con antena externa.",
     "warning": "Usar solo en entornos permitidos, con antena adecuada y sin interferir dispositivos de terceros.",
-    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/2NRF24.png",
+    "image_url": "/assets/hardware/nrf24-dual.png",
     "image_alt": "Dos módulos nRF24 usados en laboratorio"
   },
   {
@@ -161,7 +161,7 @@
     "voltage": "Ambos módulos a 3.3V estable.",
     "usage": "Lecturas simultáneas, Dual nRF Scope, nRF Chat y pruebas de canales bajos/altos.",
     "warning": "Separar CE/CSN y cuidar la alimentación; dos módulos consumen más que uno.",
-    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/2NRF24.png",
+    "image_url": "/assets/hardware/nrf24-dual.png",
     "image_alt": "Configuración con dos módulos nRF24"
   },
   {
@@ -176,7 +176,7 @@
     "voltage": "3.3V.",
     "usage": "Diagnóstico RF, integración SPI y proyectos ESP32 Tools Pro.",
     "warning": "Respetar bandas, potencias y permisos aplicables antes de transmitir.",
-    "image_url": "https://raw.githubusercontent.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/main/img/componentes/cc1101.png",
+    "image_url": "/assets/hardware/cc1101.png",
     "image_alt": "Módulo CC1101"
   },
   {
@@ -213,7 +213,7 @@
     "voltage": "Depende del módulo; normalmente señales compatibles con 3.3V en microcontroladores.",
     "usage": "IR_REMOTE Cardputer ADV, clonación educativa de mandos y pruebas de protocolos IR.",
     "warning": "Usar para dispositivos propios o pruebas autorizadas.",
-    "image_url": "https://raw.githubusercontent.com/pepeangell5/IR_REMOTE_CARDPUTER_ADV/main/assets/2.jpg",
+    "image_url": "/assets/hardware/ir-transceiver.jpg",
     "image_alt": "Módulo IR transmisor y receptor"
   },
   {
@@ -227,7 +227,7 @@
     "voltage": "Entrada 5V; batería LiPo 3.7V nominal.",
     "usage": "Montajes portátiles con batería LiPo y step-up hacia ESP32.",
     "warning": "Usar baterías en buen estado y módulos con protección cuando el montaje lo requiera.",
-    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/tp4056.png",
+    "image_url": "/assets/hardware/tp4056.png",
     "image_alt": "Módulo cargador TP4056"
   },
   {
@@ -243,7 +243,7 @@
     "voltage": "Entrada desde LiPo; salida ajustada a 5V antes de conectar.",
     "usage": "Alimentación portátil de ESP32 desde batería.",
     "warning": "Ajustar la salida con multímetro antes de conectar el ESP32.",
-    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/stepup.png",
+    "image_url": "/assets/hardware/mt3608-step-up.png",
     "image_alt": "Módulo step-up 5V"
   },
   {
@@ -259,7 +259,7 @@
     "voltage": "3.7V nominal; 4.2V cargada.",
     "usage": "Cyberdecks, BWifiKill portable y montajes con TP4056 + step-up.",
     "warning": "Evitar cortos, golpes, sobrecarga o descarga excesiva.",
-    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/bateria.png",
+    "image_url": "/assets/hardware/lipo-battery.png",
     "image_alt": "Batería LiPo"
   },
   {
@@ -321,7 +321,7 @@
     "voltage": "Debe soportar la corriente del circuito.",
     "usage": "Encendido general en montajes portátiles.",
     "warning": "Colocarlo en la línea correcta de alimentación y aislar terminales expuestos.",
-    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/interruptor.png",
+    "image_url": "/assets/hardware/slide-switch.png",
     "image_alt": "Interruptor usado en montaje portátil"
   },
   {
@@ -337,7 +337,7 @@
     "voltage": "Depende del circuito montado.",
     "usage": "Prototipos de BWifiKill, cableado de módulos, pruebas de pinout y montajes compactos.",
     "warning": "Revisar continuidad y evitar puentes accidentales antes de energizar.",
-    "image_url": "https://raw.githubusercontent.com/pepeangell5/BWifiKill-ESP32-V4.0/main/img/componentes/placapcb.png",
+    "image_url": "/assets/hardware/perfboard.png",
     "image_alt": "PCB o protoboard para montaje"
   },
   {

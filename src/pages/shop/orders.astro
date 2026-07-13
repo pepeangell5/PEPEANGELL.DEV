@@ -1,0 +1,205 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { sitePath } from "../../utils/paths";
+---
+
+<BaseLayout
+  title="Pedidos"
+  description="Consulta el estado de pago, envio e historial de un pedido de PepeAngell Labs."
+  robots="noindex, nofollow"
+>
+  <section class="section shop-hero">
+    <div class="container shop-hero-layout">
+      <div class="shop-copy">
+        <p class="eyebrow">Pedidos</p>
+        <h1>Estado de tu pedido</h1>
+        <p>
+          Ingresa el codigo que recibiste al terminar el checkout y el email usado en la compra.
+          Aqui veras pago, envio e historial sin exponer informacion privada de otros pedidos.
+        </p>
+        <div class="button-row">
+          <a class="button" href={sitePath("/shop/")}>Tienda</a>
+          <a class="button" href={sitePath("/shop/checkout/")}>Nuevo pedido</a>
+        </div>
+      </div>
+      <aside class="shop-panel">
+        <p class="status">Confirmacion</p>
+        <h2>@pepeangell</h2>
+        <p>Si acabas de pagar, envia tu codigo y comprobante por Telegram para que Pepe actualice el estado.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section compact">
+    <div class="container order-lookup-layout">
+      <form class="card shop-form" data-order-lookup-form>
+        <div>
+          <p class="eyebrow">Buscar</p>
+          <h2>Consulta privada</h2>
+        </div>
+
+        <div class="shop-state" data-order-state hidden></div>
+
+        <label>
+          Codigo de pedido
+          <input class="field" name="public_code" placeholder="PA-XXXXXXXXXX" autocomplete="off" required />
+        </label>
+
+        <label>
+          Email del pedido
+          <input class="field" name="customer_email" type="email" autocomplete="email" required />
+        </label>
+
+        <button class="button primary" type="submit" data-order-submit>Ver pedido</button>
+      </form>
+
+      <article class="card order-result" data-order-result>
+        <p class="status">Sin busqueda</p>
+        <h2>Tu historial aparecera aqui</h2>
+        <p>El seguimiento se actualiza cuando Pepe confirma pago, prepara envio y registra eventos del pedido.</p>
+      </article>
+    </div>
+  </section>
+
+<script>
+  import { formatMoney, shopSupabase, shopSupabaseConfigured, statusLabel } from "../../lib/shopSupabase";
+
+  const form = document.querySelector("[data-order-lookup-form]");
+  const state = document.querySelector("[data-order-state]");
+  const result = document.querySelector("[data-order-result]");
+  const submitButton = document.querySelector("[data-order-submit]");
+
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#039;"
+    })[char]);
+  }
+
+  function setState(message, tone = "info") {
+    if (!(state instanceof HTMLElement)) return;
+    state.textContent = message;
+    state.dataset.tone = tone;
+    state.hidden = false;
+  }
+
+  function renderOrder(order) {
+    if (!(result instanceof HTMLElement)) return;
+
+    const items = Array.isArray(order.items) ? order.items : [];
+    const events = Array.isArray(order.events) ? order.events : [];
+
+    result.innerHTML = `
+      <p class="status">Pedido ${escapeHtml(order.public_code)}</p>
+      <h2>${escapeHtml(statusLabel(order.overall_status))}</h2>
+      <div class="shop-status-grid">
+        <div>
+          <span>Pago</span>
+          <strong>${escapeHtml(statusLabel(order.payment_status))}</strong>
+        </div>
+        <div>
+          <span>Envio</span>
+          <strong>${escapeHtml(statusLabel(order.shipping_status))}</strong>
+        </div>
+        <div>
+          <span>Total</span>
+          <strong>${formatMoney(order.total_amount, order.currency)}</strong>
+        </div>
+      </div>
+      <div class="shop-order-block">
+        <h3>Items</h3>
+        <ul class="shop-clean-list">
+          ${items.map((item) => `
+            <li>
+              <span>${escapeHtml(item.product_name)} x ${escapeHtml(item.quantity)}</span>
+              <strong>${formatMoney(item.unit_price, item.currency)}</strong>
+            </li>
+          `).join("")}
+        </ul>
+      </div>
+      ${(order.carrier || order.tracking_number || order.shipped_at) ? `
+        <div class="shop-order-block">
+          <h3>Envio</h3>
+          <ul class="shop-clean-list">
+            ${order.carrier ? `<li><span>Paqueteria</span><strong>${escapeHtml(order.carrier)}</strong></li>` : ""}
+            ${order.tracking_number ? `<li><span>Guia</span><strong>${escapeHtml(order.tracking_number)}</strong></li>` : ""}
+            ${order.shipped_at ? `<li><span>Fecha de envio</span><strong>${new Date(order.shipped_at).toLocaleString("es-MX")}</strong></li>` : ""}
+          </ul>
+        </div>
+      ` : ""}
+      <div class="shop-order-block">
+        <h3>Historial</h3>
+        <ol class="shop-timeline">
+          ${events.map((event) => `
+            <li>
+              <time>${new Date(event.created_at).toLocaleString("es-MX")}</time>
+              <strong>${escapeHtml(statusLabel(event.event_type))}</strong>
+              <p>${escapeHtml(event.message)}</p>
+            </li>
+          `).join("")}
+        </ol>
+      </div>
+    `;
+  }
+
+  function restoreLastOrder() {
+    const raw = localStorage.getItem("pepeangell:lastOrder");
+    if (!raw || !(form instanceof HTMLFormElement)) return;
+
+    try {
+      const lastOrder = JSON.parse(raw);
+      const codeInput = form.elements.namedItem("public_code");
+      const emailInput = form.elements.namedItem("customer_email");
+      if (codeInput instanceof HTMLInputElement) codeInput.value = lastOrder.public_code ?? "";
+      if (emailInput instanceof HTMLInputElement) emailInput.value = lastOrder.customer_email ?? "";
+    } catch {
+      localStorage.removeItem("pepeangell:lastOrder");
+    }
+  }
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!shopSupabaseConfigured || !shopSupabase) {
+      setState("Falta configurar Supabase para consultar pedidos.", "warning");
+      return;
+    }
+
+    if (!(form instanceof HTMLFormElement)) return;
+    const formData = new FormData(form);
+
+    if (submitButton instanceof HTMLButtonElement) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Buscando...";
+    }
+
+    const { data, error } = await shopSupabase.rpc("track_shop_order", {
+      p_public_code: formData.get("public_code"),
+      p_customer_email: formData.get("customer_email")
+    });
+
+    if (submitButton instanceof HTMLButtonElement) {
+      submitButton.disabled = false;
+      submitButton.textContent = "Ver pedido";
+    }
+
+    if (error) {
+      setState("No pude consultar el pedido. Revisa el codigo y el email.", "warning");
+      return;
+    }
+
+    if (!data) {
+      setState("No encontre un pedido con ese codigo y email.", "warning");
+      return;
+    }
+
+    if (state instanceof HTMLElement) state.hidden = true;
+    renderOrder(data);
+  });
+
+  restoreLastOrder();
+</script>
+</BaseLayout>

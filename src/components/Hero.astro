@@ -3,35 +3,41 @@ import { sitePath } from "../utils/paths";
 ---
 
 <section class="hero">
-  <img
-    class="hero-visual hero-visual-secondary"
-    src={sitePath("/assets/mascot-classic-cut.png")}
-    alt=""
-    width="980"
-    height="1026"
-    aria-hidden="true"
-  />
-  <img
-    class="hero-visual hero-visual-primary"
-    src={sitePath("/assets/mascot-neon-cut.png")}
-    alt="Mascota rosa de PepeAngell Labs con lentes pixelados"
-    width="980"
-    height="1144"
-  />
+  <div class="hero-circuit" aria-hidden="true"></div>
   <div class="container hero-content">
-    <p class="eyebrow">/root/embedded-lab</p>
-    <h1>PepeAngell Labs</h1>
-    <p class="hero-subtitle">ESP32 · RF · BLE · WiFi · Cyberdecks · Embedded Projects</p>
-    <p class="hero-description">
-      Firmware educativo, hardware hacking controlado y herramientas de laboratorio para ESP32, RF, BLE, WiFi,
-      displays, cyberdecks y pruebas embebidas autorizadas.
-    </p>
-    <div class="button-row">
-      <a class="button primary" href={sitePath("/firmware/")} target="_blank" rel="noreferrer noopener">Ver firmwares</a>
-      <a class="button" href={sitePath("/flashers/")} target="_blank" rel="noreferrer noopener">Web Flashers</a>
-      <a class="button" href={sitePath("/support/")} target="_blank" rel="noreferrer noopener">Apoyar</a>
-      <a class="button" href="https://github.com/pepeangell5" target="_blank" rel="noreferrer noopener">GitHub</a>
-      <a class="button danger" href={sitePath("/disclaimer/")} target="_blank" rel="noreferrer noopener">Disclaimer</a>
+    <div class="hero-copy">
+      <p class="eyebrow">/root/embedded-lab</p>
+      <h1>ESP32-TOOLS</h1>
+      <p class="hero-subtitle">
+        ESP32 <span>&middot;</span> RF <span>&middot;</span> BLE <span>&middot;</span> WiFi <span>&middot;</span> Cyberdecks
+      </p>
+      <p class="hero-description">
+        Firmware educativo, hardware hacking controlado y herramientas de laboratorio para proyectos embebidos y
+        pruebas autorizadas.
+      </p>
+      <div class="button-row hero-primary-actions">
+        <a class="button primary" href={sitePath("/firmware/")} target="_blank" rel="noreferrer noopener">Ver firmwares</a>
+        <a class="button" href={sitePath("/flashers/")} target="_blank" rel="noreferrer noopener">Web Flashers</a>
+        <a class="button" href={sitePath("/shop/")}>Tienda</a>
+      </div>
+      <div class="hero-link-row" aria-label="Enlaces secundarios">
+        <a href={sitePath("/shop/admin/")}>Admin tienda</a>
+        <a href={sitePath("/support/")} target="_blank" rel="noreferrer noopener">Apoyar</a>
+        <a href="https://github.com/pepeangell5" target="_blank" rel="noreferrer noopener">GitHub</a>
+        <a class="danger-link" href={sitePath("/disclaimer/")} target="_blank" rel="noreferrer noopener">Disclaimer</a>
+      </div>
+    </div>
+    <div class="hero-mascot" aria-label="Mascota de ESP32-TOOLS">
+      <span class="hero-mascot-label">LAB // ONLINE</span>
+      <span class="hero-mascot-line hero-mascot-line-one" aria-hidden="true"></span>
+      <span class="hero-mascot-line hero-mascot-line-two" aria-hidden="true"></span>
+      <img
+        src={sitePath("/assets/mascot-esp32-tools-v2.png")}
+        alt="Mascota rosa de ESP32-TOOLS con lentes pixelados"
+        width="1254"
+        height="1254"
+      />
+      <span class="hero-mascot-code">PA-ESP32 / 24.7</span>
     </div>
   </div>
 </section>

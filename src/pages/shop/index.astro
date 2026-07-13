@@ -9,6 +9,7 @@ const telegramGroupUrl = "https://t.me/esp32_tools";
 
 const products = [
   {
+    slug: "rf-kill-esp32-devkit",
     name: "RF-KILL ESP32 DevKit Kit",
     status: "Kit programado",
     board: "ESP32 DevKit 30 pines",
@@ -27,9 +28,14 @@ const products = [
       "Step-up a 5V",
       "Firmware RF-KILL instalado"
     ],
-    note: "Formato clasico, comodo para pruebas de mesa, modificaciones y laboratorio controlado."
+    note: "Formato clasico, comodo para pruebas de mesa, modificaciones y laboratorio controlado.",
+    price: 0,
+    currency: "USD",
+    stock: 0,
+    is_available: false
   },
   {
+    slug: "rf-kill-esp32-c3-supermini",
     name: "RF-KILL ESP32-C3 Super Mini Kit",
     status: "Kit compacto",
     board: "ESP32-C3 Super Mini",
@@ -48,7 +54,11 @@ const products = [
       "Step-up a 5V",
       "Firmware RF-KILL instalado"
     ],
-    note: "Ideal cuando buscas una placa mas pequena con arranque automatico para montajes compactos."
+    note: "Ideal cuando buscas una placa mas pequena con arranque automatico para montajes compactos.",
+    price: 0,
+    currency: "USD",
+    stock: 0,
+    is_available: false
   }
 ];
 ---
@@ -67,16 +77,18 @@ const products = [
           de hardware embebido. Los pagos se realizan por PayPal y la disponibilidad se confirma antes del envio.
         </p>
         <div class="button-row">
-          <a class="button primary" href={paypalUrl} target="_blank" rel="noreferrer noopener">Pagar con PayPal</a>
+          <a class="button primary" href={sitePath("/shop/checkout/")}>Iniciar pedido</a>
+          <a class="button" href={sitePath("/shop/orders/")}>Ver pedido</a>
+          <a class="button" href={sitePath("/shop/admin/")}>Admin tienda</a>
           <a class="button" href={telegramChannelUrl} target="_blank" rel="noreferrer noopener">Canal Telegram</a>
           <a class="button" href={telegramGroupUrl} target="_blank" rel="noreferrer noopener">Grupo Telegram</a>
-          <a class="button" href={sitePath("/contact/")} target="_blank" rel="noreferrer noopener">Preguntar disponibilidad</a>
+          <a class="button" href={sitePath("/contact/")}>Preguntar disponibilidad</a>
         </div>
       </div>
       <aside class="shop-panel" aria-label="Resumen de compra">
-        <p class="status">Pago directo</p>
-        <h2>paypal.me/pepeangell</h2>
-        <p>Antes de pagar, confirma disponibilidad, precio final y envio. En la nota del pago escribe el nombre del kit.</p>
+        <p class="status">Flujo manual</p>
+        <h2>Checkout + PayPal + Telegram</h2>
+        <p>El pedido guarda tus datos de envio, queda pendiente de confirmacion y se paga por PayPal. Pepe confirma por Telegram: @pepeangell.</p>
       </aside>
     </div>
   </section>
@@ -86,13 +98,15 @@ const products = [
       <div class="section-header">
         <p class="eyebrow">Productos</p>
         <h2>Kits disponibles</h2>
-        <p>Primera seleccion de placas fisicas con firmware instalado. Precios y existencias se pueden ajustar cuando definas inventario.</p>
+        <p>La disponibilidad, precio y stock se cargan desde Supabase cuando la tienda esta conectada. Si un kit no aparece disponible, confirma por Telegram antes de pagar.</p>
       </div>
 
-      <div class="grid shop-grid">
+      <div class="shop-state" data-shop-state hidden></div>
+
+      <div class="grid shop-grid" data-products-grid>
         {
           products.map((product) => (
-            <article class="card shop-card">
+            <article class="card shop-card" data-product-slug={product.slug}>
               <img
                 class="shop-product-image"
                 src={sitePath(product.image)}
@@ -106,6 +120,10 @@ const products = [
                 <span class="shop-chip">{product.board}</span>
               </div>
               <h3>{product.name}</h3>
+              <div class="shop-purchase-row">
+                <strong class="shop-price">Precio por confirmar</strong>
+                <span class="shop-stock">Disponibilidad por confirmar</span>
+              </div>
               <div class="shop-firmware">
                 <span>Firmware</span>
                 <strong>{product.firmware}</strong>
@@ -121,9 +139,9 @@ const products = [
 
               <p class="shop-note">{product.note}</p>
               <div class="button-row">
-                <a class="button primary" href={paypalUrl} target="_blank" rel="noreferrer noopener">Comprar por PayPal</a>
+                <a class="button primary" href={sitePath(`/shop/checkout/?product=${product.slug}`)}>Reservar kit</a>
                 <a class="button" href={product.repoUrl} target="_blank" rel="noreferrer noopener">Ver firmware</a>
-                <a class="button" href={sitePath("/contact/")} target="_blank" rel="noreferrer noopener">Dudas del kit</a>
+                <a class="button" href={sitePath("/contact/")}>Dudas del kit</a>
               </div>
             </article>
           ))
@@ -138,7 +156,7 @@ const products = [
         <article class="card highlight">
           <p class="status">Proceso</p>
           <h3>Compra simple</h3>
-          <p>Confirma disponibilidad, realiza el pago por PayPal y comparte tus datos de envio por el canal acordado.</p>
+          <p>Completa el checkout, paga por PayPal y envia tu codigo de pedido a @pepeangell en Telegram.</p>
         </article>
         <article class="card">
           <p class="status">Firmware</p>
@@ -168,4 +186,111 @@ const products = [
       <DisclaimerBanner />
     </div>
   </section>
+
+<script>
+  import { formatMoney, normalizeProduct, shopSupabase, shopSupabaseConfigured } from "../../lib/shopSupabase";
+
+  const grid = document.querySelector("[data-products-grid]");
+  const state = document.querySelector("[data-shop-state]");
+
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#039;"
+    })[char]);
+  }
+
+  function showState(message, tone = "info") {
+    if (!(state instanceof HTMLElement)) return;
+    state.textContent = message;
+    state.dataset.tone = tone;
+    state.hidden = false;
+  }
+
+  function productCard(product) {
+    const article = document.createElement("article");
+    article.className = "card shop-card";
+    article.dataset.productSlug = product.slug;
+
+    const normalizedProduct = normalizeProduct(product);
+    const parts = Array.isArray(normalizedProduct.parts) ? normalizedProduct.parts : [];
+    const repoLink = normalizedProduct.repoUrl
+      ? `<a class="button" href="${escapeHtml(normalizedProduct.repoUrl)}" target="_blank" rel="noreferrer noopener">Ver firmware</a>`
+      : "";
+    const availability = normalizedProduct.isAvailable && normalizedProduct.stock > 0 ? `${normalizedProduct.stock} en stock` : "Por confirmar";
+    const reserveClass = normalizedProduct.isAvailable && normalizedProduct.stock > 0 ? "button primary" : "button";
+    const reserveLabel = normalizedProduct.isAvailable && normalizedProduct.stock > 0 ? "Reservar kit" : "Consultar";
+    const reserveHref = normalizedProduct.isAvailable && normalizedProduct.stock > 0
+      ? `/shop/checkout/?product=${encodeURIComponent(normalizedProduct.slug)}`
+      : "/contact/";
+
+    article.innerHTML = `
+      <img
+        class="shop-product-image"
+        src="${escapeHtml(normalizedProduct.image)}"
+        alt="${escapeHtml(normalizedProduct.imageAlt)}"
+        width="900"
+        height="1200"
+        loading="lazy"
+      />
+      <div class="shop-card-top">
+        <p class="status">${escapeHtml(normalizedProduct.status)}</p>
+        <span class="shop-chip">${escapeHtml(normalizedProduct.board)}</span>
+      </div>
+      <h3>${escapeHtml(normalizedProduct.name)}</h3>
+      <div class="shop-purchase-row">
+        <strong class="shop-price">${formatMoney(normalizedProduct.price, normalizedProduct.currency)}</strong>
+        <span class="shop-stock">${availability}</span>
+      </div>
+      <div class="shop-firmware">
+        <span>Firmware</span>
+        <strong>${escapeHtml(normalizedProduct.firmware)}</strong>
+      </div>
+      <p>${escapeHtml(normalizedProduct.description)}</p>
+      <div class="shop-parts">
+        <p class="small">Incluye:</p>
+        <ul>${parts.map((part) => `<li>${escapeHtml(part)}</li>`).join("")}</ul>
+      </div>
+      <p class="shop-note">${escapeHtml(normalizedProduct.note)}</p>
+      <div class="button-row">
+        <a class="${reserveClass}" href="${reserveHref}">${reserveLabel}</a>
+        ${repoLink}
+        <a class="button" href="/contact/">Dudas del kit</a>
+      </div>
+    `;
+
+    return article;
+  }
+
+  async function loadProducts() {
+    if (!shopSupabaseConfigured || !shopSupabase || !(grid instanceof HTMLElement)) {
+      showState("Tienda en modo catalogo: falta conectar Supabase para mostrar precio y stock en vivo.");
+      return;
+    }
+
+    const { data, error } = await shopSupabase
+      .from("products")
+      .select("id, slug, name, description, firmware_name, repository_url, image_url, price_mxn, stock, active")
+      .eq("active", true)
+      .order("created_at", { ascending: true });
+
+    if (error) {
+      showState("No pude cargar stock en vivo. Puedes consultar disponibilidad por Telegram.", "warning");
+      return;
+    }
+
+    if (!data?.length) {
+      showState("No hay kits marcados como disponibles ahora mismo. Pepe puede activar stock desde el admin.");
+      return;
+    }
+
+    grid.replaceChildren(...data.map(productCard));
+    state?.setAttribute("hidden", "");
+  }
+
+  loadProducts();
+</script>
 </BaseLayout>

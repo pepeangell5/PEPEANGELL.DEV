@@ -1,0 +1,663 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { sitePath } from "../../utils/paths";
+---
+
+<BaseLayout
+  title="Admin tienda"
+  description="Administracion privada de stock, precios, disponibilidad y pedidos de PepeAngell Labs."
+  robots="noindex, nofollow"
+>
+  <section class="section shop-hero">
+    <div class="container shop-hero-layout">
+      <div class="shop-copy">
+        <p class="eyebrow">Admin privado</p>
+        <h1>Control de tienda</h1>
+        <p>
+          Panel privado para actualizar stock, precios, disponibilidad y estados de pedidos. El acceso real
+          lo controla Supabase con la tabla de administradores y RLS.
+        </p>
+        <div class="button-row">
+          <a class="button" href={sitePath("/shop/")}>Tienda</a>
+          <a class="button" href={sitePath("/shop/orders/")}>Seguimiento publico</a>
+        </div>
+      </div>
+      <aside class="shop-panel">
+        <p class="status">Solo Pepe</p>
+        <h2>Supabase Auth + RLS</h2>
+        <p>Despues de iniciar sesion, el acceso lo valida el registro admin en <strong>profiles</strong>.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section compact">
+    <div class="container shop-admin-shell">
+      <form class="card shop-form shop-login" data-admin-login action="#" onsubmit="return false">
+        <div>
+          <p class="eyebrow">Acceso</p>
+          <h2>Entrar al admin</h2>
+          <p>Usa contraseña si creaste el usuario en Supabase. Si dejas contraseña vacia, se enviara un enlace magico.</p>
+        </div>
+        <div class="shop-state" data-admin-login-state hidden></div>
+        <label>
+          Email admin
+          <input class="field" name="email" type="email" autocomplete="email" required />
+        </label>
+        <label>
+          Contraseña
+          <input class="field" name="password" type="password" autocomplete="current-password" />
+        </label>
+        <button class="button primary" type="submit" data-admin-login-submit>Entrar</button>
+      </form>
+
+      <div class="shop-admin-app" data-admin-app hidden>
+        <div class="shop-admin-toolbar">
+          <div>
+            <p class="eyebrow">Sesion activa</p>
+            <h2 data-admin-email>Admin</h2>
+          </div>
+          <div class="button-row">
+            <button class="button" type="button" data-admin-refresh>Actualizar</button>
+            <button class="button danger" type="button" data-admin-logout>Salir</button>
+          </div>
+        </div>
+
+        <div class="shop-state" data-admin-state hidden></div>
+
+        <div class="shop-admin-tabs" role="tablist" aria-label="Administracion tienda">
+          <button class="shop-admin-tab active" type="button" data-admin-tab="products">Productos</button>
+          <button class="shop-admin-tab" type="button" data-admin-tab="orders">Pedidos</button>
+        </div>
+
+        <section class="shop-admin-panel" data-admin-panel="products">
+          <div class="section-header">
+            <p class="eyebrow">Inventario</p>
+            <h2>Stock, precio y disponibilidad</h2>
+          </div>
+          <div class="grid shop-admin-products" data-admin-products></div>
+        </section>
+
+        <section class="shop-admin-panel" data-admin-panel="orders" hidden>
+          <div class="section-header">
+            <p class="eyebrow">Pedidos</p>
+            <h2>Pago, envio e historial</h2>
+          </div>
+          <div class="shop-admin-orders" data-admin-orders></div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <div class="shop-modal-backdrop" data-delete-modal hidden>
+    <div class="card shop-modal" role="dialog" aria-modal="true" aria-labelledby="delete-order-title">
+      <p class="eyebrow">Confirmar eliminacion</p>
+      <h2 id="delete-order-title">Eliminar pedido entregado</h2>
+      <p data-delete-modal-copy>Esta accion tambien borrara el historial del pedido.</p>
+      <div class="button-row">
+        <button class="button danger" type="button" data-delete-modal-confirm>Confirmar eliminar</button>
+        <button class="button" type="button" data-delete-modal-cancel>Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  import { formatMoney, shopSupabase, shopSupabaseConfigured, statusLabel } from "../../lib/shopSupabase";
+
+  const loginForm = document.querySelector("[data-admin-login]");
+  const loginState = document.querySelector("[data-admin-login-state]");
+  const loginSubmit = document.querySelector("[data-admin-login-submit]");
+  const app = document.querySelector("[data-admin-app]");
+  const adminEmail = document.querySelector("[data-admin-email]");
+  const adminState = document.querySelector("[data-admin-state]");
+  const productsEl = document.querySelector("[data-admin-products]");
+  const ordersEl = document.querySelector("[data-admin-orders]");
+  const refreshButton = document.querySelector("[data-admin-refresh]");
+  const logoutButton = document.querySelector("[data-admin-logout]");
+  const deleteModal = document.querySelector("[data-delete-modal]");
+  const deleteModalCopy = document.querySelector("[data-delete-modal-copy]");
+  const deleteModalConfirm = document.querySelector("[data-delete-modal-confirm]");
+  const deleteModalCancel = document.querySelector("[data-delete-modal-cancel]");
+  let pendingDeleteOrder = null;
+
+  const paymentStatuses = ["pending", "confirmed", "cancelled", "refunded"];
+  const shippingStatuses = ["not_ready", "ready", "shipped", "delivered", "cancelled"];
+  const orderStatuses = ["new", "confirmed", "in_progress", "completed", "cancelled"];
+
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#039;"
+    })[char]);
+  }
+
+  function setBox(box, message, tone = "info") {
+    if (!(box instanceof HTMLElement)) return;
+    box.textContent = message;
+    box.dataset.tone = tone;
+    box.hidden = false;
+  }
+
+  function clearBox(box) {
+    if (box instanceof HTMLElement) box.hidden = true;
+  }
+
+  function setLoginBusy(isBusy) {
+    if (!(loginSubmit instanceof HTMLButtonElement)) return;
+    loginSubmit.disabled = isBusy;
+    loginSubmit.textContent = isBusy ? "Entrando..." : "Entrar";
+  }
+
+  function describeError(error) {
+    return error?.message ? ` Detalle: ${error.message}` : "";
+  }
+
+  function openDeleteModal(id, code) {
+    pendingDeleteOrder = { id, code };
+    if (deleteModalCopy instanceof HTMLElement) {
+      deleteModalCopy.textContent = `Eliminar definitivamente el pedido ${code}? Tambien se borrara su historial.`;
+    }
+    if (deleteModal instanceof HTMLElement) deleteModal.hidden = false;
+  }
+
+  function closeDeleteModal() {
+    pendingDeleteOrder = null;
+    if (deleteModal instanceof HTMLElement) deleteModal.hidden = true;
+    if (deleteModalConfirm instanceof HTMLButtonElement) {
+      deleteModalConfirm.disabled = false;
+      deleteModalConfirm.textContent = "Confirmar eliminar";
+    }
+  }
+
+  function isFutureJwtError(error) {
+    return /jwt issued at future/i.test(error?.message ?? "");
+  }
+
+  async function wait(ms) {
+    await new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  async function refreshAuthSession() {
+    if (!shopSupabase) return false;
+    const { error } = await shopSupabase.auth.refreshSession();
+    return !error;
+  }
+
+  function optionList(values, selected) {
+    return values
+      .map((value) => `<option value="${value}" ${value === selected ? "selected" : ""}>${escapeHtml(statusLabel(value))}</option>`)
+      .join("");
+  }
+
+  function renderProducts(products) {
+    if (!(productsEl instanceof HTMLElement)) return;
+
+    if (!products.length) {
+      productsEl.innerHTML = `<article class="card"><p>No hay productos creados.</p></article>`;
+      return;
+    }
+
+    productsEl.innerHTML = products
+      .map((product) => `
+        <form class="card shop-admin-product" data-product-form="${product.id}">
+          <div class="shop-card-top">
+            <p class="status">${product.active ? "Activo" : "Pausado"}</p>
+            <span class="shop-chip">${escapeHtml(product.slug)}</span>
+          </div>
+          <h3>${escapeHtml(product.name)}</h3>
+          <p>${escapeHtml(product.firmware_name ?? "")}</p>
+          <label>
+            Precio MXN
+            <input class="field" name="price_mxn" type="number" min="0" step="0.01" value="${escapeHtml(product.price_mxn)}" required />
+          </label>
+          <label>
+            Stock
+            <input class="field" name="stock" type="number" min="0" step="1" value="${escapeHtml(product.stock)}" required />
+          </label>
+          <label class="shop-switch">
+            <input type="checkbox" name="active" ${product.active ? "checked" : ""} />
+            <span>Disponible en tienda</span>
+          </label>
+          <button class="button primary" type="submit" data-product-submit>Guardar producto</button>
+          <div class="shop-state" data-product-state hidden></div>
+        </form>
+      `)
+      .join("");
+  }
+
+  function renderOrders(orders, items, events) {
+    if (!(ordersEl instanceof HTMLElement)) return;
+
+    if (!orders.length) {
+      ordersEl.innerHTML = `<article class="card"><p>Todavia no hay pedidos.</p></article>`;
+      return;
+    }
+
+    ordersEl.innerHTML = orders
+      .map((order) => {
+        const orderItems = items.filter((item) => item.order_id === order.id);
+        const orderEvents = events.filter((event) => event.order_id === order.id);
+
+        return `
+          <article class="card shop-admin-order">
+            <div class="shop-card-top">
+              <p class="status">${escapeHtml(order.order_code)}</p>
+              <span class="shop-chip">${new Date(order.created_at).toLocaleString("es-MX")}</span>
+            </div>
+            <h3>${escapeHtml(order.customer_name)}</h3>
+            <p>${escapeHtml(order.customer_email)}${order.telegram_username ? ` - ${escapeHtml(order.telegram_username)}` : ""}</p>
+            <p>${escapeHtml(order.address_line_1)}${order.address_line_2 ? `, ${escapeHtml(order.address_line_2)}` : ""}, ${escapeHtml(order.city)}, ${escapeHtml(order.state_or_province)}, ${escapeHtml(order.country)}, ${escapeHtml(order.postal_code)}</p>
+            <div class="shop-status-grid">
+              <div><span>Pago</span><strong>${escapeHtml(statusLabel(order.payment_status))}</strong></div>
+              <div><span>Envio</span><strong>${escapeHtml(statusLabel(order.shipping_status))}</strong></div>
+              <div><span>Total</span><strong>${formatMoney(order.total_mxn, "MXN")}</strong></div>
+            </div>
+            ${(order.carrier || order.tracking_number || order.admin_notes) ? `
+              <div class="shop-order-block">
+                <h3>Envio privado</h3>
+                <ul class="shop-clean-list">
+                  ${order.carrier ? `<li><span>Paqueteria</span><strong>${escapeHtml(order.carrier)}</strong></li>` : ""}
+                  ${order.tracking_number ? `<li><span>Guia</span><strong>${escapeHtml(order.tracking_number)}</strong></li>` : ""}
+                  ${order.admin_notes ? `<li><span>Nota admin</span><strong>${escapeHtml(order.admin_notes)}</strong></li>` : ""}
+                </ul>
+              </div>
+            ` : ""}
+            <div class="shop-order-block">
+              <h3>Items</h3>
+              <ul class="shop-clean-list">
+                ${orderItems.map((item) => `
+                  <li>
+                    <span>${escapeHtml(item.product_name)} x ${escapeHtml(item.quantity)}</span>
+                    <strong>${formatMoney(item.unit_price_mxn, "MXN")}</strong>
+                  </li>
+                `).join("")}
+              </ul>
+            </div>
+            <form class="shop-admin-order-form" data-order-form="${order.id}">
+              <div class="shop-form-grid">
+                <label>
+                  Pago
+                  <select class="field" name="payment_status">${optionList(paymentStatuses, order.payment_status)}</select>
+                </label>
+                <label>
+                  Envio
+                  <select class="field" name="shipping_status">${optionList(shippingStatuses, order.shipping_status)}</select>
+                </label>
+              </div>
+              <label>
+                Estado general
+                <select class="field" name="order_status">${optionList(orderStatuses, order.order_status ?? "new")}</select>
+              </label>
+              <div class="shop-form-grid">
+                <label>
+                  Paqueteria
+                  <input class="field" name="carrier" value="${escapeHtml(order.carrier ?? "")}" placeholder="DHL, FedEx, Estafeta..." />
+                </label>
+                <label>
+                  Guia / tracking
+                  <input class="field" name="tracking_number" value="${escapeHtml(order.tracking_number ?? "")}" placeholder="Numero de guia" />
+                </label>
+              </div>
+              <label>
+                Nota admin
+                <textarea class="field shop-textarea" name="admin_notes" placeholder="Notas internas para seguimiento">${escapeHtml(order.admin_notes ?? "")}</textarea>
+              </label>
+              <label>
+                Nota de historial
+                <textarea class="field shop-textarea" name="event_message" placeholder="Ej. Pago confirmado por PayPal"></textarea>
+              </label>
+              <button class="button primary" type="submit">Actualizar pedido</button>
+            </form>
+            ${order.shipping_status === "delivered" ? `
+              <div class="button-row">
+                <button
+                  class="button danger"
+                  type="button"
+                  data-delete-request
+                  data-delete-order="${order.id}"
+                  data-delete-code="${escapeHtml(order.order_code)}"
+                >
+                  Eliminar pedido entregado
+                </button>
+              </div>
+            ` : ""}
+            <div class="shop-order-block">
+              <h3>Historial</h3>
+              <ol class="shop-timeline">
+                ${orderEvents.map((event) => `
+                  <li>
+                    <time>${new Date(event.created_at).toLocaleString("es-MX")}</time>
+                    <strong>${escapeHtml(statusLabel(event.event_type))}</strong>
+                    <p>${escapeHtml(event.details)}</p>
+                  </li>
+                `).join("")}
+              </ol>
+            </div>
+          </article>
+        `;
+      })
+      .join("");
+  }
+
+  async function requireSession() {
+    if (!shopSupabaseConfigured || !shopSupabase) {
+      setBox(loginState, "Falta configurar PUBLIC_SUPABASE_URL y PUBLIC_SUPABASE_ANON_KEY.", "warning");
+      return null;
+    }
+
+    const { data } = await shopSupabase.auth.getSession();
+    return data.session;
+  }
+
+  async function loadAdminData(hasRetriedFutureJwt = false) {
+    if (!shopSupabase) return;
+    clearBox(adminState);
+
+    const [{ data: products, error: productsError }, { data: orders, error: ordersError }] = await Promise.all([
+      shopSupabase.from("products").select("*").order("created_at", { ascending: true }),
+      shopSupabase.from("orders").select("*").order("created_at", { ascending: false }).limit(50)
+    ]);
+
+    if (productsError || ordersError) {
+      const error = productsError ?? ordersError;
+
+      if (!hasRetriedFutureJwt && isFutureJwtError(error)) {
+        setBox(adminState, "La sesion quedo con desfase de reloj. Refrescando acceso y reintentando...");
+        const refreshed = await refreshAuthSession();
+        await wait(1500);
+
+        if (refreshed) {
+          await loadAdminData(true);
+          return;
+        }
+      }
+
+      if (isFutureJwtError(error)) {
+        setBox(
+          adminState,
+          "Supabase rechazo el token porque parece emitido en el futuro. Cierra sesion, revisa que Windows tenga fecha/hora automaticas, espera un minuto y vuelve a entrar.",
+          "warning"
+        );
+        return;
+      }
+
+      setBox(adminState, `No tienes permisos de admin o falta ejecutar el SQL completo en Supabase.${describeError(error)}`, "warning");
+      return;
+    }
+
+    const orderIds = (orders ?? []).map((order) => order.id);
+    const productMap = new Map((products ?? []).map((product) => [product.id, product]));
+    let items = (orders ?? []).map((order) => ({
+      order_id: order.id,
+      product_name: productMap.get(order.product_id)?.name ?? "Producto",
+      quantity: order.quantity,
+      unit_price_mxn: order.unit_price_mxn
+    }));
+    let events = [];
+
+    if (orderIds.length) {
+      const { data: eventData } = await shopSupabase
+        .from("order_events")
+        .select("*")
+        .in("order_id", orderIds)
+        .order("created_at", { ascending: false });
+
+      events = eventData ?? [];
+    }
+
+    renderProducts(products ?? []);
+    renderOrders(orders ?? [], items, events);
+  }
+
+  async function boot() {
+    const session = await requireSession();
+
+    if (!session) {
+      if (loginForm instanceof HTMLElement) loginForm.hidden = false;
+      if (app instanceof HTMLElement) app.hidden = true;
+      return;
+    }
+
+    if (loginForm instanceof HTMLElement) loginForm.hidden = true;
+    if (app instanceof HTMLElement) app.hidden = false;
+    if (adminEmail instanceof HTMLElement) adminEmail.textContent = session.user.email ?? "Admin";
+    await loadAdminData();
+  }
+
+  loginForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!shopSupabase || !(loginForm instanceof HTMLFormElement)) {
+      setBox(loginState, "Supabase no esta configurado en este navegador.", "warning");
+      return;
+    }
+
+    const formData = new FormData(loginForm);
+    const email = String(formData.get("email") ?? "").trim();
+    const password = String(formData.get("password") ?? "");
+
+    if (!email) {
+      setBox(loginState, "Escribe el email admin antes de entrar.", "warning");
+      return;
+    }
+
+    setLoginBusy(true);
+    setBox(loginState, password ? "Validando acceso con contrasena..." : "Enviando enlace magico...");
+    try {
+      const { error } = password
+        ? await shopSupabase.auth.signInWithPassword({ email, password })
+        : await shopSupabase.auth.signInWithOtp({
+            email,
+            options: {
+              emailRedirectTo: `${window.location.origin}/shop/admin/`
+            }
+          });
+
+    if (error) {
+      setBox(
+        loginState,
+        `${password ? "No pude iniciar sesion con esa contrasena." : "No pude enviar el enlace de acceso."}${describeError(error)}`,
+        "warning"
+      );
+      return;
+    }
+
+    if (password) {
+      setBox(loginState, "Sesion iniciada. Validando permisos de admin...");
+      await boot();
+      return;
+    }
+
+      setBox(loginState, "Enlace enviado. Revisa tu email y vuelve aqui desde el link.");
+    } catch (error) {
+      setBox(loginState, `Error inesperado al iniciar sesion.${describeError(error)}`, "warning");
+    } finally {
+      setLoginBusy(false);
+    }
+  });
+
+  productsEl?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    if (!shopSupabase || !(form instanceof HTMLFormElement)) {
+      setBox(adminState, "Supabase no esta disponible para guardar productos.", "warning");
+      return;
+    }
+
+    const id = form.dataset.productForm;
+    const button = form.querySelector("[data-product-submit]");
+    const productState = form.querySelector("[data-product-state]");
+
+    if (!id) {
+      setBox(productState, "No encontre el ID del producto.", "warning");
+      return;
+    }
+
+    const formData = new FormData(form);
+    const payload = {
+      price_mxn: Number(formData.get("price_mxn")),
+      stock: Number(formData.get("stock")),
+      active: formData.get("active") === "on"
+    };
+
+    if (button instanceof HTMLButtonElement) {
+      button.disabled = true;
+      button.textContent = "Guardando...";
+    }
+    setBox(productState, "Guardando producto...");
+
+    const { data, error } = await shopSupabase
+      .from("products")
+      .update(payload)
+      .eq("id", id)
+      .select("id, slug, price_mxn, stock, active")
+      .maybeSingle();
+
+    if (button instanceof HTMLButtonElement) {
+      button.disabled = false;
+      button.textContent = "Guardar producto";
+    }
+
+    if (error) {
+      setBox(productState, `No pude guardar este producto.${describeError(error)}`, "warning");
+      return;
+    }
+
+    if (!data) {
+      setBox(productState, "Supabase no devolvio el producto actualizado. Revisa permisos RLS.", "warning");
+      return;
+    }
+
+    await loadAdminData();
+    setBox(adminState, `Producto actualizado: ${data.slug} - ${formatMoney(data.price_mxn, "MXN")} - stock ${data.stock}.`);
+  });
+
+  ordersEl?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    if (!shopSupabase || !(form instanceof HTMLFormElement)) return;
+
+    const id = form.dataset.orderForm;
+    const formData = new FormData(form);
+    const eventMessage = String(formData.get("event_message") ?? "").trim();
+    const shippingStatus = String(formData.get("shipping_status") ?? "");
+    let orderStatus = String(formData.get("order_status") ?? "");
+    const orderStatusSelect = form.elements.namedItem("order_status");
+
+    if (shippingStatus === "delivered") {
+      orderStatus = "completed";
+      if (orderStatusSelect instanceof HTMLSelectElement) orderStatusSelect.value = orderStatus;
+    }
+
+    if (orderStatus === "completed" && shippingStatus !== "delivered") {
+      setBox(adminState, "Para marcar Completado, primero cambia Envio a Entregado.", "warning");
+      return;
+    }
+
+    const { error } = await shopSupabase.rpc("update_shop_order_status", {
+      p_order_id: id,
+      p_payment_status: formData.get("payment_status"),
+      p_shipping_status: shippingStatus,
+      p_order_status: orderStatus,
+      p_carrier: formData.get("carrier"),
+      p_tracking_number: formData.get("tracking_number"),
+      p_admin_notes: formData.get("admin_notes"),
+      p_event_message: eventMessage
+    });
+
+    if (error) {
+      setBox(adminState, "No pude actualizar el pedido.", "warning");
+      return;
+    }
+
+    setBox(adminState, "Pedido actualizado.");
+    await loadAdminData();
+  });
+
+  ordersEl?.addEventListener("change", (event) => {
+    const field = event.target;
+    if (!(field instanceof HTMLSelectElement)) return;
+
+    const form = field.closest("[data-order-form]");
+    if (!(form instanceof HTMLFormElement)) return;
+
+    const shippingSelect = form.elements.namedItem("shipping_status");
+    const orderStatusSelect = form.elements.namedItem("order_status");
+    if (!(shippingSelect instanceof HTMLSelectElement) || !(orderStatusSelect instanceof HTMLSelectElement)) return;
+
+    if (field.name === "shipping_status" && shippingSelect.value === "delivered") {
+      orderStatusSelect.value = "completed";
+      setBox(adminState, "Envio entregado: estado general cambiado a Completado. Pulsa Actualizar pedido para guardar.");
+    }
+
+    if (field.name === "order_status" && orderStatusSelect.value === "completed" && shippingSelect.value !== "delivered") {
+      setBox(adminState, "Completado requiere Envio = Entregado. Cambia primero el envio o usa otro estado.", "warning");
+      orderStatusSelect.value = "in_progress";
+    }
+  });
+
+  ordersEl?.addEventListener("click", async (event) => {
+    const target = event.target;
+    const requestButton = target instanceof Element ? target.closest("[data-delete-request]") : null;
+    if (requestButton instanceof HTMLButtonElement) {
+      const id = requestButton.dataset.deleteOrder;
+      const code = requestButton.dataset.deleteCode ?? "este pedido";
+      if (id) openDeleteModal(id, code);
+      return;
+    }
+  });
+
+  deleteModalCancel?.addEventListener("click", closeDeleteModal);
+
+  deleteModal?.addEventListener("click", (event) => {
+    if (event.target === deleteModal) closeDeleteModal();
+  });
+
+  deleteModalConfirm?.addEventListener("click", async () => {
+    if (!shopSupabase || !pendingDeleteOrder) return;
+
+    if (deleteModalConfirm instanceof HTMLButtonElement) {
+      deleteModalConfirm.disabled = true;
+      deleteModalConfirm.textContent = "Eliminando...";
+    }
+
+    const { data, error } = await shopSupabase.rpc("delete_delivered_shop_order", {
+      p_order_id: pendingDeleteOrder.id
+    });
+
+    if (error) {
+      setBox(adminState, `No pude eliminar el pedido.${describeError(error)}`, "warning");
+      closeDeleteModal();
+      return;
+    }
+
+    const code = data?.public_code ?? pendingDeleteOrder.code;
+    closeDeleteModal();
+    await loadAdminData();
+    setBox(adminState, `Pedido eliminado: ${code}.`);
+  });
+
+  document.querySelectorAll("[data-admin-tab]").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const target = tab instanceof HTMLElement ? tab.dataset.adminTab : "";
+
+      document.querySelectorAll("[data-admin-tab]").forEach((button) => {
+        button.classList.toggle("active", button === tab);
+      });
+
+      document.querySelectorAll("[data-admin-panel]").forEach((panel) => {
+        if (panel instanceof HTMLElement) panel.hidden = panel.dataset.adminPanel !== target;
+      });
+    });
+  });
+
+  refreshButton?.addEventListener("click", loadAdminData);
+  logoutButton?.addEventListener("click", async () => {
+    await shopSupabase?.auth.signOut();
+    window.location.reload();
+  });
+
+  boot();
+</script>
+</BaseLayout>

@@ -1,0 +1,359 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { sitePath } from "../../utils/paths";
+
+const paypalUrl = "https://www.paypal.com/paypalme/pepeangell";
+const telegramUrl = "https://t.me/pepeangell";
+---
+
+<BaseLayout
+  title="Checkout"
+  description="Checkout manual de PepeAngell Labs para kits ESP32 con envio a paises hispanohablantes y Estados Unidos."
+  robots="noindex, nofollow"
+>
+  <section class="section shop-hero">
+    <div class="container shop-hero-layout">
+      <div class="shop-copy">
+        <p class="eyebrow">Checkout</p>
+        <h1>Completa tu pedido</h1>
+        <p>
+          Registra tus datos de envio, revisa el total y despues paga por PayPal. El pedido queda pendiente hasta
+          que Pepe confirme el pago por Telegram.
+        </p>
+        <div class="button-row">
+          <a class="button" href={sitePath("/shop/")}>Volver a tienda</a>
+          <a class="button" href={sitePath("/shop/orders/")}>Ver pedido</a>
+        </div>
+      </div>
+      <aside class="shop-panel">
+        <p class="status">Pago manual</p>
+        <h2>PayPal + @pepeangell</h2>
+        <p>Al finalizar recibiras un codigo de pedido. Envialo por Telegram junto con el comprobante de PayPal.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section compact">
+    <div class="container checkout-layout">
+      <form class="card shop-form" data-checkout-form>
+        <div>
+          <p class="eyebrow">Producto</p>
+          <h2>Kit a reservar</h2>
+        </div>
+
+        <div class="shop-state" data-checkout-state hidden></div>
+
+        <label>
+          Kit
+          <select class="field" name="product_id" data-product-select required>
+            <option value="">Cargando productos...</option>
+          </select>
+        </label>
+
+        <label>
+          Cantidad
+          <input class="field" name="quantity" type="number" min="1" value="1" required />
+        </label>
+
+        <div class="shop-order-summary" data-order-summary>
+          <span>Total</span>
+          <strong>Por confirmar</strong>
+        </div>
+
+        <div>
+          <p class="eyebrow">Envio</p>
+          <h2>Datos de entrega</h2>
+        </div>
+
+        <label>
+          Nombre completo
+          <input class="field" name="customer_name" autocomplete="name" required />
+        </label>
+
+        <label>
+          Email
+          <input class="field" name="customer_email" type="email" autocomplete="email" required />
+        </label>
+
+        <label>
+          Telefono
+          <input class="field" name="customer_phone" type="tel" autocomplete="tel" required />
+        </label>
+
+        <label>
+          Telegram
+          <input class="field" name="telegram_username" placeholder="@usuario" autocomplete="off" />
+        </label>
+
+        <label>
+          Pais
+          <select class="field" name="shipping_country" data-country-select required></select>
+        </label>
+
+        <div class="shop-form-grid">
+          <label>
+            Estado / provincia
+            <input class="field" name="shipping_state" autocomplete="address-level1" required />
+          </label>
+
+          <label>
+            Ciudad
+            <input class="field" name="shipping_city" autocomplete="address-level2" required />
+          </label>
+        </div>
+
+        <label>
+          Codigo postal
+          <input class="field" name="shipping_postal_code" autocomplete="postal-code" required />
+        </label>
+
+        <label>
+          Direccion
+          <textarea class="field shop-textarea" name="shipping_address" autocomplete="street-address" required></textarea>
+        </label>
+
+        <label>
+          Notas
+          <textarea class="field shop-textarea" name="notes" placeholder="Color, referencia de envio o comentario para Pepe"></textarea>
+        </label>
+
+        <button class="button primary" type="submit" data-submit-order disabled>Crear pedido</button>
+      </form>
+
+      <aside class="card shop-checkout-aside">
+        <p class="status">Despues del formulario</p>
+        <h2>Confirmacion por Telegram</h2>
+        <ol class="shop-steps">
+          <li>Crea el pedido y guarda tu codigo.</li>
+          <li>Paga el total por PayPal.</li>
+          <li>Envia el codigo y comprobante a @pepeangell.</li>
+          <li>Pepe actualiza pago, envio e historial desde el admin.</li>
+        </ol>
+        <div class="button-row">
+          <a class="button primary" href={paypalUrl} target="_blank" rel="noreferrer noopener">Abrir PayPal</a>
+          <a class="button" href={telegramUrl} target="_blank" rel="noreferrer noopener">Telegram</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+<script>
+  import {
+    allowedShippingCountries,
+    formatMoney,
+    normalizeProduct,
+    shopSupabase,
+    shopSupabaseConfigured
+  } from "../../lib/shopSupabase";
+
+  const form = document.querySelector("[data-checkout-form]");
+  const productSelect = document.querySelector("[data-product-select]");
+  const countrySelect = document.querySelector("[data-country-select]");
+  const stateBox = document.querySelector("[data-checkout-state]");
+  const summary = document.querySelector("[data-order-summary]");
+  const submitButton = document.querySelector("[data-submit-order]");
+  const params = new URLSearchParams(window.location.search);
+  let products = [];
+
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#039;"
+    })[char]);
+  }
+
+  function setState(message, tone = "info") {
+    if (!(stateBox instanceof HTMLElement)) return;
+    stateBox.textContent = message;
+    stateBox.dataset.tone = tone;
+    stateBox.hidden = false;
+  }
+
+  function clearState() {
+    if (stateBox instanceof HTMLElement) stateBox.hidden = true;
+  }
+
+  function selectedProduct() {
+    if (!(productSelect instanceof HTMLSelectElement)) return null;
+    return products.find((product) => product.id === productSelect.value) ?? null;
+  }
+
+  function updateSummary() {
+    if (!(summary instanceof HTMLElement) || !(form instanceof HTMLFormElement)) return;
+    const product = selectedProduct();
+    const quantity = Math.max(Number(new FormData(form).get("quantity") ?? 1), 1);
+
+    if (!product) {
+      summary.innerHTML = "<span>Total</span><strong>Por confirmar</strong>";
+      return;
+    }
+
+    summary.innerHTML = `
+      <span>${escapeHtml(product.name)} x ${quantity}</span>
+      <strong>${formatMoney(Number(product.price) * quantity, product.currency)}</strong>
+    `;
+  }
+
+  function fillCountries() {
+    if (!(countrySelect instanceof HTMLSelectElement)) return;
+    countrySelect.replaceChildren(
+      ...allowedShippingCountries.map((country) => {
+        const option = document.createElement("option");
+        option.value = country;
+        option.textContent = country;
+        return option;
+      })
+    );
+  }
+
+  function fillProducts() {
+    if (!(productSelect instanceof HTMLSelectElement)) return;
+
+    if (!products.length) {
+      productSelect.replaceChildren(new Option("No hay kits disponibles", ""));
+      productSelect.disabled = true;
+      if (submitButton instanceof HTMLButtonElement) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Sin stock";
+      }
+      return;
+    }
+
+    productSelect.disabled = false;
+    if (submitButton instanceof HTMLButtonElement) {
+      submitButton.disabled = false;
+      submitButton.textContent = "Crear pedido";
+    }
+
+    productSelect.replaceChildren(
+      ...products.map((product) => {
+        const option = new Option(
+          `${product.name} - ${formatMoney(product.price, product.currency)} - ${product.stock} en stock`,
+          product.id
+        );
+        option.dataset.slug = product.slug;
+        return option;
+      })
+    );
+
+    const requestedSlug = params.get("product");
+    const requested = products.find((product) => product.slug === requestedSlug);
+    if (requested) productSelect.value = requested.id;
+    updateSummary();
+  }
+
+  async function loadProducts() {
+    fillCountries();
+
+    if (!shopSupabaseConfigured || !shopSupabase) {
+      setState("Falta configurar Supabase. Por ahora confirma disponibilidad directamente por Telegram.", "warning");
+      if (submitButton instanceof HTMLButtonElement) submitButton.disabled = true;
+      return;
+    }
+
+    const { data, error } = await shopSupabase
+      .from("products")
+      .select("id, slug, name, description, firmware_name, repository_url, image_url, price_mxn, stock, active")
+      .eq("active", true)
+      .gt("stock", 0)
+      .order("created_at", { ascending: true });
+
+    if (error) {
+      setState("No pude cargar productos. Intenta de nuevo o escribe a @pepeangell.", "warning");
+      if (submitButton instanceof HTMLButtonElement) submitButton.disabled = true;
+      return;
+    }
+
+    products = (data ?? []).map(normalizeProduct);
+    fillProducts();
+
+    if (!products.length) {
+      setState("No hay kits con stock activo ahora mismo. Puedes consultar disponibilidad por Telegram.");
+    }
+  }
+
+  form?.addEventListener("input", updateSummary);
+  productSelect?.addEventListener("change", updateSummary);
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!(form instanceof HTMLFormElement) || !shopSupabase) {
+      setState("Falta configurar Supabase para crear pedidos.", "warning");
+      return;
+    }
+    const product = selectedProduct();
+    const formData = new FormData(form);
+    const quantity = Math.max(Number(formData.get("quantity") ?? 1), 1);
+
+    if (!product) {
+      setState("Selecciona un kit disponible antes de crear el pedido.", "warning");
+      return;
+    }
+
+    if (quantity > Number(product.stock)) {
+      setState("La cantidad supera el stock disponible.", "warning");
+      return;
+    }
+
+    if (submitButton instanceof HTMLButtonElement) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Creando pedido...";
+    }
+
+    clearState();
+
+    const { data, error } = await shopSupabase.rpc("create_shop_order", {
+      p_product_id: product.id,
+      p_quantity: quantity,
+      p_customer_name: formData.get("customer_name"),
+      p_customer_email: formData.get("customer_email"),
+      p_customer_phone: formData.get("customer_phone"),
+      p_telegram_username: formData.get("telegram_username"),
+      p_country: formData.get("shipping_country"),
+      p_state_or_province: formData.get("shipping_state"),
+      p_city: formData.get("shipping_city"),
+      p_postal_code: formData.get("shipping_postal_code"),
+      p_address_line_1: formData.get("shipping_address"),
+      p_address_line_2: "",
+      p_customer_notes: formData.get("notes")
+    });
+
+    if (submitButton instanceof HTMLButtonElement) {
+      submitButton.disabled = false;
+      submitButton.textContent = "Crear pedido";
+    }
+
+    if (error) {
+      setState("No pude crear el pedido. Revisa los datos o confirma disponibilidad por Telegram.", "warning");
+      return;
+    }
+
+    const order = Array.isArray(data) ? data[0] : data;
+    const total = formatMoney(order.total_amount, order.currency);
+    localStorage.setItem(
+      "pepeangell:lastOrder",
+      JSON.stringify({ public_code: order.public_code, customer_email: formData.get("customer_email") })
+    );
+
+    form.innerHTML = `
+      <div class="shop-success">
+        <p class="status">Pedido creado</p>
+        <h2>${escapeHtml(order.public_code)}</h2>
+        <p>Total: <strong>${total}</strong></p>
+        <p>Paga por PayPal y envia este codigo a @pepeangell para confirmar el pedido.</p>
+        <div class="button-row">
+          <a class="button primary" href="https://www.paypal.com/paypalme/pepeangell" target="_blank" rel="noreferrer noopener">Pagar por PayPal</a>
+          <a class="button" href="https://t.me/pepeangell" target="_blank" rel="noreferrer noopener">Enviar por Telegram</a>
+          <a class="button" href="/shop/orders/">Ver estado</a>
+        </div>
+      </div>
+    `;
+  });
+
+  loadProducts();
+</script>
+</BaseLayout>

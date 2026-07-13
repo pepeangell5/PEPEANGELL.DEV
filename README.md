@@ -59,9 +59,45 @@ Environment variables:
 
 ```text
 PUBLIC_GOATCOUNTER_CODE=pepeangell
+PUBLIC_SUPABASE_URL=https://bnsilqtypedxwksqopdz.supabase.co
+PUBLIC_SUPABASE_ANON_KEY=your-public-anon-key
 ```
 
 Vercel rebuilds the site when changes are pushed to GitHub. The build fetches the latest public repository data before generating the static Astro site.
+
+## Shop / Supabase
+
+The shop uses the Supabase project `pepeangell-shop` from the static Astro frontend. No service role key is used in the site.
+
+Initial setup:
+
+1. Run `supabase/schema.sql` in the Supabase SQL editor.
+2. Configure Supabase Auth email links for the production domain.
+3. Add Pepe as an admin after he signs in once:
+
+```sql
+insert into public.profiles (id, role) values ('AUTH_USER_UUID_HERE', 'admin');
+```
+
+4. Add these variables in Vercel and locally:
+
+```text
+PUBLIC_SUPABASE_URL=...
+PUBLIC_SUPABASE_ANON_KEY=...
+```
+
+Shop routes:
+
+```text
+/shop/            Public catalog with live stock when Supabase is configured
+/shop/checkout/   Shipping checkout for supported countries
+/shop/orders/     Public order lookup by code and email
+/shop/admin/      Private admin for stock, prices, availability and order states
+```
+
+Supported checkout countries are Spanish-speaking countries plus United States. Payment remains manual through PayPal and confirmation happens through Telegram at `@pepeangell`.
+
+Creating an order reserves stock immediately. If an admin marks an order as cancelled from `/shop/admin/`, Supabase returns the reserved stock once and records the event in the order history.
 
 ## Updating Content
 
@@ -88,6 +124,9 @@ Update those files to change project cards, flashers, hardware notes, roadmap en
 /
 /support/
 /shop/
+/shop/checkout/
+/shop/orders/
+/shop/admin/
 /firmware/
 /repos/
 /flashers/
@@ -173,7 +212,7 @@ scripts/             GitHub repo data generation
 
 ## Future Improvements
 
-- Add a Shop section for products, services, firmware packages or digital downloads.
+- Add automatic PayPal webhooks if manual confirmation becomes too much work.
 - Restore or improve visitor analytics if GoatCounter settings change.
 - Replace firmware fallback links with final Web Flasher URLs when those pages are published.
 - Add real project images, wiring photos or screenshots.

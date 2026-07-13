@@ -3,8 +3,12 @@ dist/
 .astro/
 .npm-cache/
 .tmp/
+.env
+.env.local
+.env.*.local
 .codex-devserver*
 .codex-*.log
 .DS_Store
 npm-debug.log*
 *.local
+.vercel/

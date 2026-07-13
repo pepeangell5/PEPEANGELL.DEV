@@ -1,6 +1,7 @@
 ---
 import { sitePath } from "../utils/paths";
 import LanguageToggle from "./LanguageToggle.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 
 const links = [
   { href: "/", label: "Inicio" },
@@ -22,16 +23,16 @@ const normalizedPathname = pathname.replace(import.meta.env.BASE_URL.replace(/\/
 
 <header class="site-header">
   <div class="container nav">
-    <a class="brand" href={sitePath("/")} aria-label="PepeAngell Labs home">
+    <a class="brand" href={sitePath("/")} aria-label="ESP32-TOOLS home">
       <img
         class="brand-mark"
-        src={sitePath("/assets/mascot-neon-cut.png")}
+        src={sitePath("/assets/mascot-esp32-tools-v2.png")}
         alt=""
         width="44"
         height="44"
         aria-hidden="true"
       />
-      <span>PepeAngell Labs</span>
+      <span>ESP32-TOOLS</span>
     </a>
     <nav class="nav-links" aria-label="Navegacion principal">
       {
@@ -47,6 +48,7 @@ const normalizedPathname = pathname.replace(import.meta.env.BASE_URL.replace(/\/
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </button>
+    <ThemeToggle />
     <LanguageToggle />
   </div>
 </header>
@@ -54,6 +56,28 @@ const normalizedPathname = pathname.replace(import.meta.env.BASE_URL.replace(/\/
 <script>
   const toggle = document.querySelector("[data-nav-toggle]");
   const nav = document.querySelector(".nav-links");
+  const themeButtons = document.querySelectorAll("[data-theme-option]");
+  const themeStorageKey = "pepeangell-labs-theme-v1";
+
+  function setTheme(theme) {
+    const normalizedTheme = theme === "light" ? "light" : "dark";
+    document.documentElement.dataset.theme = normalizedTheme;
+
+    themeButtons.forEach((button) => {
+      if (!(button instanceof HTMLButtonElement)) return;
+      button.setAttribute("aria-pressed", String(button.dataset.themeOption === normalizedTheme));
+    });
+
+    try {
+      localStorage.setItem(themeStorageKey, normalizedTheme);
+    } catch {}
+  }
+
+  try {
+    setTheme(localStorage.getItem(themeStorageKey) ?? document.documentElement.dataset.theme ?? "dark");
+  } catch {
+    setTheme("dark");
+  }
 
   toggle?.addEventListener("click", () => {
     const isOpen = toggle.getAttribute("aria-expanded") === "true";
@@ -66,4 +90,22 @@ const normalizedPathname = pathname.replace(import.meta.env.BASE_URL.replace(/\/
     toggle?.setAttribute("aria-expanded", "false");
     nav.classList.remove("open");
   });
+
+  themeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!(button instanceof HTMLButtonElement)) return;
+      setTheme(button.dataset.themeOption);
+    });
+  });
+
+  document.addEventListener(
+    "wheel",
+    (event) => {
+      const field = event.target;
+      if (!(field instanceof HTMLInputElement) || field.type !== "number") return;
+      if (document.activeElement !== field) return;
+      event.preventDefault();
+    },
+    { passive: false }
+  );
 </script>

@@ -16,9 +16,11 @@
     "fetch:github": "npm run fetch:repos && npm run fetch:readmes && npm run fetch:flashers && npm run fetch:downloads && npm run fetch:hardware && npm run fetch:news"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.110.2",
     "astro": "^5.10.0"
   },
   "devDependencies": {
+    "supabase": "^2.109.1",
     "typescript": "^5.8.0"
   }
 }
