@@ -1,12 +1,13 @@
 {
-  "rewrites": [
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "routes": [
     {
-      "source": "/finanzas",
-      "destination": "https://finanzas-pepeangell.vercel.app/finanzas"
+      "src": "^/finanzas$",
+      "dest": "https://finanzas-pepeangell.vercel.app/finanzas"
     },
     {
-      "source": "/finanzas/:path*",
-      "destination": "https://finanzas-pepeangell.vercel.app/finanzas/:path*"
+      "src": "^/finanzas/(.*)$",
+      "dest": "https://finanzas-pepeangell.vercel.app/finanzas/$1"
     }
   ]
 }
