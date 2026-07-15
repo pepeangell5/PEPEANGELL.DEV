@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/finanzas",
+      "destination": "https://finanzas-pepeangell.vercel.app/finanzas"
+    },
+    {
+      "source": "/finanzas/:path*",
+      "destination": "https://finanzas-pepeangell.vercel.app/finanzas/:path*"
+    }
+  ]
+}

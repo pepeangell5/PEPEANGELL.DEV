@@ -95,6 +95,12 @@ Shop routes:
 /shop/admin/      Private admin for stock, prices, availability and order states
 ```
 
+Personal finance is deployed as an independent private Next.js application and proxied by Vercel at:
+
+```text
+/finanzas/        Private ESP32-TOOLS finance dashboard
+```
+
 Supported checkout countries are Spanish-speaking countries plus United States. Payment remains manual through PayPal and confirmation happens through Telegram at `@pepeangell`.
 
 Creating an order reserves stock immediately. If an admin marks an order as cancelled from `/shop/admin/`, Supabase returns the reserved stock once and records the event in the order history.
