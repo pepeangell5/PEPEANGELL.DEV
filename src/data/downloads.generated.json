@@ -318,7 +318,7 @@
         "name": "rf-kill-esp32-devkit-web-v2.bin",
         "url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT/releases/download/RF-KILL-DEVKIT/rf-kill-esp32-devkit-web-v2.bin",
         "size": 336752,
-        "download_count": 6
+        "download_count": 8
       }
     ],
     "zip_url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT/archive/refs/heads/main.zip",
@@ -526,6 +526,26 @@
         "chip_family": "ESP32-C3"
       }
     ]
+  },
+  {
+    "name": "FINANZAS PEPEANGELL",
+    "slug": "finanzas-pepeangell",
+    "status": "Repositorio",
+    "board": "Hardware compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "Proyecto"
+    ],
+    "github_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL",
+    "full_name": "pepeangell5/FINANZAS-PEPEANGELL",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#finanzas-pepeangell",
+    "web_flasher_binaries": []
   },
   {
     "name": "ESP32 PC MONITOR",
