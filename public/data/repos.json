@@ -52,9 +52,9 @@
     "homepage": null,
     "default_branch": "main",
     "language": "HTML",
-    "stargazers_count": 33,
+    "stargazers_count": 34,
     "forks_count": 9,
-    "updated_at": "2026-07-14T09:33:28Z",
+    "updated_at": "2026-07-15T02:53:28Z",
     "topics": [],
     "archived": false,
     "fork": false
@@ -120,6 +120,21 @@
     "fork": false
   },
   {
+    "name": "PEPEANGELL.DEV",
+    "full_name": "pepeangell5/PEPEANGELL.DEV",
+    "description": null,
+    "html_url": "https://github.com/pepeangell5/PEPEANGELL.DEV",
+    "homepage": "https://pepeangell-dev.vercel.app",
+    "default_branch": "main",
+    "language": "Astro",
+    "stargazers_count": 2,
+    "forks_count": 0,
+    "updated_at": "2026-07-14T19:49:26Z",
+    "topics": [],
+    "archived": false,
+    "fork": false
+  },
+  {
     "name": "BWifiKill-CARDPUTER-ADV",
     "full_name": "pepeangell5/BWifiKill-CARDPUTER-ADV",
     "description": "Herramienta para auditoría de redes 2.4Ghz adaptado para el dispositivo Cardputer ADV de M5stack",
@@ -130,21 +145,6 @@
     "stargazers_count": 7,
     "forks_count": 0,
     "updated_at": "2026-07-14T15:40:19Z",
-    "topics": [],
-    "archived": false,
-    "fork": false
-  },
-  {
-    "name": "PEPEANGELL.DEV",
-    "full_name": "pepeangell5/PEPEANGELL.DEV",
-    "description": null,
-    "html_url": "https://github.com/pepeangell5/PEPEANGELL.DEV",
-    "homepage": "https://pepeangell-dev.vercel.app",
-    "default_branch": "main",
-    "language": "Astro",
-    "stargazers_count": 2,
-    "forks_count": 0,
-    "updated_at": "2026-07-14T14:19:55Z",
     "topics": [],
     "archived": false,
     "fork": false
