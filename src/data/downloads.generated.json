@@ -355,13 +355,13 @@
         "name": "bootloader.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/bootloader.bin",
         "size": 15088,
-        "download_count": 0
+        "download_count": 1
       },
       {
         "name": "BWifiKill-CARDPUTER-ADV-full.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/BWifiKill-CARDPUTER-ADV-full.bin",
         "size": 1773616,
-        "download_count": 7
+        "download_count": 8
       },
       {
         "name": "checksums-sha256.txt",
@@ -373,13 +373,13 @@
         "name": "firmware.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/firmware.bin",
         "size": 1708080,
-        "download_count": 0
+        "download_count": 1
       },
       {
         "name": "partitions.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/partitions.bin",
         "size": 3072,
-        "download_count": 0
+        "download_count": 1
       },
       {
         "name": "README.md",

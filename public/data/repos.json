@@ -22,9 +22,9 @@
     "homepage": null,
     "default_branch": "main",
     "language": "C++",
-    "stargazers_count": 126,
+    "stargazers_count": 127,
     "forks_count": 21,
-    "updated_at": "2026-07-16T07:34:02Z",
+    "updated_at": "2026-07-17T12:13:48Z",
     "topics": [],
     "archived": false,
     "fork": false
@@ -120,6 +120,21 @@
     "fork": false
   },
   {
+    "name": "PEPEANGELL.DEV",
+    "full_name": "pepeangell5/PEPEANGELL.DEV",
+    "description": null,
+    "html_url": "https://github.com/pepeangell5/PEPEANGELL.DEV",
+    "homepage": "https://pepeangell-dev.vercel.app",
+    "default_branch": "main",
+    "language": "Astro",
+    "stargazers_count": 2,
+    "forks_count": 0,
+    "updated_at": "2026-07-17T08:32:21Z",
+    "topics": [],
+    "archived": false,
+    "fork": false
+  },
+  {
     "name": "FINANZAS-PEPEANGELL",
     "full_name": "pepeangell5/FINANZAS-PEPEANGELL",
     "description": "FINANZAS-PEPEANGELL",
@@ -130,21 +145,6 @@
     "stargazers_count": 0,
     "forks_count": 0,
     "updated_at": "2026-07-17T07:49:46Z",
-    "topics": [],
-    "archived": false,
-    "fork": false
-  },
-  {
-    "name": "PEPEANGELL.DEV",
-    "full_name": "pepeangell5/PEPEANGELL.DEV",
-    "description": null,
-    "html_url": "https://github.com/pepeangell5/PEPEANGELL.DEV",
-    "homepage": "https://pepeangell-dev.vercel.app",
-    "default_branch": "main",
-    "language": "Astro",
-    "stargazers_count": 2,
-    "forks_count": 0,
-    "updated_at": "2026-07-17T03:44:24Z",
     "topics": [],
     "archived": false,
     "fork": false
