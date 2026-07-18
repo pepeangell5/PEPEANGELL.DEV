@@ -34,7 +34,7 @@
     "status": "Testing",
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V2.0/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
-    "updated_at": "2026-07-18T03:41:26Z",
+    "updated_at": "2026-07-18T18:04:23Z",
     "source": "manual"
   },
   {
@@ -48,7 +48,7 @@
       "Battery"
     ],
     "status": "Planned",
-    "flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32/",
+    "flasher_url": "",
     "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32",
     "updated_at": "2026-07-12T15:28:40Z",
     "source": "manual"
