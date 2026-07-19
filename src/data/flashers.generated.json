@@ -34,7 +34,7 @@
     "status": "Testing",
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V2.0/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
-    "updated_at": "2026-07-18T18:04:23Z",
+    "updated_at": "2026-07-19T01:50:04Z",
     "source": "manual"
   },
   {
@@ -48,7 +48,7 @@
       "Battery"
     ],
     "status": "Planned",
-    "flasher_url": "",
+    "flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32/",
     "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32",
     "updated_at": "2026-07-12T15:28:40Z",
     "source": "manual"
@@ -84,7 +84,7 @@
     "status": "Experimental",
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32",
-    "updated_at": "2026-07-11T19:10:22Z",
+    "updated_at": "2026-07-19T02:22:28Z",
     "source": "manual"
   },
   {
@@ -102,7 +102,7 @@
     "status": "Web flasher",
     "flasher_url": "https://pepeangell5.github.io/RF-KILL-ESP32-DEVKIT/",
     "github_url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT",
-    "updated_at": "2026-07-15T02:53:28Z",
+    "updated_at": "2026-07-18T22:59:43Z",
     "source": "auto"
   },
   {

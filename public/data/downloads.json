@@ -121,7 +121,7 @@
     "full_name": "pepeangell5/BWifiKill-ESP32-V4.0",
     "default_branch": "main",
     "web_flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32-V4.0/",
-    "binarios_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/search?q=extension%3Abin&type=code",
+    "binarios_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/tree/main/binarios",
     "release_tag": "bwifikill",
     "release_assets": [
       {
@@ -133,7 +133,15 @@
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/archive/refs/heads/main.zip",
     "readme_url": "/firmware/#bwifikill-esp32-v4-0",
-    "web_flasher_binaries": []
+    "web_flasher_binaries": [
+      {
+        "label": "BWifiKill-ESP32-V4.0-full.bin",
+        "path": "binarios/BWifiKill-ESP32-V4.0-full.bin",
+        "url": "https://pepeangell5.github.io/BWifiKill-ESP32-V4.0/binarios/BWifiKill-ESP32-V4.0-full.bin",
+        "offset": 0,
+        "chip_family": "ESP32"
+      }
+    ]
   },
   {
     "name": "ESP32 Tools Pro 480x320 V2.0",
@@ -168,7 +176,7 @@
         "name": "firmware-merged.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware-merged.bin",
         "size": 2155568,
-        "download_count": 63
+        "download_count": 64
       },
       {
         "name": "firmware.bin",
@@ -209,13 +217,21 @@
     "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32",
     "full_name": "pepeangell5/CYBERDECK-MINI-ESP32",
     "default_branch": "main",
-    "web_flasher_url": "",
-    "binarios_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32/search?q=extension%3Abin&type=code",
+    "web_flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32/",
+    "binarios_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32/tree/main/archivos%20bin",
     "release_tag": "",
     "release_assets": [],
     "zip_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32/archive/refs/heads/main.zip",
     "readme_url": "/firmware/#cyberdeck-mini-esp32",
-    "web_flasher_binaries": []
+    "web_flasher_binaries": [
+      {
+        "label": "CYBERDECK-MINI-ESP32-firmware-merged.bin",
+        "path": "archivos%20bin/CYBERDECK-MINI-ESP32-firmware-merged.bin",
+        "url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32/archivos%20bin/CYBERDECK-MINI-ESP32-firmware-merged.bin",
+        "offset": 0,
+        "chip_family": "ESP32-S3"
+      }
+    ]
   },
   {
     "name": "BWifiKill BW16 5Ghz",
