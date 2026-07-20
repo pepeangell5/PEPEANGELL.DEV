@@ -182,7 +182,7 @@
         "name": "firmware.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware.bin",
         "size": 2090032,
-        "download_count": 39
+        "download_count": 40
       },
       {
         "name": "partitions.bin",
