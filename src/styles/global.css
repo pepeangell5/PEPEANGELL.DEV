@@ -652,10 +652,11 @@ p {
 
 .shop-status-grid span {
   display: block;
-  color: var(--soft);
-  font-size: 0.72rem;
+  color: var(--pink);
+  font-size: 0.76rem;
   font-weight: 900;
   font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  line-height: 1.25;
   text-transform: uppercase;
 }
 
@@ -698,10 +699,11 @@ p {
 }
 
 .shop-customer-details dt {
-  color: var(--soft);
-  font-size: 0.72rem;
+  color: var(--pink);
+  font-size: 0.76rem;
   font-weight: 900;
   font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  line-height: 1.25;
   text-transform: uppercase;
 }
 
@@ -3140,6 +3142,11 @@ html[data-theme="light"] .shop-parts,
 html[data-theme="light"] .shop-timeline li {
   background: rgba(255, 255, 255, 0.72);
   border-color: rgba(255, 44, 169, 0.16);
+}
+
+html[data-theme="light"] .shop-status-grid span,
+html[data-theme="light"] .shop-customer-details dt {
+  color: #c20a70;
 }
 
 html[data-theme="light"] .shop-chip {
