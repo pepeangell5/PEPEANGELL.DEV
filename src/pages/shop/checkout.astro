@@ -63,53 +63,54 @@ const telegramUrl = "https://t.me/pepeangell";
         <div>
           <p class="eyebrow">Envio</p>
           <h2>Datos de entrega</h2>
+          <p class="shop-required-note"><span>*</span> Campos obligatorios</p>
         </div>
 
         <label>
-          Nombre completo
+          Nombre completo *
           <input class="field" name="customer_name" autocomplete="name" required />
         </label>
 
         <label>
-          Email
+          Correo electrónico *
           <input class="field" name="customer_email" type="email" autocomplete="email" required />
         </label>
 
         <label>
-          Telefono
-          <input class="field" name="customer_phone" type="tel" autocomplete="tel" required />
+          Teléfono *
+          <input class="field" name="customer_phone" type="tel" autocomplete="tel" minlength="7" maxlength="30" required />
         </label>
 
         <label>
-          Telegram
+          Telegram (opcional)
           <input class="field" name="telegram_username" placeholder="@usuario" autocomplete="off" />
         </label>
 
         <label>
-          Pais
+          País *
           <select class="field" name="shipping_country" data-country-select required></select>
         </label>
 
         <div class="shop-form-grid">
           <label>
-            Estado / provincia
+            Estado / provincia *
             <input class="field" name="shipping_state" autocomplete="address-level1" required />
           </label>
 
           <label>
-            Ciudad
+            Ciudad *
             <input class="field" name="shipping_city" autocomplete="address-level2" required />
           </label>
         </div>
 
         <label>
-          Codigo postal
-          <input class="field" name="shipping_postal_code" autocomplete="postal-code" required />
+          Código postal *
+          <input class="field" name="shipping_postal_code" autocomplete="postal-code" minlength="3" maxlength="20" required />
         </label>
 
         <label>
-          Direccion
-          <textarea class="field shop-textarea" name="shipping_address" autocomplete="street-address" required></textarea>
+          Dirección *
+          <textarea class="field shop-textarea" name="shipping_address" autocomplete="street-address" minlength="5" maxlength="500" required></textarea>
         </label>
 
         <label>
@@ -288,6 +289,22 @@ const telegramUrl = "https://t.me/pepeangell";
     const product = selectedProduct();
     const formData = new FormData(form);
     const quantity = Math.max(Number(formData.get("quantity") ?? 1), 1);
+
+    const requiredCustomerFields = [
+      ["customer_email", "Escribe el correo electrónico del cliente."],
+      ["customer_phone", "Escribe el teléfono del cliente."],
+      ["shipping_postal_code", "Escribe el código postal de entrega."],
+      ["shipping_address", "Escribe la dirección de entrega."]
+    ];
+
+    for (const [fieldName, errorMessage] of requiredCustomerFields) {
+      if (!String(formData.get(fieldName) ?? "").trim()) {
+        setState(errorMessage, "warning");
+        const field = form.elements.namedItem(fieldName);
+        if (field instanceof HTMLElement) field.focus();
+        return;
+      }
+    }
 
     if (!product) {
       setState("Selecciona un kit disponible antes de crear el pedido.", "warning");

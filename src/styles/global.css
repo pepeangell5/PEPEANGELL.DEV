@@ -580,6 +580,17 @@ p {
   gap: 16px;
 }
 
+.shop-required-note {
+  margin: 8px 0 0;
+  color: var(--soft);
+  font-size: 0.82rem;
+}
+
+.shop-required-note span {
+  color: var(--pink);
+  font-weight: 900;
+}
+
 .shop-form label {
   display: grid;
   gap: 7px;
@@ -665,6 +676,40 @@ p {
 
 .shop-order-block h3 {
   margin: 0;
+}
+
+.shop-customer-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.shop-customer-details div {
+  min-width: 0;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+}
+
+.shop-customer-details .wide {
+  grid-column: 1 / -1;
+}
+
+.shop-customer-details dt {
+  color: var(--soft);
+  font-size: 0.72rem;
+  font-weight: 900;
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  text-transform: uppercase;
+}
+
+.shop-customer-details dd {
+  margin: 5px 0 0;
+  color: var(--text);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .shop-clean-list {
@@ -2786,8 +2831,13 @@ input[type="number"]::-webkit-inner-spin-button {
   .order-lookup-layout,
   .shop-admin-products,
   .shop-form-grid,
-  .shop-status-grid {
+  .shop-status-grid,
+  .shop-customer-details {
     grid-template-columns: 1fr;
+  }
+
+  .shop-customer-details .wide {
+    grid-column: auto;
   }
 
   .shop-checkout-aside {
@@ -3085,6 +3135,7 @@ html[data-theme="light"] .shop-switch {
 }
 
 html[data-theme="light"] .shop-status-grid div,
+html[data-theme="light"] .shop-customer-details div,
 html[data-theme="light"] .shop-parts,
 html[data-theme="light"] .shop-timeline li {
   background: rgba(255, 255, 255, 0.72);

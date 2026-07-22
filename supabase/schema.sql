@@ -208,6 +208,14 @@ begin
     raise exception 'customer_phone_required';
   end if;
 
+  if nullif(trim(p_postal_code), '') is null then
+    raise exception 'postal_code_required';
+  end if;
+
+  if nullif(trim(p_address_line_1), '') is null then
+    raise exception 'address_required';
+  end if;
+
   if not public.is_shop_allowed_country(p_country) then
     raise exception 'shipping_country_not_supported';
   end if;

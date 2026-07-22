@@ -279,9 +279,51 @@ import { sitePath } from "../../utils/paths";
               <p class="status">${escapeHtml(order.order_code)}</p>
               <span class="shop-chip">${new Date(order.created_at).toLocaleString("es-MX")}</span>
             </div>
-            <h3>${escapeHtml(order.customer_name)}</h3>
-            <p>${escapeHtml(order.customer_email)}${order.telegram_username ? ` - ${escapeHtml(order.telegram_username)}` : ""}</p>
-            <p>${escapeHtml(order.address_line_1)}${order.address_line_2 ? `, ${escapeHtml(order.address_line_2)}` : ""}, ${escapeHtml(order.city)}, ${escapeHtml(order.state_or_province)}, ${escapeHtml(order.country)}, ${escapeHtml(order.postal_code)}</p>
+            <div class="shop-order-block">
+              <h3>Datos del cliente</h3>
+              <dl class="shop-customer-details">
+                <div>
+                  <dt>Nombre</dt>
+                  <dd>${escapeHtml(order.customer_name)}</dd>
+                </div>
+                <div>
+                  <dt>Correo electrónico</dt>
+                  <dd>${escapeHtml(order.customer_email)}</dd>
+                </div>
+                <div>
+                  <dt>Teléfono</dt>
+                  <dd>${escapeHtml(order.customer_phone)}</dd>
+                </div>
+                <div>
+                  <dt>Usuario Telegram</dt>
+                  <dd>${order.telegram_username ? escapeHtml(order.telegram_username) : "No proporcionado"}</dd>
+                </div>
+                <div class="wide">
+                  <dt>Dirección</dt>
+                  <dd>${escapeHtml(order.address_line_1)}${order.address_line_2 ? `, ${escapeHtml(order.address_line_2)}` : ""}</dd>
+                </div>
+                <div>
+                  <dt>Ciudad</dt>
+                  <dd>${escapeHtml(order.city)}</dd>
+                </div>
+                <div>
+                  <dt>Estado / provincia</dt>
+                  <dd>${escapeHtml(order.state_or_province)}</dd>
+                </div>
+                <div>
+                  <dt>País</dt>
+                  <dd>${escapeHtml(order.country)}</dd>
+                </div>
+                <div>
+                  <dt>Código postal</dt>
+                  <dd>${escapeHtml(order.postal_code)}</dd>
+                </div>
+                <div class="wide">
+                  <dt>Notas del cliente</dt>
+                  <dd>${order.customer_notes ? escapeHtml(order.customer_notes) : "Sin notas"}</dd>
+                </div>
+              </dl>
+            </div>
             <div class="shop-status-grid">
               <div><span>Pago</span><strong>${escapeHtml(statusLabel(order.payment_status))}</strong></div>
               <div><span>Envio</span><strong>${escapeHtml(statusLabel(order.shipping_status))}</strong></div>
