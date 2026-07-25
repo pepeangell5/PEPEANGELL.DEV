@@ -838,6 +838,82 @@ p {
   gap: 16px;
 }
 
+.shop-order-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.shop-order-filter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 9px 12px;
+  color: var(--muted);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.shop-order-filter span {
+  min-width: 24px;
+  padding: 2px 6px;
+  color: var(--text);
+  background: var(--panel-strong);
+  border-radius: 6px;
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  text-align: center;
+}
+
+.shop-order-filter:hover,
+.shop-order-filter:focus-visible {
+  color: var(--text);
+  border-color: var(--pink);
+  outline: none;
+}
+
+.shop-order-filter[data-order-filter="all"][aria-selected="true"] {
+  color: var(--text);
+  background: rgba(255, 44, 169, 0.14);
+  border-color: var(--pink);
+}
+
+.shop-order-filter[data-order-filter="active"][aria-selected="true"] {
+  color: var(--text);
+  background: rgba(255, 157, 46, 0.16);
+  border-color: var(--amber);
+}
+
+.shop-order-filter[data-order-filter="completed"][aria-selected="true"] {
+  color: var(--text);
+  background: rgba(37, 196, 122, 0.15);
+  border-color: #25c47a;
+}
+
+.shop-order-filter[data-order-filter="cancelled"][aria-selected="true"] {
+  color: var(--text);
+  background: rgba(217, 48, 29, 0.15);
+  border-color: var(--red);
+}
+
+.shop-admin-order-list {
+  display: grid;
+  gap: 16px;
+}
+
+.shop-orders-empty {
+  padding: 18px;
+  color: var(--muted);
+  background: var(--panel);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
 .shop-order-accordion-summary {
   display: flex;
   align-items: center;
@@ -2890,6 +2966,15 @@ input[type="number"]::-webkit-inner-spin-button {
 
   .shop-customer-details .wide {
     grid-column: auto;
+  }
+
+  .shop-order-filters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .shop-order-filter {
+    width: 100%;
   }
 
   .shop-checkout-aside {

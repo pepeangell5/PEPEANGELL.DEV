@@ -129,10 +129,15 @@ import { sitePath } from "../../utils/paths";
   const passwordCancel = document.querySelector("[data-password-cancel]");
   let pendingDeleteOrder = null;
   let openOrderId = null;
+  let activeOrderFilter = "active";
+  let loadedOrders = [];
+  let loadedOrderItems = [];
+  let loadedOrderEvents = [];
 
   const paymentStatuses = ["pending", "confirmed", "cancelled", "refunded"];
   const shippingStatuses = ["not_ready", "ready", "shipped", "delivered", "cancelled"];
   const orderStatuses = ["new", "confirmed", "in_progress", "completed", "cancelled"];
+  const orderFilterValues = ["all", "active", "completed", "cancelled"];
 
   function escapeHtml(value) {
     return String(value ?? "").replace(/[&<>"']/g, (char) => ({
@@ -153,6 +158,22 @@ import { sitePath } from "../../utils/paths";
 
   function clearBox(box) {
     if (box instanceof HTMLElement) box.hidden = true;
+  }
+
+  function getOrderFilter(order) {
+    if (
+      order.order_status === "cancelled"
+      || order.payment_status === "cancelled"
+      || order.shipping_status === "cancelled"
+    ) {
+      return "cancelled";
+    }
+
+    if (order.order_status === "completed" || order.shipping_status === "delivered") {
+      return "completed";
+    }
+
+    return "active";
   }
 
   function setLoginBusy(isBusy) {
@@ -264,12 +285,32 @@ import { sitePath } from "../../utils/paths";
   function renderOrders(orders, items, events) {
     if (!(ordersEl instanceof HTMLElement)) return;
 
+    loadedOrders = orders;
+    loadedOrderItems = items;
+    loadedOrderEvents = events;
+
     if (!orders.length) {
       ordersEl.innerHTML = `<article class="card"><p>Todavia no hay pedidos.</p></article>`;
       return;
     }
 
-    ordersEl.innerHTML = orders
+    const counts = orders.reduce((result, order) => {
+      result[getOrderFilter(order)] += 1;
+      return result;
+    }, { active: 0, completed: 0, cancelled: 0 });
+
+    const filters = [
+      { value: "all", label: "Todos", count: orders.length },
+      { value: "active", label: "Pendientes / en curso", count: counts.active },
+      { value: "completed", label: "Finalizados", count: counts.completed },
+      { value: "cancelled", label: "Cancelados", count: counts.cancelled }
+    ];
+
+    const filteredOrders = activeOrderFilter === "all"
+      ? orders
+      : orders.filter((order) => getOrderFilter(order) === activeOrderFilter);
+
+    const orderCards = filteredOrders
       .map((order) => {
         const orderItems = items.filter((item) => item.order_id === order.id);
         const orderEvents = events.filter((event) => event.order_id === order.id);
@@ -425,6 +466,26 @@ import { sitePath } from "../../utils/paths";
         `;
       })
       .join("");
+
+    ordersEl.innerHTML = `
+      <div class="shop-order-filters" role="tablist" aria-label="Filtrar pedidos por estado">
+        ${filters.map((filter) => `
+          <button
+            class="shop-order-filter"
+            type="button"
+            role="tab"
+            aria-selected="${activeOrderFilter === filter.value}"
+            data-order-filter="${filter.value}"
+          >
+            ${filter.label}
+            <span>${filter.count}</span>
+          </button>
+        `).join("")}
+      </div>
+      <div class="shop-admin-order-list">
+        ${orderCards || `<div class="shop-orders-empty">No hay pedidos en esta categoria.</div>`}
+      </div>
+    `;
 
     ordersEl.querySelectorAll("[data-order-details]").forEach((details) => {
       if (!(details instanceof HTMLDetailsElement)) return;
@@ -705,6 +766,17 @@ import { sitePath } from "../../utils/paths";
 
   ordersEl?.addEventListener("click", async (event) => {
     const target = event.target;
+    const filterButton = target instanceof Element ? target.closest("[data-order-filter]") : null;
+    if (filterButton instanceof HTMLButtonElement) {
+      const filter = filterButton.dataset.orderFilter;
+      if (!filter || !orderFilterValues.includes(filter)) return;
+
+      activeOrderFilter = filter;
+      openOrderId = null;
+      renderOrders(loadedOrders, loadedOrderItems, loadedOrderEvents);
+      return;
+    }
+
     const requestButton = target instanceof Element ? target.closest("[data-delete-request]") : null;
     if (requestButton instanceof HTMLButtonElement) {
       const id = requestButton.dataset.deleteOrder;
