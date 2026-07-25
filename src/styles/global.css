@@ -838,6 +838,56 @@ p {
   gap: 16px;
 }
 
+.shop-order-accordion-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 28px;
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 900;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.shop-order-accordion-summary::-webkit-details-marker {
+  display: none;
+}
+
+.shop-order-accordion-summary > span:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.shop-order-accordion-summary:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 6px;
+}
+
+.shop-order-accordion-icon {
+  width: 11px;
+  height: 11px;
+  flex: 0 0 11px;
+  border-right: 2px solid var(--pink);
+  border-bottom: 2px solid var(--pink);
+  transform: rotate(45deg) translate(-2px, 2px);
+  transition: transform 160ms ease;
+}
+
+.shop-admin-order[open] .shop-order-accordion-icon {
+  transform: rotate(225deg) translate(-2px, 2px);
+}
+
+.shop-admin-order-body {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
 .shop-modal-backdrop {
   position: fixed;
   inset: 0;

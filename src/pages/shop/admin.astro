@@ -128,6 +128,7 @@ import { sitePath } from "../../utils/paths";
   const passwordSubmit = document.querySelector("[data-password-submit]");
   const passwordCancel = document.querySelector("[data-password-cancel]");
   let pendingDeleteOrder = null;
+  let openOrderId = null;
 
   const paymentStatuses = ["pending", "confirmed", "cancelled", "refunded"];
   const shippingStatuses = ["not_ready", "ready", "shipped", "delivered", "cancelled"];
@@ -274,7 +275,16 @@ import { sitePath } from "../../utils/paths";
         const orderEvents = events.filter((event) => event.order_id === order.id);
 
         return `
-          <article class="card shop-admin-order">
+          <details
+            class="card shop-admin-order"
+            data-order-details="${order.id}"
+            ${openOrderId === order.id ? "open" : ""}
+          >
+            <summary class="shop-order-accordion-summary">
+              <span>${escapeHtml(order.customer_name)}</span>
+              <span class="shop-order-accordion-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="shop-admin-order-body">
             <div class="shop-card-top">
               <p class="status">${escapeHtml(order.order_code)}</p>
               <span class="shop-chip">${new Date(order.created_at).toLocaleString("es-MX")}</span>
@@ -410,10 +420,31 @@ import { sitePath } from "../../utils/paths";
                 `).join("")}
               </ol>
             </div>
-          </article>
+            </div>
+          </details>
         `;
       })
       .join("");
+
+    ordersEl.querySelectorAll("[data-order-details]").forEach((details) => {
+      if (!(details instanceof HTMLDetailsElement)) return;
+
+      details.addEventListener("toggle", () => {
+        const orderId = details.dataset.orderDetails ?? null;
+
+        if (!details.open) {
+          if (openOrderId === orderId) openOrderId = null;
+          return;
+        }
+
+        openOrderId = orderId;
+        ordersEl.querySelectorAll("[data-order-details]").forEach((otherDetails) => {
+          if (otherDetails instanceof HTMLDetailsElement && otherDetails !== details) {
+            otherDetails.open = false;
+          }
+        });
+      });
+    });
   }
 
   async function requireSession() {
