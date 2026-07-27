@@ -417,7 +417,7 @@
         "name": "rf-kill-esp32-devkit-web-v2.bin",
         "url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT/releases/download/RF-KILL-DEVKIT/rf-kill-esp32-devkit-web-v2.bin",
         "size": 336752,
-        "download_count": 10
+        "download_count": 12
       }
     ],
     "zip_url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT/archive/refs/heads/main.zip",
