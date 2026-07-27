@@ -295,6 +295,36 @@
     ]
   },
   {
+    "name": "ESP32 TOOLS PRO 480x320",
+    "slug": "esp32-tools-pro-480x320",
+    "status": "Web flasher",
+    "board": "ESP32 compatible",
+    "display": "TFT ILI9488 480x320 SPI",
+    "modules": [
+      "ESP32",
+      "TFT",
+      "IR"
+    ],
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320",
+    "full_name": "pepeangell5/ESP32-TOOLS-PRO-480x320",
+    "default_branch": "main",
+    "web_flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/",
+    "binarios_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320/tree/main/firmware",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#esp32-tools-pro-480x320",
+    "web_flasher_binaries": [
+      {
+        "label": "firmware-merged.bin",
+        "path": "firmware/firmware-merged.bin",
+        "url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/firmware/firmware-merged.bin",
+        "offset": 0,
+        "chip_family": "ESP32"
+      }
+    ]
+  },
+  {
     "name": "RF KILL",
     "slug": "rf-kill",
     "status": "Web flasher",
@@ -492,36 +522,6 @@
         "label": "firmware-merged.bin",
         "path": "firmware/firmware-merged.bin",
         "url": "https://pepeangell5.github.io/ESP32-TOOLS-MODERN/firmware/firmware-merged.bin",
-        "offset": 0,
-        "chip_family": "ESP32"
-      }
-    ]
-  },
-  {
-    "name": "ESP32 TOOLS PRO 480x320",
-    "slug": "esp32-tools-pro-480x320",
-    "status": "Web flasher",
-    "board": "ESP32 compatible",
-    "display": "TFT ILI9488 480x320 SPI",
-    "modules": [
-      "ESP32",
-      "TFT",
-      "IR"
-    ],
-    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320",
-    "full_name": "pepeangell5/ESP32-TOOLS-PRO-480x320",
-    "default_branch": "main",
-    "web_flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/",
-    "binarios_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320/tree/main/firmware",
-    "release_tag": "",
-    "release_assets": [],
-    "zip_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320/archive/refs/heads/main.zip",
-    "readme_url": "/firmware/#esp32-tools-pro-480x320",
-    "web_flasher_binaries": [
-      {
-        "label": "firmware-merged.bin",
-        "path": "firmware/firmware-merged.bin",
-        "url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/firmware/firmware-merged.bin",
         "offset": 0,
         "chip_family": "ESP32"
       }

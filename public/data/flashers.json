@@ -84,8 +84,24 @@
     "status": "Experimental",
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32",
-    "updated_at": "2026-07-25T00:14:05Z",
+    "updated_at": "2026-07-27T17:16:31Z",
     "source": "manual"
+  },
+  {
+    "name": "ESP32 TOOLS PRO 480x320",
+    "slug": "esp32-tools-pro-480x320",
+    "board": "ESP32 compatible",
+    "display": "TFT ILI9488 480x320 SPI",
+    "modules": [
+      "ESP32",
+      "TFT",
+      "IR"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320",
+    "updated_at": "2026-07-27T17:13:39Z",
+    "source": "auto"
   },
   {
     "name": "RF KILL",
@@ -167,22 +183,6 @@
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-MODERN/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-MODERN",
     "updated_at": "2026-07-08T13:13:06Z",
-    "source": "auto"
-  },
-  {
-    "name": "ESP32 TOOLS PRO 480x320",
-    "slug": "esp32-tools-pro-480x320",
-    "board": "ESP32 compatible",
-    "display": "TFT ILI9488 480x320 SPI",
-    "modules": [
-      "ESP32",
-      "TFT",
-      "IR"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/",
-    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320",
-    "updated_at": "2026-07-08T13:11:56Z",
     "source": "auto"
   }
 ]
