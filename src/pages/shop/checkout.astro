@@ -4,6 +4,8 @@ import { sitePath } from "../../utils/paths";
 
 const paypalUrl = "https://www.paypal.com/paypalme/pepeangell";
 const telegramUrl = "https://t.me/pepeangell";
+const bankClabe = "072580012202384798";
+const bankBeneficiary = "Jose Angel Chavez Felix";
 ---
 
 <BaseLayout
@@ -17,8 +19,8 @@ const telegramUrl = "https://t.me/pepeangell";
         <p class="eyebrow">Checkout</p>
         <h1>Completa tu pedido</h1>
         <p>
-          Registra tus datos de envio, revisa el total y despues paga por PayPal. El pedido queda pendiente hasta
-          que Pepe confirme el pago por Telegram.
+          Registra tus datos de envio, revisa el total y despues paga por PayPal o transferencia Banorte. El pedido
+          queda pendiente hasta que Pepe confirme el pago por Telegram.
         </p>
         <div class="button-row">
           <a class="button" href={sitePath("/shop/")}>Volver a tienda</a>
@@ -27,8 +29,8 @@ const telegramUrl = "https://t.me/pepeangell";
       </div>
       <aside class="shop-panel">
         <p class="status">Pago manual</p>
-        <h2>PayPal + @pepeangell</h2>
-        <p>Al finalizar recibiras un codigo de pedido. Envialo por Telegram junto con el comprobante de PayPal.</p>
+        <h2>PayPal o Banorte + @pepeangell</h2>
+        <p>Al finalizar recibiras un codigo de pedido. Envialo por Telegram junto con el comprobante de pago.</p>
       </aside>
     </div>
   </section>
@@ -126,13 +128,35 @@ const telegramUrl = "https://t.me/pepeangell";
         <h2>Confirmacion por Telegram</h2>
         <ol class="shop-steps">
           <li>Crea el pedido y guarda tu codigo.</li>
-          <li>Paga el total por PayPal.</li>
+          <li>Elige PayPal o transferencia Banorte.</li>
           <li>Envia el codigo y comprobante a @pepeangell.</li>
           <li>Pepe actualiza pago, envio e historial desde el admin.</li>
         </ol>
+        <div class="shop-payment-options">
+          <section class="shop-payment-option">
+            <p class="status">Opcion 1</p>
+            <h3>PayPal</h3>
+            <a class="button primary" href={paypalUrl} target="_blank" rel="noreferrer noopener">Abrir PayPal</a>
+          </section>
+          <section class="shop-payment-option">
+            <p class="status">Opcion 2</p>
+            <h3>Transferencia Banorte</h3>
+            <dl class="shop-bank-details">
+              <div>
+                <dt>CLABE interbancaria</dt>
+                <dd class="shop-bank-clabe">{bankClabe}</dd>
+              </div>
+              <div>
+                <dt>Beneficiario</dt>
+                <dd>{bankBeneficiary}</dd>
+              </div>
+            </dl>
+            <p class="small">Usa el codigo de tu pedido como concepto o referencia.</p>
+            <button class="button" type="button" data-copy-clabe data-clabe={bankClabe}>Copiar CLABE</button>
+          </section>
+        </div>
         <div class="button-row">
-          <a class="button primary" href={paypalUrl} target="_blank" rel="noreferrer noopener">Abrir PayPal</a>
-          <a class="button" href={telegramUrl} target="_blank" rel="noreferrer noopener">Telegram</a>
+          <a class="button" href={telegramUrl} target="_blank" rel="noreferrer noopener">Enviar comprobante por Telegram</a>
         </div>
       </aside>
     </div>
@@ -155,6 +179,28 @@ const telegramUrl = "https://t.me/pepeangell";
   const submitButton = document.querySelector("[data-submit-order]");
   const params = new URLSearchParams(window.location.search);
   let products = [];
+
+  document.addEventListener("click", async (event) => {
+    const target = event.target;
+    const copyButton = target instanceof Element ? target.closest("[data-copy-clabe]") : null;
+    if (!(copyButton instanceof HTMLButtonElement)) return;
+
+    const clabe = copyButton.dataset.clabe;
+    if (!clabe) return;
+
+    const originalLabel = copyButton.textContent ?? "Copiar CLABE";
+
+    try {
+      await navigator.clipboard.writeText(clabe);
+      copyButton.textContent = "CLABE copiada";
+    } catch {
+      copyButton.textContent = "Selecciona y copia la CLABE";
+    }
+
+    window.setTimeout(() => {
+      copyButton.textContent = originalLabel;
+    }, 2200);
+  });
 
   function escapeHtml(value) {
     return String(value ?? "").replace(/[&<>"']/g, (char) => ({
@@ -361,9 +407,31 @@ const telegramUrl = "https://t.me/pepeangell";
         <p class="status">Pedido creado</p>
         <h2>${escapeHtml(order.public_code)}</h2>
         <p>Total: <strong>${total}</strong></p>
-        <p>Paga por PayPal y envia este codigo a @pepeangell para confirmar el pedido.</p>
+        <p>Elige PayPal o transferencia Banorte y envia este codigo a @pepeangell para confirmar el pedido.</p>
+        <div class="shop-payment-options">
+          <section class="shop-payment-option">
+            <p class="status">Opcion 1</p>
+            <h3>PayPal</h3>
+            <a class="button primary" href="https://www.paypal.com/paypalme/pepeangell" target="_blank" rel="noreferrer noopener">Pagar por PayPal</a>
+          </section>
+          <section class="shop-payment-option">
+            <p class="status">Opcion 2</p>
+            <h3>Transferencia Banorte</h3>
+            <dl class="shop-bank-details">
+              <div>
+                <dt>CLABE interbancaria</dt>
+                <dd class="shop-bank-clabe">072580012202384798</dd>
+              </div>
+              <div>
+                <dt>Beneficiario</dt>
+                <dd>Jose Angel Chavez Felix</dd>
+              </div>
+            </dl>
+            <p class="small">Referencia: ${escapeHtml(order.public_code)}</p>
+            <button class="button" type="button" data-copy-clabe data-clabe="072580012202384798">Copiar CLABE</button>
+          </section>
+        </div>
         <div class="button-row">
-          <a class="button primary" href="https://www.paypal.com/paypalme/pepeangell" target="_blank" rel="noreferrer noopener">Pagar por PayPal</a>
           <a class="button" href="https://t.me/pepeangell" target="_blank" rel="noreferrer noopener">Enviar por Telegram</a>
           <a class="button" href="/shop/orders/">Ver estado</a>
         </div>

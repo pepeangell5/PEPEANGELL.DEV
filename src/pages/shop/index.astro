@@ -3,7 +3,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import DisclaimerBanner from "../../components/DisclaimerBanner.astro";
 import { sitePath } from "../../utils/paths";
 
-const paypalUrl = "https://www.paypal.com/paypalme/pepeangell";
 const telegramChannelUrl = "https://t.me/+PnOGmQQDL05kN2Ix";
 const telegramGroupUrl = "https://t.me/esp32_tools";
 
@@ -74,7 +73,8 @@ const products = [
         <h1>Kits ESP32 programados</h1>
         <p>
           Placas preparadas con firmware RF-KILL para pruebas educativas, laboratorio controlado y aprendizaje
-          de hardware embebido. Los pagos se realizan por PayPal y la disponibilidad se confirma antes del envio.
+          de hardware embebido. Los pagos se realizan por PayPal o transferencia Banorte y la disponibilidad se
+          confirma antes del envio.
         </p>
         <div class="button-row">
           <a class="button primary" href={sitePath("/shop/checkout/")}>Iniciar pedido</a>
@@ -87,8 +87,8 @@ const products = [
       </div>
       <aside class="shop-panel" aria-label="Resumen de compra">
         <p class="status">Flujo manual</p>
-        <h2>Checkout + PayPal + Telegram</h2>
-        <p>El pedido guarda tus datos de envio, queda pendiente de confirmacion y se paga por PayPal. Pepe confirma por Telegram: @pepeangell.</p>
+        <h2>Checkout + pago manual + Telegram</h2>
+        <p>El pedido guarda tus datos de envio, queda pendiente de confirmacion y se paga por PayPal o transferencia Banorte. Pepe confirma por Telegram: @pepeangell.</p>
       </aside>
     </div>
   </section>
@@ -156,7 +156,7 @@ const products = [
         <article class="card highlight">
           <p class="status">Proceso</p>
           <h3>Compra simple</h3>
-          <p>Completa el checkout, paga por PayPal y envia tu codigo de pedido a @pepeangell en Telegram.</p>
+          <p>Completa el checkout, paga por PayPal o Banorte y envia tu codigo de pedido a @pepeangell en Telegram.</p>
         </article>
         <article class="card">
           <p class="status">Firmware</p>

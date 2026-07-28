@@ -625,6 +625,59 @@ p {
   line-height: 1.55;
 }
 
+.shop-payment-options {
+  display: grid;
+  gap: 16px;
+}
+
+.shop-payment-option {
+  display: grid;
+  gap: 9px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.shop-payment-option h3,
+.shop-payment-option p {
+  margin: 0;
+}
+
+.shop-payment-option .button {
+  justify-self: start;
+}
+
+.shop-bank-details {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.shop-bank-details div {
+  display: grid;
+  gap: 4px;
+}
+
+.shop-bank-details dt {
+  color: var(--pink);
+  font-size: 0.72rem;
+  font-weight: 900;
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  text-transform: uppercase;
+}
+
+.shop-bank-details dd {
+  margin: 0;
+  color: var(--text);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.shop-bank-clabe {
+  color: var(--green) !important;
+  font-size: clamp(0.92rem, 2.8vw, 1.08rem);
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+}
+
 .shop-success {
   display: grid;
   gap: 12px;
