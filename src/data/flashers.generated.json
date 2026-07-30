@@ -13,7 +13,7 @@
     "status": "In Development",
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32-V4.0/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0",
-    "updated_at": "2026-07-26T15:20:14Z",
+    "updated_at": "2026-07-30T19:49:08Z",
     "source": "manual"
   },
   {
@@ -68,7 +68,7 @@
     "status": "Experimental",
     "flasher_url": "",
     "github_url": "https://github.com/pepeangell5/BWifiKill-BW16-5Ghz",
-    "updated_at": "2026-07-29T15:34:47Z",
+    "updated_at": "2026-07-30T19:49:00Z",
     "source": "manual"
   },
   {
@@ -86,6 +86,40 @@
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32",
     "updated_at": "2026-07-27T17:16:31Z",
     "source": "manual"
+  },
+  {
+    "name": "RF KILL",
+    "slug": "rf-kill",
+    "board": "ESP32-C3 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32-C3",
+      "ESP32",
+      "RF",
+      "NRF24",
+      "IR"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/RF-KILL/",
+    "github_url": "https://github.com/pepeangell5/RF-KILL",
+    "updated_at": "2026-07-30T19:48:52Z",
+    "source": "auto"
+  },
+  {
+    "name": "BWifiKill CARDPUTER ADV",
+    "slug": "bwifikill-cardputer-adv",
+    "board": "M5Stack Cardputer",
+    "display": "M5Stack Cardputer integrated display",
+    "modules": [
+      "WiFi",
+      "M5Stack",
+      "Cardputer"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/BWifiKill-CARDPUTER-ADV/",
+    "github_url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV",
+    "updated_at": "2026-07-30T16:55:24Z",
+    "source": "auto"
   },
   {
     "name": "RF KILL ESP32 DEVKIT",
@@ -119,40 +153,6 @@
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320",
     "updated_at": "2026-07-27T17:13:39Z",
-    "source": "auto"
-  },
-  {
-    "name": "RF KILL",
-    "slug": "rf-kill",
-    "board": "ESP32-C3 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP32-C3",
-      "ESP32",
-      "RF",
-      "NRF24",
-      "IR"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/RF-KILL/",
-    "github_url": "https://github.com/pepeangell5/RF-KILL",
-    "updated_at": "2026-07-25T17:53:25Z",
-    "source": "auto"
-  },
-  {
-    "name": "BWifiKill CARDPUTER ADV",
-    "slug": "bwifikill-cardputer-adv",
-    "board": "M5Stack Cardputer",
-    "display": "M5Stack Cardputer integrated display",
-    "modules": [
-      "WiFi",
-      "M5Stack",
-      "Cardputer"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/BWifiKill-CARDPUTER-ADV/",
-    "github_url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV",
-    "updated_at": "2026-07-20T03:47:30Z",
     "source": "auto"
   },
   {
