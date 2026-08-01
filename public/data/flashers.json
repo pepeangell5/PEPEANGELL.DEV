@@ -84,8 +84,23 @@
     "status": "Experimental",
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32",
-    "updated_at": "2026-07-31T18:56:09Z",
+    "updated_at": "2026-07-31T23:05:37Z",
     "source": "manual"
+  },
+  {
+    "name": "ESP32 TOOLS",
+    "slug": "esp32-tools",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32",
+      "WiFi"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS/",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS",
+    "updated_at": "2026-08-01T01:16:56Z",
+    "source": "auto"
   },
   {
     "name": "RF KILL ESP32 DEVKIT",
@@ -102,7 +117,7 @@
     "status": "Web flasher",
     "flasher_url": "https://pepeangell5.github.io/RF-KILL-ESP32-DEVKIT/",
     "github_url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT",
-    "updated_at": "2026-07-31T06:13:51Z",
+    "updated_at": "2026-07-31T23:31:56Z",
     "source": "auto"
   },
   {
@@ -153,21 +168,6 @@
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320",
     "updated_at": "2026-07-27T17:13:39Z",
-    "source": "auto"
-  },
-  {
-    "name": "ESP32 TOOLS",
-    "slug": "esp32-tools",
-    "board": "ESP32 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP32",
-      "WiFi"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS/",
-    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS",
-    "updated_at": "2026-07-19T10:52:19Z",
     "source": "auto"
   },
   {
