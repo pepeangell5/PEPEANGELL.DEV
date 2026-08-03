@@ -170,7 +170,7 @@
         "name": "bootloader.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/bootloader.bin",
         "size": 17536,
-        "download_count": 77
+        "download_count": 78
       },
       {
         "name": "firmware-merged.bin",
