@@ -13,7 +13,7 @@
     "status": "In Development",
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32-V4.0/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0",
-    "updated_at": "2026-08-01T12:53:49Z",
+    "updated_at": "2026-08-07T14:03:16Z",
     "source": "manual"
   },
   {
@@ -68,7 +68,7 @@
     "status": "Experimental",
     "flasher_url": "",
     "github_url": "https://github.com/pepeangell5/BWifiKill-BW16-5Ghz",
-    "updated_at": "2026-08-02T14:08:34Z",
+    "updated_at": "2026-08-07T14:16:02Z",
     "source": "manual"
   },
   {
@@ -102,7 +102,7 @@
     "status": "Web flasher",
     "flasher_url": "https://pepeangell5.github.io/RF-KILL-ESP32-DEVKIT/",
     "github_url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT",
-    "updated_at": "2026-08-07T08:43:12Z",
+    "updated_at": "2026-08-07T14:15:58Z",
     "source": "auto"
   },
   {
