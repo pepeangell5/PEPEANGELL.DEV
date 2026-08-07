@@ -351,8 +351,33 @@
     "default_branch": "main",
     "web_flasher_url": "https://pepeangell5.github.io/RF-KILL/",
     "binarios_url": "https://github.com/pepeangell5/RF-KILL/tree/main/binarios",
-    "release_tag": "",
-    "release_assets": [],
+    "release_tag": "rf-kill",
+    "release_assets": [
+      {
+        "name": "bootloader.bin",
+        "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/bootloader.bin",
+        "size": 13216,
+        "download_count": 0
+      },
+      {
+        "name": "firmware.bin",
+        "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/firmware.bin",
+        "size": 257600,
+        "download_count": 0
+      },
+      {
+        "name": "firmware_unificado.bin",
+        "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/firmware_unificado.bin",
+        "size": 323136,
+        "download_count": 0
+      },
+      {
+        "name": "partitions.bin",
+        "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/partitions.bin",
+        "size": 3072,
+        "download_count": 0
+      }
+    ],
     "zip_url": "https://github.com/pepeangell5/RF-KILL/archive/refs/heads/main.zip",
     "readme_url": "/firmware/#rf-kill",
     "web_flasher_binaries": [
