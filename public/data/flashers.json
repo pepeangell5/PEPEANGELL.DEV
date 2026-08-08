@@ -34,7 +34,7 @@
     "status": "Testing",
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V2.0/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
-    "updated_at": "2026-08-05T04:57:39Z",
+    "updated_at": "2026-08-08T04:38:45Z",
     "source": "manual"
   },
   {
@@ -102,7 +102,7 @@
     "status": "Web flasher",
     "flasher_url": "https://pepeangell5.github.io/RF-KILL-ESP32-DEVKIT/",
     "github_url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT",
-    "updated_at": "2026-08-07T14:15:58Z",
+    "updated_at": "2026-08-08T05:32:26Z",
     "source": "auto"
   },
   {
