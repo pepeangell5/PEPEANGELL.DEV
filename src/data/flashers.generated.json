@@ -13,7 +13,7 @@
     "status": "In Development",
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32-V4.0/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0",
-    "updated_at": "2026-08-07T14:03:16Z",
+    "updated_at": "2026-08-09T00:21:06Z",
     "source": "manual"
   },
   {
@@ -34,7 +34,7 @@
     "status": "Testing",
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V2.0/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
-    "updated_at": "2026-08-08T04:38:45Z",
+    "updated_at": "2026-08-08T21:36:07Z",
     "source": "manual"
   },
   {
@@ -84,7 +84,7 @@
     "status": "Experimental",
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32",
-    "updated_at": "2026-08-04T11:04:24Z",
+    "updated_at": "2026-08-08T21:23:28Z",
     "source": "manual"
   },
   {
@@ -100,7 +100,7 @@
     "status": "Web flasher",
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-CARDPUTER-ADV/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV",
-    "updated_at": "2026-08-08T09:38:34Z",
+    "updated_at": "2026-08-08T19:58:20Z",
     "source": "auto"
   },
   {

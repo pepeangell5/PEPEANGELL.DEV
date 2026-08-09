@@ -128,7 +128,7 @@
         "name": "BWifiKill-ESP32-V4.0-full.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/releases/download/bwifikill/BWifiKill-ESP32-V4.0-full.bin",
         "size": 1845200,
-        "download_count": 137
+        "download_count": 138
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/archive/refs/heads/main.zip",
@@ -170,13 +170,13 @@
         "name": "bootloader.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/bootloader.bin",
         "size": 17536,
-        "download_count": 80
+        "download_count": 81
       },
       {
         "name": "firmware-merged.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware-merged.bin",
         "size": 2155568,
-        "download_count": 74
+        "download_count": 75
       },
       {
         "name": "firmware.bin",
@@ -279,7 +279,7 @@
         "name": "full_bwifikill_v3.3.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32/releases/download/bwifikillV3.3/full_bwifikill_v3.3.bin",
         "size": 1948320,
-        "download_count": 64
+        "download_count": 65
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32/archive/refs/heads/main.zip",
@@ -385,7 +385,7 @@
         "name": "rf-kill-esp32-devkit-web-v2.bin",
         "url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT/releases/download/RF-KILL-DEVKIT/rf-kill-esp32-devkit-web-v2.bin",
         "size": 336752,
-        "download_count": 20
+        "download_count": 22
       }
     ],
     "zip_url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT/archive/refs/heads/main.zip",
@@ -551,6 +551,29 @@
         "chip_family": "ESP32"
       }
     ]
+  },
+  {
+    "name": "DRONE FPV ESP32C3 SUPERMINI",
+    "slug": "drone-fpv-esp32c3-supermini",
+    "status": "Repositorio",
+    "board": "ESP32-C3 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32-C3",
+      "ESP32",
+      "ESP-NOW",
+      "Drone"
+    ],
+    "github_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI",
+    "full_name": "pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#drone-fpv-esp32c3-supermini",
+    "web_flasher_binaries": []
   },
   {
     "name": "FINANZAS PEPEANGELL",
@@ -723,29 +746,6 @@
     "release_assets": [],
     "zip_url": "https://github.com/pepeangell5/SMART-CAR-QD001/archive/refs/heads/main.zip",
     "readme_url": "/firmware/#smart-car-qd001",
-    "web_flasher_binaries": []
-  },
-  {
-    "name": "DRONE FPV ESP32C3 SUPERMINI",
-    "slug": "drone-fpv-esp32c3-supermini",
-    "status": "Repositorio",
-    "board": "ESP32-C3 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP32-C3",
-      "ESP32",
-      "ESP-NOW",
-      "Drone"
-    ],
-    "github_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI",
-    "full_name": "pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI",
-    "default_branch": "main",
-    "web_flasher_url": "",
-    "binarios_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI/search?q=extension%3Abin&type=code",
-    "release_tag": "",
-    "release_assets": [],
-    "zip_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI/archive/refs/heads/main.zip",
-    "readme_url": "/firmware/#drone-fpv-esp32c3-supermini",
     "web_flasher_binaries": []
   }
 ]
