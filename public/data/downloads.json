@@ -128,7 +128,7 @@
         "name": "BWifiKill-ESP32-V4.0-full.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/releases/download/bwifikill/BWifiKill-ESP32-V4.0-full.bin",
         "size": 1845200,
-        "download_count": 139
+        "download_count": 140
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/archive/refs/heads/main.zip",
@@ -279,7 +279,7 @@
         "name": "full_bwifikill_v3.3.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32/releases/download/bwifikillV3.3/full_bwifikill_v3.3.bin",
         "size": 1948320,
-        "download_count": 65
+        "download_count": 68
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32/archive/refs/heads/main.zip",
@@ -291,6 +291,73 @@
         "url": "https://pepeangell5.github.io/BWifiKill-ESP32/full_bwifikill_v3.3.bin",
         "offset": 0,
         "chip_family": "ESP32"
+      }
+    ]
+  },
+  {
+    "name": "BWifiKill CARDPUTER ADV",
+    "slug": "bwifikill-cardputer-adv",
+    "status": "Web flasher",
+    "board": "M5Stack Cardputer",
+    "display": "M5Stack Cardputer integrated display",
+    "modules": [
+      "WiFi",
+      "M5Stack",
+      "Cardputer"
+    ],
+    "github_url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV",
+    "full_name": "pepeangell5/BWifiKill-CARDPUTER-ADV",
+    "default_branch": "main",
+    "web_flasher_url": "https://pepeangell5.github.io/BWifiKill-CARDPUTER-ADV/",
+    "binarios_url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/tree/main/binarios",
+    "release_tag": "cardputer-bwifikill",
+    "release_assets": [
+      {
+        "name": "bootloader.bin",
+        "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/bootloader.bin",
+        "size": 15088,
+        "download_count": 1
+      },
+      {
+        "name": "BWifiKill-CARDPUTER-ADV-full.bin",
+        "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/BWifiKill-CARDPUTER-ADV-full.bin",
+        "size": 1773616,
+        "download_count": 10
+      },
+      {
+        "name": "checksums-sha256.txt",
+        "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/checksums-sha256.txt",
+        "size": 344,
+        "download_count": 1
+      },
+      {
+        "name": "firmware.bin",
+        "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/firmware.bin",
+        "size": 1708080,
+        "download_count": 2
+      },
+      {
+        "name": "partitions.bin",
+        "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/partitions.bin",
+        "size": 3072,
+        "download_count": 1
+      },
+      {
+        "name": "README.md",
+        "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/README.md",
+        "size": 834,
+        "download_count": 4
+      }
+    ],
+    "zip_url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#bwifikill-cardputer-adv",
+    "web_flasher_binaries": [
+      {
+        "label": "BWifiKill-CARDPUTER-ADV-full.bin",
+        "path": "binarios/BWifiKill-CARDPUTER-ADV-full.bin",
+        "url": "https://pepeangell5.github.io/BWifiKill-CARDPUTER-ADV/binarios/BWifiKill-CARDPUTER-ADV-full.bin",
+        "offset": 0,
+        "chip_family": "ESP32-S3"
       }
     ]
   },
@@ -420,73 +487,6 @@
     ]
   },
   {
-    "name": "BWifiKill CARDPUTER ADV",
-    "slug": "bwifikill-cardputer-adv",
-    "status": "Web flasher",
-    "board": "M5Stack Cardputer",
-    "display": "M5Stack Cardputer integrated display",
-    "modules": [
-      "WiFi",
-      "M5Stack",
-      "Cardputer"
-    ],
-    "github_url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV",
-    "full_name": "pepeangell5/BWifiKill-CARDPUTER-ADV",
-    "default_branch": "main",
-    "web_flasher_url": "https://pepeangell5.github.io/BWifiKill-CARDPUTER-ADV/",
-    "binarios_url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/tree/main/binarios",
-    "release_tag": "cardputer-bwifikill",
-    "release_assets": [
-      {
-        "name": "bootloader.bin",
-        "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/bootloader.bin",
-        "size": 15088,
-        "download_count": 1
-      },
-      {
-        "name": "BWifiKill-CARDPUTER-ADV-full.bin",
-        "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/BWifiKill-CARDPUTER-ADV-full.bin",
-        "size": 1773616,
-        "download_count": 10
-      },
-      {
-        "name": "checksums-sha256.txt",
-        "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/checksums-sha256.txt",
-        "size": 344,
-        "download_count": 1
-      },
-      {
-        "name": "firmware.bin",
-        "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/firmware.bin",
-        "size": 1708080,
-        "download_count": 2
-      },
-      {
-        "name": "partitions.bin",
-        "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/partitions.bin",
-        "size": 3072,
-        "download_count": 1
-      },
-      {
-        "name": "README.md",
-        "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/README.md",
-        "size": 834,
-        "download_count": 4
-      }
-    ],
-    "zip_url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/archive/refs/heads/main.zip",
-    "readme_url": "/firmware/#bwifikill-cardputer-adv",
-    "web_flasher_binaries": [
-      {
-        "label": "BWifiKill-CARDPUTER-ADV-full.bin",
-        "path": "binarios/BWifiKill-CARDPUTER-ADV-full.bin",
-        "url": "https://pepeangell5.github.io/BWifiKill-CARDPUTER-ADV/binarios/BWifiKill-CARDPUTER-ADV-full.bin",
-        "offset": 0,
-        "chip_family": "ESP32-S3"
-      }
-    ]
-  },
-  {
     "name": "ESP32 TOOLS",
     "slug": "esp32-tools",
     "status": "Web flasher",
@@ -551,6 +551,27 @@
         "chip_family": "ESP32"
       }
     ]
+  },
+  {
+    "name": "IR REMOTE CARDPUTER ADV",
+    "slug": "ir-remote-cardputer-adv",
+    "status": "Repositorio",
+    "board": "M5Stack Cardputer",
+    "display": "M5Stack Cardputer integrated display",
+    "modules": [
+      "Cardputer",
+      "IR"
+    ],
+    "github_url": "https://github.com/pepeangell5/IR_REMOTE_CARDPUTER_ADV",
+    "full_name": "pepeangell5/IR_REMOTE_CARDPUTER_ADV",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/IR_REMOTE_CARDPUTER_ADV/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/IR_REMOTE_CARDPUTER_ADV/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#ir-remote-cardputer-adv",
+    "web_flasher_binaries": []
   },
   {
     "name": "DRONE FPV ESP32C3 SUPERMINI",
@@ -659,27 +680,6 @@
     "release_assets": [],
     "zip_url": "https://github.com/pepeangell5/ESP8266-DEAUTHER/archive/refs/heads/main.zip",
     "readme_url": "/firmware/#esp8266-deauther",
-    "web_flasher_binaries": []
-  },
-  {
-    "name": "IR REMOTE CARDPUTER ADV",
-    "slug": "ir-remote-cardputer-adv",
-    "status": "Repositorio",
-    "board": "M5Stack Cardputer",
-    "display": "M5Stack Cardputer integrated display",
-    "modules": [
-      "Cardputer",
-      "IR"
-    ],
-    "github_url": "https://github.com/pepeangell5/IR_REMOTE_CARDPUTER_ADV",
-    "full_name": "pepeangell5/IR_REMOTE_CARDPUTER_ADV",
-    "default_branch": "main",
-    "web_flasher_url": "",
-    "binarios_url": "https://github.com/pepeangell5/IR_REMOTE_CARDPUTER_ADV/search?q=extension%3Abin&type=code",
-    "release_tag": "",
-    "release_assets": [],
-    "zip_url": "https://github.com/pepeangell5/IR_REMOTE_CARDPUTER_ADV/archive/refs/heads/main.zip",
-    "readme_url": "/firmware/#ir-remote-cardputer-adv",
     "web_flasher_binaries": []
   },
   {
