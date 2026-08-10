@@ -3,23 +3,23 @@ import { sitePath } from "../utils/paths";
 import LanguageToggle from "./LanguageToggle.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
-const links = [
-  { href: "/", label: "Inicio" },
-  { href: "/support/", label: "Apoyo" },
+const repositoryLinks = [
   { href: "/firmware/", label: "Firmware" },
-  { href: "/shop/", label: "Tienda" },
   { href: "/repos/", label: "Repos" },
   { href: "/flashers/", label: "Flashers" },
-  { href: "/hardware/", label: "Hardware" },
-  { href: "/downloads/", label: "Descargas" },
+  { href: "/hardware/", label: "Hardware" }
+];
+
+const laboratoryLinks = [
   { href: "/code-simulator/", label: "Code Simulator" },
-  { href: "/hardware-lab/", label: "Simulador PCB" },
-  { href: "/news/", label: "Noticias" },
-  { href: "/contact/", label: "Contacto" }
+  { href: "/hardware-lab/", label: "Simulador PCB" }
 ];
 
 const pathname = Astro.url.pathname;
 const normalizedPathname = pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ""), "") || "/";
+const isCurrent = (href: string) => normalizedPathname === href;
+const repositoryIsCurrent = repositoryLinks.some((link) => isCurrent(link.href));
+const laboratoryIsCurrent = laboratoryLinks.some((link) => isCurrent(link.href));
 ---
 
 <header class="site-header">
@@ -36,13 +36,40 @@ const normalizedPathname = pathname.replace(import.meta.env.BASE_URL.replace(/\/
       <span>ESP32-TOOLS</span>
     </a>
     <nav class="nav-links" aria-label="Navegacion principal">
-      {
-        links.map((link) => (
-          <a href={sitePath(link.href)} aria-current={normalizedPathname === link.href ? "page" : undefined}>
-            {link.label}
-          </a>
-        ))
-      }
+      <a href={sitePath("/")} aria-current={isCurrent("/") ? "page" : undefined}>Inicio</a>
+      <a href={sitePath("/support/")} aria-current={isCurrent("/support/") ? "page" : undefined}>Apoyo</a>
+      <a href={sitePath("/shop/")} aria-current={isCurrent("/shop/") ? "page" : undefined}>Tienda</a>
+
+      <details class:list={["nav-group", { "is-active": repositoryIsCurrent }]}>
+        <summary>Repositorios</summary>
+        <div class="nav-group-menu" aria-label="Repositorios">
+          {
+            repositoryLinks.map((link) => (
+              <a href={sitePath(link.href)} aria-current={isCurrent(link.href) ? "page" : undefined}>
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </details>
+
+      <a href={sitePath("/downloads/")} aria-current={isCurrent("/downloads/") ? "page" : undefined}>Descargas</a>
+
+      <details class:list={["nav-group", { "is-active": laboratoryIsCurrent }]}>
+        <summary>Laboratorio</summary>
+        <div class="nav-group-menu" aria-label="Laboratorio">
+          {
+            laboratoryLinks.map((link) => (
+              <a href={sitePath(link.href)} aria-current={isCurrent(link.href) ? "page" : undefined}>
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </details>
+
+      <a href={sitePath("/news/")} aria-current={isCurrent("/news/") ? "page" : undefined}>Noticias</a>
+      <a href={sitePath("/contact/")} aria-current={isCurrent("/contact/") ? "page" : undefined}>Contacto</a>
     </nav>
     <button class="nav-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" data-nav-toggle>
       <span aria-hidden="true"></span>
@@ -57,6 +84,7 @@ const normalizedPathname = pathname.replace(import.meta.env.BASE_URL.replace(/\/
 <script>
   const toggle = document.querySelector("[data-nav-toggle]");
   const nav = document.querySelector(".nav-links");
+  const navGroups = document.querySelectorAll(".nav-group");
   const themeButtons = document.querySelectorAll("[data-theme-option]");
   const themeStorageKey = "pepeangell-labs-theme-v1";
 
@@ -90,6 +118,21 @@ const normalizedPathname = pathname.replace(import.meta.env.BASE_URL.replace(/\/
     if (!(event.target instanceof HTMLAnchorElement)) return;
     toggle?.setAttribute("aria-expanded", "false");
     nav.classList.remove("open");
+    navGroups.forEach((group) => group.removeAttribute("open"));
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!(event.target instanceof Node)) return;
+    navGroups.forEach((group) => {
+      if (!group.contains(event.target)) group.removeAttribute("open");
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    toggle?.setAttribute("aria-expanded", "false");
+    nav?.classList.remove("open");
+    navGroups.forEach((group) => group.removeAttribute("open"));
   });
 
   themeButtons.forEach((button) => {

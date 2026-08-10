@@ -1147,23 +1147,16 @@ p {
   display: flex;
   flex: 1;
   flex-wrap: nowrap;
+  align-items: center;
   justify-content: flex-start;
   min-width: 0;
   max-width: 100%;
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  overflow: visible;
   gap: 6px;
 }
 
-.nav-links::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  background: transparent;
-}
-
-.nav-links a {
+.nav-links > a,
+.nav-group > summary {
   flex: 0 0 auto;
   padding: 8px 9px;
   color: var(--muted);
@@ -1173,10 +1166,80 @@ p {
   border-radius: 8px;
 }
 
-.nav-links a:hover,
-.nav-links a[aria-current="page"] {
+.nav-links > a:hover,
+.nav-links > a[aria-current="page"],
+.nav-group > summary:hover,
+.nav-group[open] > summary,
+.nav-group.is-active > summary {
   color: var(--text);
   background: rgba(57, 255, 136, 0.1);
+}
+
+.nav-group {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.nav-group > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nav-group > summary::-webkit-details-marker {
+  display: none;
+}
+
+.nav-group > summary::after {
+  width: 7px;
+  height: 7px;
+  content: "";
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 160ms ease;
+}
+
+.nav-group[open] > summary::after {
+  transform: translateY(2px) rotate(225deg);
+}
+
+.nav-group-menu {
+  position: absolute;
+  top: calc(100% + 9px);
+  left: 0;
+  z-index: 40;
+  display: grid;
+  min-width: 210px;
+  gap: 4px;
+  padding: 8px;
+  background: rgba(7, 9, 12, 0.98);
+  border: 1px solid rgba(57, 255, 136, 0.22);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.nav-group-menu a {
+  display: flex;
+  min-height: 40px;
+  align-items: center;
+  padding: 9px 11px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 750;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 7px;
+}
+
+.nav-group-menu a:hover,
+.nav-group-menu a[aria-current="page"] {
+  color: var(--text);
+  background: rgba(57, 255, 136, 0.1);
+  border-color: rgba(57, 255, 136, 0.18);
 }
 
 .language-toggle,
@@ -1221,6 +1284,7 @@ p {
 
 .language-toggle button:focus-visible,
 .theme-toggle button:focus-visible,
+.nav-group > summary:focus-visible,
 .hardware-wiki-item summary:focus-visible,
 .download-item summary:focus-visible {
   outline: 2px solid var(--green);
@@ -1278,13 +1342,14 @@ p {
     gap: 4px;
   }
 
-  .nav-links a {
+  .nav-links > a,
+  .nav-group > summary {
     padding: 7px 8px;
     font-size: 0.84rem;
   }
 }
 
-@media (max-width: 1600px) {
+@media (max-width: 1180px) {
   .nav {
     overflow: visible;
   }
@@ -1299,6 +1364,7 @@ p {
     overflow: auto;
     flex: none;
     flex-direction: column;
+    align-items: stretch;
     gap: 6px;
     padding: 10px;
     background: rgba(7, 9, 12, 0.98);
@@ -1311,7 +1377,8 @@ p {
     display: flex;
   }
 
-  .nav-links a {
+  .nav-links > a,
+  .nav-group > summary {
     width: 100%;
     min-height: 42px;
     display: flex;
@@ -1319,6 +1386,28 @@ p {
     padding: 10px 12px;
     font-size: 0.92rem;
     border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .nav-group {
+    width: 100%;
+  }
+
+  .nav-group > summary {
+    justify-content: space-between;
+  }
+
+  .nav-group-menu {
+    position: static;
+    min-width: 0;
+    margin-top: 5px;
+    padding: 5px 5px 5px 14px;
+    background: rgba(15, 20, 26, 0.72);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: none;
+  }
+
+  .nav-group-menu a {
+    width: 100%;
   }
 
   .nav-menu-toggle {
@@ -3240,6 +3329,23 @@ html[data-theme="light"] .site-footer {
   border-color: rgba(255, 44, 169, 0.18);
 }
 
+html[data-theme="light"] .nav-group-menu {
+  background: rgba(255, 255, 255, 0.99);
+  border-color: rgba(255, 44, 169, 0.28);
+  box-shadow: 0 18px 40px rgba(81, 28, 61, 0.16);
+}
+
+html[data-theme="light"] .nav-group-menu a {
+  color: #423640;
+}
+
+html[data-theme="light"] .nav-group-menu a:hover,
+html[data-theme="light"] .nav-group-menu a[aria-current="page"] {
+  color: #171017;
+  background: rgba(255, 44, 169, 0.1);
+  border-color: rgba(255, 44, 169, 0.24);
+}
+
 html[data-theme="light"] .site-shell::before {
   color: rgba(255, 44, 169, 0.075);
   text-shadow: none;
@@ -3397,7 +3503,7 @@ html[data-theme="light"] .hero-mascot-code {
   background: #fffafd;
 }
 
-@media (max-width: 1320px) {
+@media (max-width: 1180px) {
   html[data-theme="light"] .nav-links {
     background: rgba(255, 255, 255, 0.98);
     border-color: rgba(255, 44, 169, 0.3);
@@ -3415,6 +3521,18 @@ html[data-theme="light"] .hero-mascot-code {
     color: #171017;
     background: rgba(255, 44, 169, 0.12);
     border-color: rgba(255, 44, 169, 0.36);
+  }
+
+  html[data-theme="light"] .nav-group > summary {
+    color: #171017;
+    background: #fff8fd;
+    border-color: rgba(255, 44, 169, 0.14);
+  }
+
+  html[data-theme="light"] .nav-group-menu {
+    background: rgba(255, 247, 252, 0.96);
+    border-color: rgba(255, 44, 169, 0.14);
+    box-shadow: none;
   }
 }
 
