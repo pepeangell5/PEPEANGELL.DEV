@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HardwareLab from "../../components/hardware-lab/HardwareLab";
+
+const telegramGroupUrl = "https://t.me/esp32_tools";
+---
+
+<BaseLayout
+  title="Hardware Lab Beta"
+  description="Simulador visual para diseñar montajes ESP32 sobre placas perforadas, conectar componentes y revisar el cableado de proyectos electrónicos."
+>
+  <section class="hardware-lab-page">
+    <div class="hardware-lab-page__heading">
+      <div class="hardware-lab-page__intro">
+        <p>PROTOTIPADO · BETA PÚBLICA</p>
+        <h1>ESP32 Hardware Lab</h1>
+        <span>Diseña el montaje, conecta los pines y contrasta el cableado con tu firmware.</span>
+        <small>El proyecto se guarda localmente en este navegador.</small>
+      </div>
+      <a
+        class="button primary"
+        href={telegramGroupUrl}
+        target="_blank"
+        rel="noreferrer noopener"
+      >Enviar opinión</a>
+    </div>
+    <HardwareLab client:load />
+  </section>
+</BaseLayout>
+
+<style>
+  .hardware-lab-page {
+    width: 100%;
+    padding: 92px 0 0;
+  }
+
+  .hardware-lab-page__heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    width: min(100% - 32px, 1440px);
+    margin: 0 auto;
+    padding: 22px 0 18px;
+  }
+
+  .hardware-lab-page__intro {
+    min-width: 0;
+  }
+
+  .hardware-lab-page__heading p {
+    margin: 0 0 5px;
+    color: var(--pink);
+    font: 800 0.72rem/1.2 Consolas, monospace;
+  }
+
+  .hardware-lab-page__heading h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    letter-spacing: 0;
+  }
+
+  .hardware-lab-page__heading span {
+    display: block;
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 0.98rem;
+  }
+
+  .hardware-lab-page__heading small {
+    display: block;
+    margin-top: 6px;
+    color: var(--muted);
+    font: 700 0.72rem/1.35 Consolas, monospace;
+  }
+
+  .hardware-lab-page__heading .button {
+    flex: 0 0 auto;
+  }
+
+  @media (max-width: 760px) {
+    .hardware-lab-page {
+      padding-top: 78px;
+    }
+
+    .hardware-lab-page__heading {
+      align-items: flex-start;
+      flex-direction: column;
+      width: min(100% - 24px, 1440px);
+      padding-top: 18px;
+    }
+  }
+</style>

@@ -137,6 +137,7 @@ Update those files to change project cards, flashers, hardware notes, roadmap en
 /repos/
 /flashers/
 /hardware/
+/hardware-lab/       Public beta for visual ESP32 wiring and perfboard layouts
 /lab-notes/
 /roadmap/
 /changelog/
@@ -144,6 +145,8 @@ Update those files to change project cards, flashers, hardware notes, roadmap en
 /contact/
 /404.html
 ```
+
+`/hardware-lab/` stores projects in the visitor's browser. Users can export a JSON backup and send beta feedback through the ESP32 Tools Telegram group.
 
 ## Legacy GitHub Pages Workflow
 

@@ -1,0 +1,856 @@
+{
+  "version": 6,
+  "name": "RF-KILL ESP32 DevKit",
+  "boardPresetId": "50x70",
+  "boardColorId": "red",
+  "boardView": "top",
+  "code": "#include <SPI.h>\n#include <RF24.h>\n\n// CE, CSN\nRF24 radio1(4, 5);\nRF24 radio2(16, 17);\n\nvoid setup() {\n  Serial.begin(115200);\n  SPI.begin(18, 19, 23);\n  radio1.begin();\n  radio2.begin();\n}\n\nvoid loop() {\n  // Prueba de conexiones del laboratorio\n}",
+  "nodes": [
+    {
+      "id": "perfboard-template",
+      "type": "perfboard",
+      "position": {
+        "x": 201.48000000000002,
+        "y": 109.08000000000001
+      },
+      "data": {
+        "boardColorId": "red",
+        "boardColor": "#b72431",
+        "boardLabel": "5 x 7 cm",
+        "boardPresetId": "50x70",
+        "heightMm": 50,
+        "holeColumns": 27,
+        "holeInsetXmm": 1.9799999999999969,
+        "holeInsetYmm": 2.1400000000000006,
+        "holeRows": 19,
+        "view": "top",
+        "widthMm": 70
+      },
+      "draggable": true,
+      "selectable": true,
+      "deletable": true,
+      "focusable": true,
+      "zIndex": 0,
+      "style": {
+        "height": 300,
+        "width": 420
+      },
+      "measured": {
+        "width": 420,
+        "height": 300
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "perfboard-1786178813780-8e9162b5a261b",
+      "type": "perfboard",
+      "position": {
+        "x": 689.16,
+        "y": 109.08000000000001
+      },
+      "data": {
+        "boardColorId": "red",
+        "boardColor": "#b72431",
+        "boardLabel": "5 x 7 cm",
+        "boardPresetId": "50x70",
+        "heightMm": 50,
+        "holeColumns": 27,
+        "holeInsetXmm": 1.9799999999999969,
+        "holeInsetYmm": 2.1400000000000006,
+        "holeRows": 19,
+        "view": "top",
+        "widthMm": 70
+      },
+      "draggable": true,
+      "selectable": true,
+      "deletable": true,
+      "focusable": true,
+      "zIndex": 0,
+      "style": {
+        "height": 300,
+        "width": 420
+      },
+      "measured": {
+        "width": 420,
+        "height": 300
+      },
+      "selected": true,
+      "dragging": false
+    },
+    {
+      "id": "esp32-main",
+      "type": "hardware",
+      "position": {
+        "x": 126.00000000000006,
+        "y": -5.999999999999972
+      },
+      "data": {
+        "boardView": "top",
+        "componentId": "esp32-devkit-30",
+        "face": "top",
+        "instanceName": "ESP32 principal",
+        "locked": true,
+        "mountedToBoard": true,
+        "rotation": 180
+      },
+      "draggable": false,
+      "zIndex": 2,
+      "style": {
+        "height": 312,
+        "width": 168
+      },
+      "parentId": "perfboard-template",
+      "measured": {
+        "width": 168,
+        "height": 312
+      },
+      "selected": false
+    },
+    {
+      "id": "nrf-a",
+      "type": "hardware",
+      "position": {
+        "x": 11.21999999999997,
+        "y": 32.400000000000006
+      },
+      "data": {
+        "boardView": "top",
+        "componentId": "nrf24-pa-lna",
+        "face": "top",
+        "instanceName": "Radio A",
+        "locked": true,
+        "mountedToBoard": true,
+        "rotation": 270
+      },
+      "draggable": false,
+      "zIndex": 2,
+      "style": {
+        "height": 270,
+        "width": 108
+      },
+      "measured": {
+        "width": 108,
+        "height": 270
+      },
+      "selected": false,
+      "dragging": false,
+      "parentId": "perfboard-template"
+    },
+    {
+      "id": "nrf-b",
+      "type": "hardware",
+      "position": {
+        "x": 300.7800000000002,
+        "y": 32.400000000000006
+      },
+      "data": {
+        "boardView": "top",
+        "componentId": "nrf24-pa-lna",
+        "face": "top",
+        "instanceName": "Radio B",
+        "locked": true,
+        "mountedToBoard": true,
+        "rotation": 270
+      },
+      "draggable": false,
+      "zIndex": 2,
+      "style": {
+        "height": 270,
+        "width": 108
+      },
+      "measured": {
+        "width": 108,
+        "height": 270
+      },
+      "selected": false,
+      "dragging": false,
+      "parentId": "perfboard-template"
+    },
+    {
+      "id": "charger",
+      "type": "hardware",
+      "position": {
+        "x": 21.840000000000032,
+        "y": 5.220000000000027
+      },
+      "data": {
+        "boardView": "top",
+        "componentId": "tp4056",
+        "face": "top",
+        "instanceName": "Cargador",
+        "locked": true,
+        "mountedToBoard": true,
+        "rotation": 0
+      },
+      "draggable": false,
+      "zIndex": 2,
+      "style": {
+        "height": 168,
+        "width": 102
+      },
+      "measured": {
+        "width": 102,
+        "height": 168
+      },
+      "selected": false,
+      "dragging": false,
+      "parentId": "perfboard-1786178813780-8e9162b5a261b"
+    },
+    {
+      "id": "boost",
+      "type": "hardware",
+      "position": {
+        "x": 311.4,
+        "y": 46.620000000000005
+      },
+      "data": {
+        "boardView": "top",
+        "componentId": "step-up",
+        "face": "top",
+        "instanceName": "Elevador 5V",
+        "locked": true,
+        "mountedToBoard": true,
+        "rotation": 0
+      },
+      "draggable": false,
+      "zIndex": 2,
+      "style": {
+        "height": 222,
+        "width": 102
+      },
+      "measured": {
+        "width": 102,
+        "height": 222
+      },
+      "selected": false,
+      "dragging": false,
+      "parentId": "perfboard-1786178813780-8e9162b5a261b"
+    },
+    {
+      "id": "power-switch",
+      "type": "hardware",
+      "position": {
+        "x": 156.48000000000002,
+        "y": 247.92000000000007
+      },
+      "data": {
+        "boardView": "top",
+        "componentId": "slide-switch",
+        "face": "top",
+        "instanceName": "Encendido",
+        "locked": true,
+        "mountedToBoard": true,
+        "rotation": 90
+      },
+      "draggable": false,
+      "zIndex": 2,
+      "style": {
+        "height": 48,
+        "width": 84
+      },
+      "measured": {
+        "width": 84,
+        "height": 48
+      },
+      "selected": false,
+      "dragging": false,
+      "parentId": "perfboard-1786178813780-8e9162b5a261b"
+    },
+    {
+      "id": "battery",
+      "type": "hardware",
+      "position": {
+        "x": 127.62,
+        "y": -17.639999999999986
+      },
+      "data": {
+        "boardView": "top",
+        "componentId": "lipo-37",
+        "face": "top",
+        "instanceName": "Bateria",
+        "locked": true,
+        "mountedToBoard": true,
+        "rotation": 0
+      },
+      "draggable": false,
+      "zIndex": 2,
+      "style": {
+        "height": 240,
+        "width": 180
+      },
+      "measured": {
+        "width": 180,
+        "height": 240
+      },
+      "selected": false,
+      "dragging": false,
+      "parentId": "perfboard-1786178813780-8e9162b5a261b"
+    }
+  ],
+  "edges": [
+    {
+      "id": "spi-sck-a",
+      "source": "esp32-main",
+      "sourceHandle": "GPIO18",
+      "target": "nrf-a",
+      "targetHandle": "SCK",
+      "type": "editable-wire",
+      "data": {
+        "side": "top",
+        "color": "#ffd54a",
+        "sourceLabel": "GPIO18",
+        "targetLabel": "SCK",
+        "waypoints": [
+          {
+            "x": 165.47651899622554,
+            "y": 430.4120720184315
+          }
+        ]
+      },
+      "reconnectable": true,
+      "zIndex": 20,
+      "style": {
+        "stroke": "#ffd54a",
+        "strokeWidth": 3
+      },
+      "selected": false,
+      "hidden": false
+    },
+    {
+      "id": "spi-sck-b",
+      "source": "esp32-main",
+      "sourceHandle": "GPIO18",
+      "target": "nrf-b",
+      "targetHandle": "SCK",
+      "type": "editable-wire",
+      "data": {
+        "side": "top",
+        "color": "#ffd54a",
+        "sourceLabel": "GPIO18",
+        "targetLabel": "SCK",
+        "waypoints": [
+          {
+            "x": 376.9875277796958,
+            "y": 450.34213737301843
+          }
+        ]
+      },
+      "reconnectable": true,
+      "zIndex": 20,
+      "style": {
+        "stroke": "#ffd54a",
+        "strokeWidth": 3
+      },
+      "selected": false,
+      "hidden": false
+    },
+    {
+      "id": "spi-mosi-a",
+      "source": "esp32-main",
+      "sourceHandle": "GPIO23",
+      "target": "nrf-a",
+      "targetHandle": "MOSI",
+      "type": "editable-wire",
+      "data": {
+        "side": "top",
+        "color": "#30d8ff",
+        "waypoints": [
+          {
+            "x": 222.94499528949183,
+            "y": 203.9230846408321
+          }
+        ],
+        "sourceLabel": "GPIO23",
+        "targetLabel": "MOSI"
+      },
+      "reconnectable": true,
+      "zIndex": 20,
+      "style": {
+        "stroke": "#30d8ff",
+        "strokeWidth": 3
+      },
+      "selected": false,
+      "hidden": false
+    },
+    {
+      "id": "spi-mosi-b",
+      "source": "esp32-main",
+      "sourceHandle": "GPIO23",
+      "target": "nrf-b",
+      "targetHandle": "MOSI",
+      "type": "editable-wire",
+      "data": {
+        "side": "top",
+        "color": "#30d8ff",
+        "sourceLabel": "GPIO23",
+        "targetLabel": "MOSI"
+      },
+      "reconnectable": true,
+      "zIndex": 20,
+      "style": {
+        "stroke": "#30d8ff",
+        "strokeWidth": 3
+      },
+      "selected": false
+    },
+    {
+      "id": "spi-miso-a",
+      "source": "esp32-main",
+      "sourceHandle": "GPIO19",
+      "target": "nrf-a",
+      "targetHandle": "MISO",
+      "type": "editable-wire",
+      "data": {
+        "side": "top",
+        "color": "#b88cff",
+        "sourceLabel": "GPIO19",
+        "targetLabel": "MISO",
+        "waypoints": [
+          {
+            "x": 130.23954846516466,
+            "y": 457.59943088226936
+          }
+        ]
+      },
+      "reconnectable": true,
+      "zIndex": 20,
+      "style": {
+        "stroke": "#b88cff",
+        "strokeWidth": 3
+      },
+      "selected": false,
+      "hidden": false
+    },
+    {
+      "id": "spi-miso-b",
+      "source": "esp32-main",
+      "sourceHandle": "GPIO19",
+      "target": "nrf-b",
+      "targetHandle": "MISO",
+      "type": "editable-wire",
+      "data": {
+        "side": "top",
+        "color": "#b88cff",
+        "sourceLabel": "GPIO19",
+        "targetLabel": "MISO",
+        "waypoints": [
+          {
+            "x": 605.3333380458994,
+            "y": 418.14629686606645
+          }
+        ]
+      },
+      "reconnectable": true,
+      "zIndex": 20,
+      "style": {
+        "stroke": "#b88cff",
+        "strokeWidth": 3
+      },
+      "selected": false,
+      "hidden": false
+    },
+    {
+      "id": "ce-a",
+      "source": "esp32-main",
+      "sourceHandle": "GPIO4",
+      "target": "nrf-a",
+      "targetHandle": "CE",
+      "type": "editable-wire",
+      "data": {
+        "side": "top",
+        "color": "#ff8fbf",
+        "sourceLabel": "GPIO4",
+        "targetLabel": "CE",
+        "waypoints": [
+          {
+            "x": 178.11220090119292,
+            "y": 421.22248517845526
+          }
+        ]
+      },
+      "reconnectable": true,
+      "zIndex": 20,
+      "style": {
+        "stroke": "#ff8fbf",
+        "strokeWidth": 3
+      },
+      "selected": false,
+      "hidden": false
+    },
+    {
+      "id": "csn-a",
+      "source": "esp32-main",
+      "sourceHandle": "GPIO5",
+      "target": "nrf-a",
+      "targetHandle": "CSN",
+      "type": "editable-wire",
+      "data": {
+        "side": "top",
+        "color": "#58e097",
+        "waypoints": [
+          {
+            "x": 240.25854447948072,
+            "y": 311.44933750497376
+          }
+        ],
+        "sourceLabel": "GPIO5",
+        "targetLabel": "CSN"
+      },
+      "reconnectable": true,
+      "zIndex": 20,
+      "style": {
+        "stroke": "#58e097",
+        "strokeWidth": 3
+      },
+      "selected": false,
+      "hidden": false
+    },
+    {
+      "id": "ce-b",
+      "source": "esp32-main",
+      "sourceHandle": "GPIO16",
+      "target": "nrf-b",
+      "targetHandle": "CE",
+      "type": "editable-wire",
+      "data": {
+        "side": "top",
+        "color": "#ff8fbf",
+        "sourceLabel": "GPIO16",
+        "targetLabel": "CE",
+        "waypoints": [
+          {
+            "x": 449.8333380458994,
+            "y": 449.14629686606645
+          }
+        ]
+      },
+      "reconnectable": true,
+      "zIndex": 20,
+      "style": {
+        "stroke": "#ff8fbf",
+        "strokeWidth": 3
+      },
+      "selected": false,
+      "hidden": false
+    },
+    {
+      "id": "vcc-a",
+      "source": "esp32-main",
+      "sourceHandle": "3V3",
+      "target": "nrf-a",
+      "targetHandle": "VCC",
+      "type": "editable-wire",
+      "data": {
+        "side": "top",
+        "color": "#ff4058",
+        "sourceLabel": "3V3",
+        "targetLabel": "VCC"
+      },
+      "reconnectable": true,
+      "zIndex": 20,
+      "style": {
+        "stroke": "#ff4058",
+        "strokeWidth": 3
+      }
+    },
+    {
+      "id": "vcc-b",
+      "source": "esp32-main",
+      "sourceHandle": "3V3",
+      "target": "nrf-b",
+      "targetHandle": "VCC",
+      "type": "editable-wire",
+      "data": {
+        "side": "top",
+        "color": "#ff4058",
+        "sourceLabel": "3V3",
+        "targetLabel": "VCC"
+      },
+      "reconnectable": true,
+      "zIndex": 20,
+      "style": {
+        "stroke": "#ff4058",
+        "strokeWidth": 3
+      }
+    },
+    {
+      "id": "gnd-a",
+      "source": "esp32-main",
+      "sourceHandle": "GND-R",
+      "target": "nrf-a",
+      "targetHandle": "GND",
+      "type": "editable-wire",
+      "data": {
+        "side": "top",
+        "color": "#1d1f24",
+        "sourceLabel": "GND-R",
+        "targetLabel": "GND",
+        "waypoints": [
+          {
+            "x": 306.20299346655355,
+            "y": 480.766150534995
+          }
+        ]
+      },
+      "reconnectable": true,
+      "zIndex": 20,
+      "style": {
+        "stroke": "#1d1f24",
+        "strokeWidth": 3
+      },
+      "selected": false,
+      "hidden": false
+    },
+    {
+      "id": "battery-pos",
+      "source": "battery",
+      "sourceHandle": "BAT+",
+      "target": "charger",
+      "targetHandle": "B+",
+      "type": "editable-wire",
+      "data": {
+        "side": "top",
+        "controlX": 882.6668307234557,
+        "controlY": 120.21890749485921,
+        "color": "#ff4058",
+        "waypoints": [
+          {
+            "x": 900.9071319922153,
+            "y": 121.9115358461478
+          }
+        ],
+        "sourceLabel": "BAT+",
+        "targetLabel": "B+"
+      },
+      "reconnectable": true,
+      "zIndex": 20,
+      "style": {
+        "stroke": "#ff4058",
+        "strokeWidth": 3
+      },
+      "selected": false,
+      "hidden": false
+    },
+    {
+      "id": "charger-neg",
+      "source": "charger",
+      "sourceHandle": "OUT-",
+      "target": "boost",
+      "targetHandle": "VIN-",
+      "type": "editable-wire",
+      "data": {
+        "side": "top",
+        "controlX": 937.5786274531174,
+        "controlY": 267.7943612058255,
+        "color": "#1d1f24",
+        "sourceLabel": "OUT-",
+        "targetLabel": "VIN-"
+      },
+      "reconnectable": true,
+      "zIndex": 20,
+      "style": {
+        "stroke": "#1d1f24",
+        "strokeWidth": 3
+      },
+      "selected": false,
+      "hidden": false
+    },
+    {
+      "id": "switch-pos",
+      "source": "power-switch",
+      "sourceHandle": "NO",
+      "target": "esp32-main",
+      "targetHandle": "VIN",
+      "type": "editable-wire",
+      "data": {
+        "side": "top",
+        "controlX": 674.459601456821,
+        "controlY": 296.39425533585774,
+        "color": "#ff4058",
+        "waypoints": [
+          {
+            "x": 629.3577815387051,
+            "y": 143.78128219139694
+          }
+        ],
+        "sourceLabel": "NO",
+        "targetLabel": "VIN"
+      },
+      "reconnectable": true,
+      "zIndex": 20,
+      "style": {
+        "stroke": "#ff4058",
+        "strokeWidth": 3
+      },
+      "selected": false,
+      "hidden": false
+    },
+    {
+      "id": "boost-neg",
+      "source": "boost",
+      "sourceHandle": "VOUT-",
+      "target": "esp32-main",
+      "targetHandle": "GND-L",
+      "type": "editable-wire",
+      "data": {
+        "side": "top",
+        "controlX": 679.0355845176263,
+        "controlY": 647.6009552526535,
+        "color": "#1d1f24",
+        "waypoints": [
+          {
+            "x": 643.0263730044858,
+            "y": 167.47350739875017
+          }
+        ],
+        "sourceLabel": "VOUT-",
+        "targetLabel": "GND-L"
+      },
+      "reconnectable": true,
+      "zIndex": 20,
+      "style": {
+        "stroke": "#1d1f24",
+        "strokeWidth": 3
+      },
+      "selected": false,
+      "hidden": false
+    },
+    {
+      "type": "editable-wire",
+      "reconnectable": true,
+      "zIndex": 20,
+      "source": "charger",
+      "sourceHandle": "OUT+",
+      "target": "boost",
+      "targetHandle": "VIN+",
+      "data": {
+        "side": "top",
+        "controlX": 888.3868095494621,
+        "controlY": 186.570661876534,
+        "color": "#ff4058",
+        "waypoints": [
+          {
+            "x": 856.256399870665,
+            "y": 222.14787326187306
+          }
+        ],
+        "sourceLabel": "OUT+",
+        "targetLabel": "VIN+"
+      },
+      "style": {
+        "stroke": "#ff4058",
+        "strokeWidth": 3
+      },
+      "selected": false,
+      "hidden": false,
+      "id": "charger-pos"
+    },
+    {
+      "type": "editable-wire",
+      "reconnectable": true,
+      "zIndex": 20,
+      "source": "battery",
+      "sourceHandle": "BAT-",
+      "target": "charger",
+      "targetHandle": "B-",
+      "data": {
+        "side": "top",
+        "color": "#1d1f24",
+        "sourceLabel": "BAT-",
+        "targetLabel": "B-"
+      },
+      "style": {
+        "stroke": "#1d1f24",
+        "strokeWidth": 3
+      },
+      "hidden": false,
+      "id": "battery-neg"
+    },
+    {
+      "type": "editable-wire",
+      "reconnectable": true,
+      "zIndex": 20,
+      "source": "boost",
+      "sourceHandle": "VOUT+",
+      "target": "power-switch",
+      "targetHandle": "COM",
+      "data": {
+        "side": "top",
+        "controlX": 912.4107206186891,
+        "controlY": 322.7061579354874,
+        "color": "#ff4058",
+        "waypoints": [
+          {
+            "x": 957.6771334950223,
+            "y": 332.5794067445169
+          }
+        ],
+        "sourceLabel": "VOUT+",
+        "targetLabel": "COM"
+      },
+      "style": {
+        "stroke": "#ff4058",
+        "strokeWidth": 3
+      },
+      "selected": false,
+      "hidden": false,
+      "id": "boost-pos"
+    },
+    {
+      "type": "editable-wire",
+      "reconnectable": true,
+      "zIndex": 20,
+      "source": "esp32-main",
+      "sourceHandle": "GPIO17",
+      "target": "nrf-b",
+      "targetHandle": "CSN",
+      "data": {
+        "side": "top",
+        "color": "#ff9f43",
+        "sourceLabel": "GPIO17",
+        "targetLabel": "CSN",
+        "waypoints": [
+          {
+            "x": 381.2597974372279,
+            "y": 274.24113765394037
+          }
+        ]
+      },
+      "style": {
+        "stroke": "#ff9f43",
+        "strokeWidth": 3
+      },
+      "hidden": false,
+      "selected": false,
+      "id": "csn-b"
+    },
+    {
+      "type": "editable-wire",
+      "reconnectable": true,
+      "zIndex": 20,
+      "source": "nrf-b",
+      "sourceHandle": "GND",
+      "target": "nrf-a",
+      "targetHandle": "GND",
+      "data": {
+        "boardId": "perfboard-template",
+        "color": "#191b20",
+        "side": "top",
+        "waypoints": [
+          {
+            "x": 535.3417667998868,
+            "y": 481.5729772016617
+          }
+        ]
+      },
+      "style": {
+        "stroke": "#191b20",
+        "strokeWidth": 3
+      },
+      "selected": false,
+      "hidden": false,
+      "id": "wire-1786184310989-e49cdc08ca98a8"
+    }
+  ]
+}

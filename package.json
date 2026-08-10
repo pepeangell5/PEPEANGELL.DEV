@@ -17,8 +17,17 @@
     "fetch:github": "npm run fetch:repos && npm run fetch:readmes && npm run fetch:flashers && npm run fetch:downloads && npm run fetch:hardware && npm run fetch:news"
   },
   "dependencies": {
+    "@astrojs/react": "^6.0.2",
+    "@codemirror/lang-cpp": "^6.0.3",
     "@supabase/supabase-js": "^2.110.2",
-    "astro": "^5.10.0"
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@uiw/react-codemirror": "^4.25.11",
+    "@xyflow/react": "^12.11.2",
+    "astro": "^5.10.0",
+    "lucide-react": "^1.30.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
     "supabase": "^2.109.1",
