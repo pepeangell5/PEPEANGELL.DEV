@@ -2,6 +2,10 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "routes": [
     {
+      "src": "^/api/visitor-count$",
+      "dest": "https://pepeangell.goatcounter.com/counter/TOTAL.json"
+    },
+    {
       "src": "^/finanzas$",
       "dest": "https://finanzas-pepeangell.vercel.app/finanzas"
     },

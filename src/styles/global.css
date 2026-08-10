@@ -1284,7 +1284,7 @@ p {
   }
 }
 
-@media (max-width: 1320px) {
+@media (max-width: 1600px) {
   .nav {
     overflow: visible;
   }

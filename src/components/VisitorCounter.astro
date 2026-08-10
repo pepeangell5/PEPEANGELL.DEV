@@ -16,19 +16,41 @@ const goatCounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
         if (!widget || !value) return;
 
         const code = widget.getAttribute("data-goatcounter-code");
-        const url = `https://${code}.goatcounter.com/counter/TOTAL.json`;
+        const cacheKey = "esp32-tools-visitor-count-v1";
+        const urls = [
+          "/api/visitor-count",
+          `https://${code}.goatcounter.com/counter/TOTAL.json`,
+        ];
 
-        fetch(url)
+        const readCounter = (url) => fetch(url, { headers: { Accept: "application/json" } })
           .then((response) => {
             if (!response.ok) throw new Error("counter unavailable");
             return response.json();
           })
           .then((data) => {
-            value.textContent = data.count || "0";
+            if (!data.count) throw new Error("invalid counter");
+            return String(data.count);
+          });
+
+        const tryNext = (index) => {
+          if (index >= urls.length) return Promise.reject(new Error("counter unavailable"));
+          return readCounter(urls[index]).catch(() => tryNext(index + 1));
+        };
+
+        tryNext(0)
+          .then((count) => {
+            value.textContent = count;
+            try {
+              localStorage.setItem(cacheKey, count);
+            } catch {}
           })
           .catch(() => {
-            value.textContent = "privado";
-            widget.setAttribute("title", "Activa los conteos publicos en GoatCounter para mostrar el total.");
+            let cachedCount = "";
+            try {
+              cachedCount = localStorage.getItem(cacheKey) || "";
+            } catch {}
+            value.textContent = cachedCount || "no disponible";
+            widget.setAttribute("title", "El contador no pudo actualizarse en este navegador.");
           });
       })();
     </script>
