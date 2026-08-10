@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "routes": [
     {
-      "src": "^/api/visitor-count$",
+      "src": "^/api/site-total$",
       "dest": "https://pepeangell.goatcounter.com/counter/TOTAL.json"
     },
     {
