@@ -1,0 +1,359 @@
+<section class="lab-feedback-section" id="hardware-lab-feedback" aria-labelledby="hardware-lab-feedback-title">
+  <div class="lab-feedback-inner">
+    <div class="lab-feedback-copy">
+      <p class="eyebrow">Feedback de la beta</p>
+      <h2 id="hardware-lab-feedback-title">Reporta un bug o comparte una idea</h2>
+      <p>
+        Describe lo que ocurrio, que esperabas que pasara y los pasos para repetirlo. Las capturas solo seran
+        visibles desde el panel privado.
+      </p>
+    </div>
+
+    <form class="lab-feedback-form" data-lab-feedback-form>
+      <div class="lab-feedback-grid">
+        <label>
+          Tipo de comentario
+          <select class="field" name="feedback_type" required>
+            <option value="bug">Encontré un bug</option>
+            <option value="suggestion">Tengo una sugerencia</option>
+          </select>
+        </label>
+        <label>
+          Correo para responderte <span>(opcional)</span>
+          <input class="field" name="contact_email" type="email" autocomplete="email" maxlength="320" />
+        </label>
+      </div>
+
+      <label>
+        Detalles
+        <textarea
+          class="field lab-feedback-message"
+          name="message"
+          minlength="20"
+          maxlength="4000"
+          required
+          placeholder="Ejemplo: al rotar el nRF24 dos veces, los pines cambian de lado. Ocurre despues de..."
+        ></textarea>
+      </label>
+
+      <label class="lab-feedback-files">
+        Capturas <span>(opcional)</span>
+        <input
+          class="field"
+          name="images"
+          type="file"
+          accept="image/png,image/jpeg,image/webp"
+          multiple
+          data-lab-feedback-images
+        />
+        <small>Hasta 3 imagenes PNG, JPG o WebP, con un maximo de 5 MB cada una.</small>
+      </label>
+
+      <ul class="lab-feedback-file-list" data-lab-feedback-file-list hidden></ul>
+
+      <label class="lab-feedback-honeypot" aria-hidden="true">
+        Sitio web
+        <input name="website" type="text" tabindex="-1" autocomplete="off" />
+      </label>
+
+      <div class="shop-state" data-lab-feedback-state role="status" aria-live="polite" hidden></div>
+      <button class="button primary" type="submit" data-lab-feedback-submit>Enviar comentario</button>
+    </form>
+  </div>
+</section>
+
+<script>
+  import { shopSupabase, shopSupabaseConfigured } from "../lib/shopSupabase";
+
+  const feedbackForm = document.querySelector("[data-lab-feedback-form]");
+  const feedbackImages = document.querySelector("[data-lab-feedback-images]");
+  const feedbackFileList = document.querySelector("[data-lab-feedback-file-list]");
+  const feedbackState = document.querySelector("[data-lab-feedback-state]");
+  const feedbackSubmit = document.querySelector("[data-lab-feedback-submit]");
+  const feedbackBucket = "hardware-lab-feedback";
+  const maxFiles = 3;
+  const maxFileSize = 5 * 1024 * 1024;
+  const allowedFileTypes = new Map([
+    ["image/png", "png"],
+    ["image/jpeg", "jpg"],
+    ["image/webp", "webp"]
+  ]);
+
+  function setFeedbackState(message, tone = "info") {
+    if (!(feedbackState instanceof HTMLElement)) return;
+    feedbackState.textContent = message;
+    feedbackState.dataset.tone = tone;
+    feedbackState.hidden = false;
+  }
+
+  function clearFeedbackState() {
+    if (feedbackState instanceof HTMLElement) feedbackState.hidden = true;
+  }
+
+  function setFeedbackBusy(isBusy) {
+    if (!(feedbackSubmit instanceof HTMLButtonElement)) return;
+    feedbackSubmit.disabled = isBusy;
+    feedbackSubmit.textContent = isBusy ? "Enviando..." : "Enviar comentario";
+  }
+
+  function getSelectedFiles() {
+    if (!(feedbackImages instanceof HTMLInputElement)) return [];
+    return Array.from(feedbackImages.files ?? []);
+  }
+
+  function validateFiles(files) {
+    if (files.length > maxFiles) return `Solo puedes adjuntar ${maxFiles} imagenes.`;
+
+    for (const file of files) {
+      if (!allowedFileTypes.has(file.type)) return `${file.name} no es PNG, JPG o WebP.`;
+      if (file.size > maxFileSize) return `${file.name} supera el limite de 5 MB.`;
+    }
+
+    return "";
+  }
+
+  function renderFileList() {
+    if (!(feedbackFileList instanceof HTMLElement)) return;
+    const files = getSelectedFiles();
+    feedbackFileList.hidden = files.length === 0;
+    feedbackFileList.replaceChildren(...files.map((file) => {
+      const item = document.createElement("li");
+      const name = document.createElement("span");
+      const size = document.createElement("span");
+      name.textContent = file.name;
+      size.textContent = `${(file.size / 1024 / 1024).toFixed(2)} MB`;
+      item.append(name, size);
+      return item;
+    }));
+
+    const error = validateFiles(files);
+    if (error) setFeedbackState(error, "warning");
+    else clearFeedbackState();
+  }
+
+  feedbackImages?.addEventListener("change", renderFileList);
+
+  feedbackForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!(feedbackForm instanceof HTMLFormElement)) return;
+
+    if (!feedbackForm.reportValidity()) return;
+    if (!shopSupabaseConfigured || !shopSupabase) {
+      setFeedbackState("El formulario no esta disponible en este momento.", "warning");
+      return;
+    }
+
+    const files = getSelectedFiles();
+    const fileError = validateFiles(files);
+    if (fileError) {
+      setFeedbackState(fileError, "warning");
+      return;
+    }
+
+    const formData = new FormData(feedbackForm);
+    let feedbackId = "";
+    let uploadToken = "";
+    const uploadedPaths = [];
+
+    setFeedbackBusy(true);
+    setFeedbackState("Guardando tu comentario...");
+
+    try {
+      const { data, error } = await shopSupabase.rpc("create_hardware_lab_feedback", {
+        p_feedback_type: String(formData.get("feedback_type") ?? "bug"),
+        p_message: String(formData.get("message") ?? "").trim(),
+        p_contact_email: String(formData.get("contact_email") ?? "").trim() || null,
+        p_website: String(formData.get("website") ?? "")
+      });
+
+      if (error) {
+        if (error.message.includes("feedback_rate_limit")) {
+          throw new Error("Has enviado varios comentarios recientemente. Intenta de nuevo mas tarde.");
+        }
+        throw new Error("No pude guardar el comentario. Intenta nuevamente.");
+      }
+
+      feedbackId = String(data?.id ?? "");
+      uploadToken = String(data?.upload_token ?? "");
+      if (!feedbackId || !uploadToken) throw new Error("No pude preparar el reporte para enviarlo.");
+
+      for (const file of files) {
+        setFeedbackState(`Subiendo ${file.name}...`);
+        const extension = allowedFileTypes.get(file.type);
+        const path = `${feedbackId}/${uploadToken}/${crypto.randomUUID()}.${extension}`;
+        const { error: uploadError } = await shopSupabase.storage
+          .from(feedbackBucket)
+          .upload(path, file, { contentType: file.type, upsert: false });
+
+        if (uploadError) throw new Error(`No pude subir ${file.name}.`);
+        uploadedPaths.push(path);
+      }
+
+      const { data: finalized, error: finalizeError } = await shopSupabase.rpc("finalize_hardware_lab_feedback", {
+        p_feedback_id: feedbackId,
+        p_upload_token: uploadToken,
+        p_image_paths: uploadedPaths
+      });
+
+      if (finalizeError || !finalized) throw new Error("No pude finalizar el reporte.");
+
+      feedbackForm.reset();
+      renderFileList();
+      setFeedbackState("Gracias. Tu comentario fue enviado y quedo disponible para revision.", "success");
+    } catch (error) {
+      if (uploadedPaths.length) {
+        await shopSupabase.storage.from(feedbackBucket).remove(uploadedPaths);
+      }
+
+      if (feedbackId && uploadToken) {
+        await shopSupabase.rpc("cancel_hardware_lab_feedback", {
+          p_feedback_id: feedbackId,
+          p_upload_token: uploadToken
+        });
+      }
+
+      setFeedbackState(error instanceof Error ? error.message : "No pude enviar el comentario.", "warning");
+    } finally {
+      setFeedbackBusy(false);
+    }
+  });
+</script>
+
+<style>
+  .lab-feedback-section {
+    padding: 56px 20px 64px;
+    background:
+      linear-gradient(90deg, rgba(255, 44, 169, 0.05), transparent 42%),
+      var(--bg);
+    border-top: 1px solid var(--line);
+  }
+
+  .lab-feedback-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(520px, 1.2fr);
+    gap: 44px;
+    width: min(100%, 1180px);
+    margin: 0 auto;
+  }
+
+  .lab-feedback-copy h2 {
+    max-width: 520px;
+    margin: 8px 0 14px;
+  }
+
+  .lab-feedback-copy > p:last-child {
+    max-width: 540px;
+    color: var(--muted);
+  }
+
+  .lab-feedback-form {
+    display: grid;
+    gap: 16px;
+    padding: 24px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  .lab-feedback-form label {
+    display: grid;
+    gap: 7px;
+    font-weight: 800;
+  }
+
+  .lab-feedback-form label > span {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .lab-feedback-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .lab-feedback-message {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  .lab-feedback-files small {
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .lab-feedback-file-list {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .lab-feedback-file-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 10px;
+    color: var(--muted);
+    background: var(--panel-strong);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-size: 0.82rem;
+    overflow-wrap: anywhere;
+  }
+
+  .lab-feedback-file-list span {
+    flex: 0 0 auto;
+  }
+
+  .lab-feedback-honeypot {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .lab-feedback-form .button {
+    justify-self: start;
+  }
+
+  @media (max-width: 900px) {
+    .lab-feedback-inner {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .lab-feedback-section {
+      padding: 40px 12px 48px;
+    }
+
+    .lab-feedback-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .lab-feedback-form {
+      padding: 16px;
+    }
+
+    .lab-feedback-form .button {
+      width: 100%;
+    }
+  }
+
+  :global(html[data-theme="light"]) .lab-feedback-section {
+    background:
+      linear-gradient(90deg, rgba(255, 44, 169, 0.07), transparent 42%),
+      #fffafd;
+  }
+
+  :global(html[data-theme="light"]) .lab-feedback-form {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(255, 44, 169, 0.25);
+    box-shadow: 0 18px 42px rgba(120, 34, 86, 0.1);
+  }
+</style>

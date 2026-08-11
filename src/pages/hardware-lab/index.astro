@@ -1,8 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import HardwareLabFeedback from "../../components/HardwareLabFeedback.astro";
 import HardwareLab from "../../components/hardware-lab/HardwareLab";
-
-const telegramGroupUrl = "https://t.me/esp32_tools";
 ---
 
 <BaseLayout
@@ -19,12 +18,11 @@ const telegramGroupUrl = "https://t.me/esp32_tools";
       </div>
       <a
         class="button primary"
-        href={telegramGroupUrl}
-        target="_blank"
-        rel="noreferrer noopener"
-      >Enviar opinión</a>
+        href="#hardware-lab-feedback"
+      >Reportar bug</a>
     </div>
     <HardwareLab client:load />
+    <HardwareLabFeedback />
   </section>
 </BaseLayout>
 

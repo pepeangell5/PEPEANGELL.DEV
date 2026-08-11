@@ -1080,6 +1080,108 @@ p {
   border-top: 1px solid var(--line);
 }
 
+.shop-admin-feedback {
+  display: grid;
+  gap: 16px;
+}
+
+.lab-feedback-admin-card {
+  display: grid;
+  gap: 16px;
+}
+
+.lab-feedback-admin-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.lab-feedback-admin-top .eyebrow {
+  margin-bottom: 5px;
+}
+
+.lab-feedback-admin-top time,
+.lab-feedback-contact {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.lab-feedback-status {
+  flex: 0 0 auto;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font: 800 0.72rem/1 Consolas, "SFMono-Regular", ui-monospace, monospace;
+}
+
+.lab-feedback-status[data-feedback-status="new"] {
+  color: var(--amber);
+  background: rgba(255, 157, 46, 0.1);
+  border-color: rgba(255, 157, 46, 0.42);
+}
+
+.lab-feedback-status[data-feedback-status="reviewed"] {
+  color: #30b5ff;
+  background: rgba(48, 181, 255, 0.1);
+  border-color: rgba(48, 181, 255, 0.42);
+}
+
+.lab-feedback-status[data-feedback-status="resolved"] {
+  color: #25c47a;
+  background: rgba(37, 196, 122, 0.1);
+  border-color: rgba(37, 196, 122, 0.42);
+}
+
+.lab-feedback-contact {
+  margin: 0;
+}
+
+.lab-feedback-admin-message {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.lab-feedback-admin-images {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.lab-feedback-admin-images a {
+  display: block;
+  overflow: hidden;
+  background: var(--panel-strong);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  aspect-ratio: 16 / 10;
+}
+
+.lab-feedback-admin-images img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.lab-feedback-admin-actions {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+}
+
+.lab-feedback-admin-actions label {
+  display: grid;
+  min-width: min(100%, 220px);
+  gap: 6px;
+  font-weight: 800;
+}
+
+.lab-feedback-admin-actions .button {
+  flex: 0 0 auto;
+}
+
 .shop-modal-backdrop {
   position: fixed;
   inset: 0;
@@ -3179,6 +3281,20 @@ input[type="number"]::-webkit-inner-spin-button {
   }
 
   .shop-order-filter {
+    width: 100%;
+  }
+
+  .lab-feedback-admin-images {
+    grid-template-columns: 1fr;
+  }
+
+  .lab-feedback-admin-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .lab-feedback-admin-actions label,
+  .lab-feedback-admin-actions .button {
     width: 100%;
   }
 

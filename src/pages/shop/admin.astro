@@ -5,18 +5,18 @@ import { sitePath } from "../../utils/paths";
 ---
 
 <BaseLayout
-  title="Admin tienda"
-  description="Administracion privada de stock, precios, disponibilidad y pedidos de PepeAngell Labs."
+  title="Panel privado"
+  description="Administracion privada de tienda y feedback de ESP32-TOOLS."
   robots="noindex, nofollow"
 >
   <section class="section shop-hero">
     <div class="container shop-hero-layout">
       <div class="shop-copy">
         <p class="eyebrow">Admin privado</p>
-        <h1>Control de tienda</h1>
+        <h1>Panel de administracion</h1>
         <p>
-          Panel privado para actualizar stock, precios, disponibilidad y estados de pedidos. El acceso real
-          lo controla Supabase con la tabla de administradores y RLS.
+          Controla la tienda, los pedidos y los comentarios enviados desde Hardware Lab. El acceso real lo
+          valida Supabase con la tabla de administradores y RLS.
         </p>
         <div class="button-row">
           <a class="button" href={sitePath("/shop/")}>Tienda</a>
@@ -66,9 +66,10 @@ import { sitePath } from "../../utils/paths";
 
         <div class="shop-state" data-admin-state hidden></div>
 
-        <div class="shop-admin-tabs" role="tablist" aria-label="Administracion tienda">
+        <div class="shop-admin-tabs" role="tablist" aria-label="Panel de administracion">
           <button class="shop-admin-tab active" type="button" data-admin-tab="products">Productos</button>
           <button class="shop-admin-tab" type="button" data-admin-tab="orders">Pedidos</button>
+          <button class="shop-admin-tab" type="button" data-admin-tab="feedback">Feedback Lab</button>
         </div>
 
         <section class="shop-admin-panel" data-admin-panel="products">
@@ -85,6 +86,14 @@ import { sitePath } from "../../utils/paths";
             <h2>Pago, envio e historial</h2>
           </div>
           <div class="shop-admin-orders" data-admin-orders></div>
+        </section>
+
+        <section class="shop-admin-panel" data-admin-panel="feedback" hidden>
+          <div class="section-header">
+            <p class="eyebrow">Hardware Lab</p>
+            <h2>Sugerencias y reportes de bugs</h2>
+          </div>
+          <div class="shop-admin-feedback" data-admin-feedback></div>
         </section>
       </div>
     </div>
@@ -115,6 +124,7 @@ import { sitePath } from "../../utils/paths";
   const adminState = document.querySelector("[data-admin-state]");
   const productsEl = document.querySelector("[data-admin-products]");
   const ordersEl = document.querySelector("[data-admin-orders]");
+  const feedbackEl = document.querySelector("[data-admin-feedback]");
   const refreshButton = document.querySelector("[data-admin-refresh]");
   const logoutButton = document.querySelector("[data-admin-logout]");
   const deleteModal = document.querySelector("[data-delete-modal]");
@@ -143,6 +153,11 @@ import { sitePath } from "../../utils/paths";
     shipped: "Enviado",
     completed: "Finalizado",
     cancelled: "Cancelado"
+  };
+  const feedbackStatusLabels = {
+    new: "Nuevo",
+    reviewed: "Revisado",
+    resolved: "Resuelto"
   };
 
   function escapeHtml(value) {
@@ -540,6 +555,101 @@ import { sitePath } from "../../utils/paths";
     });
   }
 
+  async function renderLabFeedback(feedbackItems) {
+    if (!(feedbackEl instanceof HTMLElement) || !shopSupabase) return;
+
+    if (!feedbackItems.length) {
+      feedbackEl.innerHTML = `<div class="shop-orders-empty">Todavia no hay comentarios del Hardware Lab.</div>`;
+      return;
+    }
+
+    const cards = await Promise.all(feedbackItems.map(async (feedback) => {
+      const imagePaths = Array.isArray(feedback.image_paths) ? feedback.image_paths : [];
+      const signedImages = await Promise.all(imagePaths.map(async (path) => {
+        const { data, error } = await shopSupabase.storage
+          .from("hardware-lab-feedback")
+          .createSignedUrl(path, 3600);
+
+        return error || !data?.signedUrl ? null : data.signedUrl;
+      }));
+      const visibleImages = signedImages.filter(Boolean);
+      const typeLabel = feedback.feedback_type === "bug" ? "Bug" : "Sugerencia";
+
+      return `
+        <article class="card lab-feedback-admin-card">
+          <div class="lab-feedback-admin-top">
+            <div>
+              <p class="eyebrow">${typeLabel}</p>
+              <time datetime="${escapeHtml(feedback.created_at)}">${escapeHtml(formatShopDateTime(feedback.created_at))}</time>
+            </div>
+            <span class="lab-feedback-status" data-feedback-status="${escapeHtml(feedback.status)}">
+              ${escapeHtml(feedbackStatusLabels[feedback.status] ?? feedback.status)}
+            </span>
+          </div>
+
+          ${feedback.contact_email ? `
+            <p class="lab-feedback-contact">
+              Contacto:
+              <a href="mailto:${encodeURIComponent(feedback.contact_email)}">${escapeHtml(feedback.contact_email)}</a>
+            </p>
+          ` : `<p class="lab-feedback-contact">Sin correo de contacto</p>`}
+
+          <p class="lab-feedback-admin-message">${escapeHtml(feedback.message)}</p>
+
+          ${visibleImages.length ? `
+            <div class="lab-feedback-admin-images">
+              ${visibleImages.map((url, index) => `
+                <a href="${escapeHtml(url)}" target="_blank" rel="noreferrer noopener">
+                  <img
+                    src="${escapeHtml(url)}"
+                    alt="Captura ${index + 1} adjunta al reporte"
+                    loading="lazy"
+                  />
+                </a>
+              `).join("")}
+            </div>
+          ` : ""}
+
+          <form class="lab-feedback-admin-actions" data-feedback-form="${escapeHtml(feedback.id)}">
+            <label>
+              Estado
+              <select class="field" name="status">
+                ${Object.entries(feedbackStatusLabels).map(([value, label]) => `
+                  <option value="${value}" ${feedback.status === value ? "selected" : ""}>${label}</option>
+                `).join("")}
+              </select>
+            </label>
+            <button class="button" type="submit">Guardar estado</button>
+          </form>
+        </article>
+      `;
+    }));
+
+    feedbackEl.innerHTML = cards.join("");
+  }
+
+  async function loadLabFeedback() {
+    if (!(feedbackEl instanceof HTMLElement) || !shopSupabase) return;
+    feedbackEl.innerHTML = `<div class="shop-orders-empty">Cargando comentarios...</div>`;
+
+    const { data, error } = await shopSupabase
+      .from("hardware_lab_feedback")
+      .select("id, feedback_type, message, contact_email, image_paths, status, created_at")
+      .order("created_at", { ascending: false })
+      .limit(100);
+
+    if (error) {
+      feedbackEl.innerHTML = `
+        <div class="shop-orders-empty">
+          No pude cargar el feedback. Ejecuta la migracion de Hardware Lab en Supabase.
+        </div>
+      `;
+      return;
+    }
+
+    await renderLabFeedback(data ?? []);
+  }
+
   async function requireSession() {
     if (!shopSupabaseConfigured || !shopSupabase) {
       setBox(loginState, "Falta configurar PUBLIC_SUPABASE_URL y PUBLIC_SUPABASE_ANON_KEY.", "warning");
@@ -608,6 +718,7 @@ import { sitePath } from "../../utils/paths";
 
     renderProducts(products ?? []);
     renderOrders(orders ?? [], items, events);
+    await loadLabFeedback();
   }
 
   async function boot() {
@@ -816,6 +927,39 @@ import { sitePath } from "../../utils/paths";
       if (id) openDeleteModal(id, code);
       return;
     }
+  });
+
+  feedbackEl?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    if (!shopSupabase || !(form instanceof HTMLFormElement)) return;
+
+    const feedbackId = form.dataset.feedbackForm;
+    const status = String(new FormData(form).get("status") ?? "");
+    const button = form.querySelector("button[type='submit']");
+    if (!feedbackId || !Object.hasOwn(feedbackStatusLabels, status)) return;
+
+    if (button instanceof HTMLButtonElement) {
+      button.disabled = true;
+      button.textContent = "Guardando...";
+    }
+
+    const { error } = await shopSupabase
+      .from("hardware_lab_feedback")
+      .update({ status })
+      .eq("id", feedbackId);
+
+    if (error) {
+      setBox(adminState, "No pude actualizar el estado del comentario.", "warning");
+      if (button instanceof HTMLButtonElement) {
+        button.disabled = false;
+        button.textContent = "Guardar estado";
+      }
+      return;
+    }
+
+    await loadLabFeedback();
+    setBox(adminState, "Estado del comentario actualizado.");
   });
 
   deleteModalCancel?.addEventListener("click", closeDeleteModal);
