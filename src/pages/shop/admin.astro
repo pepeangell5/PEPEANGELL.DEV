@@ -129,7 +129,7 @@ import { sitePath } from "../../utils/paths";
   const passwordCancel = document.querySelector("[data-password-cancel]");
   let pendingDeleteOrder = null;
   let openOrderId = null;
-  let activeOrderFilter = "active";
+  let activeOrderFilter = "pending";
   let loadedOrders = [];
   let loadedOrderItems = [];
   let loadedOrderEvents = [];
@@ -137,7 +137,13 @@ import { sitePath } from "../../utils/paths";
   const paymentStatuses = ["pending", "confirmed", "cancelled", "refunded"];
   const shippingStatuses = ["not_ready", "ready", "shipped", "delivered", "cancelled"];
   const orderStatuses = ["new", "confirmed", "in_progress", "completed", "cancelled"];
-  const orderFilterValues = ["all", "active", "completed", "cancelled"];
+  const orderFilterValues = ["all", "pending", "shipped", "completed", "cancelled"];
+  const orderStageLabels = {
+    pending: "Por enviar",
+    shipped: "Enviado",
+    completed: "Finalizado",
+    cancelled: "Cancelado"
+  };
 
   function escapeHtml(value) {
     return String(value ?? "").replace(/[&<>"']/g, (char) => ({
@@ -173,7 +179,11 @@ import { sitePath } from "../../utils/paths";
       return "completed";
     }
 
-    return "active";
+    if (order.shipping_status === "shipped") {
+      return "shipped";
+    }
+
+    return "pending";
   }
 
   function setLoginBusy(isBusy) {
@@ -297,11 +307,12 @@ import { sitePath } from "../../utils/paths";
     const counts = orders.reduce((result, order) => {
       result[getOrderFilter(order)] += 1;
       return result;
-    }, { active: 0, completed: 0, cancelled: 0 });
+    }, { pending: 0, shipped: 0, completed: 0, cancelled: 0 });
 
     const filters = [
       { value: "all", label: "Todos", count: orders.length },
-      { value: "active", label: "Pendientes / en curso", count: counts.active },
+      { value: "pending", label: "Por enviar", count: counts.pending },
+      { value: "shipped", label: "Enviados", count: counts.shipped },
       { value: "completed", label: "Finalizados", count: counts.completed },
       { value: "cancelled", label: "Cancelados", count: counts.cancelled }
     ];
@@ -314,6 +325,7 @@ import { sitePath } from "../../utils/paths";
       .map((order) => {
         const orderItems = items.filter((item) => item.order_id === order.id);
         const orderEvents = events.filter((event) => event.order_id === order.id);
+        const orderStage = getOrderFilter(order);
 
         return `
           <details
@@ -322,7 +334,10 @@ import { sitePath } from "../../utils/paths";
             ${openOrderId === order.id ? "open" : ""}
           >
             <summary class="shop-order-accordion-summary">
-              <span>${escapeHtml(order.customer_name)}</span>
+              <span class="shop-order-summary-copy">
+                <strong>${escapeHtml(order.customer_name)}</strong>
+                <small data-order-stage="${orderStage}">${escapeHtml(orderStageLabels[orderStage])}</small>
+              </span>
               <span class="shop-order-accordion-icon" aria-hidden="true"></span>
             </summary>
             <div class="shop-admin-order-body">

@@ -935,10 +935,16 @@ p {
   border-color: var(--pink);
 }
 
-.shop-order-filter[data-order-filter="active"][aria-selected="true"] {
+.shop-order-filter[data-order-filter="pending"][aria-selected="true"] {
   color: var(--text);
   background: rgba(255, 157, 46, 0.16);
   border-color: var(--amber);
+}
+
+.shop-order-filter[data-order-filter="shipped"][aria-selected="true"] {
+  color: var(--text);
+  background: rgba(48, 181, 255, 0.15);
+  border-color: #30b5ff;
 }
 
 .shop-order-filter[data-order-filter="completed"][aria-selected="true"] {
@@ -985,9 +991,49 @@ p {
   display: none;
 }
 
-.shop-order-accordion-summary > span:first-child {
+.shop-order-summary-copy {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.shop-order-summary-copy strong {
   min-width: 0;
   overflow-wrap: anywhere;
+}
+
+.shop-order-summary-copy small {
+  flex: 0 0 auto;
+  padding: 4px 7px;
+  font-size: 0.7rem;
+  line-height: 1;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.shop-order-summary-copy small[data-order-stage="pending"] {
+  color: var(--amber);
+  background: rgba(255, 157, 46, 0.1);
+  border-color: rgba(255, 157, 46, 0.45);
+}
+
+.shop-order-summary-copy small[data-order-stage="shipped"] {
+  color: #30b5ff;
+  background: rgba(48, 181, 255, 0.1);
+  border-color: rgba(48, 181, 255, 0.45);
+}
+
+.shop-order-summary-copy small[data-order-stage="completed"] {
+  color: #25c47a;
+  background: rgba(37, 196, 122, 0.1);
+  border-color: rgba(37, 196, 122, 0.45);
+}
+
+.shop-order-summary-copy small[data-order-stage="cancelled"] {
+  color: var(--red);
+  background: rgba(217, 48, 29, 0.1);
+  border-color: rgba(217, 48, 29, 0.45);
 }
 
 .shop-order-accordion-summary:focus-visible {
@@ -3344,6 +3390,22 @@ html[data-theme="light"] .nav-group-menu a[aria-current="page"] {
   color: #171017;
   background: rgba(255, 44, 169, 0.1);
   border-color: rgba(255, 44, 169, 0.24);
+}
+
+html[data-theme="light"] .shop-order-summary-copy small[data-order-stage="pending"] {
+  color: #9a5600;
+}
+
+html[data-theme="light"] .shop-order-summary-copy small[data-order-stage="shipped"] {
+  color: #006ca6;
+}
+
+html[data-theme="light"] .shop-order-summary-copy small[data-order-stage="completed"] {
+  color: #087748;
+}
+
+html[data-theme="light"] .shop-order-summary-copy small[data-order-stage="cancelled"] {
+  color: #a62517;
 }
 
 html[data-theme="light"] .site-shell::before {
