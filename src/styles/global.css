@@ -994,11 +994,20 @@ p {
 .shop-order-summary-copy {
   display: flex;
   min-width: 0;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.shop-order-summary-heading {
+  display: flex;
+  min-width: 0;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
-.shop-order-summary-copy strong {
+.shop-order-summary-heading strong {
   min-width: 0;
   overflow-wrap: anywhere;
 }
@@ -1010,6 +1019,14 @@ p {
   line-height: 1;
   border: 1px solid var(--line);
   border-radius: 999px;
+}
+
+.shop-order-summary-copy time {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  line-height: 1.35;
 }
 
 .shop-order-summary-copy small[data-order-stage="pending"] {

@@ -155,6 +155,20 @@ import { sitePath } from "../../utils/paths";
     })[char]);
   }
 
+  function formatShopDateTime(value) {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return "Fecha no disponible";
+
+    return new Intl.DateTimeFormat("es-MX", {
+      timeZone: "America/Chihuahua",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit"
+    }).format(date);
+  }
+
   function setBox(box, message, tone = "info") {
     if (!(box instanceof HTMLElement)) return;
     box.textContent = message;
@@ -335,15 +349,18 @@ import { sitePath } from "../../utils/paths";
           >
             <summary class="shop-order-accordion-summary">
               <span class="shop-order-summary-copy">
-                <strong>${escapeHtml(order.customer_name)}</strong>
-                <small data-order-stage="${orderStage}">${escapeHtml(orderStageLabels[orderStage])}</small>
+                <span class="shop-order-summary-heading">
+                  <strong>${escapeHtml(order.customer_name)}</strong>
+                  <small data-order-stage="${orderStage}">${escapeHtml(orderStageLabels[orderStage])}</small>
+                </span>
+                <time datetime="${escapeHtml(order.created_at)}">Pedido: ${escapeHtml(formatShopDateTime(order.created_at))}</time>
               </span>
               <span class="shop-order-accordion-icon" aria-hidden="true"></span>
             </summary>
             <div class="shop-admin-order-body">
             <div class="shop-card-top">
               <p class="status">${escapeHtml(order.order_code)}</p>
-              <span class="shop-chip">${new Date(order.created_at).toLocaleString("es-MX")}</span>
+              <span class="shop-chip">${escapeHtml(formatShopDateTime(order.created_at))}</span>
             </div>
             <div class="shop-order-block">
               <h3>Datos del cliente</h3>
@@ -469,7 +486,7 @@ import { sitePath } from "../../utils/paths";
               <ol class="shop-timeline">
                 ${orderEvents.map((event) => `
                   <li>
-                    <time>${new Date(event.created_at).toLocaleString("es-MX")}</time>
+                    <time>${escapeHtml(formatShopDateTime(event.created_at))}</time>
                     <strong>${escapeHtml(statusLabel(event.event_type))}</strong>
                     <p>${escapeHtml(event.details)}</p>
                   </li>
