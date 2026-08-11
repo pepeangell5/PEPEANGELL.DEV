@@ -1,10 +1,10 @@
 {
   "version": 6,
-  "name": "RF-KILL ESP32 DevKit",
+  "name": "RF-KILL ESP32 DevKit V2.0",
   "boardPresetId": "50x70",
   "boardColorId": "red",
   "boardView": "top",
-  "code": "#include <SPI.h>\n#include <RF24.h>\n\n// CE, CSN\nRF24 radio1(4, 5);\nRF24 radio2(16, 17);\n\nvoid setup() {\n  Serial.begin(115200);\n  SPI.begin(18, 19, 23);\n  radio1.begin();\n  radio2.begin();\n}\n\nvoid loop() {\n  // Prueba de conexiones del laboratorio\n}",
+  "code": "#include <SPI.h>\n#include <RF24.h>\n\n// CE, CSN\nRF24 radio1(5, 17);\nRF24 radio2(16, 4);\n\nvoid setup() {\n  Serial.begin(115200);\n  SPI.begin(18, 19, 23);\n  radio1.begin();\n  radio2.begin();\n}\n\nvoid loop() {\n  // Prueba de conexiones del laboratorio\n}",
   "nodes": [
     {
       "id": "perfboard-template",
@@ -453,14 +453,14 @@
     {
       "id": "ce-a",
       "source": "esp32-main",
-      "sourceHandle": "GPIO4",
+      "sourceHandle": "GPIO5",
       "target": "nrf-a",
       "targetHandle": "CE",
       "type": "editable-wire",
       "data": {
         "side": "top",
         "color": "#ff8fbf",
-        "sourceLabel": "GPIO4",
+        "sourceLabel": "GPIO5",
         "targetLabel": "CE",
         "waypoints": [
           {
@@ -481,7 +481,7 @@
     {
       "id": "csn-a",
       "source": "esp32-main",
-      "sourceHandle": "GPIO5",
+      "sourceHandle": "GPIO17",
       "target": "nrf-a",
       "targetHandle": "CSN",
       "type": "editable-wire",
@@ -494,7 +494,7 @@
             "y": 311.44933750497376
           }
         ],
-        "sourceLabel": "GPIO5",
+        "sourceLabel": "GPIO17",
         "targetLabel": "CSN"
       },
       "reconnectable": true,
@@ -802,13 +802,13 @@
       "reconnectable": true,
       "zIndex": 20,
       "source": "esp32-main",
-      "sourceHandle": "GPIO17",
+      "sourceHandle": "GPIO4",
       "target": "nrf-b",
       "targetHandle": "CSN",
       "data": {
         "side": "top",
         "color": "#ff9f43",
-        "sourceLabel": "GPIO17",
+        "sourceLabel": "GPIO4",
         "targetLabel": "CSN",
         "waypoints": [
           {

@@ -166,11 +166,33 @@ type HistoryEntry = {
   time: string;
 };
 
+const RF_KILL_C3_CODE = `#include <SPI.h>
+#include <RF24.h>
+
+// Pinout RF-KILL ESP32-C3 SuperMini V2.
+RF24 radioA(3, 7);   // CE, CSN
+RF24 radioB(1, 10);  // CE, CSN
+
+void setup() {
+  SPI.begin(4, 5, 6); // SCK, MISO, MOSI
+  radioA.begin();
+  radioB.begin();
+}
+
+void loop() {
+  // Barrido RF-KILL V2.
+}`;
+
 const FIRMWARE_TEMPLATES = [
   {
     id: "rf-kill-devkit",
-    name: "RF-KILL ESP32 DevKit",
+    name: "RF-KILL ESP32 DevKit V2.0",
     project: rfKillDevkitTemplate as unknown as PersistedProject,
+  },
+  {
+    id: "rf-kill-c3-supermini",
+    name: "RF-KILL ESP32-C3 SuperMini V2",
+    project: createRfKillC3TemplateProject(),
   },
 ] as const;
 
@@ -649,10 +671,10 @@ function createRfKillPreset(
     createWire("spi-mosi-b", "esp32-main", "GPIO23", "nrf-b", "MOSI", "#30d8ff"),
     createWire("spi-miso-a", "esp32-main", "GPIO19", "nrf-a", "MISO", "#b88cff"),
     createWire("spi-miso-b", "esp32-main", "GPIO19", "nrf-b", "MISO", "#b88cff"),
-    createWire("ce-a", "esp32-main", "GPIO4", "nrf-a", "CE", "#ff8fbf"),
-    createWire("csn-a", "esp32-main", "GPIO5", "nrf-a", "CSN", "#ff9f43"),
+    createWire("ce-a", "esp32-main", "GPIO5", "nrf-a", "CE", "#ff8fbf"),
+    createWire("csn-a", "esp32-main", "GPIO17", "nrf-a", "CSN", "#ff9f43"),
     createWire("ce-b", "esp32-main", "GPIO16", "nrf-b", "CE", "#ff8fbf"),
-    createWire("csn-b", "esp32-main", "GPIO17", "nrf-b", "CSN", "#ff9f43"),
+    createWire("csn-b", "esp32-main", "GPIO4", "nrf-b", "CSN", "#ff9f43"),
     createWire("vcc-a", "esp32-main", "3V3", "nrf-a", "VCC", "#ff4058"),
     createWire("vcc-b", "esp32-main", "3V3", "nrf-b", "VCC", "#ff4058"),
     createWire("gnd-a", "esp32-main", "GND-R", "nrf-a", "GND", "#1d1f24"),
@@ -673,6 +695,148 @@ function createRfKillPreset(
   });
 
   return { edges, nodes: alignedNodes };
+}
+
+function createRfKillC3TemplateProject(): PersistedProject {
+  const preset = BOARD_PRESETS.find((board) => board.id === "50x70") ?? BOARD_PRESETS[3];
+  const boardColor = BOARD_COLORS.find((color) => color.id === "red") ?? BOARD_COLORS[0];
+  const mainBoard = createBoardNode(preset, boardColor.value, "top", boardColor.id, "perfboard-rf-kill-c3-main");
+  const powerBoard = createBoardNode(
+    preset,
+    boardColor.value,
+    "top",
+    boardColor.id,
+    "perfboard-rf-kill-c3-power",
+    {
+      x: mainBoard.position.x + preset.widthMm * SCALE + 82,
+      y: mainBoard.position.y,
+    },
+  );
+
+  const components: Array<{ board: PerfboardNode; node: HardwareNode }> = [
+    {
+      board: mainBoard,
+      node: createHardwareNode(
+        "esp32-c3-supermini",
+        "ESP32-C3 principal",
+        mainBoard.position.x + 156,
+        mainBoard.position.y + 81,
+        0,
+        "esp32-main",
+      ),
+    },
+    {
+      board: mainBoard,
+      node: createHardwareNode(
+        "nrf24-pa-lna",
+        "Radio A",
+        mainBoard.position.x + 11.22,
+        mainBoard.position.y + 32.4,
+        270,
+        "nrf-a",
+      ),
+    },
+    {
+      board: mainBoard,
+      node: createHardwareNode(
+        "nrf24-pa-lna",
+        "Radio B",
+        mainBoard.position.x + 300.78,
+        mainBoard.position.y + 32.4,
+        270,
+        "nrf-b",
+      ),
+    },
+    {
+      board: powerBoard,
+      node: createHardwareNode(
+        "tp4056",
+        "Cargador",
+        powerBoard.position.x + 21.84,
+        powerBoard.position.y + 5.22,
+        0,
+        "charger",
+      ),
+    },
+    {
+      board: powerBoard,
+      node: createHardwareNode(
+        "step-up",
+        "Elevador 5V",
+        powerBoard.position.x + 311.4,
+        powerBoard.position.y + 46.62,
+        0,
+        "boost",
+      ),
+    },
+    {
+      board: powerBoard,
+      node: createHardwareNode(
+        "slide-switch",
+        "Encendido",
+        powerBoard.position.x + 156.48,
+        powerBoard.position.y + 247.92,
+        90,
+        "power-switch",
+      ),
+    },
+    {
+      board: powerBoard,
+      node: createHardwareNode(
+        "lipo-37",
+        "Bateria",
+        powerBoard.position.x + 127.62,
+        powerBoard.position.y - 17.64,
+        0,
+        "battery",
+      ),
+    },
+  ];
+
+  const mountedComponents = components.map(({ board, node }) => {
+    const snapped = snapNodeToBoardGrid(node, board);
+    const mounted = arePinsInsideBoard(snapped, board) ? mountNodeOnBoard(snapped, board) : snapped;
+    return {
+      ...mounted,
+      data: { ...mounted.data, locked: true },
+      draggable: false,
+    } satisfies HardwareNode;
+  });
+
+  const edges: WireEdge[] = [
+    createWire("spi-sck-a", "esp32-main", "GPIO4", "nrf-a", "SCK", "#ffd54a"),
+    createWire("spi-sck-b", "esp32-main", "GPIO4", "nrf-b", "SCK", "#ffd54a"),
+    createWire("spi-miso-a", "esp32-main", "GPIO5", "nrf-a", "MISO", "#b88cff"),
+    createWire("spi-miso-b", "esp32-main", "GPIO5", "nrf-b", "MISO", "#b88cff"),
+    createWire("spi-mosi-a", "esp32-main", "GPIO6", "nrf-a", "MOSI", "#30d8ff"),
+    createWire("spi-mosi-b", "esp32-main", "GPIO6", "nrf-b", "MOSI", "#30d8ff"),
+    createWire("ce-a", "esp32-main", "GPIO3", "nrf-a", "CE", "#ff8fbf"),
+    createWire("csn-a", "esp32-main", "GPIO7", "nrf-a", "CSN", "#ff9f43"),
+    createWire("ce-b", "esp32-main", "GPIO1", "nrf-b", "CE", "#ff8fbf"),
+    createWire("csn-b", "esp32-main", "GPIO10", "nrf-b", "CSN", "#ff9f43"),
+    createWire("vcc-a", "esp32-main", "3V3", "nrf-a", "VCC", "#ff4058"),
+    createWire("vcc-b", "esp32-main", "3V3", "nrf-b", "VCC", "#ff4058"),
+    createWire("gnd-a", "esp32-main", "GND", "nrf-a", "GND", "#1d1f24"),
+    createWire("gnd-b", "esp32-main", "GND", "nrf-b", "GND", "#1d1f24"),
+    createWire("battery-pos", "battery", "BAT+", "charger", "B+", "#ff4058"),
+    createWire("battery-neg", "battery", "BAT-", "charger", "B-", "#1d1f24"),
+    createWire("charger-pos", "charger", "OUT+", "boost", "VIN+", "#ff4058"),
+    createWire("charger-neg", "charger", "OUT-", "boost", "VIN-", "#1d1f24"),
+    createWire("boost-pos", "boost", "VOUT+", "power-switch", "COM", "#ff4058"),
+    createWire("switch-pos", "power-switch", "NO", "esp32-main", "5V", "#ff4058"),
+    createWire("boost-neg", "boost", "VOUT-", "esp32-main", "GND", "#1d1f24"),
+  ];
+
+  return {
+    version: 6,
+    name: "RF-KILL ESP32-C3 SuperMini V2",
+    boardPresetId: preset.id,
+    boardColorId: boardColor.id,
+    boardView: "top",
+    code: RF_KILL_C3_CODE,
+    edges,
+    nodes: [mainBoard, powerBoard, ...mountedComponents],
+  };
 }
 
 function HardwareNodeView({ data, selected }: NodeProps<HardwareNode>) {
