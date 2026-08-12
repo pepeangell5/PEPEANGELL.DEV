@@ -14,7 +14,7 @@ import { sitePath } from "../../utils/paths";
       <div class="shop-copy">
         <p class="eyebrow">Admin privado</p>
         <h1>Panel de administracion</h1>
-        <p>
+        <p data-translate-en="Manage the shop, orders and feedback submitted from Hardware Lab. Access is enforced by Supabase using the administrators table and RLS.">
           Controla la tienda, los pedidos y los comentarios enviados desde Hardware Lab. El acceso real lo
           valida Supabase con la tabla de administradores y RLS.
         </p>
@@ -594,7 +594,14 @@ import { sitePath } from "../../utils/paths";
             </p>
           ` : `<p class="lab-feedback-contact">Sin correo de contacto</p>`}
 
-          <p class="lab-feedback-admin-message">${escapeHtml(feedback.message)}</p>
+          <div class="lab-feedback-admin-message-block">
+            <p class="lab-feedback-admin-message" data-no-translate>${escapeHtml(feedback.message)}</p>
+            <button
+              class="button lab-feedback-translate"
+              type="button"
+              data-translate-feedback="${escapeHtml(encodeURIComponent(feedback.message))}"
+            >Traducir con Google</button>
+          </div>
 
           ${visibleImages.length ? `
             <div class="lab-feedback-admin-images">
@@ -960,6 +967,23 @@ import { sitePath } from "../../utils/paths";
 
     await loadLabFeedback();
     setBox(adminState, "Estado del comentario actualizado.");
+  });
+
+  feedbackEl?.addEventListener("click", (event) => {
+    const target = event.target;
+    const translateButton = target instanceof Element ? target.closest("[data-translate-feedback]") : null;
+    if (!(translateButton instanceof HTMLButtonElement)) return;
+
+    const encodedMessage = translateButton.dataset.translateFeedback;
+    if (!encodedMessage) return;
+
+    const targetLanguage = document.documentElement.lang === "en" ? "en" : "es";
+    const translateUrl = new URL("https://translate.google.com/");
+    translateUrl.searchParams.set("sl", "auto");
+    translateUrl.searchParams.set("tl", targetLanguage);
+    translateUrl.searchParams.set("text", decodeURIComponent(encodedMessage));
+    translateUrl.searchParams.set("op", "translate");
+    window.open(translateUrl, "_blank", "noopener,noreferrer");
   });
 
   deleteModalCancel?.addEventListener("click", closeDeleteModal);

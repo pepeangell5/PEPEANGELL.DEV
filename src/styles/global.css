@@ -1143,6 +1143,20 @@ p {
   overflow-wrap: anywhere;
 }
 
+.lab-feedback-admin-message-block {
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+}
+
+.lab-feedback-translate {
+  min-height: 34px;
+  padding: 7px 11px;
+  color: var(--pink);
+  border-color: color-mix(in srgb, var(--pink) 48%, var(--line));
+  font-size: 0.78rem;
+}
+
 .lab-feedback-admin-images {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

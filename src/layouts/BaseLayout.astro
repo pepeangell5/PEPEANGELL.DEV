@@ -41,6 +41,9 @@ const goatCounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
         try {
           const theme = localStorage.getItem("pepeangell-labs-theme-v1");
           if (theme === "light") document.documentElement.dataset.theme = "light";
+          const language = localStorage.getItem("pepeangell-labs-language-v2") === "en" ? "en" : "es";
+          document.documentElement.lang = language;
+          document.documentElement.dataset.language = language;
         } catch {}
       })();
     </script>
@@ -65,6 +68,6 @@ const goatCounterCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE;
       </main>
       <Footer />
     </div>
-    <script src={sitePath("/scripts/language-toggle.js?v=20260620-1")} defer></script>
+    <script src={sitePath("/scripts/language-toggle.js?v=20260811-14")} defer></script>
   </body>
 </html>

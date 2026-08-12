@@ -13,15 +13,18 @@ import downloads from "../../data/downloads.generated.json";
       <div class="section-header">
         <p class="eyebrow">Downloads library</p>
         <h1>Descargas de documentos, proyectos y repos</h1>
-        <p>
+        <p data-translate-en="Public documents, Web Flashers, final binaries, releases and full ZIP files. The document library updates from GitHub as new files or folders are uploaded.">
           Documentos publicos, Web Flashers, binarios finales, releases y ZIP completos. La biblioteca de documentos
           se actualiza desde GitHub conforme subas archivos o carpetas nuevas.
         </p>
       </div>
 
       <div class="notice">
-        <strong>Recomendacion:</strong> descarga documentacion desde la biblioteca cuando necesites manuales, guias o
-        archivos de apoyo. Si el proyecto tiene Web Flasher, usa primero esa opcion para instalar firmware.
+        <strong>Recomendacion:</strong>
+        <span data-translate-en="download documentation from the library when you need manuals, guides or support files. If the project has a Web Flasher, use that option first to install firmware.">
+          descarga documentacion desde la biblioteca cuando necesites manuales, guias o archivos de apoyo. Si el proyecto
+          tiene Web Flasher, usa primero esa opcion para instalar firmware.
+        </span>
       </div>
 
       <DownloadsExplorer downloads={downloads} />

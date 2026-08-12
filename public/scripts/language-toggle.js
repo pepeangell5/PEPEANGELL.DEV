@@ -2,7 +2,10 @@
   const storageKey = "pepeangell-labs-language-v2";
   const excludedSelector = "script, style, code, pre, [data-no-translate], .readme-raw, .support-terminal";
   const originalTextNodes = new WeakMap();
+  const renderedTextNodes = new WeakMap();
   const originalAttributes = new WeakMap();
+  const renderedAttributes = new WeakMap();
+  const originalExplicitElements = new WeakMap();
 
   const translations = new Map(
     Object.entries({
@@ -315,6 +318,465 @@
     })
   );
 
+  const interfaceTranslations = {
+    "Repositorios": "Repositories",
+    "Laboratorio": "Lab",
+    "Simulador PCB": "PCB Simulator",
+    "Tema": "Theme",
+    "Tema neon oscuro": "Dark neon theme",
+    "Tema blanco": "Light theme",
+    "Blanco": "Light",
+    "Abrir menu": "Open menu",
+    "ESP32-TOOLS home": "ESP32-TOOLS home",
+    "Creado por": "Created by",
+    "ESP32-TOOLS · Creado por": "ESP32-TOOLS · Created by",
+    "Firmware educativo, hardware hacking controlado y herramientas de laboratorio para proyectos embebidos y pruebas autorizadas.":
+      "Educational firmware, controlled hardware hacking and lab tools for embedded projects and authorized testing.",
+    "Si mis firmwares, guias, web flashers o pruebas con ESP32 te han servido, puedes apoyar el laboratorio para mantener mas placas, pantallas, modulos RF, componentes y documentacion publica.":
+      "If my firmware, guides, web flashers or ESP32 tests have helped you, you can support the lab to maintain more boards, displays, RF modules, components and public documentation.",
+    "Placas preparadas con firmware RF-KILL para pruebas educativas, laboratorio controlado y aprendizaje de hardware embebido. Los pagos se realizan por PayPal o transferencia Banorte y la disponibilidad se confirma antes del envio.":
+      "Boards prepared with RF-KILL firmware for educational testing, controlled labs and embedded hardware learning. Payments are made through PayPal or Banorte transfer, and availability is confirmed before shipping.",
+    "PayPal o Banorte + @pepeangell": "PayPal or Banorte + @pepeangell",
+    "ESP32 DevKit de 30 pines con dos modulos nRF24L01+ PA+LNA, bateria, carga y firmware instalado.":
+      "30-pin ESP32 DevKit with two nRF24L01+ PA+LNA modules, battery, charging and installed firmware.",
+    "ESP32-C3 Super Mini con dos modulos nRF24L01+ PA+LNA, bateria, carga y firmware instalado.":
+      "ESP32-C3 Super Mini with two nRF24L01+ PA+LNA modules, battery, charging and installed firmware.",
+    "Completa el checkout, paga por PayPal o Banorte y envia tu codigo de pedido a @pepeangell en Telegram.":
+      "Complete checkout, pay through PayPal or Banorte and send your order code to @pepeangell on Telegram.",
+    "Registra tus datos de envio, revisa el total y despues paga por PayPal o transferencia Banorte. El pedido queda pendiente hasta que Pepe confirme el pago por Telegram.":
+      "Enter your shipping details, review the total and then pay through PayPal or Banorte transfer. The order remains pending until Pepe confirms the payment through Telegram.",
+    "Ingresa el codigo que recibiste al terminar el checkout y el email usado en la compra. Aqui veras pago, envio e historial sin exponer informacion privada de otros pedidos.":
+      "Enter the code you received after checkout and the email used for the purchase. You will see payment, shipping and history without exposing other orders' private information.",
+    "README de proyectos GitHub": "GitHub project READMEs",
+    "Explora la documentación pública de cada firmware sin salir de PepeAngell Labs. Selecciona un proyecto para ver componentes, funciones, conexiones y notas tal como vienen en su README.":
+      "Explore each firmware's public documentation without leaving ESP32-TOOLS. Select a project to view components, features, connections and notes exactly as they appear in its README.",
+    "Tarjetas preparadas para enlazar firmware y flasheadores web detectados desde GitHub Pages. Usar solo con placas, pantallas y modulos compatibles.":
+      "Cards prepared to link firmware and web flashers detected from GitHub Pages. Use only with compatible boards, displays and modules.",
+    "Lista tipo wiki de componentes, modulos, pantallas, energia y prototipado usados en los proyectos. Abre cada componente para ver descripcion, imagen, voltaje, uso tipico y advertencias.":
+      "A wiki-style list of components, modules, displays, power and prototyping parts used in the projects. Open each component to view its description, image, voltage, typical use and warnings.",
+    "Documentos publicos, Web Flashers, binarios finales, releases y ZIP completos. La biblioteca de documentos se actualiza desde GitHub conforme subas archivos o carpetas nuevas.":
+      "Public documents, Web Flashers, final binaries, releases and full ZIP files. The document library updates from GitHub as new files or folders are uploaded.",
+    "descarga documentacion desde la biblioteca cuando necesites manuales, guias o archivos de apoyo. Si el proyecto tiene Web Flasher, usa primero esa opcion para instalar firmware.":
+      "download documentation from the library when you need manuals, guides or support files. If the project has a Web Flasher, use that option first to install firmware.",
+    "Lecturas recientes sobre firmware, gadgets, Cardputer, M5Stack, Hashcat, Pwnagotchi, Flipper, hardware hacking, RF, WiFi/BLE, ESP32, IoT y ciberseguridad. Solo se muestran noticias publicadas en los ultimos 30 dias y se actualizan desde fuentes RSS al generar la pagina.":
+      "Recent reading about firmware, gadgets, Cardputer, M5Stack, Hashcat, Pwnagotchi, Flipper, hardware hacking, RF, WiFi/BLE, ESP32, IoT and cybersecurity. Only news published in the last 30 days is shown, updated from RSS sources when the site is generated.",
+    "Actualizado automaticamente en el ultimo deploy: 06 jun 2026. Las noticias abren en sitios externos. Solo se muestran publicaciones de los ultimos 30 dias.":
+      "Automatically updated in the latest deployment: Jun 6, 2026. News opens on external sites. Only posts from the last 30 days are shown.",
+    "Elige un escenario, presiona cualquier tecla y observa como aparece codigo real de ESP32 y redes en una consola visual de laboratorio.":
+      "Choose a scenario, press any key and watch real ESP32 and networking code appear in a visual lab console.",
+
+    "PROTOTIPADO · BETA PÚBLICA": "PROTOTYPING · PUBLIC BETA",
+    "Diseña el montaje, conecta los pines y contrasta el cableado con tu firmware.":
+      "Design the assembly, connect the pins and compare the wiring with your firmware.",
+    "El proyecto se guarda localmente en este navegador.": "The project is saved locally in this browser.",
+    "Reportar bug": "Report a bug",
+    "Feedback de la beta": "Beta feedback",
+    "Reporta un bug o comparte una idea": "Report a bug or share an idea",
+    "Describe lo que ocurrio, que esperabas que pasara y los pasos para repetirlo. Las capturas solo seran visibles desde el panel privado.":
+      "Describe what happened, what you expected and the steps to reproduce it. Screenshots will only be visible in the private dashboard.",
+    "Describe lo que ocurrió, qué esperabas que pasara y los pasos para repetirlo. Las capturas solo serán visibles desde el panel privado.":
+      "Describe what happened, what you expected and the steps to reproduce it. Screenshots will only be visible in the private dashboard.",
+    "Tipo de comentario": "Feedback type",
+    "Encontré un bug": "I found a bug",
+    "Tengo una sugerencia": "I have a suggestion",
+    "Correo para responderte": "Reply email",
+    "(opcional)": "(optional)",
+    "Detalles": "Details",
+    "Ejemplo: al rotar el nRF24 dos veces, los pines cambian de lado. Ocurre despues de...":
+      "Example: after rotating the nRF24 twice, the pins switch sides. It happens after...",
+    "Capturas": "Screenshots",
+    "Hasta 3 imagenes PNG, JPG o WebP, con un maximo de 5 MB cada una.":
+      "Up to 3 PNG, JPG or WebP images, with a maximum of 5 MB each.",
+    "Sitio web": "Website",
+    "Enviar comentario": "Send feedback",
+    "Enviando...": "Sending...",
+    "Guardando tu comentario...": "Saving your feedback...",
+    "El formulario no esta disponible en este momento.": "The form is currently unavailable.",
+    "El formulario no está disponible en este momento.": "The form is currently unavailable.",
+    "Has enviado varios comentarios recientemente. Intenta de nuevo mas tarde.":
+      "You have submitted several messages recently. Please try again later.",
+    "No pude guardar el comentario. Intenta nuevamente.": "I could not save the feedback. Please try again.",
+    "No pude preparar el reporte para enviarlo.": "I could not prepare the report for submission.",
+    "No pude finalizar el reporte.": "I could not finalize the report.",
+    "Gracias. Tu comentario fue enviado y quedo disponible para revision.":
+      "Thank you. Your feedback was submitted and is ready for review.",
+    "No pude enviar el comentario.": "I could not submit the feedback.",
+
+    "Proyecto": "Project",
+    "Proyecto nuevo": "New project",
+    "Placa": "Board",
+    "Color de placa": "Board color",
+    "Añadir placa": "Add board",
+    "Añadir otra placa": "Add another board",
+    "Guardar": "Save",
+    "Guardar en este navegador": "Save in this browser",
+    "Exportar": "Export",
+    "Exportar proyecto JSON": "Export JSON project",
+    "Importar": "Import",
+    "Importar proyecto JSON": "Import JSON project",
+    "Vaciar proyecto": "Clear project",
+    "Vista del laboratorio": "Lab view",
+    "Montaje": "Assembly",
+    "Código y prueba": "Code and test",
+    "Cara de la placa perforada": "Perfboard side",
+    "Frente · componentes": "Front · components",
+    "Reverso · solo pines": "Back · pins only",
+    "Plantilla": "Template",
+    "Seleccionar firmware...": "Select firmware...",
+    "Cargar": "Load",
+    "Plantilla cargada": "Template loaded",
+    "Proyecto importado": "Project imported",
+    "El archivo no es un proyecto valido": "The file is not a valid project",
+    "El archivo no es un proyecto válido": "The file is not a valid project",
+    "Mostrar catálogo de componentes": "Show component catalog",
+    "Catalogo de componentes": "Component catalog",
+    "Catálogo de componentes": "Component catalog",
+    "COMPONENTES": "COMPONENTS",
+    "Catálogo": "Catalog",
+    "Soltar catálogo": "Unpin catalog",
+    "Fijar catálogo al lateral": "Pin catalog to the side",
+    "Ocultar catálogo": "Hide catalog",
+    "ESP32, nRF24, energia...": "ESP32, nRF24, power...",
+    "ESP32, nRF24, energía...": "ESP32, nRF24, power...",
+    "Buscar componente": "Search component",
+    "Agregar": "Add",
+    "Roja": "Red",
+    "Azul": "Blue",
+    "Negra": "Black",
+    "Verde": "Green",
+    "roja": "red",
+    "azul": "blue",
+    "negra": "black",
+    "verde": "green",
+    "Placa principal ESP32-WROOM para los kits RF-KILL.": "Main ESP32-WROOM board for RF-KILL kits.",
+    "Variante con conector para antena externa.": "Variant with an external antenna connector.",
+    "Variante ESP32 con antena integrada.": "ESP32 variant with an integrated antenna.",
+    "Placa compacta RISC-V usada por RF-KILL C3.": "Compact RISC-V board used by RF-KILL C3.",
+    "Placa ESP32-S3 para proyectos con mas GPIO y USB.": "ESP32-S3 board for projects requiring more GPIO and USB.",
+    "Modulo RF SPI de 2.4 GHz con antena externa.": "2.4 GHz SPI RF module with external antenna.",
+    "Carga y proteccion para una celda de litio.": "Charging and protection for one lithium cell.",
+    "Elevador DC para obtener 5 V desde la bateria.": "DC boost converter for obtaining 5 V from the battery.",
+    "Regulador DC para bajar y estabilizar voltaje.": "DC regulator for stepping down and stabilizing voltage.",
+    "Celda de litio para alimentar montajes portatiles.": "Lithium cell for powering portable assemblies.",
+    "Boton pulsador": "Push button",
+    "Pulsador momentaneo para entrada digital.": "Momentary push button for digital input.",
+    "Interruptor": "Switch",
+    "Interruptor de encendido o seleccion.": "Power or selection switch.",
+    "MESA DE MONTAJE": "ASSEMBLY BENCH",
+    "Lienzo libre · retícula 2.54 mm": "Free canvas · 2.54 mm grid",
+    "Modo de trabajo del lienzo": "Canvas work mode",
+    "Mover y editar placas y componentes": "Move and edit boards and components",
+    "Congelar el montaje y trabajar solo con cables y pines": "Freeze the assembly and work only with wires and pins",
+    "Ocultar cableado": "Hide wiring",
+    "Mostrar cableado": "Show wiring",
+    "Componentes": "Components",
+    "SELECCIÓN": "SELECTION",
+    "CARA COMPONENTES": "COMPONENT SIDE",
+    "CARA SOLDADURA": "SOLDER SIDE",
+    "SOLDADURA": "SOLDER SIDE",
+    "SUPERIOR": "TOP",
+    "INFERIOR": "BOTTOM",
+    "PINES": "PINS",
+    "Componente correcto": "Component OK",
+    "Cambios sin guardar": "Unsaved changes",
+    "No se detectaron problemas en las conexiones basicas.": "No issues were detected in the basic connections.",
+    "TP4056 con proteccion": "TP4056 with protection",
+    "Convertidor Step-Up": "Step-Up converter",
+    "Convertidor Step-Down": "Step-Down converter",
+    "Bateria LiPo 3.7 V": "3.7 V LiPo battery",
+    "placas": "boards",
+    "componentes": "components",
+    "montados": "mounted",
+    "cables visibles": "visible wires",
+    "cables ocultos": "hidden wires",
+    "paso": "pitch",
+    "placa(s),": "board(s),",
+    "componente(s),": "component(s),",
+    "montado(s).": "mounted.",
+    "cable(s) registrados;": "wire(s) registered;",
+    "visibles en esta cara.": "visible on this side.",
+    "Simulación": "Simulation",
+    "detenida": "stopped",
+    "activa:": "active:",
+    "módulos energizados": "powered modules",
+    "Diagnóstico:": "Diagnostics:",
+    "error(es),": "error(s),",
+    "advertencia(s).": "warning(s).",
+    "Cableado": "Wiring",
+    "Ocultar cables": "Hide wires",
+    "Mostrar cables": "Show wires",
+    "CONEXIÓN ACTIVA": "ACTIVE CONNECTION",
+    "ENLACE A-B": "A-B LINK",
+    "PUNTO A": "POINT A",
+    "PUNTO B": "POINT B",
+    "Color": "Color",
+    "Cara": "Side",
+    "Soldadura / reverso": "Solder / back",
+    "Componentes / frente": "Components / front",
+    "Puntos de ruta": "Route points",
+    "Estado": "Status",
+    "Voltaje": "Voltage",
+    "ID del cable": "Wire ID",
+    "Cable seleccionado": "Selected wire",
+    "Placa perforada": "Perfboard",
+    "Monitor del proyecto": "Project monitor",
+    "Elemento del lienzo": "Canvas element",
+    "Retorno GND activo": "Active GND return",
+    "Energizado": "Powered",
+    "Sin energía": "No power",
+    "Simulación detenida": "Simulation stopped",
+    "Sin problemas detectados en esta conexión": "No issues detected in this connection",
+    "Medida": "Size",
+    "Orientación": "Orientation",
+    "Vista": "View",
+    "Superior": "Top",
+    "Inferior": "Bottom",
+    "En placa": "On board",
+    "Libre": "Free",
+    "Posición": "Position",
+    "Bloqueada": "Locked",
+    "Editable": "Editable",
+    "Pines": "Pins",
+    "Rotar": "Rotate",
+    "Voltear pieza": "Flip part",
+    "Ver soldadura": "View solder side",
+    "Ver componentes": "View components",
+    "Desmontar": "Unmount",
+    "Agrupar con la placa": "Group with board",
+    "Ese espacio está ocupado por otro componente": "That space is occupied by another component",
+    "Coloca todos los pines sobre la placa": "Place all pins on the board",
+    "Montar": "Mount",
+    "Permitir mover el componente": "Allow moving the component",
+    "Evitar movimientos accidentales": "Prevent accidental movement",
+    "Desbloquear": "Unlock",
+    "Bloquear posición": "Lock position",
+    "Duplicar": "Duplicate",
+    "Eliminar": "Delete",
+    "Desmontar todos": "Unmount all",
+    "Eliminar placa": "Delete board",
+    "Selecciona un cable, componente o placa para inspeccionarlo.": "Select a wire, component or board to inspect it.",
+    "Cableado activo: el montaje está congelado. Conecta pines, selecciona cables y ajusta sus puntos de ruta.":
+      "Wiring mode: the assembly is frozen. Connect pins, select wires and adjust their route points.",
+    "Suelta una pieza con todos sus pines sobre la placa para montarla. Cada cable permanece en la cara donde fue creado.":
+      "Drop a part with all its pins over the board to mount it. Each wire remains on the side where it was created.",
+    "MONITOR EN TIEMPO REAL": "REAL-TIME MONITOR",
+    "FIRMWARE": "FIRMWARE",
+    "Editor C++ / Arduino": "C++ / Arduino editor",
+    "errores": "errors",
+    "avisos": "warnings",
+    "PRUEBAS": "TESTS",
+    "Simulación eléctrica": "Electrical simulation",
+    "Detenida": "Stopped",
+    "REVISIÓN": "REVIEW",
+    "Diagnóstico": "Diagnostics",
+    "Sin errores": "No errors",
+    "CAMBIOS": "CHANGES",
+    "Historial": "History",
+    "CABLEADO": "WIRING",
+    "Conexiones": "Connections",
+    "No hay cables conectados.": "No wires connected.",
+    "Cerrar": "Close",
+    "¿Vaciar el proyecto?": "Clear the project?",
+    "Se eliminarán los componentes, cables y código del espacio de trabajo local.":
+      "Components, wires and code will be removed from the local workspace.",
+    "Cancelar": "Cancel",
+    "Iniciar": "Start",
+    "Detener": "Stop",
+    "En espera": "Waiting",
+    "módulos energizados": "powered modules",
+    "Inicia para comprobar la alimentación": "Start to check power delivery",
+    "Encendida": "On",
+    "Apagada": "Off",
+    "Presionado": "Pressed",
+    "Liberado": "Released",
+    "Cerrado": "Closed",
+    "Abierto": "Open",
+    "Sin medición": "No reading",
+    "Sin tensión": "No voltage",
+    "Salida": "Output",
+    "LECTURAS EN VIVO": "LIVE READINGS",
+    "DIAGNÓSTICO": "DIAGNOSTICS",
+    "Historial de movimientos": "Action history",
+    "Estado actual": "Current state",
+    "Los últimos cinco movimientos aparecerán aquí.": "The last five actions will appear here.",
+    "Placa añadida": "Board added",
+    "Placa eliminada": "Board removed",
+    "Cable conectado": "Wire connected",
+    "Cable eliminado": "Wire removed",
+    "Código modificado": "Code changed",
+    "Proyecto renombrado": "Project renamed",
+    "Placa movida": "Board moved",
+    "Posición bloqueada": "Position locked",
+    "Posición desbloqueada": "Position unlocked",
+    "Componente renombrado": "Component renamed",
+    "Placa actualizada": "Board updated",
+
+    "Admin privado": "Private admin",
+    "Controla la tienda, los pedidos y los comentarios enviados desde Hardware Lab. El acceso real lo valida Supabase con la tabla de administradores y RLS.":
+      "Manage the shop, orders and feedback submitted from Hardware Lab. Access is enforced by Supabase using the administrators table and RLS.",
+    "Despues de iniciar sesion, el acceso lo valida el registro admin en":
+      "After signing in, access is validated by the admin record in",
+    "Panel de administracion": "Admin dashboard",
+    "Panel de administración": "Admin dashboard",
+    "Seguimiento publico": "Public tracking",
+    "Seguimiento público": "Public tracking",
+    "Solo Pepe": "Pepe only",
+    "Despues de iniciar sesion, el acceso lo valida el registro admin en profiles.":
+      "After signing in, access is validated by the admin record in profiles.",
+    "Acceso": "Access",
+    "Entrar al admin": "Admin sign in",
+    "Usa contraseña si creaste el usuario en Supabase. Si dejas contraseña vacia, se enviara un enlace magico.":
+      "Use a password if you created the user in Supabase. Leave it empty to receive a magic link.",
+    "Email admin": "Admin email",
+    "Contraseña": "Password",
+    "Entrar": "Sign in",
+    "Sesion activa": "Active session",
+    "Sesión activa": "Active session",
+    "Cambiar contraseña": "Change password",
+    "Actualizar": "Refresh",
+    "Salir": "Sign out",
+    "Productos": "Products",
+    "Pedidos": "Orders",
+    "Feedback Lab": "Lab feedback",
+    "Inventario": "Inventory",
+    "Stock, precio y disponibilidad": "Stock, price and availability",
+    "Pago, envio e historial": "Payment, shipping and history",
+    "Pago, envío e historial": "Payment, shipping and history",
+    "Sugerencias y reportes de bugs": "Suggestions and bug reports",
+    "Confirmar eliminacion": "Confirm deletion",
+    "Eliminar pedido entregado": "Delete delivered order",
+    "Esta accion tambien borrara el historial del pedido.": "This action will also delete the order history.",
+    "Confirmar eliminar": "Confirm deletion",
+    "No hay productos creados.": "No products have been created.",
+    "Disponible en tienda": "Available in shop",
+    "Guardar producto": "Save product",
+    "Todavia no hay pedidos.": "There are no orders yet.",
+    "Datos del cliente": "Customer details",
+    "Nombre": "Name",
+    "Correo electrónico": "Email",
+    "Teléfono": "Phone",
+    "Usuario Telegram": "Telegram username",
+    "Dirección": "Address",
+    "Ciudad": "City",
+    "Estado / provincia": "State / province",
+    "País": "Country",
+    "Código postal": "Postal code",
+    "Notas del cliente": "Customer notes",
+    "Pago": "Payment",
+    "Envio": "Shipping",
+    "Envío": "Shipping",
+    "Total": "Total",
+    "Envio privado": "Private shipping",
+    "Envío privado": "Private shipping",
+    "Paqueteria": "Carrier",
+    "Paquetería": "Carrier",
+    "Guia": "Tracking number",
+    "Guía": "Tracking number",
+    "Nota admin": "Admin note",
+    "Items": "Items",
+    "Actualizar pedido": "Update order",
+    "Historial": "History",
+    "No hay pedidos en esta categoria.": "There are no orders in this category.",
+    "No hay pedidos en esta categoría.": "There are no orders in this category.",
+    "Todavia no hay comentarios del Hardware Lab.": "There is no Hardware Lab feedback yet.",
+    "Todavía no hay comentarios del Hardware Lab.": "There is no Hardware Lab feedback yet.",
+    "Bug": "Bug",
+    "Sugerencia": "Suggestion",
+    "Contacto:": "Contact:",
+    "Sin correo de contacto": "No contact email",
+    "Traducir con Google": "Translate with Google",
+    "Estado": "Status",
+    "Guardar estado": "Save status",
+    "Cargando comentarios...": "Loading feedback...",
+    "Nuevo": "New",
+    "Revisado": "Reviewed",
+    "Resuelto": "Resolved",
+    "Seguridad": "Security",
+    "Confirma tu contraseña actual y elige una nueva de al menos 8 caracteres.":
+      "Confirm your current password and choose a new one with at least 8 characters.",
+    "Contraseña actual": "Current password",
+    "Nueva contraseña": "New password",
+    "Confirmar nueva contraseña": "Confirm new password",
+    "Guardar contraseña": "Save password",
+
+    "Completa tu pedido": "Complete your order",
+    "Volver a tienda": "Back to shop",
+    "Ver pedido": "View order",
+    "Pago manual": "Manual payment",
+    "Al finalizar recibiras un codigo de pedido. Envialo por Telegram junto con el comprobante de pago.":
+      "When finished, you will receive an order code. Send it through Telegram with your payment receipt.",
+    "Producto": "Product",
+    "Kit a reservar": "Kit to reserve",
+    "Cargando productos...": "Loading products...",
+    "Por confirmar": "To be confirmed",
+    "Datos de entrega": "Delivery details",
+    "Crear pedido": "Create order",
+    "Despues del formulario": "After the form",
+    "Confirmacion por Telegram": "Telegram confirmation",
+    "Crea el pedido y guarda tu codigo.": "Create the order and save your code.",
+    "Elige PayPal o transferencia Banorte.": "Choose PayPal or a Banorte transfer.",
+    "Envia el codigo y comprobante a @pepeangell.": "Send the code and receipt to @pepeangell.",
+    "Pepe actualiza pago, envio e historial desde el admin.": "Pepe updates payment, shipping and history from the admin dashboard.",
+    "Opcion 1": "Option 1",
+    "Opcion 2": "Option 2",
+    "Abrir PayPal": "Open PayPal",
+    "Transferencia Banorte": "Banorte bank transfer",
+    "CLABE interbancaria": "Interbank CLABE",
+    "Beneficiario": "Beneficiary",
+    "Usa el codigo de tu pedido como concepto o referencia.": "Use your order code as the payment reference.",
+    "Copiar CLABE": "Copy CLABE",
+    "Enviar comprobante por Telegram": "Send receipt through Telegram",
+    "Estado de tu pedido": "Your order status",
+    "Nuevo pedido": "New order",
+    "Confirmacion": "Confirmation",
+    "Si acabas de pagar, envia tu codigo y comprobante por Telegram para que Pepe actualice el estado.":
+      "If you just paid, send your code and receipt through Telegram so Pepe can update the status.",
+    "Buscar": "Search",
+    "Consulta privada": "Private lookup",
+    "Codigo de pedido": "Order code",
+    "Código de pedido": "Order code",
+    "Email del pedido": "Order email",
+    "Sin busqueda": "No search",
+    "Sin búsqueda": "No search",
+    "Tu historial aparecera aqui": "Your history will appear here",
+    "Tu historial aparecerá aquí": "Your history will appear here",
+    "El seguimiento se actualiza cuando Pepe confirma pago, prepara envio y registra eventos del pedido.":
+      "Tracking updates when Pepe confirms payment, prepares shipping and records order events.",
+    "Fecha de envio": "Shipping date",
+    "Fecha de envío": "Shipping date",
+    "Iniciar pedido": "Start order",
+    "Admin tienda": "Shop admin",
+    "Canal Telegram": "Telegram channel",
+    "Grupo Telegram": "Telegram group",
+    "Flujo manual": "Manual flow",
+    "Checkout + pago manual + Telegram": "Checkout + manual payment + Telegram",
+    "El pedido guarda tus datos de envio, queda pendiente de confirmacion y se paga por PayPal o transferencia Banorte. Pepe confirma por Telegram: @pepeangell.":
+      "The order stores your shipping details, remains pending confirmation and is paid through PayPal or Banorte transfer. Pepe confirms it through Telegram: @pepeangell.",
+    "La disponibilidad, precio y stock se cargan desde Supabase cuando la tienda esta conectada. Si un kit no aparece disponible, confirma por Telegram antes de pagar.":
+      "Availability, price and stock load from Supabase when the shop is connected. If a kit is unavailable, confirm through Telegram before paying.",
+    "Precio por confirmar": "Price to be confirmed",
+    "Disponibilidad por confirmar": "Availability to be confirmed",
+    "Reservar kit": "Reserve kit",
+    "Kit": "Kit",
+    "Cantidad": "Quantity",
+    "Campos obligatorios": "Required fields",
+    "Nombre completo *": "Full name *",
+    "Correo electrónico *": "Email *",
+    "Teléfono *": "Phone *",
+    "Telegram (opcional)": "Telegram (optional)",
+    "País *": "Country *",
+    "Estado / provincia *": "State / province *",
+    "Ciudad *": "City *",
+    "Código postal *": "Postal code *",
+    "Dirección *": "Address *",
+    "Notas": "Notes",
+    "Color, referencia de envio o comentario para Pepe": "Color, shipping reference or note for Pepe"
+  };
+
+  Object.entries(interfaceTranslations).forEach(([source, translation]) => {
+    translations.set(source, translation);
+  });
+
   const patterns = [
     [/^(\d+) repositorios p(?:ú|u|Ãº)?blicos$/, (_text, count) => `${count} public repositories`],
     [/^Stars: (.+)$/, (_text, value) => `Stars: ${value}`],
@@ -331,7 +793,39 @@
       () => "Curated base for compatible components; pending detection in a public README."],
     [/^Binario final - (.+)$/, (_text, family) => `Final binary - ${family}`],
     [/^Release: (.+)$/, (_text, asset) => `Release: ${asset}`],
-    [/^(.+) - offset (.+)$/, (_text, path, offset) => `${path} - offset ${offset}`]
+    [/^(.+) - offset (.+)$/, (_text, path, offset) => `${path} - offset ${offset}`],
+    [/^(\d+) errores$/, (_text, count) => `${count} errors`],
+    [/^(\d+) avisos$/, (_text, count) => `${count} warnings`],
+    [/^(\d+) error\(es\)$/, (_text, count) => `${count} error(s)`],
+    [/^(\d+) aviso\(s\)$/, (_text, count) => `${count} warning(s)`],
+    [/^(\d+) cable\(s\)$/, (_text, count) => `${count} wire(s)`],
+    [/^(\d+) en stock$/, (_text, count) => `${count} in stock`],
+    [/^(.+ - )(\d+) en stock$/, (_text, prefix, count) => `${prefix}${count} in stock`],
+    [/^(\d+)\/(\d+) activos$/, (_text, active, total) => `${active}/${total} active`],
+    [/^Placa (.+)$/, (_text, color) => `Board ${translations.get(color) ?? color}`],
+    [/^Guardado (.+)$/, (_text, time) => `Saved ${time}`],
+    [/^CARA COMPONENTES (.+)$/, (_text, details) => `COMPONENT SIDE ${details}`],
+    [/^CARA SOLDADURA (.+)$/, (_text, details) => `SOLDER SIDE ${details}`],
+    [/^Volver a (.+)$/, (_text, state) => `Return to ${state}`],
+    [/^Subiendo (.+)\.\.\.$/, (_text, file) => `Uploading ${file}...`],
+    [/^Solo puedes adjuntar (\d+) imagenes\.$/, (_text, count) => `You can attach up to ${count} images.`],
+    [/^(.+) supera el limite de (.+)\.$/, (_text, file, limit) => `${file} exceeds the ${limit} limit.`],
+    [/^Captura (\d+) adjunta al reporte$/, (_text, index) => `Screenshot ${index} attached to the report`],
+    [/^Agregar (.+)$/, (_text, component) => `Add ${translations.get(component) ?? component}`],
+    [/^(\d+) placas$/, (_text, count) => `${count} boards`],
+    [/^(\d+) componentes$/, (_text, count) => `${count} components`],
+    [/^(\d+) montados$/, (_text, count) => `${count} mounted`],
+    [/^(\d+) cables visibles$/, (_text, count) => `${count} visible wires`],
+    [/^(\d+) cables ocultos$/, (_text, count) => `${count} hidden wires`],
+    [/^(\d+) diagnóstico\(s\) relacionado\(s\)$/, (_text, count) => `${count} related diagnostic(s)`],
+    [/^(\d+) componentes montados en esta placa\. Al moverla o invertirla conservarán su posición física\.$/,
+      (_text, count) => `${count} components mounted on this board. They will keep their physical position when the board is moved or flipped.`],
+    [/^(\d+) placa\(s\), (\d+) componente\(s\), (\d+) montado\(s\)\.$/,
+      (_text, boards, components, mounted) => `${boards} board(s), ${components} component(s), ${mounted} mounted.`],
+    [/^(\d+) cable\(s\) registrados; (\d+) visibles en esta cara\.$/,
+      (_text, wires, visible) => `${wires} wire(s) registered; ${visible} visible on this side.`],
+    [/^Diagnóstico: (\d+) error\(es\), (\d+) advertencia\(s\)\.$/,
+      (_text, errors, warnings) => `Diagnostics: ${errors} error(s), ${warnings} warning(s).`]
   ];
 
   function normalizeText(value) {
@@ -360,8 +854,23 @@
 
   function translateTextNode(node, lang) {
     if (shouldSkip(node)) return;
-    if (!originalTextNodes.has(node)) originalTextNodes.set(node, node.nodeValue);
-    node.nodeValue = translatedText(originalTextNodes.get(node), lang);
+    const currentValue = node.nodeValue || "";
+    const lastRenderedValue = renderedTextNodes.get(node);
+    const directTranslation = translatedText(currentValue, "en");
+
+    if (!originalTextNodes.has(node) || directTranslation !== currentValue) {
+      originalTextNodes.set(node, currentValue);
+    } else if (lastRenderedValue !== undefined && currentValue !== lastRenderedValue) {
+      originalTextNodes.set(node, currentValue);
+    }
+
+    const nextValue = lang === "en"
+      ? directTranslation !== currentValue
+        ? directTranslation
+        : translatedText(originalTextNodes.get(node), "en")
+      : originalTextNodes.get(node);
+    renderedTextNodes.set(node, nextValue);
+    if (currentValue !== nextValue) node.nodeValue = nextValue;
   }
 
   function translateAttributes(element, lang) {
@@ -376,9 +885,27 @@
         originalAttributes.set(element, originals);
       }
 
-      if (!(attr in originals)) originals[attr] = element.getAttribute(attr) || "";
-      element.setAttribute(attr, translatedText(originals[attr], lang));
+      let rendered = renderedAttributes.get(element);
+      if (!rendered) {
+        rendered = {};
+        renderedAttributes.set(element, rendered);
+      }
+
+      const currentValue = element.getAttribute(attr) || "";
+      if (!(attr in originals) || (attr in rendered && currentValue !== rendered[attr])) originals[attr] = currentValue;
+      const nextValue = translatedText(originals[attr], lang);
+      rendered[attr] = nextValue;
+      if (currentValue !== nextValue) element.setAttribute(attr, nextValue);
     }
+  }
+
+  function translateExplicitElement(element, lang) {
+    const english = element.getAttribute("data-translate-en");
+    if (!english) return;
+    if (!originalExplicitElements.has(element)) originalExplicitElements.set(element, element.textContent || "");
+
+    const nextValue = lang === "en" ? english : originalExplicitElements.get(element);
+    if (element.textContent !== nextValue) element.textContent = nextValue;
   }
 
   function walk(root, lang) {
@@ -391,7 +918,10 @@
 
     if (root.nodeType !== Node.ELEMENT_NODE && root.nodeType !== Node.DOCUMENT_NODE) return;
 
-    if (root.nodeType === Node.ELEMENT_NODE) translateAttributes(root, lang);
+    if (root.nodeType === Node.ELEMENT_NODE) {
+      translateAttributes(root, lang);
+      translateExplicitElement(root, lang);
+    }
 
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT, {
       acceptNode(node) {
@@ -402,7 +932,10 @@
     let node = walker.nextNode();
     while (node) {
       if (node.nodeType === Node.TEXT_NODE) translateTextNode(node, lang);
-      else if (node.nodeType === Node.ELEMENT_NODE) translateAttributes(node, lang);
+      else if (node.nodeType === Node.ELEMENT_NODE) {
+        translateAttributes(node, lang);
+        translateExplicitElement(node, lang);
+      }
       node = walker.nextNode();
     }
   }
@@ -416,12 +949,15 @@
 
   function applyLanguage(lang) {
     document.documentElement.lang = lang;
+    document.documentElement.dataset.language = lang;
     walk(document.body, lang);
     updateToggle(lang);
+    document.dispatchEvent(new CustomEvent("site-language-change", { detail: { lang } }));
   }
 
   const savedLanguage = localStorage.getItem(storageKey);
   let currentLanguage = savedLanguage === "en" ? "en" : "es";
+  let translationReady = false;
 
   document.addEventListener("click", (event) => {
     const button = event.target.closest("[data-lang-option]");
@@ -429,16 +965,26 @@
 
     currentLanguage = button.getAttribute("data-lang-option") === "en" ? "en" : "es";
     localStorage.setItem(storageKey, currentLanguage);
-    applyLanguage(currentLanguage);
+    updateToggle(currentLanguage);
+    if (translationReady) applyLanguage(currentLanguage);
   });
 
   document.addEventListener("DOMContentLoaded", () => {
-    applyLanguage(currentLanguage);
+    window.setTimeout(() => {
+      const observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          if (mutation.type === "characterData") {
+            translateTextNode(mutation.target, currentLanguage);
+            continue;
+          }
 
-    // Some sections render from local JSON after load. Re-apply a few times without
-    // observing the whole DOM, keeping the page responsive.
-    [300, 900, 1800].forEach((delay) => {
-      window.setTimeout(() => applyLanguage(currentLanguage), delay);
-    });
+          mutation.addedNodes.forEach((node) => walk(node, currentLanguage));
+        }
+      });
+      observer.observe(document.body, { childList: true, characterData: true, subtree: true });
+      translationReady = true;
+      applyLanguage(currentLanguage);
+      window.setTimeout(() => applyLanguage(currentLanguage), 360);
+    }, 1300);
   });
 })();
