@@ -13,6 +13,7 @@ function Esp32Artwork({ definition }: Props) {
   const isU = definition.id === "esp32-devkit-u";
   const isC3 = definition.id === "esp32-c3-supermini";
   const isBw16 = definition.id === "bw16-kit";
+  const isS3 = definition.id === "esp32-s3-devkit";
 
   if (isBw16) {
     return (
@@ -29,6 +30,28 @@ function Esp32Artwork({ definition }: Props) {
         <rect x={width * 0.33} y={height - 52} width={width * 0.34} height="55" rx="7" fill="#c6cacf" stroke="#71787d" strokeWidth="5" />
         <circle cx="44" cy={height - 39} r="18" fill="#d3d0c8" stroke="#676d70" strokeWidth="4" />
         <circle cx={width - 44} cy={height - 39} r="18" fill="#d3d0c8" stroke="#676d70" strokeWidth="4" />
+      </svg>
+    );
+  }
+
+  if (isS3) {
+    return (
+      <svg className="component-artwork" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+        <rect x="3" y="3" width={width - 6} height={height - 6} rx="9" fill="#11171a" stroke="#303a3e" strokeWidth="5" />
+        <path d={`M ${width * 0.2} 30 H ${width * 0.78} V 46 H ${width * 0.34} V 60 H ${width * 0.78}`} fill="none" stroke="#c8b777" strokeWidth="6" />
+        <rect x={width * 0.17} y="68" width={width * 0.66} height="165" rx="6" fill="#a8aaa6" stroke="#dedfda" strokeWidth="5" />
+        <text x={width / 2} y="125" textAnchor="middle" fill="#3d4445" fontSize="21" fontWeight="800" fontFamily="monospace">ESP32-S3</text>
+        <text x={width / 2} y="151" textAnchor="middle" fill="#5d6465" fontSize="12" fontFamily="monospace">WROOM-1</text>
+        <rect x={width * 0.3} y={height * 0.49} width={width * 0.4} height={width * 0.4} rx="6" fill="#252b2f" stroke="#59636a" strokeWidth="3" />
+        {smallParts.map((part) => (
+          <rect key={part} x={width * 0.16 + (part % 5) * width * 0.145} y={height * 0.69 + Math.floor(part / 5) * 26} width="19" height="9" rx="2" fill="#b9aa7c" />
+        ))}
+        <rect x={width * 0.26} y={height - 58} width={width * 0.48} height="65" rx="7" fill="#c5c9cd" stroke="#70777c" strokeWidth="5" />
+        <rect x={width * 0.35} y={height - 48} width={width * 0.3} height="21" rx="4" fill="#343a3e" />
+        <rect x="29" y={height - 80} width="38" height="29" rx="5" fill="#22282b" stroke="#70777c" strokeWidth="3" />
+        <rect x={width - 67} y={height - 80} width="38" height="29" rx="5" fill="#22282b" stroke="#70777c" strokeWidth="3" />
+        <text x="48" y={height - 60} textAnchor="middle" fill="#d9dfdf" fontSize="9">RST</text>
+        <text x={width - 48} y={height - 60} textAnchor="middle" fill="#d9dfdf" fontSize="8">BOOT</text>
       </svg>
     );
   }
@@ -171,8 +194,8 @@ function InterfaceArtwork({ definition }: Props) {
       <circle cx={width * 0.28} cy={height * 0.67} r="28" fill="none" stroke="#b7b9b7" strokeWidth="6" />
       <circle cx={width * 0.72} cy={height * 0.67} r="28" fill="none" stroke="#b7b9b7" strokeWidth="6" />
       <circle cx={width / 2} cy={height * 0.67} r="13" fill="#a7a9a6" stroke="#747875" strokeWidth="4" />
-      <text x={width / 2} y="58" textAnchor="middle" fill="#424446" fontSize="22" fontWeight="900">IR REMOTE</text>
-      <text x={width / 2} y="86" textAnchor="middle" fill="#66696a" fontSize="14" fontWeight="800">PORT.B I/O</text>
+      <text x={width / 2} y="58" textAnchor="middle" fill="#424446" fontSize="22" fontWeight="900">IR T / R</text>
+      <text x={width / 2} y="86" textAnchor="middle" fill="#66696a" fontSize="14" fontWeight="800">TRANSMISOR + RECEPTOR</text>
       <g fontSize="15" fontWeight="900" textAnchor="middle">
         <rect x={width / 2 - 82} y="97" width="41" height="30" fill="#f6f6f2" /><text x={width / 2 - 61.5} y="118" fill="#25282a">IN</text>
         <rect x={width / 2 - 41} y="97" width="41" height="30" fill="#f0bd25" /><text x={width / 2 - 20.5} y="118" fill="#402f07">OUT</text>

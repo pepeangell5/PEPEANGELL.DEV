@@ -2284,46 +2284,6 @@ function HardwareLabWorkspace() {
           <span>{saveState}</span>
         </div>
 
-        <div className="lab-toolbar__group">
-          <label htmlFor="lab-board-size">Placa</label>
-          <select
-            id="lab-board-size"
-            value={boardPresetId}
-            onChange={(event) => handleBoardPreset(event.target.value)}
-            disabled={canvasInteractionMode === "wiring"}
-          >
-            {BOARD_PRESETS.map((preset) => (
-              <option key={preset.id} value={preset.id}>{preset.label}</option>
-            ))}
-          </select>
-        </div>
-
-        <div className="lab-color-picker" aria-label="Color de placa">
-          {BOARD_COLORS.map((color) => (
-            <button
-              key={color.id}
-              type="button"
-              className={color.id === boardColorId ? "is-active" : ""}
-              style={{ "--swatch": color.value } as React.CSSProperties}
-              aria-label={`Placa ${color.label.toLowerCase()}`}
-              aria-pressed={color.id === boardColorId}
-              title={`Placa ${color.label.toLowerCase()}`}
-              onClick={() => handleBoardColor(color.id)}
-              disabled={canvasInteractionMode === "wiring"}
-            />
-          ))}
-        </div>
-
-        <button
-          className="lab-board-button"
-          type="button"
-          onClick={addBoard}
-          disabled={canvasInteractionMode === "wiring"}
-        >
-          <Plus size={17} />
-          <span>{boardNodes.length > 0 ? "Añadir otra placa" : "Añadir placa"}</span>
-        </button>
-
         <div className="lab-toolbar__actions">
           <button type="button" onClick={saveProject} title="Guardar en este navegador">
             <Save size={17} /> <span>Guardar</span>
@@ -2452,6 +2412,50 @@ function HardwareLabWorkspace() {
                 </button>
               </div>
             </div>
+            <section className="lab-board-creator" aria-label="Añadir placa perforada">
+              <div className="lab-board-creator__heading">
+                <div>
+                  <span>PLACA PERFORADA</span>
+                  <strong>Añadir al lienzo</strong>
+                </div>
+                <CircuitBoard size={18} aria-hidden="true" />
+              </div>
+              <label htmlFor="lab-board-size">Tamaño</label>
+              <select
+                id="lab-board-size"
+                value={boardPresetId}
+                onChange={(event) => handleBoardPreset(event.target.value)}
+                disabled={canvasInteractionMode === "wiring"}
+              >
+                {BOARD_PRESETS.map((preset) => (
+                  <option key={preset.id} value={preset.id}>{preset.label}</option>
+                ))}
+              </select>
+              <div className="lab-color-picker" aria-label="Color de placa">
+                {BOARD_COLORS.map((color) => (
+                  <button
+                    key={color.id}
+                    type="button"
+                    className={color.id === boardColorId ? "is-active" : ""}
+                    style={{ "--swatch": color.value } as React.CSSProperties}
+                    aria-label={`Placa ${color.label.toLowerCase()}`}
+                    aria-pressed={color.id === boardColorId}
+                    title={`Placa ${color.label.toLowerCase()}`}
+                    onClick={() => handleBoardColor(color.id)}
+                    disabled={canvasInteractionMode === "wiring"}
+                  />
+                ))}
+              </div>
+              <button
+                className="lab-board-button"
+                type="button"
+                onClick={addBoard}
+                disabled={canvasInteractionMode === "wiring"}
+              >
+                <Plus size={17} />
+                <span>{boardNodes.length > 0 ? "Añadir otra placa" : "Añadir placa"}</span>
+              </button>
+            </section>
             <label className="lab-search">
               <Search size={16} />
               <input

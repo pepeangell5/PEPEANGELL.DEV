@@ -317,6 +317,81 @@ html[data-theme="light"] .lab-view-toggle button.is-active {
   border-right: 1px solid var(--lab-border);
 }
 
+.lab-board-creator {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 7px;
+  margin: 13px 0;
+  padding: 11px;
+  background: var(--lab-panel-strong);
+  border: 1px solid var(--lab-border);
+  border-radius: 6px;
+}
+
+.lab-board-creator__heading {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.lab-board-creator__heading span,
+.lab-board-creator > label {
+  display: block;
+  color: var(--lab-green);
+  font: 800 0.62rem/1.2 Consolas, monospace;
+  text-transform: uppercase;
+}
+
+.lab-board-creator__heading strong {
+  display: block;
+  margin-top: 2px;
+  color: var(--lab-text);
+  font-size: 0.78rem;
+}
+
+.lab-board-creator__heading > svg {
+  color: var(--lab-green);
+}
+
+.lab-board-creator > label {
+  grid-column: 1 / -1;
+  margin-top: 2px;
+}
+
+.lab-board-creator > select {
+  min-width: 0;
+  height: 38px;
+  padding: 0 30px 0 9px;
+  color: var(--lab-text);
+  background: var(--lab-panel);
+  border: 1px solid var(--lab-border);
+  border-radius: 5px;
+}
+
+.lab-board-creator .lab-color-picker {
+  padding: 5px;
+}
+
+.lab-board-creator .lab-color-picker button {
+  width: 20px;
+  height: 20px;
+}
+
+.lab-board-creator .lab-board-button {
+  grid-column: 1 / -1;
+  width: 100%;
+  color: #07110b;
+  background: var(--lab-green);
+  border-color: transparent;
+}
+
+html[data-theme="light"] .lab-board-creator .lab-board-button {
+  color: #fff;
+  background: var(--lab-pink);
+}
+
 .lab-workspace.is-catalog-floating .lab-catalog {
   position: absolute;
   top: 0;
