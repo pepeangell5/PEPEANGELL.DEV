@@ -458,6 +458,9 @@
     "Placa ESP32-S3 para proyectos con mas GPIO y USB.": "ESP32-S3 board for projects requiring more GPIO and USB.",
     "Ai-Thinker BW16 Kit": "Ai-Thinker BW16 Kit",
     "Placa RTL8720DN de doble banda usada por BWifiKill BW16 5 GHz.": "Dual-band RTL8720DN board used by BWifiKill BW16 5 GHz.",
+    "ESP8266 HW-364A con OLED 0.96 integrada": "ESP8266 HW-364A with integrated 0.96-inch OLED",
+    "NodeMCU ESP8266 con CH340G y OLED SSD1306 128x64 integrada; SDA GPIO14, SCL GPIO12 y direccion 0x3C.":
+      "NodeMCU ESP8266 with CH340G and integrated 128x64 SSD1306 OLED; SDA GPIO14, SCL GPIO12 and address 0x3C.",
     "OLED SSD1306 I2C 0.96 pulgadas": "0.96-inch SSD1306 I2C OLED",
     "Pantalla OLED 128x64 con interfaz I2C y direccion habitual 0x3C.": "128x64 OLED display with I2C interface and common 0x3C address.",
     "TFT ST7735 SPI 1.8 pulgadas": "1.8-inch ST7735 SPI TFT",

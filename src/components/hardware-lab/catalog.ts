@@ -103,6 +103,24 @@ const dualRows = (
   ];
 };
 
+const horizontalRows = (
+  topPins: HardwarePin[],
+  bottomPins: HardwarePin[],
+  widthMm: number,
+  heightMm: number,
+  rowGapMm: number,
+  pitchMm = 2.54,
+) => {
+  const maxPins = Math.max(topPins.length, bottomPins.length);
+  const leftMm = (widthMm - Math.max(0, maxPins - 1) * pitchMm) / 2;
+  const topMm = (heightMm - rowGapMm) / 2;
+
+  return [
+    ...topPins.map((pin, index) => at(pin, leftMm + index * pitchMm, topMm, "top")),
+    ...bottomPins.map((pin, index) => at(pin, leftMm + index * pitchMm, topMm + rowGapMm, "bottom")),
+  ];
+};
+
 const esp32LeftPins = [
   signal("EN", "left"),
   signal("GPIO36", "left", "VP/36"),
@@ -229,6 +247,42 @@ const bw16RightPins = [
   asInput(power("5V-R", "right", 5, "5V")),
 ];
 
+const esp8266OledTopPins = [
+  signal("GPIO16", "top", "D0 / GPIO16"),
+  signal("GPIO5", "top", "D1 / GPIO5"),
+  signal("GPIO4", "top", "D2 / GPIO4"),
+  signal("GPIO0", "top", "D3 / GPIO0"),
+  signal("GPIO2", "top", "D4 / GPIO2"),
+  asOutput(power("3V3-T1", "top", 3.3, "3V3")),
+  ground("GND-T1", "top", "GND"),
+  signal("GPIO14", "top", "D5 / OLED SDA"),
+  signal("GPIO12", "top", "D6 / OLED SCL"),
+  signal("GPIO13", "top", "D7 / GPIO13"),
+  signal("GPIO15", "top", "D8 / GPIO15"),
+  asInput(signal("GPIO3", "top", "RX / GPIO3")),
+  asOutput(signal("GPIO1", "top", "TX / GPIO1")),
+  ground("GND-T2", "top", "GND"),
+  asOutput(power("3V3-T2", "top", 3.3, "3V3")),
+];
+
+const esp8266OledBottomPins = [
+  asInput(signal("A0", "bottom", "A0", 3.3)),
+  ground("GND-B1", "bottom", "GND"),
+  power("VU", "bottom", 5, "VU / USB 5V", 5.25),
+  signal("GPIO10", "bottom", "SD3 / GPIO10"),
+  signal("GPIO9", "bottom", "SD2 / GPIO9"),
+  signal("GPIO8", "bottom", "SD1 / GPIO8"),
+  signal("GPIO11", "bottom", "CMD / GPIO11"),
+  signal("GPIO7", "bottom", "SD0 / GPIO7"),
+  signal("GPIO6", "bottom", "CLK / GPIO6"),
+  ground("GND-B2", "bottom", "GND"),
+  asOutput(power("3V3-B", "bottom", 3.3, "3V3")),
+  signal("EN", "bottom"),
+  signal("RST", "bottom"),
+  ground("GND-B3", "bottom", "GND"),
+  asInput(power("VIN", "bottom", 5, "VIN", 12)),
+];
+
 export const BOARD_PRESETS: BoardPreset[] = [
   { id: "20x80", label: "2 x 8 cm", widthMm: 80, heightMm: 20 },
   { id: "30x70", label: "3 x 7 cm", widthMm: 70, heightMm: 30 },
@@ -336,6 +390,18 @@ export const HARDWARE_COMPONENTS: HardwareComponentDefinition[] = [
     requiredPins: ["5V-L", "GND-L1"],
   },
   {
+    id: "esp8266-hw364a-oled",
+    name: "ESP8266 HW-364A con OLED 0.96 integrada",
+    shortName: "ESP8266 OLED",
+    description: "NodeMCU ESP8266 con CH340G y OLED SSD1306 128x64 integrada; SDA GPIO14, SCL GPIO12 y direccion 0x3C.",
+    category: "mcu",
+    widthMm: 59,
+    heightMm: 31,
+    accent: "#ffd34d",
+    pins: horizontalRows(esp8266OledTopPins, esp8266OledBottomPins, 59, 31, 27.94),
+    requiredPins: ["VIN", "GND-T1"],
+  },
+  {
     id: "ssd1306-oled-096",
     name: "OLED SSD1306 I2C 0.96 pulgadas",
     shortName: "SSD1306",
@@ -370,6 +436,10 @@ export const HARDWARE_COMPONENTS: HardwareComponentDefinition[] = [
       at(asInput(signal("MOSI", "right", "SDA")), 54.5, 21.31),
       at(asInput(signal("SCK", "right")), 54.5, 23.85),
       at(asInput(power("LED", "right", 3.3, "LED", 5)), 54.5, 26.39),
+      at(asInput(signal("SD_CS", "left")), 1.5, 13.69),
+      at(asInput(signal("SD_MOSI", "left")), 1.5, 16.23),
+      at(asOutput(signal("SD_MISO", "left")), 1.5, 18.77),
+      at(asInput(signal("SD_SCK", "left")), 1.5, 21.31),
     ],
     requiredPins: ["VCC", "GND", "CS", "RST", "DC", "MOSI", "SCK", "LED"],
   },

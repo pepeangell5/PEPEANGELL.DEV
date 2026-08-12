@@ -14,6 +14,32 @@ function Esp32Artwork({ definition }: Props) {
   const isC3 = definition.id === "esp32-c3-supermini";
   const isBw16 = definition.id === "bw16-kit";
   const isS3 = definition.id === "esp32-s3-devkit";
+  const isEsp8266Oled = definition.id === "esp8266-hw364a-oled";
+
+  if (isEsp8266Oled) {
+    return (
+      <svg className="component-artwork" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+        <rect x="3" y="3" width={width - 6} height={height - 6} rx="10" fill="#111516" stroke="#3e4446" strokeWidth="5" />
+        <path d="M 26 74 H 74 V 90 H 38 V 106 H 74 V 122 H 38 V 138 H 74" fill="none" stroke="#d7c267" strokeWidth="7" />
+        <rect x="76" y="54" width="154" height="136" rx="6" fill="#a5a7a0" stroke="#dedfd8" strokeWidth="5" />
+        <text x="153" y="111" textAnchor="middle" fill="#3e4545" fontSize="24" fontWeight="900">WiFi</text>
+        <text x="153" y="143" textAnchor="middle" fill="#505858" fontSize="17" fontWeight="800">ESP8266MOD</text>
+        <text x="153" y="167" textAnchor="middle" fill="#626968" fontSize="12">HW-364A</text>
+        <rect x="250" y="48" width="250" height="170" rx="7" fill="#22282c" stroke="#777d80" strokeWidth="5" />
+        <rect x="266" y="64" width="218" height="136" rx="4" fill="#06121b" />
+        <text x="375" y="112" textAnchor="middle" fill="#ffe56e" fontSize="21" fontFamily="monospace">ESP8266</text>
+        <text x="375" y="146" textAnchor="middle" fill="#73e7ff" fontSize="18" fontFamily="monospace">OLED 128x64</text>
+        <text x="375" y="178" textAnchor="middle" fill="#73e7ff" fontSize="13" fontFamily="monospace">SDA 14 / SCL 12</text>
+        <rect x={width - 79} y="92" width="82" height="100" rx="9" fill="#c8cdd1" stroke="#71787d" strokeWidth="5" />
+        <rect x={width - 68} y="112" width="60" height="57" rx="5" fill="#596165" />
+        <circle cx={width - 40} cy="48" r="16" fill="#d0ccc0" stroke="#686d6f" strokeWidth="4" />
+        <circle cx={width - 40} cy={height - 48} r="16" fill="#d0ccc0" stroke="#686d6f" strokeWidth="4" />
+        <circle cx="30" cy="28" r="17" fill="none" stroke="#d9d8d1" strokeWidth="7" />
+        <circle cx="30" cy={height - 28} r="17" fill="none" stroke="#d9d8d1" strokeWidth="7" />
+        <text x="36" y="53" fill="#d9dddd" fontSize="14" fontWeight="800">HW-364A</text>
+      </svg>
+    );
+  }
 
   if (isBw16) {
     return (
@@ -157,6 +183,7 @@ function DisplayArtwork({ definition }: Props) {
   const width = definition.widthMm * 10;
   const height = definition.heightMm * 10;
   const isOled = definition.id === "ssd1306-oled-096";
+  const isSt7735 = definition.id === "st7735-tft-18";
   const isIli9488 = definition.id === "ili9488-tft-35";
   const screenInsetX = isOled ? width * 0.09 : width * 0.08;
   const screenInsetTop = isOled ? height * 0.2 : height * 0.07;
@@ -179,6 +206,18 @@ function DisplayArtwork({ definition }: Props) {
         <circle cx={width - 30} cy="30" r="12" fill="none" stroke="#f1d6a3" strokeWidth="6" />
         <circle cx="30" cy={height - 30} r="12" fill="none" stroke="#f1d6a3" strokeWidth="6" />
         <circle cx={width - 30} cy={height - 30} r="12" fill="none" stroke="#f1d6a3" strokeWidth="6" />
+      </>}
+      {isOled && <>
+        <circle cx="25" cy="23" r="10" fill="none" stroke="#d7e1e1" strokeWidth="5" />
+        <circle cx={width - 25} cy="23" r="10" fill="none" stroke="#d7e1e1" strokeWidth="5" />
+        <circle cx="25" cy={height - 23} r="10" fill="none" stroke="#d7e1e1" strokeWidth="5" />
+        <circle cx={width - 25} cy={height - 23} r="10" fill="none" stroke="#d7e1e1" strokeWidth="5" />
+        <text x={width / 2} y="19" textAnchor="middle" fill="#eaf5f7" fontSize="11" fontWeight="800">GND  VCC  SCL  SDA</text>
+      </>}
+      {isSt7735 && <>
+        <rect x="9" y={height * 0.32} width="29" height="84" rx="4" fill="#822124" stroke="#f6a2a0" strokeWidth="3" />
+        <text x="23" y={height * 0.57} textAnchor="middle" fill="#fff1e8" fontSize="9" fontWeight="800" transform={`rotate(-90 23 ${height * 0.57})`}>microSD</text>
+        <text x={width - 23} y={height * 0.55} textAnchor="middle" fill="#fff1e8" fontSize="10" fontWeight="800" transform={`rotate(90 ${width - 23} ${height * 0.55})`}>VCC GND CS RST A0 SDA SCK LED</text>
       </>}
       <text x={width / 2} y={isIli9488 ? height * 0.91 : height * 0.94} textAnchor="middle" fill="#eef4f7" fontSize={isIli9488 ? "19" : "14"} fontWeight="800">{definition.shortName}</text>
     </svg>
