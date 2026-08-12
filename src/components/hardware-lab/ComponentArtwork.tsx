@@ -12,6 +12,26 @@ function Esp32Artwork({ definition }: Props) {
   const height = definition.heightMm * 10;
   const isU = definition.id === "esp32-devkit-u";
   const isC3 = definition.id === "esp32-c3-supermini";
+  const isBw16 = definition.id === "bw16-kit";
+
+  if (isBw16) {
+    return (
+      <svg className="component-artwork" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+        <rect x="3" y="3" width={width - 6} height={height - 6} rx="14" fill="#111516" stroke="#303839" strokeWidth="5" />
+        <path d={`M ${width * 0.27} 35 H ${width * 0.73} V 52 H ${width * 0.4} V 68 H ${width * 0.73}`} fill="none" stroke="#d5c891" strokeWidth="6" />
+        <rect x={width * 0.22} y="78" width={width * 0.56} height="158" rx="6" fill="#a4a09a" stroke="#dedbd3" strokeWidth="5" />
+        <text x={width / 2} y="133" textAnchor="middle" fill="#454948" fontSize="28" fontWeight="800">BW16</text>
+        <text x={width / 2} y="164" textAnchor="middle" fill="#616665" fontSize="13" fontFamily="monospace">RTL8720DN</text>
+        <rect x={width * 0.31} y={height * 0.55} width={width * 0.38} height="77" rx="6" fill="#202629" stroke="#4d5659" strokeWidth="4" />
+        {smallParts.map((part) => (
+          <rect key={part} x={width * 0.2 + (part % 5) * width * 0.13} y={height * 0.75 + Math.floor(part / 5) * 26} width="17" height="9" rx="2" fill="#c7b98e" />
+        ))}
+        <rect x={width * 0.33} y={height - 52} width={width * 0.34} height="55" rx="7" fill="#c6cacf" stroke="#71787d" strokeWidth="5" />
+        <circle cx="44" cy={height - 39} r="18" fill="#d3d0c8" stroke="#676d70" strokeWidth="4" />
+        <circle cx={width - 44} cy={height - 39} r="18" fill="#d3d0c8" stroke="#676d70" strokeWidth="4" />
+      </svg>
+    );
+  }
 
   if (isC3) {
     return (
@@ -61,6 +81,29 @@ function Esp32Artwork({ definition }: Props) {
 function RadioArtwork({ definition }: Props) {
   const width = definition.widthMm * 10;
   const height = definition.heightMm * 10;
+  const isCc1101 = definition.id === "cc1101-v2-sma";
+
+  if (isCc1101) {
+    return (
+      <svg className="component-artwork" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+        <rect x="3" y="3" width={width - 6} height={height - 6} rx="6" fill="#17609a" stroke="#65a7d2" strokeWidth="5" />
+        <g fill="#15191a" stroke="#d2a23e" strokeWidth="3">
+          {[36.9, 62.3, 87.7, 113.1].flatMap((y, row) => [
+            <circle key={`a-${row}`} cx="13" cy={y} r="8" />,
+            <circle key={`b-${row}`} cx="38.4" cy={y} r="8" />,
+          ])}
+        </g>
+        <rect x="78" y="31" width="72" height="72" rx="5" fill="#22272a" stroke="#101315" strokeWidth="4" />
+        {smallParts.slice(0, 7).map((part) => (
+          <rect key={part} x={66 + part * 24} y="112" width="15" height="8" rx="2" fill="#d4c395" />
+        ))}
+        <circle cx={width - 77} cy="40" r="22" fill="none" stroke="#d8be70" strokeWidth="7" />
+        <rect x={width - 52} y="36" width="55" height="78" rx="8" fill="#d5ad4c" stroke="#806326" strokeWidth="5" />
+        <circle cx={width - 14} cy="75" r="12" fill="#332a1e" />
+        <text x="142" y="25" textAnchor="middle" fill="#e8f2f7" fontSize="14" fontWeight="800">CC1101 433M</text>
+      </svg>
+    );
+  }
   return (
     <svg className="component-artwork" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
       <rect x="3" y="3" width={width - 6} height={height - 6} rx="7" fill="#111517" stroke="#303a3d" strokeWidth="5" />
@@ -83,6 +126,59 @@ function RadioArtwork({ definition }: Props) {
       <rect x={width - 48} y="31" width="52" height="118" rx="8" fill="#c89f48" stroke="#f0d486" strokeWidth="5" />
       <circle cx={width - 19} cy={height / 2} r="14" fill="#342c1f" />
       <text x="194" y="31" textAnchor="middle" fill="#d1d8d9" fontSize="15" fontFamily="monospace">nRF24 PA+LNA</text>
+    </svg>
+  );
+}
+
+function DisplayArtwork({ definition }: Props) {
+  const width = definition.widthMm * 10;
+  const height = definition.heightMm * 10;
+  const isOled = definition.id === "ssd1306-oled-096";
+  const isIli9488 = definition.id === "ili9488-tft-35";
+  const screenInsetX = isOled ? width * 0.09 : width * 0.08;
+  const screenInsetTop = isOled ? height * 0.2 : height * 0.07;
+  const screenHeight = isOled ? height * 0.65 : height * 0.78;
+
+  return (
+    <svg className="component-artwork" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+      <rect x="3" y="3" width={width - 6} height={height - 6} rx="7" fill={isOled ? "#176b9e" : "#b7272b"} stroke={isOled ? "#62b9e8" : "#f56b6e"} strokeWidth="5" />
+      <rect x={screenInsetX} y={screenInsetTop} width={width - screenInsetX * 2} height={screenHeight} rx="5" fill="#0c1115" stroke="#555d63" strokeWidth="5" />
+      <defs>
+        <linearGradient id={`screen-${definition.id}`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor={isOled ? "#132d3f" : "#253f64"} />
+          <stop offset="0.52" stopColor={isOled ? "#07131b" : "#131d2d"} />
+          <stop offset="1" stopColor={isOled ? "#0d6b8b" : "#9c315e"} />
+        </linearGradient>
+      </defs>
+      <rect x={screenInsetX + 8} y={screenInsetTop + 8} width={width - screenInsetX * 2 - 16} height={screenHeight - 16} rx="3" fill={`url(#screen-${definition.id})`} />
+      {!isOled && <>
+        <circle cx="30" cy="30" r="12" fill="none" stroke="#f1d6a3" strokeWidth="6" />
+        <circle cx={width - 30} cy="30" r="12" fill="none" stroke="#f1d6a3" strokeWidth="6" />
+        <circle cx="30" cy={height - 30} r="12" fill="none" stroke="#f1d6a3" strokeWidth="6" />
+        <circle cx={width - 30} cy={height - 30} r="12" fill="none" stroke="#f1d6a3" strokeWidth="6" />
+      </>}
+      <text x={width / 2} y={isIli9488 ? height * 0.91 : height * 0.94} textAnchor="middle" fill="#eef4f7" fontSize={isIli9488 ? "19" : "14"} fontWeight="800">{definition.shortName}</text>
+    </svg>
+  );
+}
+
+function InterfaceArtwork({ definition }: Props) {
+  const width = definition.widthMm * 10;
+  const height = definition.heightMm * 10;
+  return (
+    <svg className="component-artwork" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+      <rect x="3" y="3" width={width - 6} height={height - 6} rx="34" fill="#f0f0ec" stroke="#c6c7c3" strokeWidth="5" />
+      <circle cx={width * 0.28} cy={height * 0.67} r="28" fill="none" stroke="#b7b9b7" strokeWidth="6" />
+      <circle cx={width * 0.72} cy={height * 0.67} r="28" fill="none" stroke="#b7b9b7" strokeWidth="6" />
+      <circle cx={width / 2} cy={height * 0.67} r="13" fill="#a7a9a6" stroke="#747875" strokeWidth="4" />
+      <text x={width / 2} y="58" textAnchor="middle" fill="#424446" fontSize="22" fontWeight="900">IR REMOTE</text>
+      <text x={width / 2} y="86" textAnchor="middle" fill="#66696a" fontSize="14" fontWeight="800">PORT.B I/O</text>
+      <g fontSize="15" fontWeight="900" textAnchor="middle">
+        <rect x={width / 2 - 82} y="97" width="41" height="30" fill="#f6f6f2" /><text x={width / 2 - 61.5} y="118" fill="#25282a">IN</text>
+        <rect x={width / 2 - 41} y="97" width="41" height="30" fill="#f0bd25" /><text x={width / 2 - 20.5} y="118" fill="#402f07">OUT</text>
+        <rect x={width / 2} y="97" width="41" height="30" fill="#df3037" /><text x={width / 2 + 20.5} y="118" fill="#fff">5V</text>
+        <rect x={width / 2 + 41} y="97" width="41" height="30" fill="#3a3d40" /><text x={width / 2 + 61.5} y="118" fill="#fff">GND</text>
+      </g>
     </svg>
   );
 }
@@ -243,6 +339,8 @@ export default function ComponentArtwork({ definition, face = "top" }: Props) {
   if (face === "bottom") return <BacksideArtwork definition={definition} face={face} />;
   if (definition.category === "mcu") return <Esp32Artwork definition={definition} />;
   if (definition.category === "radio") return <RadioArtwork definition={definition} />;
+  if (definition.category === "display") return <DisplayArtwork definition={definition} />;
+  if (definition.category === "interface") return <InterfaceArtwork definition={definition} />;
   if (definition.category === "power") return <PowerArtwork definition={definition} />;
   return <ControlArtwork definition={definition} />;
 }

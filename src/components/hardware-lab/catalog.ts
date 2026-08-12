@@ -16,7 +16,7 @@ export type HardwarePin = {
 
 export type HardwareComponentDefinition = {
   accent: string;
-  category: "control" | "mcu" | "power" | "radio";
+  category: "control" | "display" | "interface" | "mcu" | "power" | "radio";
   description: string;
   heightMm: number;
   id: string;
@@ -201,6 +201,34 @@ const esp32S3RightPins = [
   ground("GND-R3", "right", "GND"),
 ];
 
+const bw16LeftPins = [
+  ground("GND-L1", "left", "GND"),
+  signal("PA30", "left"),
+  signal("PA27", "left"),
+  signal("PA25", "left"),
+  signal("PA26", "left"),
+  signal("PA8", "left"),
+  signal("PA7", "left"),
+  signal("CHIP-EN", "left", "CHIP-EN"),
+  ground("GND-L2", "left", "GND"),
+  asOutput(power("3V3-L", "left", 3.3, "3V3")),
+  asInput(power("5V-L", "left", 5, "5V")),
+];
+
+const bw16RightPins = [
+  ground("GND-R1", "right", "GND"),
+  signal("PA15", "right"),
+  signal("PA14", "right"),
+  signal("PA13", "right"),
+  signal("PA12", "right"),
+  signal("PB3", "right"),
+  signal("PB2", "right"),
+  signal("PB1", "right"),
+  ground("GND-R2", "right", "GND"),
+  asOutput(power("3V3-R", "right", 3.3, "3V3")),
+  asInput(power("5V-R", "right", 5, "5V")),
+];
+
 export const BOARD_PRESETS: BoardPreset[] = [
   { id: "20x80", label: "2 x 8 cm", widthMm: 80, heightMm: 20 },
   { id: "30x70", label: "3 x 7 cm", widthMm: 70, heightMm: 30 },
@@ -296,6 +324,83 @@ export const HARDWARE_COMPONENTS: HardwareComponentDefinition[] = [
     requiredPins: ["5V", "GND-L"],
   },
   {
+    id: "bw16-kit",
+    name: "Ai-Thinker BW16 Kit",
+    shortName: "BW16",
+    description: "Placa RTL8720DN de doble banda usada por BWifiKill BW16 5 GHz.",
+    category: "mcu",
+    widthMm: 25.4,
+    heightMm: 50.4,
+    accent: "#2dc6bb",
+    pins: dualRows(bw16LeftPins, bw16RightPins, 25.4, 50.4, 22.86),
+    requiredPins: ["5V-L", "GND-L1"],
+  },
+  {
+    id: "ssd1306-oled-096",
+    name: "OLED SSD1306 I2C 0.96 pulgadas",
+    shortName: "SSD1306",
+    description: "Pantalla OLED 128x64 con interfaz I2C y direccion habitual 0x3C.",
+    category: "display",
+    widthMm: 27,
+    heightMm: 27,
+    accent: "#29b6f6",
+    pins: [
+      at(ground("GND", "top"), 9.69, 1.55),
+      at(asInput(power("VCC", "top", 3.3, "VCC", 5)), 12.23, 1.55),
+      at(asInput(signal("SCL", "top")), 14.77, 1.55),
+      at(asInput(signal("SDA", "top")), 17.31, 1.55),
+    ],
+    requiredPins: ["GND", "VCC", "SCL", "SDA"],
+  },
+  {
+    id: "st7735-tft-18",
+    name: "TFT ST7735 SPI 1.8 pulgadas",
+    shortName: "ST7735",
+    description: "Pantalla TFT SPI 128x160 usada por BWifiKill BW16.",
+    category: "display",
+    widthMm: 56,
+    heightMm: 35,
+    accent: "#ef5350",
+    pins: [
+      at(asInput(power("VCC", "right", 3.3, "VCC", 5)), 54.5, 8.61),
+      at(ground("GND", "right"), 54.5, 11.15),
+      at(asInput(signal("CS", "right")), 54.5, 13.69),
+      at(asInput(signal("RST", "right", "RESET")), 54.5, 16.23),
+      at(asInput(signal("DC", "right", "A0")), 54.5, 18.77),
+      at(asInput(signal("MOSI", "right", "SDA")), 54.5, 21.31),
+      at(asInput(signal("SCK", "right")), 54.5, 23.85),
+      at(asInput(power("LED", "right", 3.3, "LED", 5)), 54.5, 26.39),
+    ],
+    requiredPins: ["VCC", "GND", "CS", "RST", "DC", "MOSI", "SCK", "LED"],
+  },
+  {
+    id: "ili9488-tft-35",
+    name: "TFT ILI9488 SPI 3.5 pulgadas",
+    shortName: "ILI9488",
+    description: "Pantalla TFT SPI 480x320 de 14 pines con tactil resistivo.",
+    category: "display",
+    widthMm: 56,
+    heightMm: 98,
+    accent: "#ef5350",
+    pins: [
+      at(asInput(power("VCC", "bottom", 5, "VCC", 5)), 11.49, 96.5),
+      at(ground("GND", "bottom"), 14.03, 96.5),
+      at(asInput(signal("CS", "bottom")), 16.57, 96.5),
+      at(asInput(signal("RST", "bottom", "RESET")), 19.11, 96.5),
+      at(asInput(signal("DC", "bottom")), 21.65, 96.5),
+      at(asInput(signal("MOSI", "bottom", "SDI/MOSI")), 24.19, 96.5),
+      at(asInput(signal("SCK", "bottom")), 26.73, 96.5),
+      at(asInput(power("LED", "bottom", 3.3, "LED", 5)), 29.27, 96.5),
+      at(asOutput(signal("MISO", "bottom", "SDO/MISO")), 31.81, 96.5),
+      at(asInput(signal("T_CLK", "bottom")), 34.35, 96.5),
+      at(asInput(signal("T_CS", "bottom")), 36.89, 96.5),
+      at(asInput(signal("T_DIN", "bottom")), 39.43, 96.5),
+      at(asOutput(signal("T_DO", "bottom")), 41.97, 96.5),
+      at(asOutput(signal("T_IRQ", "bottom")), 44.51, 96.5),
+    ],
+    requiredPins: ["VCC", "GND", "CS", "RST", "DC", "MOSI", "SCK", "LED"],
+  },
+  {
     id: "nrf24-pa-lna",
     name: "nRF24L01+ PA+LNA",
     shortName: "nRF24",
@@ -316,6 +421,44 @@ export const HARDWARE_COMPONENTS: HardwareComponentDefinition[] = [
       at(asOutput(signal("IRQ", "right")), 5.08, 12.81),
     ],
     requiredPins: ["GND", "VCC", "CE", "CSN", "SCK", "MOSI", "MISO"],
+  },
+  {
+    id: "cc1101-v2-sma",
+    name: "CC1101 V2.0 con SMA",
+    shortName: "CC1101",
+    description: "Transceptor Sub-GHz SPI de 433 MHz con conector SMA.",
+    category: "radio",
+    widthMm: 28,
+    heightMm: 15,
+    accent: "#42a5f5",
+    pins: [
+      at(ground("GND", "left"), 1.3, 3.69),
+      at(asInput(power("VCC", "right", 3.3, "VCC", 3.6)), 3.84, 3.69),
+      at(asOutput(signal("GDO0", "left")), 1.3, 6.23),
+      at(asInput(signal("CSN", "right")), 3.84, 6.23),
+      at(asInput(signal("SCK", "left")), 1.3, 8.77),
+      at(asInput(signal("MOSI", "right")), 3.84, 8.77),
+      at(asOutput(signal("MISO", "left", "MISO/GDO1")), 1.3, 11.31),
+      at(asOutput(signal("GDO2", "right")), 3.84, 11.31),
+    ],
+    requiredPins: ["GND", "VCC", "CSN", "SCK", "MOSI", "MISO"],
+  },
+  {
+    id: "m5stack-ir-unit",
+    name: "M5Stack Unit IR",
+    shortName: "M5 IR",
+    description: "Emisor y receptor infrarrojo de 940 nm con conector Grove PORT.B.",
+    category: "interface",
+    widthMm: 32,
+    heightMm: 24,
+    accent: "#f5f5f5",
+    pins: [
+      at(ground("GND", "top"), 13, 1.25),
+      at(asInput(power("5V", "top", 5, "5V", 5)), 15, 1.25),
+      at(asInput(signal("IR_TX", "top", "OUT")), 17, 1.25),
+      at(asOutput(signal("IR_RX", "top", "IN")), 19, 1.25),
+    ],
+    requiredPins: ["GND", "5V", "IR_TX", "IR_RX"],
   },
   {
     id: "tp4056",

@@ -91,6 +91,11 @@ export function simulateHardwareCircuit(
     if (definition.id === "slide-switch" && controls.switches[node.id]) {
       join(pinKey(node.id, "COM"), pinKey(node.id, "NO"));
     }
+    if (definition.id === "m5stack-ir-unit") {
+      // The emitter and receiver are independent signals; power only shares the common ground.
+      ensure(pinKey(node.id, "IR_TX"));
+      ensure(pinKey(node.id, "IR_RX"));
+    }
   });
 
   edges.forEach((edge) => {
@@ -139,6 +144,8 @@ export function simulateHardwareCircuit(
         const inputVoltage = Math.max(
           getVoltage(node.id, "VIN"),
           getVoltage(node.id, "5V"),
+          getVoltage(node.id, "5V-L"),
+          getVoltage(node.id, "5V-R"),
         );
         if (inputVoltage >= 4.5) {
           definition.pins
@@ -173,9 +180,16 @@ export function simulateHardwareCircuit(
 
     if (definition.id === "lipo-37") powered = controls.batteries[node.id] !== false;
     if (definition.category === "mcu") {
-      powered = Math.max(getVoltage(node.id, "VIN"), getVoltage(node.id, "5V")) >= 4.5 && hasGround;
+      powered = Math.max(
+        getVoltage(node.id, "VIN"),
+        getVoltage(node.id, "5V"),
+        getVoltage(node.id, "5V-L"),
+        getVoltage(node.id, "5V-R"),
+      ) >= 4.5 && hasGround;
     }
     if (definition.category === "radio") powered = getVoltage(node.id, "VCC") >= 2.7 && hasGround;
+    if (definition.category === "display") powered = getVoltage(node.id, "VCC") >= 2.7 && hasGround;
+    if (definition.id === "m5stack-ir-unit") powered = getVoltage(node.id, "5V") >= 4.5 && hasGround;
     if (definition.id === "step-up") powered = getVoltage(node.id, "VIN+") >= 2 && hasGround;
     if (definition.id === "step-down") powered = getVoltage(node.id, "VIN+") >= 1.5 && hasGround;
     if (definition.id === "tp4056") {
