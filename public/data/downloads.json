@@ -295,6 +295,63 @@
     ]
   },
   {
+    "name": "RF KILL",
+    "slug": "rf-kill",
+    "status": "Web flasher",
+    "board": "ESP32-C3 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32-C3",
+      "ESP32",
+      "RF",
+      "NRF24",
+      "IR"
+    ],
+    "github_url": "https://github.com/pepeangell5/RF-KILL",
+    "full_name": "pepeangell5/RF-KILL",
+    "default_branch": "main",
+    "web_flasher_url": "https://pepeangell5.github.io/RF-KILL/",
+    "binarios_url": "https://github.com/pepeangell5/RF-KILL/tree/main/binarios",
+    "release_tag": "rf-kill",
+    "release_assets": [
+      {
+        "name": "bootloader.bin",
+        "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/bootloader.bin",
+        "size": 13216,
+        "download_count": 0
+      },
+      {
+        "name": "firmware.bin",
+        "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/firmware.bin",
+        "size": 257600,
+        "download_count": 1
+      },
+      {
+        "name": "firmware_unificado.bin",
+        "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/firmware_unificado.bin",
+        "size": 323136,
+        "download_count": 1
+      },
+      {
+        "name": "partitions.bin",
+        "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/partitions.bin",
+        "size": 3072,
+        "download_count": 1
+      }
+    ],
+    "zip_url": "https://github.com/pepeangell5/RF-KILL/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#rf-kill",
+    "web_flasher_binaries": [
+      {
+        "label": "firmware_unificado.bin",
+        "path": "binarios/firmware_unificado.bin",
+        "url": "https://pepeangell5.github.io/RF-KILL/binarios/firmware_unificado.bin",
+        "offset": 0,
+        "chip_family": "ESP32-C3"
+      }
+    ]
+  },
+  {
     "name": "RF KILL ESP32 DEVKIT",
     "slug": "rf-kill-esp32-devkit",
     "status": "Web flasher",
@@ -433,63 +490,6 @@
         "url": "https://pepeangell5.github.io/BWifiKill-CARDPUTER-ADV/binarios/BWifiKill-CARDPUTER-ADV-full.bin",
         "offset": 0,
         "chip_family": "ESP32-S3"
-      }
-    ]
-  },
-  {
-    "name": "RF KILL",
-    "slug": "rf-kill",
-    "status": "Web flasher",
-    "board": "ESP32-C3 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP32-C3",
-      "ESP32",
-      "RF",
-      "NRF24",
-      "IR"
-    ],
-    "github_url": "https://github.com/pepeangell5/RF-KILL",
-    "full_name": "pepeangell5/RF-KILL",
-    "default_branch": "main",
-    "web_flasher_url": "https://pepeangell5.github.io/RF-KILL/",
-    "binarios_url": "https://github.com/pepeangell5/RF-KILL/tree/main/binarios",
-    "release_tag": "rf-kill",
-    "release_assets": [
-      {
-        "name": "bootloader.bin",
-        "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/bootloader.bin",
-        "size": 13216,
-        "download_count": 0
-      },
-      {
-        "name": "firmware.bin",
-        "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/firmware.bin",
-        "size": 257600,
-        "download_count": 1
-      },
-      {
-        "name": "firmware_unificado.bin",
-        "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/firmware_unificado.bin",
-        "size": 323136,
-        "download_count": 1
-      },
-      {
-        "name": "partitions.bin",
-        "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/partitions.bin",
-        "size": 3072,
-        "download_count": 1
-      }
-    ],
-    "zip_url": "https://github.com/pepeangell5/RF-KILL/archive/refs/heads/main.zip",
-    "readme_url": "/firmware/#rf-kill",
-    "web_flasher_binaries": [
-      {
-        "label": "firmware_unificado.bin",
-        "path": "binarios/firmware_unificado.bin",
-        "url": "https://pepeangell5.github.io/RF-KILL/binarios/firmware_unificado.bin",
-        "offset": 0,
-        "chip_family": "ESP32-C3"
       }
     ]
   },
