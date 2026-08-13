@@ -170,25 +170,25 @@
         "name": "bootloader.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/bootloader.bin",
         "size": 17536,
-        "download_count": 84
+        "download_count": 86
       },
       {
         "name": "firmware-merged.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware-merged.bin",
         "size": 2155568,
-        "download_count": 76
+        "download_count": 78
       },
       {
         "name": "firmware.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware.bin",
         "size": 2090032,
-        "download_count": 46
+        "download_count": 47
       },
       {
         "name": "partitions.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/partitions.bin",
         "size": 3072,
-        "download_count": 43
+        "download_count": 44
       }
     ],
     "zip_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/archive/refs/heads/main.zip",
