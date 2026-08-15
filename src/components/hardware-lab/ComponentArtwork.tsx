@@ -185,6 +185,30 @@ function DisplayArtwork({ definition }: Props) {
   const isOled = definition.id === "ssd1306-oled-096";
   const isSt7735 = definition.id === "st7735-tft-18";
   const isIli9488 = definition.id === "ili9488-tft-35";
+  const isCyberdeckSt7789 = definition.id === "st7789-tft-28-cyberdeck";
+
+  if (isCyberdeckSt7789) {
+    return (
+      <svg className="component-artwork" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+        <rect x="3" y="3" width={width - 6} height={height - 6} rx="8" fill="#b9252b" stroke="#f16f73" strokeWidth="5" />
+        <rect x="39" y="73" width={width - 78} height={height - 151} rx="7" fill="#dedede" stroke="#f5f5f2" strokeWidth="7" />
+        <rect x="58" y="91" width={width - 116} height={height - 201} rx="4" fill="#080b0d" stroke="#333b40" strokeWidth="5" />
+        <defs>
+          <linearGradient id="ili9341-screen" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#21395f" />
+            <stop offset="0.55" stopColor="#101827" />
+            <stop offset="1" stopColor="#8d2854" />
+          </linearGradient>
+        </defs>
+        <rect x="68" y="101" width={width - 136} height={height - 221} rx="3" fill="url(#ili9341-screen)" />
+        {[30, width - 30].flatMap((x) => [30, height - 30].map((y) => (
+          <circle key={`${x}-${y}`} cx={x} cy={y} r="12" fill="none" stroke="#f1d5a0" strokeWidth="6" />
+        )))}
+        <text x={width / 2} y={height - 55} textAnchor="middle" fill="#fff3e8" fontSize="18" fontWeight="900">2.8 TFT 240x320</text>
+        <text x={width / 2} y={height - 31} textAnchor="middle" fill="#ffd6d6" fontSize="12" fontFamily="monospace">ILI9341 · SPI · TOUCH · microSD</text>
+      </svg>
+    );
+  }
   const screenInsetX = isOled ? width * 0.09 : width * 0.08;
   const screenInsetTop = isOled ? height * 0.2 : height * 0.07;
   const screenHeight = isOled ? height * 0.65 : height * 0.78;
@@ -227,6 +251,42 @@ function DisplayArtwork({ definition }: Props) {
 function InterfaceArtwork({ definition }: Props) {
   const width = definition.widthMm * 10;
   const height = definition.heightMm * 10;
+  const isMicroSd = definition.id === "microsd-spi-adapter";
+  const isGps = definition.id === "neo6m-gps";
+
+  if (isMicroSd) {
+    return (
+      <svg className="component-artwork" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+        <rect x="3" y="3" width={width - 6} height={height - 6} rx="7" fill="#176daf" stroke="#64a9d8" strokeWidth="5" />
+        <rect x="38" y="35" width="230" height={height - 70} rx="8" fill="#bfc5c8" stroke="#70797e" strokeWidth="6" />
+        <path d={`M 45 52 H 249 V ${height - 52} H 45 Z`} fill="#d8dcdd" opacity="0.55" />
+        <rect x="284" y="48" width="58" height="82" rx="5" fill="#22282b" />
+        <rect x="296" y="151" width="52" height="41" rx="4" fill="#262c30" />
+        <rect x="292" y={height - 57} width="62" height="35" rx="4" fill="#3e464a" />
+        <text x="162" y={height - 25} textAnchor="middle" fill="#edf7fb" fontSize="18" fontWeight="900">MicroSD Card Adapter</text>
+        <text x={width - 33} y={height / 2} textAnchor="middle" fill="#eef7fb" fontSize="11" fontWeight="800" transform={`rotate(90 ${width - 33} ${height / 2})`}>CS SCK MOSI MISO VCC GND</text>
+      </svg>
+    );
+  }
+
+  if (isGps) {
+    return (
+      <svg className="component-artwork" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+        <rect x="3" y="3" width="350" height={height - 6} rx="8" fill="#1c70b2" stroke="#66add9" strokeWidth="5" />
+        <rect x="98" y="58" width="168" height="128" rx="8" fill="#c5c7c3" stroke="#f0f0e9" strokeWidth="5" />
+        <text x="182" y="104" textAnchor="middle" fill="#343a3c" fontSize="19" fontWeight="900">u-blox</text>
+        <text x="182" y="137" textAnchor="middle" fill="#535a5b" fontSize="16" fontWeight="800">NEO-6M</text>
+        <text x="182" y="165" textAnchor="middle" fill="#666d6e" fontSize="12">GY-GPS6MV2</text>
+        <circle cx="312" cy="53" r="17" fill="#d4b85f" stroke="#755c22" strokeWidth="5" />
+        <path d="M 326 54 C 381 35, 382 137, 411 137" fill="none" stroke="#1b1d1f" strokeWidth="10" />
+        <rect x="405" y="35" width="165" height="165" rx="14" fill="#b98262" stroke="#795541" strokeWidth="6" />
+        <rect x="417" y="47" width="141" height="141" rx="8" fill="#e5d9c7" stroke="#c2ae94" strokeWidth="4" />
+        <circle cx="487" cy="117" r="10" fill="#888074" />
+        <text x="175" y={height - 27} textAnchor="middle" fill="#eef7fb" fontSize="16" fontWeight="900">GPS NEO-6M</text>
+      </svg>
+    );
+  }
+
   return (
     <svg className="component-artwork" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
       <rect x="3" y="3" width={width - 6} height={height - 6} rx="34" fill="#f0f0ec" stroke="#c6c7c3" strokeWidth="5" />
@@ -359,6 +419,35 @@ function ControlArtwork({ definition }: Props) {
   const width = definition.widthMm * 10;
   const height = definition.heightMm * 10;
   const isButton = definition.id === "push-button";
+  const isEncoder = definition.id === "ky040-encoder";
+  const isBuzzer = definition.id === "buzzer-2pin";
+
+  if (isEncoder) {
+    return (
+      <svg className="component-artwork" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+        <rect x="3" y="3" width={width - 6} height={height - 6} rx="7" fill="#151719" stroke="#50575a" strokeWidth="5" />
+        <circle cx="113" cy="92" r="59" fill="#b5b9b8" stroke="#606668" strokeWidth="7" />
+        <rect x="84" y="-18" width="58" height="94" rx="25" fill="#7f8586" stroke="#474d4e" strokeWidth="6" />
+        <path d="M 113 -15 V 67" stroke="#c7cac9" strokeWidth="5" opacity="0.48" />
+        <rect x="61" y="53" width="104" height="79" rx="7" fill="#aeb2b1" stroke="#5c6264" strokeWidth="6" />
+        <circle cx="113" cy="92" r="35" fill="#777d7f" />
+        <text x={width - 32} y={height / 2} textAnchor="middle" fill="#eef2f2" fontSize="12" fontWeight="900" transform={`rotate(90 ${width - 32} ${height / 2})`}>CLK DT SW + GND</text>
+        <text x="78" y={height - 18} textAnchor="middle" fill="#e9eeee" fontSize="14" fontWeight="900">KY-040</text>
+      </svg>
+    );
+  }
+
+  if (isBuzzer) {
+    return (
+      <svg className="component-artwork" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+        <circle cx={width / 2} cy={height / 2} r={width * 0.46} fill="#151718" stroke="#4f5557" strokeWidth="5" />
+        <circle cx={width / 2} cy={height / 2} r={width * 0.13} fill="#050606" />
+        <text x={width * 0.28} y={height * 0.39} textAnchor="middle" fill="#d7dddd" fontSize="18" fontWeight="900">+</text>
+        <path d={`M ${width * 0.2} ${height * 0.7} Q ${width / 2} ${height * 0.8} ${width * 0.8} ${height * 0.7}`} fill="none" stroke="#34393b" strokeWidth="4" />
+      </svg>
+    );
+  }
+
   return (
     <svg className="component-artwork" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
       <rect x="3" y="3" width={width - 6} height={height - 6} rx="8" fill="#141719" stroke="#4b5154" strokeWidth="5" />
@@ -385,6 +474,73 @@ function BacksideArtwork({ definition }: Props) {
   const width = definition.widthMm * 10;
   const height = definition.heightMm * 10;
   const boardColor = definition.category === "power" ? "#1a5b8c" : "#18342d";
+
+  if (definition.id === "st7789-tft-28-cyberdeck") {
+    return (
+      <svg className="component-artwork component-artwork--bottom" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+        <rect x="3" y="3" width={width - 6} height={height - 6} rx="8" fill="#b9252b" stroke="#f16f73" strokeWidth="5" />
+        <rect x={width * 0.47} y={height * 0.24} width={width * 0.43} height={height * 0.39} rx="8" fill="#bfc3c4" stroke="#70777b" strokeWidth="6" />
+        <path d={`M ${width * 0.5} ${height * 0.27} H ${width * 0.87} V ${height * 0.59} H ${width * 0.5}`} fill="#d8dbda" opacity="0.48" />
+        <rect x="49" y="188" width="77" height="115" rx="6" fill="#c7c9c5" stroke="#737a7c" strokeWidth="5" />
+        {smallParts.slice(0, 8).map((part) => (
+          <rect key={part} x={53 + (part % 2) * 87} y={352 + Math.floor(part / 2) * 43} width="29" height="14" rx="2" fill="#d6c99d" />
+        ))}
+        <text x="150" y="78" fill="#fff0e8" fontSize="22" fontWeight="900">2.8 TFT 240x320</text>
+        <text x="150" y="107" fill="#ffd4d4" fontSize="14" fontFamily="monospace">ILI9341 · TOUCH · SD</text>
+        <text x={width / 2} y={height - 48} textAnchor="middle" fill="#fff1e8" fontSize="12" fontWeight="800">T_IRQ T_DO T_DIN T_CS T_CLK MISO LED SCK MOSI DC RESET CS GND VCC</text>
+      </svg>
+    );
+  }
+
+  if (definition.id === "microsd-spi-adapter") {
+    return (
+      <svg className="component-artwork component-artwork--bottom" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+        <rect x="3" y="3" width={width - 6} height={height - 6} rx="7" fill="#176daf" stroke="#64a9d8" strokeWidth="5" />
+        <g fill="none" stroke="#5ca0c9" strokeWidth="3" opacity="0.7">
+          {[0, 1, 2, 3, 4, 5].map((index) => <path key={index} d={`M ${width - 18} ${56 + index * 25.4} C 310 ${56 + index * 25.4}, 258 ${38 + index * 27}, 173 ${56 + index * 20}`} />)}
+        </g>
+        <text x={width / 2} y={height / 2 - 10} textAnchor="middle" fill="#eef7fb" fontSize="22" fontWeight="900">MicroSD Card Adapter</text>
+        <text x={width / 2} y={height / 2 + 22} textAnchor="middle" fill="#cce9f7" fontSize="14">CS · SCK · MOSI · MISO · VCC · GND</text>
+      </svg>
+    );
+  }
+
+  if (definition.id === "neo6m-gps") {
+    return (
+      <svg className="component-artwork component-artwork--bottom" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+        <rect x="3" y="3" width="350" height={height - 6} rx="8" fill="#176cae" stroke="#64a9d8" strokeWidth="5" />
+        {[55, 295].flatMap((x) => [48, height - 48].map((y) => <circle key={`${x}-${y}`} cx={x} cy={y} r="16" fill="none" stroke="#d9e1df" strokeWidth="6" />))}
+        <path d="M 325 53 C 380 35, 381 137, 411 137" fill="none" stroke="#1b1d1f" strokeWidth="10" />
+        <rect x="405" y="35" width="165" height="165" rx="14" fill="#969a95" stroke="#666b68" strokeWidth="6" />
+        <text x="175" y="120" textAnchor="middle" fill="#eef7fb" fontSize="20" fontWeight="900">GY-GPS6MV2</text>
+        <text x="175" y="153" textAnchor="middle" fill="#cce9f7" fontSize="14">GND · TX · RX · VCC</text>
+      </svg>
+    );
+  }
+
+  if (definition.id === "ky040-encoder") {
+    return (
+      <svg className="component-artwork component-artwork--bottom" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+        <rect x="3" y="3" width={width - 6} height={height - 6} rx="7" fill="#151719" stroke="#50575a" strokeWidth="5" />
+        {[70, 112, 154].map((x, index) => <rect key={x} x={x} y="92" width="25" height="12" rx="2" fill="#d7c99a" stroke="#4a4f50" strokeWidth="2" />)}
+        <g fill="none" stroke="#a97745" strokeWidth="3" opacity="0.52">
+          <path d="M 82 98 L 207 42" /><path d="M 124 98 L 207 68" /><path d="M 166 98 L 207 94" />
+        </g>
+        <text x="118" y="42" textAnchor="middle" fill="#eef2f2" fontSize="15" fontWeight="900">KY-040</text>
+        <text x={width - 30} y={height / 2} textAnchor="middle" fill="#eef2f2" fontSize="12" fontWeight="900" transform={`rotate(90 ${width - 30} ${height / 2})`}>CLK DT SW + GND</text>
+      </svg>
+    );
+  }
+
+  if (definition.id === "buzzer-2pin") {
+    return (
+      <svg className="component-artwork component-artwork--bottom" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+        <circle cx={width / 2} cy={height / 2} r={width * 0.46} fill="#181a1b" stroke="#555b5d" strokeWidth="5" />
+        <circle cx={width * 0.29} cy={height * 0.72} r="9" fill="#c8ad66" /><circle cx={width * 0.71} cy={height * 0.72} r="9" fill="#c8ad66" />
+        <text x={width * 0.29} y={height * 0.42} textAnchor="middle" fill="#edf1ef" fontSize="16" fontWeight="900">+</text>
+      </svg>
+    );
+  }
 
   return (
     <svg className="component-artwork component-artwork--bottom" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
