@@ -189,6 +189,9 @@ export function simulateHardwareCircuit(
     }
     if (definition.category === "radio") powered = getVoltage(node.id, "VCC") >= 2.7 && hasGround;
     if (definition.category === "display") powered = getVoltage(node.id, "VCC") >= 2.7 && hasGround;
+    if (["microsd-spi-adapter", "neo6m-gps", "ky040-encoder"].includes(definition.id)) {
+      powered = getVoltage(node.id, "VCC") >= 2.7 && hasGround;
+    }
     if (definition.id === "m5stack-ir-unit") powered = getVoltage(node.id, "5V") >= 4.5 && hasGround;
     if (definition.id === "step-up") powered = getVoltage(node.id, "VIN+") >= 2 && hasGround;
     if (definition.id === "step-down") powered = getVoltage(node.id, "VIN+") >= 1.5 && hasGround;
