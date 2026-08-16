@@ -88,6 +88,21 @@
     "source": "manual"
   },
   {
+    "name": "ESP32 TOOLS",
+    "slug": "esp32-tools",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32",
+      "WiFi"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS/",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS",
+    "updated_at": "2026-08-16T07:43:58Z",
+    "source": "auto"
+  },
+  {
     "name": "RF KILL ESP32 DEVKIT",
     "slug": "rf-kill-esp32-devkit",
     "board": "ESP32 compatible",
@@ -137,21 +152,6 @@
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-CARDPUTER-ADV/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV",
     "updated_at": "2026-08-14T14:30:00Z",
-    "source": "auto"
-  },
-  {
-    "name": "ESP32 TOOLS",
-    "slug": "esp32-tools",
-    "board": "ESP32 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP32",
-      "WiFi"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS/",
-    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS",
-    "updated_at": "2026-08-12T23:52:25Z",
     "source": "auto"
   },
   {
