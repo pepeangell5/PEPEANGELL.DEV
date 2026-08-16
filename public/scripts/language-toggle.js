@@ -512,6 +512,8 @@
     "Convertidor Step-Up": "Step-Up converter",
     "Convertidor Step-Down": "Step-Down converter",
     "Bateria LiPo 3.7 V": "3.7 V LiPo battery",
+    "Divisor de bateria 2.2k / 1k": "2.2k / 1k battery divider",
+    "Divisor resistivo para medir una celda LiPo desde GPIO9 sin aplicar el voltaje completo al ADC.": "Resistor divider for measuring a LiPo cell from GPIO9 without applying the full voltage to the ADC.",
     "placas": "boards",
     "componentes": "components",
     "montados": "mounted",

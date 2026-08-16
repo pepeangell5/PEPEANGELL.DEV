@@ -631,6 +631,22 @@ export const HARDWARE_COMPONENTS: HardwareComponentDefinition[] = [
     requiredPins: ["SIG", "GND"],
   },
   {
+    id: "battery-divider-22k-1k",
+    name: "Divisor de bateria 2.2k / 1k",
+    shortName: "DIV ADC",
+    description: "Divisor resistivo para medir una celda LiPo desde GPIO9 sin aplicar el voltaje completo al ADC.",
+    category: "power",
+    widthMm: 22,
+    heightMm: 10,
+    accent: "#f4b942",
+    pins: [
+      at(asInput(power("BAT+", "left", 4.2, "BAT+", 4.2)), 1.2, 5),
+      at(asOutput(signal("ADC", "right", "ADC / GPIO9")), 20.8, 5),
+      at(ground("GND", "bottom"), 11, 8.8),
+    ],
+    requiredPins: ["BAT+", "ADC", "GND"],
+  },
+  {
     id: "tp4056",
     name: "TP4056 con proteccion",
     shortName: "TP4056",

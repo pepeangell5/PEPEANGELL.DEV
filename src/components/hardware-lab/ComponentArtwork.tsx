@@ -312,6 +312,31 @@ function PowerArtwork({ definition }: Props) {
   const isStepUp = definition.id === "step-up";
   const isStepDown = definition.id === "step-down";
   const isLipo = definition.id === "lipo-37";
+  const isBatteryDivider = definition.id === "battery-divider-22k-1k";
+
+  if (isBatteryDivider) {
+    return (
+      <svg className="component-artwork" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+        <rect x="3" y="3" width={width - 6} height={height - 6} rx="7" fill="#17342c" stroke="#e0a930" strokeWidth="5" />
+        <path d={`M 12 ${height / 2} H 34 M ${width - 34} ${height / 2} H ${width - 12} M ${width / 2} ${height / 2} V ${height - 10}`} fill="none" stroke="#d9c993" strokeWidth="5" />
+        <rect x="34" y={height / 2 - 13} width="58" height="26" rx="7" fill="#d9c38f" stroke="#745d2f" strokeWidth="4" />
+        <g strokeWidth="5">
+          <path d={`M 49 ${height / 2 - 11} V ${height / 2 + 11}`} stroke="#d63636" />
+          <path d={`M 60 ${height / 2 - 11} V ${height / 2 + 11}`} stroke="#d63636" />
+          <path d={`M 72 ${height / 2 - 11} V ${height / 2 + 11}`} stroke="#1b1d1f" />
+        </g>
+        <rect x={width - 92} y={height / 2 - 13} width="58" height="26" rx="7" fill="#d9c38f" stroke="#745d2f" strokeWidth="4" />
+        <g strokeWidth="5">
+          <path d={`M ${width - 77} ${height / 2 - 11} V ${height / 2 + 11}`} stroke="#6f3f1f" />
+          <path d={`M ${width - 66} ${height / 2 - 11} V ${height / 2 + 11}`} stroke="#1b1d1f" />
+          <path d={`M ${width - 54} ${height / 2 - 11} V ${height / 2 + 11}`} stroke="#d63636" />
+        </g>
+        <text x="63" y="25" textAnchor="middle" fill="#f6e7bb" fontSize="13" fontWeight="900">2.2k</text>
+        <text x={width - 63} y="25" textAnchor="middle" fill="#f6e7bb" fontSize="13" fontWeight="900">1k</text>
+        <text x={width / 2} y={height - 12} textAnchor="middle" fill="#ffd65d" fontSize="13" fontWeight="900">ADC</text>
+      </svg>
+    );
+  }
 
   if (isTp4056) {
     return (

@@ -183,6 +183,41 @@ void loop() {
   // Barrido RF-KILL V2.
 }`;
 
+const CYBERDECK_MINI_CODE = `#include <SPI.h>
+#include <RF24.h>
+#include <SD.h>
+#include <TinyGPSPlus.h>
+
+// CYBERDECK-MINI-ESP32: pinout tomado del firmware publicado.
+RF24 radio1(4, 5);  // CE, CSN
+RF24 radio2(6, 7);  // CE, CSN
+HardwareSerial gpsSerial(1);
+SPIClass sdSPI(HSPI);
+
+void setup() {
+  SPI.begin(12, 13, 11);              // SCK, MISO, MOSI: TFT + dos nRF24
+  radio1.begin();
+  radio2.begin();
+  sdSPI.begin(36, 37, 35, 16);        // SCK, MISO, MOSI, CS
+  SD.begin(16, sdSPI);
+  gpsSerial.begin(9600, SERIAL_8N1, 18, 17); // RX, TX
+
+  // TFT ST7789: CS 10, RST 14, DC 21. LED conectado a 3V3.
+  pinMode(1, INPUT_PULLUP);            // UP
+  pinMode(2, INPUT_PULLUP);            // DOWN
+  pinMode(42, INPUT_PULLUP);           // OK
+  pinMode(41, INPUT_PULLUP);           // BACK
+  pinMode(40, INPUT_PULLUP);           // Encoder CLK
+  pinMode(39, INPUT_PULLUP);           // Encoder DT
+  pinMode(38, INPUT_PULLUP);           // Encoder SW
+  pinMode(15, OUTPUT);                 // Buzzer
+  pinMode(9, INPUT);                   // Bateria mediante divisor 2.2k/1k
+}
+
+void loop() {
+  // Herramientas del Cyberdeck.
+}`;
+
 const FIRMWARE_TEMPLATES = [
   {
     id: "rf-kill-devkit",
@@ -193,6 +228,11 @@ const FIRMWARE_TEMPLATES = [
     id: "rf-kill-c3-supermini",
     name: "RF-KILL ESP32-C3 SuperMini V2",
     project: createRfKillC3TemplateProject(),
+  },
+  {
+    id: "cyberdeck-mini-esp32",
+    name: "CYBERDECK-MINI-ESP32",
+    project: createCyberdeckMiniTemplateProject(),
   },
 ] as const;
 
@@ -836,6 +876,203 @@ function createRfKillC3TemplateProject(): PersistedProject {
     code: RF_KILL_C3_CODE,
     edges,
     nodes: [mainBoard, powerBoard, ...mountedComponents],
+  };
+}
+
+function createCyberdeckMiniTemplateProject(): PersistedProject {
+  const preset = BOARD_PRESETS.find((board) => board.id === "70x90") ?? BOARD_PRESETS.at(-1)!;
+  const mainColor = BOARD_COLORS.find((color) => color.id === "black") ?? BOARD_COLORS[0];
+  const displayColor = BOARD_COLORS.find((color) => color.id === "red") ?? BOARD_COLORS[0];
+  const controlsColor = BOARD_COLORS.find((color) => color.id === "blue") ?? BOARD_COLORS[0];
+  const powerColor = BOARD_COLORS.find((color) => color.id === "green") ?? BOARD_COLORS[0];
+
+  const mainBoard = createBoardNode(
+    preset,
+    mainColor.value,
+    "top",
+    mainColor.id,
+    "cyberdeck-board-main",
+    { x: 120, y: 140 },
+  );
+  const displayBoard = createBoardNode(
+    preset,
+    displayColor.value,
+    "top",
+    displayColor.id,
+    "cyberdeck-board-display",
+    { x: 760, y: 140 },
+  );
+  const controlsBoard = createBoardNode(
+    preset,
+    controlsColor.value,
+    "top",
+    controlsColor.id,
+    "cyberdeck-board-controls",
+    { x: 120, y: 660 },
+  );
+  const powerBoard = createBoardNode(
+    preset,
+    powerColor.value,
+    "top",
+    powerColor.id,
+    "cyberdeck-board-power",
+    { x: 760, y: 660 },
+  );
+
+  const componentNodes: Array<{ board: PerfboardNode; node: HardwareNode }> = [
+    {
+      board: mainBoard,
+      node: createHardwareNode("esp32-s3-devkit", "ESP32-S3 principal", mainBoard.position.x + 82, mainBoard.position.y + 42, 90, "cyberdeck-esp32"),
+    },
+    {
+      board: mainBoard,
+      node: createHardwareNode("nrf24-pa-lna", "Radio nRF24 A", mainBoard.position.x + 3, mainBoard.position.y + 264, 0, "cyberdeck-nrf-a"),
+    },
+    {
+      board: mainBoard,
+      node: createHardwareNode("nrf24-pa-lna", "Radio nRF24 B", mainBoard.position.x + 268, mainBoard.position.y + 264, 0, "cyberdeck-nrf-b"),
+    },
+    {
+      board: displayBoard,
+      node: createHardwareNode("st7789-tft-28-cyberdeck", "Pantalla ST7789 2.8", displayBoard.position.x + 12, displayBoard.position.y + 58, 90, "cyberdeck-tft"),
+    },
+    {
+      board: controlsBoard,
+      node: createHardwareNode("neo6m-gps", "GPS NEO-6M", controlsBoard.position.x + 14, controlsBoard.position.y + 18, 0, "cyberdeck-gps"),
+    },
+    {
+      board: controlsBoard,
+      node: createHardwareNode("ky040-encoder", "Encoder KY-040", controlsBoard.position.x + 370, controlsBoard.position.y + 18, 0, "cyberdeck-encoder"),
+    },
+    {
+      board: controlsBoard,
+      node: createHardwareNode("microsd-spi-adapter", "Lector microSD", controlsBoard.position.x + 14, controlsBoard.position.y + 225, 0, "cyberdeck-sd"),
+    },
+    ...[
+      ["UP", "cyberdeck-button-up", 310],
+      ["DOWN", "cyberdeck-button-down", 370],
+      ["OK", "cyberdeck-button-ok", 430],
+      ["BACK", "cyberdeck-button-back", 490],
+    ].map(([name, id, x]) => ({
+      board: controlsBoard,
+      node: createHardwareNode("push-button", `Boton ${name}`, controlsBoard.position.x + Number(x), controlsBoard.position.y + 230, 0, String(id)),
+    })),
+    {
+      board: controlsBoard,
+      node: createHardwareNode("buzzer-2pin", "Buzzer", controlsBoard.position.x + 370, controlsBoard.position.y + 320, 0, "cyberdeck-buzzer"),
+    },
+    {
+      board: powerBoard,
+      node: createHardwareNode("lipo-37", "Bateria LiPo", powerBoard.position.x + 20, powerBoard.position.y + 30, 0, "cyberdeck-battery"),
+    },
+    {
+      board: powerBoard,
+      node: createHardwareNode("tp4056", "Cargador TP4056", powerBoard.position.x + 240, powerBoard.position.y + 30, 0, "cyberdeck-charger"),
+    },
+    {
+      board: powerBoard,
+      node: createHardwareNode("step-up", "Elevador 5V", powerBoard.position.x + 390, powerBoard.position.y + 20, 0, "cyberdeck-boost"),
+    },
+    {
+      board: powerBoard,
+      node: createHardwareNode("slide-switch", "Encendido", powerBoard.position.x + 295, powerBoard.position.y + 275, 0, "cyberdeck-power-switch"),
+    },
+    {
+      board: powerBoard,
+      node: createHardwareNode("battery-divider-22k-1k", "Divisor bateria 2.2k/1k", powerBoard.position.x + 255, powerBoard.position.y + 350, 0, "cyberdeck-battery-divider"),
+    },
+  ];
+
+  const mountedComponents = componentNodes.map(({ board, node }) => {
+    const mounted = mountNodeOnBoard(node, board);
+    return {
+      ...mounted,
+      data: { ...mounted.data, locked: true },
+      draggable: false,
+    } satisfies HardwareNode;
+  });
+
+  const edges: WireEdge[] = [
+    // SPI compartido: TFT + dos radios nRF24.
+    createWire("cyberdeck-spi-sck-tft", "cyberdeck-esp32", "GPIO12", "cyberdeck-tft", "SCK", "#ffd54a"),
+    createWire("cyberdeck-spi-sck-a", "cyberdeck-esp32", "GPIO12", "cyberdeck-nrf-a", "SCK", "#ffd54a"),
+    createWire("cyberdeck-spi-sck-b", "cyberdeck-esp32", "GPIO12", "cyberdeck-nrf-b", "SCK", "#ffd54a"),
+    createWire("cyberdeck-spi-mosi-tft", "cyberdeck-esp32", "GPIO11", "cyberdeck-tft", "MOSI", "#30d8ff"),
+    createWire("cyberdeck-spi-mosi-a", "cyberdeck-esp32", "GPIO11", "cyberdeck-nrf-a", "MOSI", "#30d8ff"),
+    createWire("cyberdeck-spi-mosi-b", "cyberdeck-esp32", "GPIO11", "cyberdeck-nrf-b", "MOSI", "#30d8ff"),
+    createWire("cyberdeck-spi-miso-tft", "cyberdeck-tft", "MISO", "cyberdeck-esp32", "GPIO13", "#b88cff"),
+    createWire("cyberdeck-spi-miso-a", "cyberdeck-nrf-a", "MISO", "cyberdeck-esp32", "GPIO13", "#b88cff"),
+    createWire("cyberdeck-spi-miso-b", "cyberdeck-nrf-b", "MISO", "cyberdeck-esp32", "GPIO13", "#b88cff"),
+    createWire("cyberdeck-nrf-a-ce", "cyberdeck-esp32", "GPIO4", "cyberdeck-nrf-a", "CE", "#ff8fbf"),
+    createWire("cyberdeck-nrf-a-csn", "cyberdeck-esp32", "GPIO5", "cyberdeck-nrf-a", "CSN", "#ff9f43"),
+    createWire("cyberdeck-nrf-b-ce", "cyberdeck-esp32", "GPIO6", "cyberdeck-nrf-b", "CE", "#ff8fbf"),
+    createWire("cyberdeck-nrf-b-csn", "cyberdeck-esp32", "GPIO7", "cyberdeck-nrf-b", "CSN", "#ff9f43"),
+    createWire("cyberdeck-tft-cs", "cyberdeck-esp32", "GPIO10", "cyberdeck-tft", "CS", "#ff9f43"),
+    createWire("cyberdeck-tft-rst", "cyberdeck-esp32", "GPIO14", "cyberdeck-tft", "RST", "#ff8fbf"),
+    createWire("cyberdeck-tft-dc", "cyberdeck-esp32", "GPIO21", "cyberdeck-tft", "DC", "#62d6a8"),
+
+    // Iluminacion TFT: peticion expresa del montaje, LED a 3.3 V del ESP32-S3.
+    createWire("cyberdeck-tft-led-3v3", "cyberdeck-esp32", "3V3-2", "cyberdeck-tft", "LED", "#ff4058"),
+    createWire("cyberdeck-nrf-a-vcc", "cyberdeck-esp32", "3V3-1", "cyberdeck-nrf-a", "VCC", "#ff4058"),
+    createWire("cyberdeck-nrf-b-vcc", "cyberdeck-esp32", "3V3-1", "cyberdeck-nrf-b", "VCC", "#ff4058"),
+    createWire("cyberdeck-encoder-vcc", "cyberdeck-esp32", "3V3-1", "cyberdeck-encoder", "VCC", "#ff4058"),
+
+    // microSD en bus SPI dedicado.
+    createWire("cyberdeck-sd-sck", "cyberdeck-esp32", "GPIO36", "cyberdeck-sd", "SCK", "#ffd54a"),
+    createWire("cyberdeck-sd-mosi", "cyberdeck-esp32", "GPIO35", "cyberdeck-sd", "MOSI", "#30d8ff"),
+    createWire("cyberdeck-sd-miso", "cyberdeck-sd", "MISO", "cyberdeck-esp32", "GPIO37", "#b88cff"),
+    createWire("cyberdeck-sd-cs", "cyberdeck-esp32", "GPIO16", "cyberdeck-sd", "CS", "#ff9f43"),
+
+    // GPS UART1.
+    createWire("cyberdeck-gps-tx", "cyberdeck-gps", "TX", "cyberdeck-esp32", "GPIO18", "#30d8ff"),
+    createWire("cyberdeck-gps-rx", "cyberdeck-esp32", "GPIO17", "cyberdeck-gps", "RX", "#b88cff"),
+
+    // Controles activos en LOW.
+    createWire("cyberdeck-button-up-signal", "cyberdeck-esp32", "GPIO1", "cyberdeck-button-up", "A1", "#62d6a8"),
+    createWire("cyberdeck-button-down-signal", "cyberdeck-esp32", "GPIO2", "cyberdeck-button-down", "A1", "#62d6a8"),
+    createWire("cyberdeck-button-ok-signal", "cyberdeck-esp32", "GPIO42", "cyberdeck-button-ok", "A1", "#62d6a8"),
+    createWire("cyberdeck-button-back-signal", "cyberdeck-esp32", "GPIO41", "cyberdeck-button-back", "A1", "#62d6a8"),
+    createWire("cyberdeck-encoder-clk", "cyberdeck-esp32", "GPIO40", "cyberdeck-encoder", "CLK", "#ffd54a"),
+    createWire("cyberdeck-encoder-dt", "cyberdeck-esp32", "GPIO39", "cyberdeck-encoder", "DT", "#30d8ff"),
+    createWire("cyberdeck-encoder-sw", "cyberdeck-esp32", "GPIO38", "cyberdeck-encoder", "SW", "#ff8fbf"),
+    createWire("cyberdeck-buzzer-signal", "cyberdeck-esp32", "GPIO15", "cyberdeck-buzzer", "SIG", "#ff9f43"),
+
+    // Alimentacion portatil y linea conmutada de 5 V.
+    createWire("cyberdeck-battery-positive", "cyberdeck-battery", "BAT+", "cyberdeck-charger", "B+", "#ff4058"),
+    createWire("cyberdeck-battery-negative", "cyberdeck-battery", "BAT-", "cyberdeck-charger", "B-", "#1d1f24"),
+    createWire("cyberdeck-charger-positive", "cyberdeck-charger", "OUT+", "cyberdeck-boost", "VIN+", "#ff4058"),
+    createWire("cyberdeck-charger-negative", "cyberdeck-charger", "OUT-", "cyberdeck-boost", "VIN-", "#1d1f24"),
+    createWire("cyberdeck-battery-sense-in", "cyberdeck-battery", "BAT+", "cyberdeck-battery-divider", "BAT+", "#ff4058"),
+    createWire("cyberdeck-battery-sense-adc", "cyberdeck-battery-divider", "ADC", "cyberdeck-esp32", "GPIO9", "#f4b942"),
+    createWire("cyberdeck-battery-sense-ground", "cyberdeck-boost", "VOUT-", "cyberdeck-battery-divider", "GND", "#1d1f24"),
+    createWire("cyberdeck-boost-switch", "cyberdeck-boost", "VOUT+", "cyberdeck-power-switch", "COM", "#ff4058"),
+    createWire("cyberdeck-power-esp32", "cyberdeck-power-switch", "NO", "cyberdeck-esp32", "5V", "#ff4058"),
+    createWire("cyberdeck-power-tft", "cyberdeck-power-switch", "NO", "cyberdeck-tft", "VCC", "#ff4058"),
+    createWire("cyberdeck-power-sd", "cyberdeck-power-switch", "NO", "cyberdeck-sd", "VCC", "#ff4058"),
+    createWire("cyberdeck-power-gps", "cyberdeck-power-switch", "NO", "cyberdeck-gps", "VCC", "#ff4058"),
+    createWire("cyberdeck-ground-esp32", "cyberdeck-boost", "VOUT-", "cyberdeck-esp32", "GND-L", "#1d1f24"),
+    createWire("cyberdeck-ground-tft", "cyberdeck-boost", "VOUT-", "cyberdeck-tft", "GND", "#1d1f24"),
+    createWire("cyberdeck-ground-nrf-a", "cyberdeck-boost", "VOUT-", "cyberdeck-nrf-a", "GND", "#1d1f24"),
+    createWire("cyberdeck-ground-nrf-b", "cyberdeck-boost", "VOUT-", "cyberdeck-nrf-b", "GND", "#1d1f24"),
+    createWire("cyberdeck-ground-sd", "cyberdeck-boost", "VOUT-", "cyberdeck-sd", "GND", "#1d1f24"),
+    createWire("cyberdeck-ground-gps", "cyberdeck-boost", "VOUT-", "cyberdeck-gps", "GND", "#1d1f24"),
+    createWire("cyberdeck-ground-encoder", "cyberdeck-boost", "VOUT-", "cyberdeck-encoder", "GND", "#1d1f24"),
+    createWire("cyberdeck-ground-button-up", "cyberdeck-boost", "VOUT-", "cyberdeck-button-up", "B1", "#1d1f24"),
+    createWire("cyberdeck-ground-button-down", "cyberdeck-boost", "VOUT-", "cyberdeck-button-down", "B1", "#1d1f24"),
+    createWire("cyberdeck-ground-button-ok", "cyberdeck-boost", "VOUT-", "cyberdeck-button-ok", "B1", "#1d1f24"),
+    createWire("cyberdeck-ground-button-back", "cyberdeck-boost", "VOUT-", "cyberdeck-button-back", "B1", "#1d1f24"),
+    createWire("cyberdeck-ground-buzzer", "cyberdeck-boost", "VOUT-", "cyberdeck-buzzer", "GND", "#1d1f24"),
+  ];
+
+  return {
+    version: 6,
+    name: "CYBERDECK-MINI-ESP32",
+    boardPresetId: preset.id,
+    boardColorId: mainColor.id,
+    boardView: "top",
+    code: CYBERDECK_MINI_CODE,
+    edges,
+    nodes: [mainBoard, displayBoard, controlsBoard, powerBoard, ...mountedComponents],
   };
 }
 
