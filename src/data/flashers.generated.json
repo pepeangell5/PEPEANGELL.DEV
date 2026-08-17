@@ -34,7 +34,7 @@
     "status": "Testing",
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V2.0/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
-    "updated_at": "2026-08-15T01:13:52Z",
+    "updated_at": "2026-08-17T08:31:38Z",
     "source": "manual"
   },
   {
@@ -50,7 +50,7 @@
     "status": "Planned",
     "flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32/",
     "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32",
-    "updated_at": "2026-08-13T16:45:30Z",
+    "updated_at": "2026-08-17T08:31:05Z",
     "source": "manual"
   },
   {
@@ -68,7 +68,7 @@
     "status": "Experimental",
     "flasher_url": "",
     "github_url": "https://github.com/pepeangell5/BWifiKill-BW16-5Ghz",
-    "updated_at": "2026-08-13T10:46:59Z",
+    "updated_at": "2026-08-17T10:31:58Z",
     "source": "manual"
   },
   {
@@ -86,6 +86,22 @@
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32",
     "updated_at": "2026-08-11T09:44:11Z",
     "source": "manual"
+  },
+  {
+    "name": "ESP32 TOOLS PRO 480x320",
+    "slug": "esp32-tools-pro-480x320",
+    "board": "ESP32 compatible",
+    "display": "TFT ILI9488 480x320 SPI",
+    "modules": [
+      "ESP32",
+      "TFT",
+      "IR"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320",
+    "updated_at": "2026-08-17T08:32:17Z",
+    "source": "auto"
   },
   {
     "name": "RF KILL",
@@ -167,22 +183,6 @@
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-MODERN/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-MODERN",
     "updated_at": "2026-08-09T02:54:15Z",
-    "source": "auto"
-  },
-  {
-    "name": "ESP32 TOOLS PRO 480x320",
-    "slug": "esp32-tools-pro-480x320",
-    "board": "ESP32 compatible",
-    "display": "TFT ILI9488 480x320 SPI",
-    "modules": [
-      "ESP32",
-      "TFT",
-      "IR"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/",
-    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320",
-    "updated_at": "2026-07-27T17:13:39Z",
     "source": "auto"
   }
 ]
