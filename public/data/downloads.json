@@ -553,6 +553,26 @@
     ]
   },
   {
+    "name": "FINANZAS PEPEANGELL",
+    "slug": "finanzas-pepeangell",
+    "status": "Repositorio",
+    "board": "Hardware compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "Proyecto"
+    ],
+    "github_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL",
+    "full_name": "pepeangell5/FINANZAS-PEPEANGELL",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#finanzas-pepeangell",
+    "web_flasher_binaries": []
+  },
+  {
     "name": "ESP8266 DEAUTHER",
     "slug": "esp8266-deauther",
     "status": "Repositorio",
@@ -615,26 +635,6 @@
     "release_assets": [],
     "zip_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI/archive/refs/heads/main.zip",
     "readme_url": "/firmware/#drone-fpv-esp32c3-supermini",
-    "web_flasher_binaries": []
-  },
-  {
-    "name": "FINANZAS PEPEANGELL",
-    "slug": "finanzas-pepeangell",
-    "status": "Repositorio",
-    "board": "Hardware compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "Proyecto"
-    ],
-    "github_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL",
-    "full_name": "pepeangell5/FINANZAS-PEPEANGELL",
-    "default_branch": "main",
-    "web_flasher_url": "",
-    "binarios_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL/search?q=extension%3Abin&type=code",
-    "release_tag": "",
-    "release_assets": [],
-    "zip_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL/archive/refs/heads/main.zip",
-    "readme_url": "/firmware/#finanzas-pepeangell",
     "web_flasher_binaries": []
   },
   {
