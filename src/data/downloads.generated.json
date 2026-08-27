@@ -484,7 +484,7 @@
         "name": "BWifiKill-CARDPUTER-ADV-full.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/BWifiKill-CARDPUTER-ADV-full.bin",
         "size": 1773616,
-        "download_count": 12
+        "download_count": 13
       },
       {
         "name": "checksums-sha256.txt",
@@ -496,7 +496,7 @@
         "name": "firmware.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/firmware.bin",
         "size": 1708080,
-        "download_count": 2
+        "download_count": 3
       },
       {
         "name": "partitions.bin",
@@ -553,26 +553,6 @@
     ]
   },
   {
-    "name": "FINANZAS PEPEANGELL",
-    "slug": "finanzas-pepeangell",
-    "status": "Repositorio",
-    "board": "Hardware compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "Proyecto"
-    ],
-    "github_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL",
-    "full_name": "pepeangell5/FINANZAS-PEPEANGELL",
-    "default_branch": "main",
-    "web_flasher_url": "",
-    "binarios_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL/search?q=extension%3Abin&type=code",
-    "release_tag": "",
-    "release_assets": [],
-    "zip_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL/archive/refs/heads/main.zip",
-    "readme_url": "/firmware/#finanzas-pepeangell",
-    "web_flasher_binaries": []
-  },
-  {
     "name": "ESP8266 DEAUTHER",
     "slug": "esp8266-deauther",
     "status": "Repositorio",
@@ -591,6 +571,26 @@
     "release_assets": [],
     "zip_url": "https://github.com/pepeangell5/ESP8266-DEAUTHER/archive/refs/heads/main.zip",
     "readme_url": "/firmware/#esp8266-deauther",
+    "web_flasher_binaries": []
+  },
+  {
+    "name": "FINANZAS PEPEANGELL",
+    "slug": "finanzas-pepeangell",
+    "status": "Repositorio",
+    "board": "Hardware compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "Proyecto"
+    ],
+    "github_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL",
+    "full_name": "pepeangell5/FINANZAS-PEPEANGELL",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#finanzas-pepeangell",
     "web_flasher_binaries": []
   },
   {
