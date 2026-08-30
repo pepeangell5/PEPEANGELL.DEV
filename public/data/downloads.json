@@ -176,7 +176,7 @@
         "name": "firmware-merged.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware-merged.bin",
         "size": 2155568,
-        "download_count": 93
+        "download_count": 94
       },
       {
         "name": "firmware.bin",
@@ -188,7 +188,7 @@
         "name": "partitions.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/partitions.bin",
         "size": 3072,
-        "download_count": 50
+        "download_count": 51
       }
     ],
     "zip_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/archive/refs/heads/main.zip",
