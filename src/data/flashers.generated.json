@@ -13,7 +13,7 @@
     "status": "In Development",
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32-V4.0/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0",
-    "updated_at": "2026-08-24T23:35:27Z",
+    "updated_at": "2026-08-30T08:07:22Z",
     "source": "manual"
   },
   {
@@ -34,7 +34,7 @@
     "status": "Testing",
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V2.0/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
-    "updated_at": "2026-08-30T02:43:15Z",
+    "updated_at": "2026-08-30T07:52:02Z",
     "source": "manual"
   },
   {
@@ -50,7 +50,7 @@
     "status": "Planned",
     "flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32/",
     "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32",
-    "updated_at": "2026-08-17T08:31:05Z",
+    "updated_at": "2026-08-30T07:47:04Z",
     "source": "manual"
   },
   {
@@ -68,7 +68,7 @@
     "status": "Experimental",
     "flasher_url": "",
     "github_url": "https://github.com/pepeangell5/BWifiKill-BW16-5Ghz",
-    "updated_at": "2026-08-17T10:31:58Z",
+    "updated_at": "2026-08-30T08:13:42Z",
     "source": "manual"
   },
   {
@@ -84,8 +84,23 @@
     "status": "Experimental",
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32",
-    "updated_at": "2026-08-30T01:59:27Z",
+    "updated_at": "2026-08-30T07:35:12Z",
     "source": "manual"
+  },
+  {
+    "name": "ESP32 TOOLS",
+    "slug": "esp32-tools",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32",
+      "WiFi"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS/",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS",
+    "updated_at": "2026-08-30T08:59:58Z",
+    "source": "auto"
   },
   {
     "name": "RF KILL ESP32 DEVKIT",
@@ -102,23 +117,7 @@
     "status": "Web flasher",
     "flasher_url": "https://pepeangell5.github.io/RF-KILL-ESP32-DEVKIT/",
     "github_url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT",
-    "updated_at": "2026-08-18T09:05:58Z",
-    "source": "auto"
-  },
-  {
-    "name": "ESP32 TOOLS PRO 480x320",
-    "slug": "esp32-tools-pro-480x320",
-    "board": "ESP32 compatible",
-    "display": "TFT ILI9488 480x320 SPI",
-    "modules": [
-      "ESP32",
-      "TFT",
-      "IR"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/",
-    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320",
-    "updated_at": "2026-08-17T08:32:17Z",
+    "updated_at": "2026-08-30T08:55:09Z",
     "source": "auto"
   },
   {
@@ -136,22 +135,38 @@
     "status": "Web flasher",
     "flasher_url": "https://pepeangell5.github.io/RF-KILL/",
     "github_url": "https://github.com/pepeangell5/RF-KILL",
-    "updated_at": "2026-08-16T21:31:08Z",
+    "updated_at": "2026-08-30T08:54:07Z",
     "source": "auto"
   },
   {
-    "name": "ESP32 TOOLS",
-    "slug": "esp32-tools",
+    "name": "ESP32 TOOLS MODERN",
+    "slug": "esp32-tools-modern",
     "board": "ESP32 compatible",
     "display": "Optional serial/display output",
     "modules": [
       "ESP32",
-      "WiFi"
+      "IR"
     ],
     "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS/",
-    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS",
-    "updated_at": "2026-08-16T07:43:58Z",
+    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-MODERN/",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-MODERN",
+    "updated_at": "2026-08-30T08:01:35Z",
+    "source": "auto"
+  },
+  {
+    "name": "ESP32 TOOLS PRO 480x320",
+    "slug": "esp32-tools-pro-480x320",
+    "board": "ESP32 compatible",
+    "display": "TFT ILI9488 480x320 SPI",
+    "modules": [
+      "ESP32",
+      "TFT",
+      "IR"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320",
+    "updated_at": "2026-08-30T07:57:24Z",
     "source": "auto"
   },
   {
@@ -168,21 +183,6 @@
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-CARDPUTER-ADV/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV",
     "updated_at": "2026-08-14T14:30:00Z",
-    "source": "auto"
-  },
-  {
-    "name": "ESP32 TOOLS MODERN",
-    "slug": "esp32-tools-modern",
-    "board": "ESP32 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP32",
-      "IR"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-MODERN/",
-    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-MODERN",
-    "updated_at": "2026-08-09T02:54:15Z",
     "source": "auto"
   }
 ]
