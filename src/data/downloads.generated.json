@@ -553,6 +553,27 @@
     ]
   },
   {
+    "name": "ESP8266 DEAUTHER",
+    "slug": "esp8266-deauther",
+    "status": "Repositorio",
+    "board": "ESP8266 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP8266",
+      "WiFi"
+    ],
+    "github_url": "https://github.com/pepeangell5/ESP8266-DEAUTHER",
+    "full_name": "pepeangell5/ESP8266-DEAUTHER",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/ESP8266-DEAUTHER/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/ESP8266-DEAUTHER/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#esp8266-deauther",
+    "web_flasher_binaries": []
+  },
+  {
     "name": "IPHONE CONTROL ESP32",
     "slug": "iphone-control-esp32",
     "status": "Repositorio",
@@ -573,27 +594,6 @@
     "release_assets": [],
     "zip_url": "https://github.com/pepeangell5/IPHONE-CONTROL-ESP32/archive/refs/heads/main.zip",
     "readme_url": "/firmware/#iphone-control-esp32",
-    "web_flasher_binaries": []
-  },
-  {
-    "name": "ESP8266 DEAUTHER",
-    "slug": "esp8266-deauther",
-    "status": "Repositorio",
-    "board": "ESP8266 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP8266",
-      "WiFi"
-    ],
-    "github_url": "https://github.com/pepeangell5/ESP8266-DEAUTHER",
-    "full_name": "pepeangell5/ESP8266-DEAUTHER",
-    "default_branch": "main",
-    "web_flasher_url": "",
-    "binarios_url": "https://github.com/pepeangell5/ESP8266-DEAUTHER/search?q=extension%3Abin&type=code",
-    "release_tag": "",
-    "release_assets": [],
-    "zip_url": "https://github.com/pepeangell5/ESP8266-DEAUTHER/archive/refs/heads/main.zip",
-    "readme_url": "/firmware/#esp8266-deauther",
     "web_flasher_binaries": []
   },
   {
