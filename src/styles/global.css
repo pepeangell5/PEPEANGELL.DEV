@@ -277,7 +277,7 @@ h2::before {
   margin-right: 0.18em;
   vertical-align: -0.09em;
   content: "";
-  background: url("/assets/mascot-esp32-tools-v2.png") center / contain no-repeat;
+  background: url("/assets/optimized/mascot-esp32-tools-v2-96.9a7599fe80.webp") center / contain no-repeat;
   filter: drop-shadow(0 0 10px rgba(255, 44, 169, 0.34));
 }
 
@@ -455,6 +455,10 @@ p {
   border: 1px solid rgba(57, 255, 136, 0.18);
   border-radius: var(--radius);
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+}
+
+.shop-product-media {
+  display: block;
 }
 
 .shop-card-top {
@@ -1856,7 +1860,7 @@ p {
   width: 18px;
   aspect-ratio: 1;
   content: "";
-  background: url("/assets/mascot-esp32-tools-v2.png") center / contain no-repeat;
+  background: url("/assets/optimized/mascot-esp32-tools-v2-96.9a7599fe80.webp") center / contain no-repeat;
   filter: drop-shadow(0 0 8px rgba(255, 44, 169, 0.32));
 }
 

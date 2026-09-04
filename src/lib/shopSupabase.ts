@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { shopProductImages } from "./imageAssets";
 
 const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
@@ -89,6 +90,7 @@ export function normalizeProduct(product: Record<string, any>) {
     parts: [],
     note: ""
   };
+  const optimizedImage = shopProductImages[product.slug] ?? null;
 
   return {
     id: product.id,
@@ -99,7 +101,8 @@ export function normalizeProduct(product: Record<string, any>) {
     firmware: product.firmware_name ?? "",
     repoUrl: product.repository_url ?? "",
     description: product.description ?? "",
-    image: product.image_url ?? "",
+    image: optimizedImage?.fallback ?? product.image_url ?? "",
+    imageSources: optimizedImage,
     imageAlt: meta.imageAlt,
     parts: meta.parts,
     note: meta.note,

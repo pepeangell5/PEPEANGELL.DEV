@@ -1,5 +1,6 @@
 ---
 import { sitePath } from "../utils/paths";
+import { mascotImage } from "../lib/imageAssets";
 import LanguageToggle from "./LanguageToggle.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
@@ -27,10 +28,12 @@ const laboratoryIsCurrent = laboratoryLinks.some((link) => isCurrent(link.href))
     <a class="brand" href={sitePath("/")} aria-label="ESP32-TOOLS home">
       <img
         class="brand-mark"
-        src={sitePath("/assets/mascot-esp32-tools-v2.png")}
+        src={sitePath(mascotImage.icon)}
         alt=""
-        width="44"
-        height="44"
+        width="96"
+        height="96"
+        decoding="async"
+        fetchpriority="high"
         aria-hidden="true"
       />
       <span>ESP32-TOOLS</span>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import DisclaimerBanner from "../../components/DisclaimerBanner.astro";
+import { shopProductImages, shopProductImageSizes } from "../../lib/imageAssets";
 import { sitePath } from "../../utils/paths";
 
 const telegramChannelUrl = "https://t.me/+PnOGmQQDL05kN2Ix";
@@ -16,7 +17,7 @@ const products = [
     repoUrl: "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT",
     description:
       "Kit fisico basado en ESP32-WROOM DevKit con firmware RF-KILL instalado para demostracion academica, laboratorio RF controlado y practicas autorizadas.",
-    image: "/assets/shop/esp32-devkit-kit.jpg",
+    image: shopProductImages["rf-kill-esp32-devkit"],
     imageAlt: "Kit RF-KILL con ESP32 DevKit 30 pines y dos modulos NRF24 PA+LNA con antenas",
     parts: [
       "ESP32-WROOM DevKit 30 pines",
@@ -42,7 +43,7 @@ const products = [
     repoUrl: "https://github.com/pepeangell5/RF-KILL",
     description:
       "Version compacta con ESP32-C3 Super Mini y firmware RF-KILL headless: arranque automatico sin pantalla ni botones para laboratorio educativo controlado.",
-    image: "/assets/shop/esp32-c3-supermini-kit.jpg",
+    image: shopProductImages["rf-kill-esp32-c3-supermini"],
     imageAlt: "Kit RF-KILL compacto con ESP32-C3 Super Mini y dos modulos NRF24 PA+LNA con antenas",
     parts: [
       "ESP32-C3 Super Mini",
@@ -107,14 +108,28 @@ const products = [
         {
           products.map((product) => (
             <article class="card shop-card" data-product-slug={product.slug}>
-              <img
-                class="shop-product-image"
-                src={sitePath(product.image)}
-                alt={product.imageAlt}
-                width="900"
-                height="1200"
-                loading="lazy"
-              />
+              <picture class="shop-product-media">
+                <source
+                  type="image/avif"
+                  srcset={product.image.avifSrcSet}
+                  sizes={shopProductImageSizes}
+                />
+                <source
+                  type="image/webp"
+                  srcset={product.image.webpSrcSet}
+                  sizes={shopProductImageSizes}
+                />
+                <img
+                  class="shop-product-image"
+                  src={sitePath(product.image.fallback)}
+                  alt={product.imageAlt}
+                  width={product.image.width}
+                  height={product.image.height}
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low"
+                />
+              </picture>
               <div class="shop-card-top">
                 <p class="status">{product.status}</p>
                 <span class="shop-chip">{product.board}</span>
@@ -188,6 +203,7 @@ const products = [
   </section>
 
 <script>
+  import { shopProductImageSizes } from "../../lib/imageAssets";
   import { formatMoney, normalizeProduct, shopSupabase, shopSupabaseConfigured } from "../../lib/shopSupabase";
 
   const grid = document.querySelector("[data-products-grid]");
@@ -226,16 +242,35 @@ const products = [
     const reserveHref = normalizedProduct.isAvailable && normalizedProduct.stock > 0
       ? `/shop/checkout/?product=${encodeURIComponent(normalizedProduct.slug)}`
       : "/contact/";
+    const image = normalizedProduct.imageSources;
+    const imageMarkup = image
+      ? `<picture class="shop-product-media">
+          <source type="image/avif" srcset="${escapeHtml(image.avifSrcSet)}" sizes="${escapeHtml(shopProductImageSizes)}" />
+          <source type="image/webp" srcset="${escapeHtml(image.webpSrcSet)}" sizes="${escapeHtml(shopProductImageSizes)}" />
+          <img
+            class="shop-product-image"
+            src="${escapeHtml(image.fallback)}"
+            alt="${escapeHtml(normalizedProduct.imageAlt)}"
+            width="${image.width}"
+            height="${image.height}"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
+          />
+        </picture>`
+      : `<img
+          class="shop-product-image"
+          src="${escapeHtml(normalizedProduct.image)}"
+          alt="${escapeHtml(normalizedProduct.imageAlt)}"
+          width="720"
+          height="1280"
+          loading="lazy"
+          decoding="async"
+          fetchpriority="low"
+        />`;
 
     article.innerHTML = `
-      <img
-        class="shop-product-image"
-        src="${escapeHtml(normalizedProduct.image)}"
-        alt="${escapeHtml(normalizedProduct.imageAlt)}"
-        width="900"
-        height="1200"
-        loading="lazy"
-      />
+      ${imageMarkup}
       <div class="shop-card-top">
         <p class="status">${escapeHtml(normalizedProduct.status)}</p>
         <span class="shop-chip">${escapeHtml(normalizedProduct.board)}</span>

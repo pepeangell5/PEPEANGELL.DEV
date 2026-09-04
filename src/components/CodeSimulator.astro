@@ -1,5 +1,6 @@
 ---
 import { sitePath } from "../utils/paths";
+import { mascotImage } from "../lib/imageAssets";
 ---
 
 <section class="code-simulator" data-code-simulator>
@@ -52,8 +53,14 @@ import { sitePath } from "../utils/paths";
       <aside class="simulator-side-panel">
         <img
           class="simulator-mascot"
-          src={sitePath("/assets/mascot-esp32-tools-v2.png")}
+          src={sitePath(mascotImage.fallback)}
+          srcset={`${sitePath(mascotImage.srcSet[0][0])} 384w, ${sitePath(mascotImage.srcSet[1][0])} 768w`}
+          sizes="(max-width: 760px) 90px, 190px"
           alt="Mascota rosa de ESP32-TOOLS con lentes pixelados"
+          width="768"
+          height="768"
+          loading="lazy"
+          decoding="async"
         />
         <div class="simulator-metrics" aria-live="polite">
           <div><span>SCENARIO</span><strong data-simulator-scenario>WiFi Scanner</strong></div>

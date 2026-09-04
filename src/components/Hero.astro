@@ -1,5 +1,10 @@
 ---
 import { sitePath } from "../utils/paths";
+import { mascotImage } from "../lib/imageAssets";
+
+const mascotSrcSet = mascotImage.srcSet
+  .map(([src, width]) => `${sitePath(src)} ${width}w`)
+  .join(", ");
 ---
 
 <section class="hero">
@@ -33,11 +38,16 @@ import { sitePath } from "../utils/paths";
       <span class="hero-mascot-line hero-mascot-line-one" aria-hidden="true"></span>
       <span class="hero-mascot-line hero-mascot-line-two" aria-hidden="true"></span>
       <img
-        src={sitePath("/assets/mascot-esp32-tools-v2.png")}
+        src={sitePath(mascotImage.fallback)}
+        srcset={mascotSrcSet}
+        sizes="(max-width: 760px) 405px, 624px"
         alt="Mascota rosa de ESP32-TOOLS con lentes pixelados"
         draggable="false"
         width="1254"
         height="1254"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
       />
       <span class="hero-mascot-code">PA-ESP32 / 24.7</span>
     </div>

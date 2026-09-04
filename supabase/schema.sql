@@ -579,7 +579,7 @@ insert into public.products (
   'ESP32 DevKit de 30 pines con dos modulos nRF24L01+ PA+LNA, bateria, carga y firmware instalado.',
   'RF-KILL ESP32-WROOM DevKit V2.0',
   'https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT',
-  '/assets/shop/esp32-devkit-kit.jpg'
+  '/assets/optimized/esp32-devkit-kit-720.9fe47e4cc5.webp'
 ),
 (
   'rf-kill-esp32-c3-supermini',
@@ -587,7 +587,7 @@ insert into public.products (
   'ESP32-C3 Super Mini con dos modulos nRF24L01+ PA+LNA, bateria, carga y firmware instalado.',
   'RF-KILL ESP32-C3 SuperMini',
   'https://github.com/pepeangell5/RF-KILL',
-  '/assets/shop/esp32-c3-supermini-kit.jpg'
+  '/assets/optimized/esp32-c3-supermini-kit-720.19cdd1160f.webp'
 )
 on conflict (slug) do update
 set
