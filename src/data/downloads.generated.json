@@ -128,7 +128,7 @@
         "name": "BWifiKill-ESP32-V4.0-full.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/releases/download/bwifikill/BWifiKill-ESP32-V4.0-full.bin",
         "size": 1845200,
-        "download_count": 159
+        "download_count": 160
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/archive/refs/heads/main.zip",
@@ -279,7 +279,7 @@
         "name": "full_bwifikill_v3.3.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32/releases/download/bwifikillV3.3/full_bwifikill_v3.3.bin",
         "size": 1948320,
-        "download_count": 82
+        "download_count": 83
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32/archive/refs/heads/main.zip",
