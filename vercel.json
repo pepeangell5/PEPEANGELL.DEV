@@ -3,23 +3,38 @@
   "routes": [
     {
       "src": "^/assets/mascot-esp32-tools-v2\\.png$",
-      "dest": "/assets/optimized/mascot-esp32-tools-v2-1254.f6e17cb744.webp"
+      "status": 308,
+      "headers": {
+        "Location": "/assets/optimized/mascot-esp32-tools-v2-1254.f6e17cb744.webp"
+      }
     },
     {
       "src": "^/assets/shop/esp32-devkit-kit\\.jpg$",
-      "dest": "/assets/optimized/esp32-devkit-kit-720.9fe47e4cc5.webp"
+      "status": 308,
+      "headers": {
+        "Location": "/assets/optimized/esp32-devkit-kit-720.9fe47e4cc5.webp"
+      }
     },
     {
       "src": "^/assets/shop/esp32-c3-supermini-kit\\.jpg$",
-      "dest": "/assets/optimized/esp32-c3-supermini-kit-720.19cdd1160f.webp"
+      "status": 308,
+      "headers": {
+        "Location": "/assets/optimized/esp32-c3-supermini-kit-720.19cdd1160f.webp"
+      }
     },
     {
       "src": "^/assets/mascot-neon-cut\\.png$",
-      "dest": "/assets/optimized/mascot-neon-cut-1254.f6e17cb744.webp"
+      "status": 308,
+      "headers": {
+        "Location": "/assets/optimized/mascot-neon-cut-1254.f6e17cb744.webp"
+      }
     },
     {
       "src": "^/assets/mascot-classic-cut\\.png$",
-      "dest": "/assets/optimized/mascot-classic-cut-980.860df4b599.webp"
+      "status": 308,
+      "headers": {
+        "Location": "/assets/optimized/mascot-classic-cut-980.860df4b599.webp"
+      }
     },
     {
       "src": "^/assets/optimized/(.*)$",
