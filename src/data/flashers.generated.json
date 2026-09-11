@@ -13,7 +13,7 @@
     "status": "In Development",
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32-V4.0/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0",
-    "updated_at": "2026-09-07T11:58:46Z",
+    "updated_at": "2026-09-11T09:05:17Z",
     "source": "manual"
   },
   {
@@ -88,24 +88,6 @@
     "source": "manual"
   },
   {
-    "name": "RF KILL",
-    "slug": "rf-kill",
-    "board": "ESP32-C3 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP32-C3",
-      "ESP32",
-      "RF",
-      "NRF24",
-      "IR"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/RF-KILL/",
-    "github_url": "https://github.com/pepeangell5/RF-KILL",
-    "updated_at": "2026-09-05T00:43:49Z",
-    "source": "auto"
-  },
-  {
     "name": "RF KILL ESP32 DEVKIT",
     "slug": "rf-kill-esp32-devkit",
     "board": "ESP32 compatible",
@@ -120,7 +102,25 @@
     "status": "Web flasher",
     "flasher_url": "https://pepeangell5.github.io/RF-KILL-ESP32-DEVKIT/",
     "github_url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT",
-    "updated_at": "2026-09-01T11:43:30Z",
+    "updated_at": "2026-09-11T08:01:12Z",
+    "source": "auto"
+  },
+  {
+    "name": "RF KILL",
+    "slug": "rf-kill",
+    "board": "ESP32-C3 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32-C3",
+      "ESP32",
+      "RF",
+      "NRF24",
+      "IR"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/RF-KILL/",
+    "github_url": "https://github.com/pepeangell5/RF-KILL",
+    "updated_at": "2026-09-11T07:58:17Z",
     "source": "auto"
   },
   {
