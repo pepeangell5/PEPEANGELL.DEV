@@ -357,13 +357,13 @@
         "name": "bootloader.bin",
         "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/bootloader.bin",
         "size": 13216,
-        "download_count": 1
+        "download_count": 3
       },
       {
         "name": "firmware.bin",
         "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/firmware.bin",
         "size": 257600,
-        "download_count": 3
+        "download_count": 4
       },
       {
         "name": "firmware_unificado.bin",
@@ -375,7 +375,7 @@
         "name": "partitions.bin",
         "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/partitions.bin",
         "size": 3072,
-        "download_count": 2
+        "download_count": 3
       }
     ],
     "zip_url": "https://github.com/pepeangell5/RF-KILL/archive/refs/heads/main.zip",
