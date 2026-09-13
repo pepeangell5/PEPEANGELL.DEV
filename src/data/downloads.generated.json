@@ -128,7 +128,7 @@
         "name": "BWifiKill-ESP32-V4.0-full.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/releases/download/bwifikill/BWifiKill-ESP32-V4.0-full.bin",
         "size": 1845200,
-        "download_count": 163
+        "download_count": 164
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/archive/refs/heads/main.zip",
@@ -170,13 +170,13 @@
         "name": "bootloader.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/bootloader.bin",
         "size": 17536,
-        "download_count": 104
+        "download_count": 105
       },
       {
         "name": "firmware-merged.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware-merged.bin",
         "size": 2155568,
-        "download_count": 95
+        "download_count": 96
       },
       {
         "name": "firmware.bin",
@@ -357,25 +357,25 @@
         "name": "bootloader.bin",
         "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/bootloader.bin",
         "size": 13216,
-        "download_count": 3
+        "download_count": 4
       },
       {
         "name": "firmware.bin",
         "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/firmware.bin",
         "size": 257600,
-        "download_count": 4
+        "download_count": 5
       },
       {
         "name": "firmware_unificado.bin",
         "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/firmware_unificado.bin",
         "size": 323136,
-        "download_count": 2
+        "download_count": 3
       },
       {
         "name": "partitions.bin",
         "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/partitions.bin",
         "size": 3072,
-        "download_count": 3
+        "download_count": 4
       }
     ],
     "zip_url": "https://github.com/pepeangell5/RF-KILL/archive/refs/heads/main.zip",
