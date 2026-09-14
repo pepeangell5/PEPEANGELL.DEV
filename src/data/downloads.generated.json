@@ -170,7 +170,7 @@
         "name": "bootloader.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/bootloader.bin",
         "size": 17536,
-        "download_count": 106
+        "download_count": 107
       },
       {
         "name": "firmware-merged.bin",
@@ -279,7 +279,7 @@
         "name": "full_bwifikill_v3.3.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32/releases/download/bwifikillV3.3/full_bwifikill_v3.3.bin",
         "size": 1948320,
-        "download_count": 87
+        "download_count": 88
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32/archive/refs/heads/main.zip",
