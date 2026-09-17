@@ -13,7 +13,7 @@
     "status": "In Development",
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32-V4.0/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0",
-    "updated_at": "2026-09-16T14:59:38Z",
+    "updated_at": "2026-09-17T17:11:40Z",
     "source": "manual"
   },
   {
@@ -34,7 +34,7 @@
     "status": "Testing",
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V2.0/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
-    "updated_at": "2026-09-15T16:10:53Z",
+    "updated_at": "2026-09-17T17:49:55Z",
     "source": "manual"
   },
   {
@@ -84,8 +84,24 @@
     "status": "Experimental",
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32",
-    "updated_at": "2026-09-11T12:18:30Z",
+    "updated_at": "2026-09-17T18:59:07Z",
     "source": "manual"
+  },
+  {
+    "name": "BWifiKill CARDPUTER ADV",
+    "slug": "bwifikill-cardputer-adv",
+    "board": "M5Stack Cardputer",
+    "display": "M5Stack Cardputer integrated display",
+    "modules": [
+      "WiFi",
+      "M5Stack",
+      "Cardputer"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/BWifiKill-CARDPUTER-ADV/",
+    "github_url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV",
+    "updated_at": "2026-09-17T17:12:52Z",
+    "source": "auto"
   },
   {
     "name": "ESP32 TOOLS",
@@ -167,22 +183,6 @@
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320",
     "updated_at": "2026-08-30T07:57:24Z",
-    "source": "auto"
-  },
-  {
-    "name": "BWifiKill CARDPUTER ADV",
-    "slug": "bwifikill-cardputer-adv",
-    "board": "M5Stack Cardputer",
-    "display": "M5Stack Cardputer integrated display",
-    "modules": [
-      "WiFi",
-      "M5Stack",
-      "Cardputer"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/BWifiKill-CARDPUTER-ADV/",
-    "github_url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV",
-    "updated_at": "2026-08-14T14:30:00Z",
     "source": "auto"
   }
 ]
