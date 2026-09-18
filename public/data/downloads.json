@@ -176,7 +176,7 @@
         "name": "firmware-merged.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware-merged.bin",
         "size": 2155568,
-        "download_count": 103
+        "download_count": 105
       },
       {
         "name": "firmware.bin",
@@ -553,6 +553,28 @@
     ]
   },
   {
+    "name": "ESP32 PC MONITOR",
+    "slug": "esp32-pc-monitor",
+    "status": "Repositorio",
+    "board": "ESP32 compatible",
+    "display": "OLED SSD1306",
+    "modules": [
+      "ESP32",
+      "OLED",
+      "Display"
+    ],
+    "github_url": "https://github.com/pepeangell5/ESP32_PC_MONITOR",
+    "full_name": "pepeangell5/ESP32_PC_MONITOR",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/ESP32_PC_MONITOR/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/ESP32_PC_MONITOR/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#esp32-pc-monitor",
+    "web_flasher_binaries": []
+  },
+  {
     "name": "DRONE FPV ESP32C3 SUPERMINI",
     "slug": "drone-fpv-esp32c3-supermini",
     "status": "Repositorio",
@@ -617,28 +639,6 @@
     "release_assets": [],
     "zip_url": "https://github.com/pepeangell5/ESP8266-DEAUTHER/archive/refs/heads/main.zip",
     "readme_url": "/firmware/#esp8266-deauther",
-    "web_flasher_binaries": []
-  },
-  {
-    "name": "ESP32 PC MONITOR",
-    "slug": "esp32-pc-monitor",
-    "status": "Repositorio",
-    "board": "ESP32 compatible",
-    "display": "OLED SSD1306",
-    "modules": [
-      "ESP32",
-      "OLED",
-      "Display"
-    ],
-    "github_url": "https://github.com/pepeangell5/ESP32_PC_MONITOR",
-    "full_name": "pepeangell5/ESP32_PC_MONITOR",
-    "default_branch": "main",
-    "web_flasher_url": "",
-    "binarios_url": "https://github.com/pepeangell5/ESP32_PC_MONITOR/search?q=extension%3Abin&type=code",
-    "release_tag": "",
-    "release_assets": [],
-    "zip_url": "https://github.com/pepeangell5/ESP32_PC_MONITOR/archive/refs/heads/main.zip",
-    "readme_url": "/firmware/#esp32-pc-monitor",
     "web_flasher_binaries": []
   },
   {
