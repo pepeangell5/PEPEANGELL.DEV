@@ -34,7 +34,7 @@
     "status": "Testing",
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V2.0/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
-    "updated_at": "2026-09-17T17:49:55Z",
+    "updated_at": "2026-09-20T10:29:06Z",
     "source": "manual"
   },
   {
@@ -86,6 +86,27 @@
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32",
     "updated_at": "2026-09-17T18:59:07Z",
     "source": "manual"
+  },
+  {
+    "name": "ESP32 TOOLS PRO 480x320 V3",
+    "slug": "esp32-tools-pro-480x320-v3",
+    "board": "ESP32 compatible",
+    "display": "TFT ILI9488 480x320 SPI",
+    "modules": [
+      "ESP32",
+      "WiFi",
+      "BLE",
+      "RF",
+      "NRF24",
+      "CC1101",
+      "TFT",
+      "IR"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V3/",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V3",
+    "updated_at": "2026-09-20T05:52:04Z",
+    "source": "auto"
   },
   {
     "name": "RF KILL ESP32 DEVKIT",

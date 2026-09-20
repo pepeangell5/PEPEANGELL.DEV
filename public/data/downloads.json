@@ -170,13 +170,13 @@
         "name": "bootloader.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/bootloader.bin",
         "size": 17536,
-        "download_count": 109
+        "download_count": 110
       },
       {
         "name": "firmware-merged.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware-merged.bin",
         "size": 2155568,
-        "download_count": 105
+        "download_count": 106
       },
       {
         "name": "firmware.bin",
@@ -289,6 +289,41 @@
         "label": "full_bwifikill_v3.3.bin",
         "path": "full_bwifikill_v3.3.bin",
         "url": "https://pepeangell5.github.io/BWifiKill-ESP32/full_bwifikill_v3.3.bin",
+        "offset": 0,
+        "chip_family": "ESP32"
+      }
+    ]
+  },
+  {
+    "name": "ESP32 TOOLS PRO 480x320 V3",
+    "slug": "esp32-tools-pro-480x320-v3",
+    "status": "Web flasher",
+    "board": "ESP32 compatible",
+    "display": "TFT ILI9488 480x320 SPI",
+    "modules": [
+      "ESP32",
+      "WiFi",
+      "BLE",
+      "RF",
+      "NRF24",
+      "CC1101",
+      "TFT",
+      "IR"
+    ],
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V3",
+    "full_name": "pepeangell5/ESP32-TOOLS-PRO-480x320-V3",
+    "default_branch": "main",
+    "web_flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V3/",
+    "binarios_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V3/tree/main/assets/Firmware",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V3/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#esp32-tools-pro-480x320-v3",
+    "web_flasher_binaries": [
+      {
+        "label": "firmware-merged.bin",
+        "path": "assets/Firmware/firmware-merged.bin",
+        "url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V3/assets/Firmware/firmware-merged.bin",
         "offset": 0,
         "chip_family": "ESP32"
       }
@@ -551,6 +586,26 @@
         "chip_family": "ESP32"
       }
     ]
+  },
+  {
+    "name": "CYBERDECK MINI ESP32 V2",
+    "slug": "cyberdeck-mini-esp32-v2",
+    "status": "Repositorio",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32"
+    ],
+    "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2",
+    "full_name": "pepeangell5/CYBERDECK-MINI-ESP32-V2",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#cyberdeck-mini-esp32-v2",
+    "web_flasher_binaries": []
   },
   {
     "name": "ESP32 PC MONITOR",
