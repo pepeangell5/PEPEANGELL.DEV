@@ -88,6 +88,20 @@
     "source": "manual"
   },
   {
+    "name": "CYBERDECK MINI ESP32 V2",
+    "slug": "cyberdeck-mini-esp32-v2",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32-V2/",
+    "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2",
+    "updated_at": "2026-09-22T09:16:29Z",
+    "source": "auto"
+  },
+  {
     "name": "ESP32 TOOLS PRO 480x320 V3",
     "slug": "esp32-tools-pro-480x320-v3",
     "board": "ESP32 compatible",
