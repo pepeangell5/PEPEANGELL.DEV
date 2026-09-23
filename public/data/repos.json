@@ -120,6 +120,21 @@
     "fork": false
   },
   {
+    "name": "PEPEANGELL.DEV",
+    "full_name": "pepeangell5/PEPEANGELL.DEV",
+    "description": null,
+    "html_url": "https://github.com/pepeangell5/PEPEANGELL.DEV",
+    "homepage": "https://pepeangell-dev.vercel.app",
+    "default_branch": "main",
+    "language": "TypeScript",
+    "stargazers_count": 4,
+    "forks_count": 0,
+    "updated_at": "2026-09-23T17:14:56Z",
+    "topics": [],
+    "archived": false,
+    "fork": false
+  },
+  {
     "name": "CYBERDECK-MINI-ESP32-V2",
     "full_name": "pepeangell5/CYBERDECK-MINI-ESP32-V2",
     "description": "Igual que la V1 pero con mejores graficos y un diseño hecho en LOPAKA",
@@ -160,21 +175,6 @@
     "stargazers_count": 18,
     "forks_count": 2,
     "updated_at": "2026-09-23T15:07:23Z",
-    "topics": [],
-    "archived": false,
-    "fork": false
-  },
-  {
-    "name": "PEPEANGELL.DEV",
-    "full_name": "pepeangell5/PEPEANGELL.DEV",
-    "description": null,
-    "html_url": "https://github.com/pepeangell5/PEPEANGELL.DEV",
-    "homepage": "https://pepeangell-dev.vercel.app",
-    "default_branch": "main",
-    "language": "TypeScript",
-    "stargazers_count": 4,
-    "forks_count": 0,
-    "updated_at": "2026-09-23T11:50:50Z",
     "topics": [],
     "archived": false,
     "fork": false
