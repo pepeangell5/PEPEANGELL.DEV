@@ -4,5 +4,12 @@ import react from "@astrojs/react";
 export default defineConfig({
   site: "https://pepeangell.dev",
   output: "static",
-  integrations: [react()]
+  integrations: [react()],
+  vite: {
+    server: {
+      watch: {
+        ignored: ["**/.tmp/**"]
+      }
+    }
+  }
 });

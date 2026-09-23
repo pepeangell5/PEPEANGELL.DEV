@@ -322,6 +322,7 @@
     "Repositorios": "Repositories",
     "Laboratorio": "Lab",
     "Simulador PCB": "PCB Simulator",
+    "Mapa Wardriving": "Wardriving Map",
     "Tema": "Theme",
     "Tema neon oscuro": "Dark neon theme",
     "Tema blanco": "Light theme",

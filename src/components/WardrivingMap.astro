@@ -1,0 +1,1312 @@
+---
+import "leaflet/dist/leaflet.css";
+---
+
+<div class="wardriving-tool" data-wardriving-tool>
+  <section class="wardriving-upload" aria-labelledby="wardriving-upload-title">
+    <div class="wardriving-upload__copy">
+      <span class="wardriving-upload__badge" data-translate-en="LOCAL PROCESSING">PROCESAMIENTO LOCAL</span>
+      <h2 id="wardriving-upload-title" data-translate-en="Upload one or more wardriving CSV files">Adjunta uno o varios CSV de wardriving</h2>
+      <p data-translate-en="Combine several routes on the same map. Files are processed only in your browser; they are never uploaded or stored on the website.">
+        Combina varios recorridos en un mismo mapa. Los archivos se procesan únicamente en tu navegador; nunca se suben ni se almacenan en la página.
+      </p>
+    </div>
+
+    <label class="wardriving-dropzone" data-dropzone>
+      <input type="file" accept=".csv,text/csv" multiple data-file-input />
+      <span class="wardriving-dropzone__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5" />
+          <path d="M5 13.5v4A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5v-4" />
+        </svg>
+      </span>
+      <strong data-translate-en="Drop one or more CSV files here">Arrastra uno o varios archivos CSV aquí</strong>
+      <span data-translate-en="or click to select them from your device">o haz clic para seleccionarlos desde tu dispositivo</span>
+      <small>CSV · UTF-8 / Windows-1252 · 25 MB por archivo · 100 MB en total</small>
+    </label>
+
+    <div class="wardriving-columns" aria-label="Columnas requeridas">
+      <span>Lat</span><span>Lng</span><span>SSID</span><span>BSSID</span><span>RSSI</span><span>Channel</span><span>Auth</span>
+    </div>
+
+    <p class="wardriving-status" role="status" aria-live="polite" data-status data-state="idle" data-no-translate>
+      Selecciona un archivo CSV para comenzar.
+    </p>
+  </section>
+
+  <section class="wardriving-results" data-results hidden aria-labelledby="wardriving-results-title">
+    <div class="wardriving-results__header">
+      <div>
+        <span class="wardriving-results__eyebrow" data-translate-en="GENERATED MAP">MAPA GENERADO</span>
+        <h2 id="wardriving-results-title" data-file-name data-no-translate>WARD_DRIVE.csv</h2>
+      </div>
+      <div class="wardriving-actions">
+        <button class="button" type="button" data-add-files data-translate-en="Add more CSV files">
+          Agregar más CSV
+        </button>
+        <button class="button" type="button" data-download-map data-translate-en="Download HTML map">
+          Descargar mapa HTML
+        </button>
+        <button class="button" type="button" data-clear-map data-translate-en="Use other CSV files">
+          Usar otros CSV
+        </button>
+      </div>
+    </div>
+
+    <div class="wardriving-stats" aria-label="Resumen del archivo">
+      <article><span data-translate-en="Files">Archivos</span><strong data-stat="files">0</strong></article>
+      <article><span data-translate-en="Records">Registros</span><strong data-stat="records">0</strong></article>
+      <article><span data-translate-en="GPS points">Puntos GPS</span><strong data-stat="gps">0</strong></article>
+      <article><span data-translate-en="Unique APs">AP únicos</span><strong data-stat="aps">0</strong></article>
+      <article><span data-translate-en="Open APs">AP abiertos</span><strong data-stat="open">0</strong></article>
+      <article><span data-translate-en="No location">Sin ubicación</span><strong data-stat="discarded">0</strong></article>
+    </div>
+
+    <div class="wardriving-explorer">
+      <div class="wardriving-map-shell">
+        <div class="wardriving-map" data-map aria-label="Mapa interactivo de la ruta de wardriving"></div>
+        <label class="wardriving-basemap-control">
+          <span data-translate-en="Map type">Tipo de mapa</span>
+          <select data-basemap-select>
+            <option value="streets" data-translate-en="Streets">Calles</option>
+            <option value="satellite" data-translate-en="Satellite">Satélite</option>
+            <option value="osm">OpenStreetMap</option>
+            <option value="dark" data-translate-en="Dark">Oscuro</option>
+            <option value="topographic" data-translate-en="Topographic">Topográfico</option>
+          </select>
+        </label>
+        <div class="wardriving-legend" aria-label="Leyenda del mapa">
+          <span><i class="is-start"></i><b data-translate-en="Start">Inicio</b></span>
+          <span><i class="is-observation"></i><b data-translate-en="Observation">Observación</b></span>
+          <span><i class="is-end"></i><b data-translate-en="End">Final</b></span>
+        </div>
+      </div>
+
+      <aside class="wardriving-networks" aria-labelledby="wardriving-networks-title">
+        <div class="wardriving-networks__header">
+          <div>
+            <span data-translate-en="DETECTED NETWORKS">REDES DETECTADAS</span>
+            <h3 id="wardriving-networks-title" data-translate-en="Network details">Detalles de redes</h3>
+          </div>
+          <strong data-network-count data-no-translate>0</strong>
+        </div>
+        <label class="wardriving-network-search">
+          <span class="sr-only" data-translate-en="Search detected networks">Buscar redes detectadas</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-4-4"></path>
+          </svg>
+          <input type="search" placeholder="Buscar SSID, BSSID, canal…" data-network-search />
+        </label>
+        <div class="wardriving-network-filters">
+          <label>
+            <span data-translate-en="Security filter">Filtro de seguridad</span>
+            <select data-security-filter>
+              <option value="all" data-translate-en="All networks">Todas las redes</option>
+              <option value="open" data-translate-en="Open networks">Redes abiertas</option>
+              <option value="protected" data-translate-en="Protected networks">Redes protegidas</option>
+              <option value="wep">WEP</option>
+              <option value="wpa">WPA</option>
+              <option value="wpa2">WPA2</option>
+              <option value="wpa3">WPA3</option>
+              <option value="other" data-translate-en="Other security">Otra seguridad</option>
+            </select>
+          </label>
+          <button type="button" data-reset-filters data-translate-en="Clear filters">Limpiar filtros</button>
+        </div>
+        <div class="wardriving-network-list" data-network-list data-no-translate></div>
+        <p class="wardriving-network-empty" data-network-empty hidden data-translate-en="No networks match the selected filters.">
+          No hay redes que coincidan con los filtros seleccionados.
+        </p>
+      </aside>
+    </div>
+
+    <p class="wardriving-results__notice" data-translate-en="The map tiles require an Internet connection. Review and anonymize the file before sharing the downloaded HTML because it contains route and nearby network data.">
+      El mapa base necesita Internet. Revisa y anonimiza el archivo antes de compartir el HTML descargado porque contiene la ruta y datos de redes próximas.
+    </p>
+  </section>
+</div>
+
+<script>
+  import L from "leaflet";
+  import {
+    buildStandaloneWardrivingHtml,
+    decodeWardrivingFile,
+    mergeWardrivingMaps,
+    parseWardrivingCsv,
+    type WardrivingMapData,
+    type WardrivingMarker,
+  } from "../lib/wardriving";
+
+  const root = document.querySelector<HTMLElement>("[data-wardriving-tool]");
+
+  if (root) {
+    const input = root.querySelector<HTMLInputElement>("[data-file-input]");
+    const dropzone = root.querySelector<HTMLElement>("[data-dropzone]");
+    const status = root.querySelector<HTMLElement>("[data-status]");
+    const results = root.querySelector<HTMLElement>("[data-results]");
+    const mapElement = root.querySelector<HTMLElement>("[data-map]");
+    const basemapSelect = root.querySelector<HTMLSelectElement>("[data-basemap-select]");
+    const fileNameElement = root.querySelector<HTMLElement>("[data-file-name]");
+    const downloadButton = root.querySelector<HTMLButtonElement>("[data-download-map]");
+    const addFilesButton = root.querySelector<HTMLButtonElement>("[data-add-files]");
+    const clearButton = root.querySelector<HTMLButtonElement>("[data-clear-map]");
+    const networkList = root.querySelector<HTMLElement>("[data-network-list]");
+    const networkCount = root.querySelector<HTMLElement>("[data-network-count]");
+    const networkSearch = root.querySelector<HTMLInputElement>("[data-network-search]");
+    const securityFilter = root.querySelector<HTMLSelectElement>("[data-security-filter]");
+    const resetFiltersButton = root.querySelector<HTMLButtonElement>("[data-reset-filters]");
+    const networkEmpty = root.querySelector<HTMLElement>("[data-network-empty]");
+
+    const MAX_FILE_SIZE = 25 * 1024 * 1024;
+    const MAX_TOTAL_SIZE = 100 * 1024 * 1024;
+    const copy = {
+      es: {
+        idle: "Selecciona un archivo CSV para comenzar.",
+        reading: "Leyendo y validando el archivo…",
+        ready: (fileName: string) => `${fileName} se procesó correctamente.`,
+        tooLarge: "El archivo supera el límite de 25 MB.",
+        totalTooLarge: "Los archivos superan el límite total de 100 MB.",
+        invalidType: "Selecciona un archivo con extensión .csv.",
+        error: (message: string) => `No se pudo generar el mapa: ${message}`,
+        popupTitle: (count: number) => `${count} red${count === 1 ? "" : "es"}`,
+        hiddenSsid: "[SSID oculto]",
+        security: "Seguridad",
+        channel: "Canal",
+        latitude: "Latitud",
+        longitude: "Longitud",
+        source: "Archivo",
+        observations: (visible: number, total: number) => visible === total ? `${total} observaciones` : `${visible} de ${total}`,
+        searchPlaceholder: "Buscar SSID, BSSID, canal…",
+      },
+      en: {
+        idle: "Select a CSV file to begin.",
+        reading: "Reading and validating the file…",
+        ready: (fileName: string) => `${fileName} was processed successfully.`,
+        tooLarge: "The file exceeds the 25 MB limit.",
+        totalTooLarge: "The files exceed the 100 MB total limit.",
+        invalidType: "Select a file with a .csv extension.",
+        error: (message: string) => `The map could not be generated: ${message}`,
+        popupTitle: (count: number) => `${count} network${count === 1 ? "" : "s"}`,
+        hiddenSsid: "[Hidden SSID]",
+        security: "Security",
+        channel: "Channel",
+        latitude: "Latitude",
+        longitude: "Longitude",
+        source: "File",
+        observations: (visible: number, total: number) => visible === total ? `${total} observations` : `${visible} of ${total}`,
+        searchPlaceholder: "Search SSID, BSSID, channel…",
+      },
+    };
+
+    let currentData: WardrivingMapData | null = null;
+    let currentStatus: { state: "idle" | "reading" | "ready" | "error"; detail?: string } = { state: "idle" };
+    let map: L.Map | null = null;
+    let baseLayer: L.TileLayer | null = null;
+    let markerLayers: L.CircleMarker[] = [];
+    type SecurityFilter = "all" | "open" | "protected" | "wep" | "wpa" | "wpa2" | "wpa3" | "other";
+
+    const language = () => document.documentElement.lang === "en" ? "en" : "es";
+    const basemaps: Record<string, { url: string; options: L.TileLayerOptions }> = {
+      streets: {
+        url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+        options: { maxZoom: 19, attribution: "Tiles &copy; Esri" },
+      },
+      satellite: {
+        url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        options: { maxZoom: 19, attribution: "Tiles &copy; Esri, Maxar, Earthstar Geographics" },
+      },
+      osm: {
+        url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+        options: { maxZoom: 19, attribution: "&copy; OpenStreetMap contributors" },
+      },
+      dark: {
+        url: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+        options: { maxZoom: 20, subdomains: "abcd", attribution: "&copy; OpenStreetMap contributors &copy; CARTO" },
+      },
+      topographic: {
+        url: "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+        options: { maxZoom: 17, attribution: "Map data &copy; OpenStreetMap contributors · Style &copy; OpenTopoMap" },
+      },
+    };
+
+    function applyBasemap() {
+      if (!map) return;
+      const selected = basemaps[basemapSelect?.value ?? "streets"] ?? basemaps.streets;
+      baseLayer?.remove();
+      baseLayer = L.tileLayer(selected.url, selected.options).addTo(map);
+    }
+
+    if (mapElement && "ResizeObserver" in window) {
+      let resizeFrame = 0;
+      const mapResizeObserver = new ResizeObserver(() => {
+        window.cancelAnimationFrame(resizeFrame);
+        resizeFrame = window.requestAnimationFrame(() => map?.invalidateSize({ pan: false }));
+      });
+      mapResizeObserver.observe(mapElement);
+    }
+
+    function updateStatus(state: typeof currentStatus.state, detail?: string) {
+      if (!status) return;
+      currentStatus = { state, detail };
+      const messages = copy[language()];
+      const text = state === "ready"
+        ? messages.ready(detail ?? "CSV")
+        : state === "error"
+          ? detail ?? messages.error("CSV inválido")
+          : messages[state];
+      status.textContent = text;
+      status.dataset.state = state;
+    }
+
+    function createTextRow(label: string, value: string) {
+      const row = document.createElement("span");
+      row.textContent = `${label}: ${value || "—"}`;
+      return row;
+    }
+
+    function createPopup(point: WardrivingMarker) {
+      const messages = copy[language()];
+      const popup = document.createElement("div");
+      popup.className = "wardriving-popup";
+      popup.dataset.noTranslate = "";
+
+      const heading = document.createElement("h3");
+      heading.textContent = messages.popupTitle(point.networks.length);
+      popup.append(heading);
+
+      point.networks.forEach((network) => {
+        const card = document.createElement("div");
+        card.className = "wardriving-popup__network";
+        const name = document.createElement("strong");
+        name.textContent = network.ssid || messages.hiddenSsid;
+        card.append(
+          name,
+          createTextRow("BSSID", network.bssid),
+          createTextRow("RSSI", `${network.rssi || "—"} dBm · ${messages.channel}: ${network.channel || "—"}`),
+          createTextRow(messages.security, network.auth),
+          createTextRow(messages.source, network.sourceFile),
+        );
+        popup.append(card);
+      });
+      return popup;
+    }
+
+    function renderMap(data: WardrivingMapData) {
+      if (!mapElement) return;
+      map?.remove();
+      mapElement.replaceChildren();
+      baseLayer = null;
+      markerLayers = [];
+
+      map = L.map(mapElement, { preferCanvas: true, zoomControl: true }).setView(data.center, 15);
+      applyBasemap();
+
+      const routeColors = ["#28d7ec", "#ff70c7", "#29ef9f", "#ffb454", "#a98bff", "#5aa9ff"];
+      const bounds = L.latLngBounds([]);
+      const starts = new Set(data.routes.map((route) => route[0]).filter(Boolean).map((point) => point.join("|")));
+      const ends = new Set(data.routes.map((route) => route.at(-1)).filter(Boolean).map((point) => point.join("|")));
+
+      data.routes.forEach((route, index) => {
+        if (!route.length) return;
+        L.polyline(route, {
+          color: routeColors[index % routeColors.length],
+          weight: 5,
+          opacity: 0.9,
+          lineJoin: "round",
+        }).addTo(map as L.Map);
+        route.forEach((point) => bounds.extend(point));
+      });
+
+      data.markers.forEach((point, index) => {
+        const positionKey = `${point.lat}|${point.lng}`;
+        const marker = L.circleMarker([point.lat, point.lng], {
+          radius: Math.min(12, 5 + Math.sqrt(point.networks.length)),
+          color: starts.has(positionKey) ? "#29ef9f" : "#101426",
+          weight: 2,
+          fillColor: ends.has(positionKey) ? "#ff547d" : "#ff70c7",
+          fillOpacity: 0.95,
+        }).bindPopup(createPopup(point), { maxWidth: 360 }).addTo(map as L.Map);
+        markerLayers.push(marker);
+        bounds.extend([point.lat, point.lng]);
+      });
+
+      if (bounds.isValid()) map.fitBounds(bounds, { padding: [42, 42] });
+      window.setTimeout(() => map?.invalidateSize(), 0);
+    }
+
+    function selectedSecurityFilter() {
+      return (securityFilter?.value ?? "all") as SecurityFilter;
+    }
+
+    function matchesSecurity(auth: string, selected: SecurityFilter) {
+      if (selected === "all") return true;
+      const normalized = auth.trim().toUpperCase();
+      const isOpen = ["OPEN", "NONE", "OPN", "0"].includes(normalized) || normalized.includes("OPEN");
+      const protocols = new Set(normalized.match(/WPA3|WPA2|WPA|WEP/g) ?? []);
+
+      if (selected === "open") return isOpen;
+      if (selected === "protected") return !isOpen;
+      if (selected === "other") return !isOpen && protocols.size === 0;
+      return protocols.has(selected.toUpperCase());
+    }
+
+    function matchesSearch(point: WardrivingMarker, network: WardrivingMarker["networks"][number], normalizedQuery: string) {
+      if (!normalizedQuery) return true;
+      return [
+        network.ssid,
+        network.bssid,
+        network.rssi,
+        network.channel,
+        network.auth,
+        network.sourceFile,
+        String(point.lat),
+        String(point.lng),
+      ].some((value) => value.toLowerCase().includes(normalizedQuery));
+    }
+
+    function updateMapFilters(data: WardrivingMapData, normalizedQuery: string, selected: SecurityFilter, fitMap: boolean) {
+      if (!map) return;
+      const visibleBounds = L.latLngBounds([]);
+
+      data.markers.forEach((point, pointIndex) => {
+        const marker = markerLayers[pointIndex];
+        if (!marker) return;
+        const matchingNetworks = point.networks.filter((network) =>
+          matchesSecurity(network.auth, selected) && matchesSearch(point, network, normalizedQuery)
+        );
+
+        if (matchingNetworks.length) {
+          if (!map?.hasLayer(marker)) marker.addTo(map as L.Map);
+          marker.setRadius(Math.min(12, 5 + Math.sqrt(matchingNetworks.length)));
+          marker.bindPopup(createPopup({ ...point, networks: matchingNetworks }), { maxWidth: 360 });
+          visibleBounds.extend([point.lat, point.lng]);
+        } else if (map.hasLayer(marker)) {
+          map.removeLayer(marker);
+        }
+      });
+
+      if (fitMap && visibleBounds.isValid()) {
+        map.fitBounds(visibleBounds, { padding: [54, 54], maxZoom: 17 });
+      }
+    }
+
+    function renderNetworkList(data: WardrivingMapData, query = "", selected = selectedSecurityFilter(), fitMap = false) {
+      if (!networkList) return;
+      const messages = copy[language()];
+      const normalizedQuery = query.trim().toLowerCase();
+      const observations = data.markers.flatMap((point, pointIndex) =>
+        point.networks.map((network) => ({ point, pointIndex, network }))
+      );
+      const visible = observations.filter(({ point, network }) =>
+        matchesSecurity(network.auth, selected) && matchesSearch(point, network, normalizedQuery)
+      );
+
+      updateMapFilters(data, normalizedQuery, selected, fitMap);
+
+      networkList.replaceChildren();
+      visible.forEach(({ point, pointIndex, network }, index) => {
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "wardriving-network-card";
+        card.setAttribute("aria-label", `${network.ssid || messages.hiddenSsid}, ${messages.latitude} ${point.lat}, ${messages.longitude} ${point.lng}`);
+
+        const heading = document.createElement("span");
+        heading.className = "wardriving-network-card__heading";
+        const name = document.createElement("strong");
+        name.textContent = network.ssid || messages.hiddenSsid;
+        const sequence = document.createElement("i");
+        sequence.textContent = `#${index + 1}`;
+        heading.append(name, sequence);
+
+        const bssid = document.createElement("span");
+        bssid.className = "wardriving-network-card__bssid";
+        const bssidLabel = document.createElement("small");
+        bssidLabel.textContent = "BSSID";
+        const bssidValue = document.createElement("code");
+        bssidValue.textContent = network.bssid || "—";
+        bssid.append(bssidLabel, bssidValue);
+
+        const coordinates = document.createElement("span");
+        coordinates.className = "wardriving-network-card__coordinates";
+        [
+          [messages.latitude, point.lat.toFixed(6)],
+          [messages.longitude, point.lng.toFixed(6)],
+        ].forEach(([label, value]) => {
+          const item = document.createElement("span");
+          const itemLabel = document.createElement("small");
+          const itemValue = document.createElement("b");
+          itemLabel.textContent = label;
+          itemValue.textContent = value;
+          item.append(itemLabel, itemValue);
+          coordinates.append(item);
+        });
+
+        const source = document.createElement("span");
+        source.className = "wardriving-network-card__source";
+        const sourceLabel = document.createElement("small");
+        sourceLabel.textContent = messages.source;
+        const sourceValue = document.createElement("b");
+        sourceValue.textContent = network.sourceFile;
+        source.append(sourceLabel, sourceValue);
+
+        const details = document.createElement("span");
+        details.className = "wardriving-network-card__details";
+        [
+          ["RSSI", `${network.rssi || "—"} dBm`],
+          [messages.channel, network.channel || "—"],
+          [messages.security, network.auth || "—"],
+        ].forEach(([label, value]) => {
+          const item = document.createElement("span");
+          const itemLabel = document.createElement("small");
+          const itemValue = document.createElement("b");
+          itemLabel.textContent = label;
+          itemValue.textContent = value;
+          item.append(itemLabel, itemValue);
+          details.append(item);
+        });
+
+        card.append(heading, bssid, coordinates, source, details);
+        card.addEventListener("click", () => {
+          networkList.querySelectorAll(".wardriving-network-card").forEach((item) => item.removeAttribute("aria-current"));
+          card.setAttribute("aria-current", "true");
+          if (map) {
+            map.setView([point.lat, point.lng], Math.max(map.getZoom(), 17), { animate: true });
+            markerLayers[pointIndex]?.openPopup();
+          }
+        });
+        networkList.append(card);
+      });
+
+      if (networkCount) networkCount.textContent = messages.observations(visible.length, observations.length);
+      if (networkEmpty) networkEmpty.hidden = visible.length > 0;
+      if (networkSearch) networkSearch.placeholder = messages.searchPlaceholder;
+    }
+
+    function renderResults(data: WardrivingMapData) {
+      currentData = data;
+      const resultName = data.fileNames.length === 1
+        ? data.fileName
+        : language() === "en"
+          ? `${data.fileNames.length} combined files`
+          : `${data.fileNames.length} archivos combinados`;
+      if (fileNameElement) fileNameElement.textContent = resultName;
+      Object.entries(data.stats).forEach(([key, value]) => {
+        const target = root.querySelector<HTMLElement>(`[data-stat="${key}"]`);
+        if (target) target.textContent = new Intl.NumberFormat(language()).format(value);
+      });
+      if (results) results.hidden = false;
+      renderMap(data);
+      renderNetworkList(data, networkSearch?.value ?? "");
+      results?.scrollIntoView({ behavior: "smooth", block: "start" });
+      updateStatus("ready", resultName);
+    }
+
+    async function processFiles(files: File[]) {
+      if (!files.length) return;
+      if (files.some((file) => !file.name.toLowerCase().endsWith(".csv"))) {
+        updateStatus("error", copy[language()].invalidType);
+        return;
+      }
+      const oversized = files.find((file) => file.size > MAX_FILE_SIZE);
+      if (oversized) {
+        updateStatus("error", `${oversized.name}: ${copy[language()].tooLarge}`);
+        return;
+      }
+      if (files.reduce((total, file) => total + file.size, 0) > MAX_TOTAL_SIZE) {
+        updateStatus("error", copy[language()].totalTooLarge);
+        return;
+      }
+
+      updateStatus("reading");
+      try {
+        const parsed = await Promise.all(files.map(async (file) => {
+          try {
+            const text = decodeWardrivingFile(await file.arrayBuffer());
+            return parseWardrivingCsv(text, file.name);
+          } catch (error) {
+            const message = error instanceof Error ? error.message : String(error);
+            throw new Error(`${file.name}: ${message}`);
+          }
+        }));
+        renderResults(mergeWardrivingMaps(currentData ? [currentData, ...parsed] : parsed));
+        if (input) input.value = "";
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        updateStatus("error", copy[language()].error(message));
+      }
+    }
+
+    input?.addEventListener("change", () => {
+      const files = [...(input.files ?? [])];
+      if (files.length) void processFiles(files);
+    });
+
+    addFilesButton?.addEventListener("click", () => input?.click());
+
+    ["dragenter", "dragover"].forEach((eventName) => {
+      dropzone?.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        dropzone.classList.add("is-dragging");
+      });
+    });
+    ["dragleave", "drop"].forEach((eventName) => {
+      dropzone?.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        dropzone.classList.remove("is-dragging");
+      });
+    });
+    dropzone?.addEventListener("drop", (event) => {
+      const files = [...(event.dataTransfer?.files ?? [])];
+      if (files.length) void processFiles(files);
+    });
+
+    clearButton?.addEventListener("click", () => {
+      currentData = null;
+      map?.remove();
+      map = null;
+      if (mapElement) mapElement.replaceChildren();
+      if (results) results.hidden = true;
+      if (input) input.value = "";
+      if (networkSearch) networkSearch.value = "";
+      if (securityFilter) securityFilter.value = "all";
+      networkList?.replaceChildren();
+      updateStatus("idle");
+      dropzone?.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    downloadButton?.addEventListener("click", () => {
+      if (!currentData) return;
+      const blob = new Blob([buildStandaloneWardrivingHtml(currentData)], { type: "text/html;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = currentData.fileNames.length > 1
+        ? `WARD_DRIVE_${currentData.fileNames.length}_ARCHIVOS_MAP.html`
+        : `${currentData.fileName.replace(/\.csv$/i, "") || "WARD_DRIVE"}_MAP.html`;
+      link.click();
+      URL.revokeObjectURL(url);
+    });
+
+    networkSearch?.addEventListener("input", () => {
+      if (currentData) renderNetworkList(currentData, networkSearch.value, selectedSecurityFilter());
+    });
+
+    securityFilter?.addEventListener("change", () => {
+      if (currentData) renderNetworkList(currentData, networkSearch?.value ?? "", selectedSecurityFilter(), true);
+    });
+
+    resetFiltersButton?.addEventListener("click", () => {
+      if (networkSearch) networkSearch.value = "";
+      if (securityFilter) securityFilter.value = "all";
+      if (currentData) renderNetworkList(currentData, "", "all", true);
+    });
+
+    basemapSelect?.addEventListener("change", applyBasemap);
+
+    document.addEventListener("site-language-change", () => {
+      updateStatus(currentStatus.state, currentStatus.detail);
+      if (currentData) renderResults(currentData);
+    });
+  }
+</script>
+
+<style>
+  .wardriving-tool {
+    display: grid;
+    gap: 28px;
+  }
+
+  .wardriving-upload,
+  .wardriving-results {
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: linear-gradient(145deg, color-mix(in srgb, var(--panel) 96%, var(--green) 4%), var(--panel));
+    box-shadow: var(--shadow);
+  }
+
+  .wardriving-upload {
+    display: grid;
+    grid-template-columns: minmax(240px, 0.78fr) minmax(340px, 1.22fr);
+    gap: 26px;
+    width: 100%;
+    max-width: 1120px;
+    margin-inline: auto;
+    padding: clamp(22px, 4vw, 38px);
+  }
+
+  .wardriving-upload__copy {
+    align-self: center;
+  }
+
+  .wardriving-upload__badge,
+  .wardriving-results__eyebrow {
+    color: var(--pink);
+    font: 800 0.72rem/1.2 Consolas, monospace;
+    letter-spacing: 0.1em;
+  }
+
+  .wardriving-upload h2,
+  .wardriving-results h2 {
+    margin: 8px 0 10px;
+    font-size: clamp(1.45rem, 3vw, 2.15rem);
+  }
+
+  .wardriving-upload__copy p,
+  .wardriving-results__notice {
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .wardriving-dropzone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 230px;
+    padding: 26px;
+    border: 1px dashed color-mix(in srgb, var(--green) 65%, var(--line));
+    border-radius: 19px;
+    background: color-mix(in srgb, var(--bg) 78%, var(--green) 4%);
+    color: var(--text);
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+  }
+
+  .wardriving-dropzone:hover,
+  .wardriving-dropzone:focus-within,
+  .wardriving-dropzone.is-dragging {
+    border-color: var(--green);
+    background: color-mix(in srgb, var(--bg) 70%, var(--green) 10%);
+    transform: translateY(-2px);
+  }
+
+  .wardriving-dropzone input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .wardriving-dropzone__icon {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 14px;
+    border: 1px solid color-mix(in srgb, var(--green) 70%, transparent);
+    border-radius: 18px;
+    color: var(--green);
+    background: color-mix(in srgb, var(--green) 10%, transparent);
+  }
+
+  .wardriving-dropzone strong {
+    font-size: 1.05rem;
+  }
+
+  .wardriving-dropzone > span:not(.wardriving-dropzone__icon),
+  .wardriving-dropzone small {
+    margin-top: 5px;
+    color: var(--muted);
+  }
+
+  .wardriving-dropzone small {
+    font: 700 0.7rem/1.4 Consolas, monospace;
+  }
+
+  .wardriving-columns {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    grid-column: 1 / -1;
+  }
+
+  .wardriving-columns::before {
+    content: "CSV:";
+    color: var(--muted);
+    font: 700 0.72rem/1 Consolas, monospace;
+  }
+
+  .wardriving-columns span {
+    padding: 5px 8px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--green);
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    font: 700 0.69rem/1 Consolas, monospace;
+  }
+
+  .wardriving-status {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 12px 14px;
+    border-left: 3px solid var(--green);
+    border-radius: 8px;
+    color: var(--muted);
+    background: color-mix(in srgb, var(--bg) 84%, transparent);
+    font-size: 0.88rem;
+  }
+
+  .wardriving-status[data-state="ready"] {
+    border-color: #29ef9f;
+    color: #71f5bd;
+  }
+
+  .wardriving-status[data-state="error"] {
+    border-color: #ff547d;
+    color: #ff8ca6;
+  }
+
+  .wardriving-results {
+    padding: clamp(18px, 3vw, 30px);
+  }
+
+  .wardriving-results[hidden] {
+    display: none;
+  }
+
+  .wardriving-results__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 20px;
+  }
+
+  .wardriving-results__header h2 {
+    margin-bottom: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .wardriving-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .wardriving-stats {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .wardriving-stats article {
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+  }
+
+  .wardriving-stats span,
+  .wardriving-stats strong {
+    display: block;
+  }
+
+  .wardriving-stats span {
+    color: var(--muted);
+    font-size: 0.72rem;
+  }
+
+  .wardriving-stats strong {
+    margin-top: 4px;
+    color: var(--pink);
+    font-size: 1.45rem;
+  }
+
+  .wardriving-explorer {
+    --wardriving-visual-height: clamp(580px, 38vw, 720px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 420px);
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  .wardriving-map-shell {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--green) 42%, var(--line));
+    border-radius: 17px;
+    background: #09101e;
+  }
+
+  .wardriving-map {
+    width: 100%;
+    height: var(--wardriving-visual-height);
+  }
+
+  .wardriving-basemap-control {
+    position: absolute;
+    z-index: 700;
+    top: 12px;
+    right: 12px;
+    display: grid;
+    gap: 4px;
+    min-width: 150px;
+    padding: 9px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 11px;
+    color: #f5f7ff;
+    background: rgba(7, 12, 27, 0.9);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(9px);
+  }
+
+  .wardriving-basemap-control span {
+    font: 700 0.59rem/1 Consolas, monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .wardriving-basemap-control select {
+    width: 100%;
+    padding: 6px 26px 6px 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 7px;
+    outline: none;
+    color: #f5f7ff;
+    background: #151b2c;
+    font: 700 0.72rem/1.2 Consolas, monospace;
+    cursor: pointer;
+  }
+
+  .wardriving-basemap-control select:focus {
+    border-color: #29ef9f;
+    box-shadow: 0 0 0 2px rgba(41, 239, 159, 0.18);
+  }
+
+  .wardriving-networks {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: var(--wardriving-visual-height);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 17px;
+    background: color-mix(in srgb, var(--bg) 80%, var(--panel));
+  }
+
+  .wardriving-networks__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 17px 17px 12px;
+  }
+
+  .wardriving-networks__header span {
+    color: var(--pink);
+    font: 800 0.64rem/1.2 Consolas, monospace;
+    letter-spacing: 0.09em;
+  }
+
+  .wardriving-networks__header h3 {
+    margin: 4px 0 0;
+    font-size: 1.05rem;
+  }
+
+  .wardriving-networks__header > strong {
+    flex: 0 0 auto;
+    max-width: 145px;
+    padding: 6px 9px;
+    border: 1px solid color-mix(in srgb, var(--green) 45%, var(--line));
+    border-radius: 999px;
+    color: var(--green);
+    font: 700 0.68rem/1.2 Consolas, monospace;
+    text-align: center;
+  }
+
+  .wardriving-network-search {
+    position: relative;
+    display: block;
+    margin: 0 13px 10px;
+  }
+
+  .wardriving-network-search svg {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    color: var(--muted);
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+
+  .wardriving-network-search input {
+    width: 100%;
+    padding: 10px 12px 10px 38px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    outline: none;
+    color: var(--text);
+    background: color-mix(in srgb, var(--panel) 80%, var(--bg));
+  }
+
+  .wardriving-network-search input:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--green) 15%, transparent);
+  }
+
+  .wardriving-network-filters {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 8px;
+    margin: 0 13px 12px;
+    padding: 10px;
+    border: 1px solid color-mix(in srgb, var(--line) 78%, transparent);
+    border-radius: 11px;
+    background: color-mix(in srgb, var(--panel) 72%, var(--bg));
+  }
+
+  .wardriving-network-filters label {
+    display: grid;
+    gap: 5px;
+    min-width: 0;
+  }
+
+  .wardriving-network-filters label > span {
+    color: var(--muted);
+    font: 700 0.61rem/1 Consolas, monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .wardriving-network-filters select,
+  .wardriving-network-filters button {
+    min-height: 36px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    outline: none;
+    color: var(--text);
+    background: color-mix(in srgb, var(--bg) 82%, var(--panel));
+    font: 700 0.7rem/1.2 Consolas, monospace;
+  }
+
+  .wardriving-network-filters select {
+    width: 100%;
+    padding: 7px 30px 7px 9px;
+    cursor: pointer;
+  }
+
+  .wardriving-network-filters button {
+    padding: 7px 10px;
+    color: var(--pink);
+    cursor: pointer;
+    transition: border-color 150ms ease, background 150ms ease;
+  }
+
+  .wardriving-network-filters select:focus,
+  .wardriving-network-filters button:hover,
+  .wardriving-network-filters button:focus-visible {
+    border-color: var(--green);
+    background: color-mix(in srgb, var(--bg) 72%, var(--green) 7%);
+  }
+
+  .wardriving-network-list {
+    display: grid;
+    gap: 9px;
+    flex: 1;
+    min-height: 0;
+    padding: 2px 10px 12px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    align-content: start;
+    scrollbar-color: color-mix(in srgb, var(--pink) 45%, var(--line)) transparent;
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card) {
+    display: grid;
+    gap: 9px;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding: 13px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    color: var(--text);
+    background: color-mix(in srgb, var(--panel) 88%, var(--bg));
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 150ms ease, background 150ms ease, transform 150ms ease;
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card:hover),
+  .wardriving-network-list :global(.wardriving-network-card:focus-visible),
+  .wardriving-network-list :global(.wardriving-network-card[aria-current="true"]) {
+    border-color: color-mix(in srgb, var(--green) 70%, var(--line));
+    background: color-mix(in srgb, var(--panel) 86%, var(--green) 7%);
+    outline: none;
+    transform: translateY(-1px);
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card__heading) {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card__heading strong) {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: var(--pink);
+    font-size: 0.92rem;
+    line-height: 1.3;
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card__heading i) {
+    flex: 0 0 auto;
+    padding: 3px 6px;
+    border-radius: 999px;
+    color: var(--green);
+    background: color-mix(in srgb, var(--green) 10%, transparent);
+    font: 700 0.66rem/1.2 Consolas, monospace;
+    font-style: normal;
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card__bssid) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    padding: 7px 9px;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--bg) 76%, transparent);
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card__bssid small) {
+    flex: 0 0 auto;
+    color: var(--muted);
+    font: 700 0.58rem/1 Consolas, monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card__bssid code) {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: var(--text);
+    font: 0.69rem/1.3 Consolas, monospace;
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card__coordinates) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card__coordinates > span),
+  .wardriving-network-list :global(.wardriving-network-card__details > span) {
+    min-width: 0;
+    padding: 7px 8px;
+    border-radius: 7px;
+    background: color-mix(in srgb, var(--bg) 76%, transparent);
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card__coordinates small),
+  .wardriving-network-list :global(.wardriving-network-card__coordinates b),
+  .wardriving-network-list :global(.wardriving-network-card__source small),
+  .wardriving-network-list :global(.wardriving-network-card__source b),
+  .wardriving-network-list :global(.wardriving-network-card__details small),
+  .wardriving-network-list :global(.wardriving-network-card__details b) {
+    display: block;
+    overflow-wrap: anywhere;
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card__coordinates small),
+  .wardriving-network-list :global(.wardriving-network-card__source small),
+  .wardriving-network-list :global(.wardriving-network-card__details small) {
+    color: var(--muted);
+    font-size: 0.58rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card__coordinates b),
+  .wardriving-network-list :global(.wardriving-network-card__source b),
+  .wardriving-network-list :global(.wardriving-network-card__details b) {
+    margin-top: 3px;
+    font: 700 0.68rem/1.35 Consolas, monospace;
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card__coordinates b) {
+    color: var(--green);
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card__source) {
+    min-width: 0;
+    padding-top: 8px;
+    border-top: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card__source b) {
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .wardriving-network-list :global(.wardriving-network-card__details) {
+    display: grid;
+    grid-template-columns: 0.85fr 0.65fr 1.5fr;
+    gap: 6px;
+  }
+
+  .wardriving-network-empty {
+    margin: auto 18px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .wardriving-network-empty[hidden] {
+    display: none;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .wardriving-legend {
+    position: absolute;
+    z-index: 500;
+    right: 14px;
+    bottom: 22px;
+    display: flex;
+    gap: 12px;
+    padding: 9px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    background: rgba(7, 12, 27, 0.9);
+    color: #f5f7ff;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+  }
+
+  .wardriving-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .wardriving-legend i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #ff70c7;
+  }
+
+  .wardriving-legend .is-start { background: #29ef9f; }
+  .wardriving-legend .is-end { background: #ff547d; }
+  .wardriving-legend b { font-size: 0.68rem; }
+
+  .wardriving-results__notice {
+    margin: 16px 2px 0;
+    font-size: 0.82rem;
+  }
+
+  .wardriving-tool :global(.leaflet-container) {
+    font-family: Inter, "Segoe UI", sans-serif;
+  }
+
+  .wardriving-tool :global(.wardriving-popup) {
+    max-height: 320px;
+    min-width: 230px;
+    overflow-y: auto;
+  }
+
+  .wardriving-tool :global(.wardriving-popup h3) {
+    margin: 0 0 8px;
+    color: #18223a;
+  }
+
+  .wardriving-tool :global(.wardriving-popup__network) {
+    padding: 8px 0;
+    border-top: 1px solid #d8ddea;
+  }
+
+  .wardriving-tool :global(.wardriving-popup__network strong),
+  .wardriving-tool :global(.wardriving-popup__network span) {
+    display: block;
+    overflow-wrap: anywhere;
+  }
+
+  .wardriving-tool :global(.wardriving-popup__network span) {
+    margin-top: 2px;
+    color: #46516a;
+    font-size: 0.72rem;
+  }
+
+  @media (max-width: 1050px) {
+    .wardriving-explorer {
+      --wardriving-visual-height: clamp(520px, 64vw, 620px);
+      grid-template-columns: 1fr;
+    }
+
+    .wardriving-networks {
+      height: min(520px, 72vh);
+    }
+  }
+
+  @media (max-width: 820px) {
+    .wardriving-upload {
+      grid-template-columns: 1fr;
+    }
+
+    .wardriving-stats {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 620px) {
+    .wardriving-upload {
+      padding: 18px;
+    }
+
+    .wardriving-dropzone {
+      min-height: 205px;
+      padding: 20px 14px;
+    }
+
+    .wardriving-results__header {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .wardriving-actions {
+      justify-content: stretch;
+      width: 100%;
+    }
+
+    .wardriving-actions .button {
+      flex: 1 1 180px;
+    }
+
+    .wardriving-stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .wardriving-explorer {
+      --wardriving-visual-height: clamp(420px, 112vw, 500px);
+    }
+
+    .wardriving-legend {
+      right: 8px;
+      bottom: 20px;
+      gap: 8px;
+      padding: 8px 9px;
+    }
+  }
+</style>
