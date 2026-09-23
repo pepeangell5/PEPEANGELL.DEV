@@ -25,8 +25,9 @@ import "leaflet/dist/leaflet.css";
       <small>CSV · UTF-8 / Windows-1252 · 25 MB por archivo · 100 MB en total</small>
     </label>
 
-    <div class="wardriving-columns" aria-label="Columnas requeridas">
-      <span>Lat</span><span>Lng</span><span>SSID</span><span>BSSID</span><span>RSSI</span><span>Channel</span><span>Auth</span>
+    <div class="wardriving-columns" aria-label="Columnas compatibles">
+      <span>UTC</span><span>Millis</span><span>Lat</span><span>Lng</span><span>Sat</span><span>HDOP</span>
+      <span>SSID</span><span>BSSID</span><span>RSSI</span><span>Channel</span><span>Auth</span>
     </div>
 
     <p class="wardriving-status" role="status" aria-live="polite" data-status data-state="idle" data-no-translate>
@@ -54,12 +55,17 @@ import "leaflet/dist/leaflet.css";
     </div>
 
     <div class="wardriving-stats" aria-label="Resumen del archivo">
-      <article><span data-translate-en="Files">Archivos</span><strong data-stat="files">0</strong></article>
-      <article><span data-translate-en="Records">Registros</span><strong data-stat="records">0</strong></article>
-      <article><span data-translate-en="GPS points">Puntos GPS</span><strong data-stat="gps">0</strong></article>
-      <article><span data-translate-en="Unique APs">AP únicos</span><strong data-stat="aps">0</strong></article>
-      <article><span data-translate-en="Open APs">AP abiertos</span><strong data-stat="open">0</strong></article>
-      <article><span data-translate-en="No location">Sin ubicación</span><strong data-stat="discarded">0</strong></article>
+      <article title="Cantidad de archivos CSV combinados"><span data-translate-en="Files">Archivos</span><strong data-stat="files">0</strong></article>
+      <article title="Todas las filas de datos, sin contar encabezados ni líneas vacías"><span data-translate-en="Total records">Registros totales</span><strong data-stat="records">0</strong></article>
+      <article title="Suma de la duración individual de cada archivo según UTC"><span data-translate-en="Duration">Duración</span><strong data-stat="duration">—</strong></article>
+      <article title="Distancia Haversine de la trayectoria GPS, calculada por archivo"><span data-translate-en="Recorded route">Ruta registrada</span><strong data-stat="route">0.00 km</strong></article>
+      <article title="Filas GPS sin datos Wi-Fi; no se deduplican"><span data-translate-en="Track points">Puntos de trayectoria</span><strong data-stat="trackPoints">0</strong></article>
+      <article title="Filas con BSSID y coordenadas válidas"><span data-translate-en="Wi-Fi observations">Observaciones Wi-Fi</span><strong data-stat="wifiObservations">0</strong></article>
+      <article title="BSSID distintos, normalizados sin distinguir mayúsculas"><span data-translate-en="Unique BSSIDs">BSSID únicos</span><strong data-stat="bssids">0</strong></article>
+      <article title="BSSID únicos cuya seguridad es OPEN, NONE o 0"><span data-translate-en="Unique open APs">AP abiertos únicos</span><strong data-stat="open">0</strong></article>
+      <article title="Grupos de observaciones con el mismo Millis dentro de cada archivo"><span data-translate-en="Scans with results">Escaneos con resultados</span><strong data-stat="scans">0</strong></article>
+      <article title="Media de diferencias positivas entre escaneos consecutivos de cada archivo"><span data-translate-en="Average scan interval">Intervalo medio entre escaneos</span><strong data-stat="scanInterval">—</strong></article>
+      <article title="Filas cuyas coordenadas faltan, son inválidas o son 0,0"><span data-translate-en="No location">Sin ubicación</span><strong data-stat="discarded">0</strong></article>
     </div>
 
     <div class="wardriving-explorer">
@@ -132,6 +138,7 @@ import "leaflet/dist/leaflet.css";
   import {
     buildStandaloneWardrivingHtml,
     decodeWardrivingFile,
+    formatDuration,
     mergeWardrivingMaps,
     parseWardrivingCsv,
     type WardrivingMapData,
@@ -265,6 +272,11 @@ import "leaflet/dist/leaflet.css";
       return row;
     }
 
+    function displaySsid(ssid: string, hiddenLabel: string) {
+      const normalized = ssid.trim().toLowerCase();
+      return !normalized || normalized === "<hidden>" ? hiddenLabel : ssid;
+    }
+
     function createPopup(point: WardrivingMarker) {
       const messages = copy[language()];
       const popup = document.createElement("div");
@@ -279,7 +291,7 @@ import "leaflet/dist/leaflet.css";
         const card = document.createElement("div");
         card.className = "wardriving-popup__network";
         const name = document.createElement("strong");
-        name.textContent = network.ssid || messages.hiddenSsid;
+        name.textContent = displaySsid(network.ssid, messages.hiddenSsid);
         card.append(
           name,
           createTextRow("BSSID", network.bssid),
@@ -304,8 +316,6 @@ import "leaflet/dist/leaflet.css";
 
       const routeColors = ["#28d7ec", "#ff70c7", "#29ef9f", "#ffb454", "#a98bff", "#5aa9ff"];
       const bounds = L.latLngBounds([]);
-      const starts = new Set(data.routes.map((route) => route[0]).filter(Boolean).map((point) => point.join("|")));
-      const ends = new Set(data.routes.map((route) => route.at(-1)).filter(Boolean).map((point) => point.join("|")));
 
       data.routes.forEach((route, index) => {
         if (!route.length) return;
@@ -318,17 +328,26 @@ import "leaflet/dist/leaflet.css";
         route.forEach((point) => bounds.extend(point));
       });
 
-      data.markers.forEach((point, index) => {
-        const positionKey = `${point.lat}|${point.lng}`;
+      data.markers.forEach((point) => {
         const marker = L.circleMarker([point.lat, point.lng], {
           radius: Math.min(12, 5 + Math.sqrt(point.networks.length)),
-          color: starts.has(positionKey) ? "#29ef9f" : "#101426",
+          color: "#101426",
           weight: 2,
-          fillColor: ends.has(positionKey) ? "#ff547d" : "#ff70c7",
+          fillColor: "#ff70c7",
           fillOpacity: 0.95,
         }).bindPopup(createPopup(point), { maxWidth: 360 }).addTo(map as L.Map);
         markerLayers.push(marker);
         bounds.extend([point.lat, point.lng]);
+      });
+
+      data.routes.forEach((route) => {
+        if (!route.length) return;
+        L.circleMarker(route[0], {
+          radius: 7, color: "#0c1724", weight: 2, fillColor: "#29ef9f", fillOpacity: 1, interactive: false,
+        }).addTo(map as L.Map);
+        L.circleMarker(route[route.length - 1], {
+          radius: 7, color: "#0c1724", weight: 2, fillColor: "#ff547d", fillOpacity: 1, interactive: false,
+        }).addTo(map as L.Map);
       });
 
       if (bounds.isValid()) map.fitBounds(bounds, { padding: [42, 42] });
@@ -409,12 +428,12 @@ import "leaflet/dist/leaflet.css";
         const card = document.createElement("button");
         card.type = "button";
         card.className = "wardriving-network-card";
-        card.setAttribute("aria-label", `${network.ssid || messages.hiddenSsid}, ${messages.latitude} ${point.lat}, ${messages.longitude} ${point.lng}`);
+        card.setAttribute("aria-label", `${displaySsid(network.ssid, messages.hiddenSsid)}, ${messages.latitude} ${point.lat}, ${messages.longitude} ${point.lng}`);
 
         const heading = document.createElement("span");
         heading.className = "wardriving-network-card__heading";
         const name = document.createElement("strong");
-        name.textContent = network.ssid || messages.hiddenSsid;
+        name.textContent = displaySsid(network.ssid, messages.hiddenSsid);
         const sequence = document.createElement("i");
         sequence.textContent = `#${index + 1}`;
         heading.append(name, sequence);
@@ -491,9 +510,23 @@ import "leaflet/dist/leaflet.css";
           ? `${data.fileNames.length} combined files`
           : `${data.fileNames.length} archivos combinados`;
       if (fileNameElement) fileNameElement.textContent = resultName;
-      Object.entries(data.stats).forEach(([key, value]) => {
+      const number = new Intl.NumberFormat("es-MX");
+      const statValues: Record<string, string> = {
+        files: number.format(data.stats.files),
+        records: number.format(data.stats.records),
+        duration: formatDuration(data.stats.durationMs),
+        route: `${data.stats.routeKm.toFixed(2)} km`,
+        trackPoints: number.format(data.stats.trackPoints),
+        wifiObservations: number.format(data.stats.wifiObservations),
+        bssids: number.format(data.stats.bssids),
+        open: number.format(data.stats.open),
+        scans: number.format(data.stats.scans),
+        scanInterval: data.stats.scanIntervalMs === null ? "—" : `${(data.stats.scanIntervalMs / 1000).toFixed(3)} s`,
+        discarded: number.format(data.stats.discarded),
+      };
+      Object.entries(statValues).forEach(([key, value]) => {
         const target = root.querySelector<HTMLElement>(`[data-stat="${key}"]`);
-        if (target) target.textContent = new Intl.NumberFormat(language()).format(value);
+        if (target) target.textContent = value;
       });
       if (results) results.hidden = false;
       renderMap(data);
@@ -523,7 +556,8 @@ import "leaflet/dist/leaflet.css";
         const parsed = await Promise.all(files.map(async (file) => {
           try {
             const text = decodeWardrivingFile(await file.arrayBuffer());
-            return parseWardrivingCsv(text, file.name);
+            const sourceId = `${file.name}:${file.lastModified}:${file.size}:${crypto.randomUUID()}`;
+            return parseWardrivingCsv(text, file.name, sourceId);
           } catch (error) {
             const message = error instanceof Error ? error.message : String(error);
             throw new Error(`${file.name}: ${message}`);
@@ -764,6 +798,7 @@ import "leaflet/dist/leaflet.css";
 
   .wardriving-results {
     padding: clamp(18px, 3vw, 30px);
+    scroll-margin-top: 76px;
   }
 
   .wardriving-results[hidden] {
@@ -798,10 +833,18 @@ import "leaflet/dist/leaflet.css";
   }
 
   .wardriving-stats article {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 88px;
     padding: 14px;
     border: 1px solid var(--line);
     border-radius: 13px;
     background: color-mix(in srgb, var(--bg) 80%, transparent);
+  }
+
+  .wardriving-stats article[title] {
+    cursor: help;
   }
 
   .wardriving-stats span,
@@ -812,12 +855,14 @@ import "leaflet/dist/leaflet.css";
   .wardriving-stats span {
     color: var(--muted);
     font-size: 0.72rem;
+    line-height: 1.35;
   }
 
   .wardriving-stats strong {
     margin-top: 4px;
     color: var(--pink);
-    font-size: 1.45rem;
+    font-size: clamp(1.05rem, 1.5vw, 1.4rem);
+    line-height: 1.15;
   }
 
   .wardriving-explorer {
@@ -1307,6 +1352,12 @@ import "leaflet/dist/leaflet.css";
       bottom: 20px;
       gap: 8px;
       padding: 8px 9px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .wardriving-stats {
+      grid-template-columns: 1fr;
     }
   }
 </style>
