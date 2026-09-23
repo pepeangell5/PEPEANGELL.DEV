@@ -295,6 +295,34 @@
     ]
   },
   {
+    "name": "CYBERDECK MINI ESP32 V2",
+    "slug": "cyberdeck-mini-esp32-v2",
+    "status": "Web flasher",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32"
+    ],
+    "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2",
+    "full_name": "pepeangell5/CYBERDECK-MINI-ESP32-V2",
+    "default_branch": "main",
+    "web_flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32-V2/",
+    "binarios_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2/tree/main/archivos%20bin",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#cyberdeck-mini-esp32-v2",
+    "web_flasher_binaries": [
+      {
+        "label": "CYBERDECK-MINI-ESP32-V2-firmware-merged.bin",
+        "path": "archivos%20bin/CYBERDECK-MINI-ESP32-V2-firmware-merged.bin",
+        "url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32-V2/archivos%20bin/CYBERDECK-MINI-ESP32-V2-firmware-merged.bin",
+        "offset": 0,
+        "chip_family": "ESP32-S3"
+      }
+    ]
+  },
+  {
     "name": "RF KILL",
     "slug": "rf-kill",
     "status": "Web flasher",
@@ -383,34 +411,6 @@
         "url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V3/assets/Firmware/firmware-merged.bin",
         "offset": 0,
         "chip_family": "ESP32"
-      }
-    ]
-  },
-  {
-    "name": "CYBERDECK MINI ESP32 V2",
-    "slug": "cyberdeck-mini-esp32-v2",
-    "status": "Web flasher",
-    "board": "ESP32 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP32"
-    ],
-    "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2",
-    "full_name": "pepeangell5/CYBERDECK-MINI-ESP32-V2",
-    "default_branch": "main",
-    "web_flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32-V2/",
-    "binarios_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2/tree/main/archivos%20bin",
-    "release_tag": "",
-    "release_assets": [],
-    "zip_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2/archive/refs/heads/main.zip",
-    "readme_url": "/firmware/#cyberdeck-mini-esp32-v2",
-    "web_flasher_binaries": [
-      {
-        "label": "CYBERDECK-MINI-ESP32-V2-firmware-merged.bin",
-        "path": "archivos%20bin/CYBERDECK-MINI-ESP32-V2-firmware-merged.bin",
-        "url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32-V2/archivos%20bin/CYBERDECK-MINI-ESP32-V2-firmware-merged.bin",
-        "offset": 0,
-        "chip_family": "ESP32-S3"
       }
     ]
   },
