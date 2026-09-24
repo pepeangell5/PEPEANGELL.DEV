@@ -429,7 +429,7 @@
         "name": "firmware_unificado.bin",
         "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/firmware_unificado.bin",
         "size": 323136,
-        "download_count": 4
+        "download_count": 5
       },
       {
         "name": "partitions.bin",
