@@ -128,7 +128,7 @@
         "name": "BWifiKill-ESP32-V4.0-full.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/releases/download/bwifikill/BWifiKill-ESP32-V4.0-full.bin",
         "size": 1845200,
-        "download_count": 175
+        "download_count": 176
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/archive/refs/heads/main.zip",
@@ -170,19 +170,19 @@
         "name": "bootloader.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/bootloader.bin",
         "size": 17536,
-        "download_count": 112
+        "download_count": 113
       },
       {
         "name": "firmware-merged.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware-merged.bin",
         "size": 2155568,
-        "download_count": 108
+        "download_count": 109
       },
       {
         "name": "firmware.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware.bin",
         "size": 2090032,
-        "download_count": 59
+        "download_count": 61
       },
       {
         "name": "partitions.bin",
