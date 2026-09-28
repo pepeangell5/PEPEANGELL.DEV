@@ -128,7 +128,7 @@
         "name": "BWifiKill-ESP32-V4.0-full.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/releases/download/bwifikill/BWifiKill-ESP32-V4.0-full.bin",
         "size": 1845200,
-        "download_count": 176
+        "download_count": 177
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/archive/refs/heads/main.zip",
@@ -517,7 +517,7 @@
         "name": "BWifiKill-CARDPUTER-ADV-full.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/BWifiKill-CARDPUTER-ADV-full.bin",
         "size": 1773616,
-        "download_count": 14
+        "download_count": 16
       },
       {
         "name": "checksums-sha256.txt",
@@ -529,7 +529,7 @@
         "name": "firmware.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/firmware.bin",
         "size": 1708080,
-        "download_count": 3
+        "download_count": 4
       },
       {
         "name": "partitions.bin",
