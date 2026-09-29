@@ -616,6 +616,26 @@
     ]
   },
   {
+    "name": "FINANZAS PEPEANGELL",
+    "slug": "finanzas-pepeangell",
+    "status": "Repositorio",
+    "board": "Hardware compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "Proyecto"
+    ],
+    "github_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL",
+    "full_name": "pepeangell5/FINANZAS-PEPEANGELL",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#finanzas-pepeangell",
+    "web_flasher_binaries": []
+  },
+  {
     "name": "ESP32 PC MONITOR",
     "slug": "esp32-pc-monitor",
     "status": "Repositorio",
@@ -702,26 +722,6 @@
     "release_assets": [],
     "zip_url": "https://github.com/pepeangell5/ESP8266-DEAUTHER/archive/refs/heads/main.zip",
     "readme_url": "/firmware/#esp8266-deauther",
-    "web_flasher_binaries": []
-  },
-  {
-    "name": "FINANZAS PEPEANGELL",
-    "slug": "finanzas-pepeangell",
-    "status": "Repositorio",
-    "board": "Hardware compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "Proyecto"
-    ],
-    "github_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL",
-    "full_name": "pepeangell5/FINANZAS-PEPEANGELL",
-    "default_branch": "main",
-    "web_flasher_url": "",
-    "binarios_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL/search?q=extension%3Abin&type=code",
-    "release_tag": "",
-    "release_assets": [],
-    "zip_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL/archive/refs/heads/main.zip",
-    "readme_url": "/firmware/#finanzas-pepeangell",
     "web_flasher_binaries": []
   },
   {

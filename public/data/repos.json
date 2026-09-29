@@ -120,6 +120,21 @@
     "fork": false
   },
   {
+    "name": "FINANZAS-PEPEANGELL",
+    "full_name": "pepeangell5/FINANZAS-PEPEANGELL",
+    "description": "FINANZAS-PEPEANGELL",
+    "html_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL",
+    "homepage": "https://finanzas-pepeangell.vercel.app",
+    "default_branch": "main",
+    "language": "TypeScript",
+    "stargazers_count": 1,
+    "forks_count": 0,
+    "updated_at": "2026-09-29T22:20:17Z",
+    "topics": [],
+    "archived": false,
+    "fork": false
+  },
+  {
     "name": "PEPEANGELL.DEV",
     "full_name": "pepeangell5/PEPEANGELL.DEV",
     "description": null,
@@ -129,7 +144,7 @@
     "language": "TypeScript",
     "stargazers_count": 4,
     "forks_count": 0,
-    "updated_at": "2026-09-29T05:53:10Z",
+    "updated_at": "2026-09-29T13:07:25Z",
     "topics": [],
     "archived": false,
     "fork": false
@@ -280,21 +295,6 @@
     "stargazers_count": 2,
     "forks_count": 1,
     "updated_at": "2026-08-30T09:11:43Z",
-    "topics": [],
-    "archived": false,
-    "fork": false
-  },
-  {
-    "name": "FINANZAS-PEPEANGELL",
-    "full_name": "pepeangell5/FINANZAS-PEPEANGELL",
-    "description": "FINANZAS-PEPEANGELL",
-    "html_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL",
-    "homepage": "https://finanzas-pepeangell.vercel.app",
-    "default_branch": "main",
-    "language": "TypeScript",
-    "stargazers_count": 1,
-    "forks_count": 0,
-    "updated_at": "2026-08-30T08:08:29Z",
     "topics": [],
     "archived": false,
     "fork": false
