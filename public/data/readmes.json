@@ -1058,43 +1058,83 @@
     ]
   },
   {
-    "name": "FINANZAS-PEPEANGELL",
-    "full_name": "pepeangell5/FINANZAS-PEPEANGELL",
-    "description": "FINANZAS-PEPEANGELL",
-    "html_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL",
-    "readme_html_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL/blob/main/README.md",
-    "readme_download_url": "https://raw.githubusercontent.com/pepeangell5/FINANZAS-PEPEANGELL/main/README.md",
+    "name": "DRONE-FPV-ESP32C3-SUPERMINI",
+    "full_name": "pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI",
+    "description": "Creación de un dron casero con control de comunicación por protocolo ESP-NOW.",
+    "html_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI",
+    "readme_html_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI/blob/main/README.md",
+    "readme_download_url": "https://raw.githubusercontent.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI/main/README.md",
     "default_branch": "main",
-    "updated_at": "2026-09-29T22:27:54Z",
+    "updated_at": "2026-09-30T11:23:23Z",
     "topics": [],
-    "language": "TypeScript",
-    "markdown": "# ESP32-TOOLS Finanzas\n\nPanel personal de finanzas de PepeAngell. Es una aplicación Next.js independiente que se publica detrás de `https://www.pepeangell.dev/finanzas`.\n\n## Privacidad\n\n- No existe registro público.\n- El acceso usa Supabase Auth con correo y contraseña.\n- Todas las tablas financieras tienen RLS y aíslan los datos mediante `auth.uid()`.\n- Los datos viven en el esquema `finance` del proyecto `pepeangell-shop`, separados de las tablas de tienda en `public`.\n- Las páginas envían `noindex`, `nofollow` y `noarchive`.\n- La clave administrativa de Supabase solo se configura como variable privada del servidor.\n\nLa ruta puede ser descubierta; la protección real depende de Supabase Auth, las políticas RLS y una contraseña segura.\n\nSupabase Auth es compartido: cambiar la contraseña de este usuario desde Finanzas también cambia la del admin de tienda asociado al mismo correo.\n\n## Desarrollo local\n\n1. Instala dependencias con `npm ci`.\n2. Crea `.env.local` usando `.env.local.example`.\n3. Ejecuta `npm run dev`.\n4. Abre `http://localhost:3000/finanzas`.\n\n## Variables\n\n```text\nNEXT_PUBLIC_SUPABASE_URL=\nNEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=\nSUPABASE_SECRET_KEY=\nNEXT_PUBLIC_SITE_URL=http://localhost:3000/finanzas\n```\n\n`SUPABASE_SECRET_KEY` nunca debe incluirse en Git, mensajes o código del navegador.\n\n## Producción\n\nLa aplicación se despliega como un proyecto Vercel separado. `PEPEANGELL.DEV` utiliza un rewrite externo para servirla bajo `/finanzas` sin mezclar los runtimes de Astro y Next.js.\n",
-    "html": "<h1 id=\"esp32-tools-finanzas\">ESP32-TOOLS Finanzas</h1>\n<p>Panel personal de finanzas de PepeAngell. Es una aplicación Next.js independiente que se publica detrás de <code>https://www.pepeangell.dev/finanzas</code>.</p>\n<h2 id=\"privacidad\">Privacidad</h2>\n<ul>\n<li>No existe registro público.</li>\n<li>El acceso usa Supabase Auth con correo y contraseña.</li>\n<li>Todas las tablas financieras tienen RLS y aíslan los datos mediante <code>auth.uid()</code>.</li>\n<li>Los datos viven en el esquema <code>finance</code> del proyecto <code>pepeangell-shop</code>, separados de las tablas de tienda en <code>public</code>.</li>\n<li>Las páginas envían <code>noindex</code>, <code>nofollow</code> y <code>noarchive</code>.</li>\n<li>La clave administrativa de Supabase solo se configura como variable privada del servidor.</li>\n</ul>\n<p>La ruta puede ser descubierta; la protección real depende de Supabase Auth, las políticas RLS y una contraseña segura.</p>\n<p>Supabase Auth es compartido: cambiar la contraseña de este usuario desde Finanzas también cambia la del admin de tienda asociado al mismo correo.</p>\n<h2 id=\"desarrollo-local\">Desarrollo local</h2>\n<ol>\n<li>Instala dependencias con <code>npm ci</code>.</li>\n<li>Crea <code>.env.local</code> usando <code>.env.local.example</code>.</li>\n<li>Ejecuta <code>npm run dev</code>.</li>\n<li>Abre <code>http://localhost:3000/finanzas</code>.</li>\n</ol>\n<h2 id=\"variables\">Variables</h2>\n<pre class=\"astro-code github-dark\" style=\"background-color:#24292e;color:#e1e4e8; overflow-x: auto;\" tabindex=\"0\" data-language=\"text\"><code><span class=\"line\"><span>NEXT_PUBLIC_SUPABASE_URL=</span></span>\n<span class=\"line\"><span>NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=</span></span>\n<span class=\"line\"><span>SUPABASE_SECRET_KEY=</span></span>\n<span class=\"line\"><span>NEXT_PUBLIC_SITE_URL=http://localhost:3000/finanzas</span></span></code></pre>\n<p><code>SUPABASE_SECRET_KEY</code> nunca debe incluirse en Git, mensajes o código del navegador.</p>\n<h2 id=\"producción\">Producción</h2>\n<p>La aplicación se despliega como un proyecto Vercel separado. <code>PEPEANGELL.DEV</code> utiliza un rewrite externo para servirla bajo <code>/finanzas</code> sin mezclar los runtimes de Astro y Next.js.</p>",
+    "language": "C++",
+    "markdown": "# 🛸 Drone PepeAngell V3.4 (ESP32-C3 Edition)\n\n![Build Status](https://img.shields.io/badge/Build-V3.4-brightgreen)\n![Platform](https://img.shields.io/badge/Platform-VS%20Code%20%7C%20PlatformIO-blue)\n![MCU](https://img.shields.io/badge/MCU-ESP32--C3%20%26%20ESP32-red)\n![License](https://img.shields.io/badge/License-MIT-yellow)\n![Location](https://img.shields.io/badge/Made%20in-Sinaloa%2C%20M%C3%A9xico-green)\n\nEste proyecto documenta el diseño, fabricación y programación de un micro-drone (quadcopter) y su control remoto personalizado, utilizando el protocolo de comunicación de baja latencia **ESP-NOW**.\n\n## 🚀 Características Principales\n* **Cerebro del Dron:** ESP32-C3 Super Mini (Arquitectura RISC-V).\n* **Cerebro del Control:** ESP32 DevKit V1 (30 pines).\n* **Protocolo de Comunicación:** ESP-NOW (2.4GHz) para latencia mínima.\n* **Estabilización:** Sistema de control basado en IMU MPU6050.\n* **Telemetría:** Monitoreo de batería en tiempo real visualizado en pantalla OLED.\n\n---\n\n## 🛠️ Lista de Componentes\n\n### **El Drone**\n* **Microcontrolador:** ESP32-C3 Super Mini.\n* **Motores:** 4x Coreless 8520 (8.5mm x 20mm) de alto torque.\n* **Sensores:** MPU6050 (Acelerómetro y Giroscopio).\n* **Alimentación:** Batería LiPo 1S (Probado con 1200 mAh para máximo torque).\n* **Chasis:** Estructura personalizada ultraligera.\n\n### **El Control Remoto**\n* **Microcontrolador:** ESP32 DevKit V1.\n* **Joysticks:** 2x Módulos de Joystick analógicos de 2 ejes.\n* **Visualización:** Pantalla OLED SSD1306 (128x64 px).\n* **Regulación:** Módulo Step-up MT3608 (Elevación a 5V estable).\n* **Extras:** Botón multifunción en Pin 13 para cambio de modos de sensibilidad.\n\n---\n\n## 🔌 Diagrama de Conexiones (Pinout)\n\n### **Drone (ESP32-C3 Super Mini)**\n| Componente | Pin ESP32-C3 | Función |\n| :--- | :--- | :--- |\n| **Motor B (Arr. Izq.)** | GPIO 0 | Salida PWM (CCW) |\n| **Motor A (Arr. Der.)** | GPIO 1 | Salida PWM (CW) |\n| **Motor B (Aba. Der.)** | GPIO 2 | Salida PWM (CCW) |\n| **Motor A (Aba. Izq.)** | GPIO 3 | Salida PWM (CW) |\n| **MPU6050 SDA** | GPIO 8 | Bus I2C Data |\n| **MPU6050 SCL** | GPIO 9 | Bus I2C Clock |\n\n### **Control Remoto (ESP32 DevKit V1)**\n| Componente | Pin ESP32 | Función |\n| :--- | :--- | :--- |\n| **Monitor Batería (VP)**| GPIO 36 | Entrada ADC (Divisor 10k/10k) |\n| **Joystick T (Throttle)** | GPIO 34 | Entrada ADC (Palanca Izq.) |\n| **Joystick P (Pitch)** | GPIO 32 | Entrada ADC (Palanca Der.) |\n| **Joystick R (Roll)** | GPIO 33 | Entrada ADC (Palanca Der.) |\n| **Botón (SW)** | GPIO 13 | Entrada Digital (INPUT_PULLUP) |\n| **OLED SDA** | GPIO 21 | Bus I2C Data |\n| **OLED SCL** | GPIO 22 | Bus I2C Clock |\n\n---\n\n## ⚙️ Especificaciones de Firmware\n\n### **Dependencias**\nProyecto desarrollado en **VS Code + PlatformIO**. Librerías requeridas:\n* `Adafruit SSD1306` & `Adafruit GFX`\n* `Wire` (I2C Standard)\n* `esp_now.h` & `WiFi.h`\n\n### **Lógica de Estabilización**\nEl sistema utiliza un algoritmo de control que compensa el peso del chasis mediante la corrección de error de inclinación capturada por el MPU6050. Se implementó una **Prioridad de Mando** mediante la variable `kStick` para permitir que las órdenes del piloto superen la auto-estabilización cuando sea necesario.\n\nFrecuencia PWM configurada a **25kHz** para optimizar el rendimiento de los motores coreless 8520 y eliminar ruido auditivo.\n\n---\n\n## 📈 Evolución del Desarrollo\n* **V1.0:** Establecimiento de enlace ESP-NOW y emparejamiento de MAC.\n* **V2.0:** Implementación de IMU y calibración de centros de joystick (1904).\n* **V2.7:** Adición de sistema de telemetría de batería mediante divisor resistivo.\n* **V3.4:** Optimización final para motores 8520 y chasis de alto peso con batería de 1200mAh.\n\n---\n\n## 👷 Autor\n**PepeAngell** - *Software Engineer* - Sinaloa, México. 🇲🇽\n\n> *\"Unir el código con la física: si se desliza, ya es ganancia; si vuela, es gloria.\"*\n",
+    "html": "<h1 id=\"-drone-pepeangell-v34-esp32-c3-edition\">🛸 Drone PepeAngell V3.4 (ESP32-C3 Edition)</h1>\n<p><img src=\"https://img.shields.io/badge/Build-V3.4-brightgreen\" alt=\"Build Status\">\n<img src=\"https://img.shields.io/badge/Platform-VS%20Code%20%7C%20PlatformIO-blue\" alt=\"Platform\">\n<img src=\"https://img.shields.io/badge/MCU-ESP32--C3%20%26%20ESP32-red\" alt=\"MCU\">\n<img src=\"https://img.shields.io/badge/License-MIT-yellow\" alt=\"License\">\n<img src=\"https://img.shields.io/badge/Made%20in-Sinaloa%2C%20M%C3%A9xico-green\" alt=\"Location\"></p>\n<p>Este proyecto documenta el diseño, fabricación y programación de un micro-drone (quadcopter) y su control remoto personalizado, utilizando el protocolo de comunicación de baja latencia <strong>ESP-NOW</strong>.</p>\n<h2 id=\"-características-principales\">🚀 Características Principales</h2>\n<ul>\n<li><strong>Cerebro del Dron:</strong> ESP32-C3 Super Mini (Arquitectura RISC-V).</li>\n<li><strong>Cerebro del Control:</strong> ESP32 DevKit V1 (30 pines).</li>\n<li><strong>Protocolo de Comunicación:</strong> ESP-NOW (2.4GHz) para latencia mínima.</li>\n<li><strong>Estabilización:</strong> Sistema de control basado en IMU MPU6050.</li>\n<li><strong>Telemetría:</strong> Monitoreo de batería en tiempo real visualizado en pantalla OLED.</li>\n</ul>\n<hr>\n<h2 id=\"️-lista-de-componentes\">🛠️ Lista de Componentes</h2>\n<h3 id=\"el-drone\"><strong>El Drone</strong></h3>\n<ul>\n<li><strong>Microcontrolador:</strong> ESP32-C3 Super Mini.</li>\n<li><strong>Motores:</strong> 4x Coreless 8520 (8.5mm x 20mm) de alto torque.</li>\n<li><strong>Sensores:</strong> MPU6050 (Acelerómetro y Giroscopio).</li>\n<li><strong>Alimentación:</strong> Batería LiPo 1S (Probado con 1200 mAh para máximo torque).</li>\n<li><strong>Chasis:</strong> Estructura personalizada ultraligera.</li>\n</ul>\n<h3 id=\"el-control-remoto\"><strong>El Control Remoto</strong></h3>\n<ul>\n<li><strong>Microcontrolador:</strong> ESP32 DevKit V1.</li>\n<li><strong>Joysticks:</strong> 2x Módulos de Joystick analógicos de 2 ejes.</li>\n<li><strong>Visualización:</strong> Pantalla OLED SSD1306 (128x64 px).</li>\n<li><strong>Regulación:</strong> Módulo Step-up MT3608 (Elevación a 5V estable).</li>\n<li><strong>Extras:</strong> Botón multifunción en Pin 13 para cambio de modos de sensibilidad.</li>\n</ul>\n<hr>\n<h2 id=\"-diagrama-de-conexiones-pinout\">🔌 Diagrama de Conexiones (Pinout)</h2>\n<h3 id=\"drone-esp32-c3-super-mini\"><strong>Drone (ESP32-C3 Super Mini)</strong></h3>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<table><thead><tr><th align=\"left\">Componente</th><th align=\"left\">Pin ESP32-C3</th><th align=\"left\">Función</th></tr></thead><tbody><tr><td align=\"left\"><strong>Motor B (Arr. Izq.)</strong></td><td align=\"left\">GPIO 0</td><td align=\"left\">Salida PWM (CCW)</td></tr><tr><td align=\"left\"><strong>Motor A (Arr. Der.)</strong></td><td align=\"left\">GPIO 1</td><td align=\"left\">Salida PWM (CW)</td></tr><tr><td align=\"left\"><strong>Motor B (Aba. Der.)</strong></td><td align=\"left\">GPIO 2</td><td align=\"left\">Salida PWM (CCW)</td></tr><tr><td align=\"left\"><strong>Motor A (Aba. Izq.)</strong></td><td align=\"left\">GPIO 3</td><td align=\"left\">Salida PWM (CW)</td></tr><tr><td align=\"left\"><strong>MPU6050 SDA</strong></td><td align=\"left\">GPIO 8</td><td align=\"left\">Bus I2C Data</td></tr><tr><td align=\"left\"><strong>MPU6050 SCL</strong></td><td align=\"left\">GPIO 9</td><td align=\"left\">Bus I2C Clock</td></tr></tbody></table>\n<h3 id=\"control-remoto-esp32-devkit-v1\"><strong>Control Remoto (ESP32 DevKit V1)</strong></h3>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<table><thead><tr><th align=\"left\">Componente</th><th align=\"left\">Pin ESP32</th><th align=\"left\">Función</th></tr></thead><tbody><tr><td align=\"left\"><strong>Monitor Batería (VP)</strong></td><td align=\"left\">GPIO 36</td><td align=\"left\">Entrada ADC (Divisor 10k/10k)</td></tr><tr><td align=\"left\"><strong>Joystick T (Throttle)</strong></td><td align=\"left\">GPIO 34</td><td align=\"left\">Entrada ADC (Palanca Izq.)</td></tr><tr><td align=\"left\"><strong>Joystick P (Pitch)</strong></td><td align=\"left\">GPIO 32</td><td align=\"left\">Entrada ADC (Palanca Der.)</td></tr><tr><td align=\"left\"><strong>Joystick R (Roll)</strong></td><td align=\"left\">GPIO 33</td><td align=\"left\">Entrada ADC (Palanca Der.)</td></tr><tr><td align=\"left\"><strong>Botón (SW)</strong></td><td align=\"left\">GPIO 13</td><td align=\"left\">Entrada Digital (INPUT_PULLUP)</td></tr><tr><td align=\"left\"><strong>OLED SDA</strong></td><td align=\"left\">GPIO 21</td><td align=\"left\">Bus I2C Data</td></tr><tr><td align=\"left\"><strong>OLED SCL</strong></td><td align=\"left\">GPIO 22</td><td align=\"left\">Bus I2C Clock</td></tr></tbody></table>\n<hr>\n<h2 id=\"️-especificaciones-de-firmware\">⚙️ Especificaciones de Firmware</h2>\n<h3 id=\"dependencias\"><strong>Dependencias</strong></h3>\n<p>Proyecto desarrollado en <strong>VS Code + PlatformIO</strong>. Librerías requeridas:</p>\n<ul>\n<li><code>Adafruit SSD1306</code> &#x26; <code>Adafruit GFX</code></li>\n<li><code>Wire</code> (I2C Standard)</li>\n<li><code>esp_now.h</code> &#x26; <code>WiFi.h</code></li>\n</ul>\n<h3 id=\"lógica-de-estabilización\"><strong>Lógica de Estabilización</strong></h3>\n<p>El sistema utiliza un algoritmo de control que compensa el peso del chasis mediante la corrección de error de inclinación capturada por el MPU6050. Se implementó una <strong>Prioridad de Mando</strong> mediante la variable <code>kStick</code> para permitir que las órdenes del piloto superen la auto-estabilización cuando sea necesario.</p>\n<p>Frecuencia PWM configurada a <strong>25kHz</strong> para optimizar el rendimiento de los motores coreless 8520 y eliminar ruido auditivo.</p>\n<hr>\n<h2 id=\"-evolución-del-desarrollo\">📈 Evolución del Desarrollo</h2>\n<ul>\n<li><strong>V1.0:</strong> Establecimiento de enlace ESP-NOW y emparejamiento de MAC.</li>\n<li><strong>V2.0:</strong> Implementación de IMU y calibración de centros de joystick (1904).</li>\n<li><strong>V2.7:</strong> Adición de sistema de telemetría de batería mediante divisor resistivo.</li>\n<li><strong>V3.4:</strong> Optimización final para motores 8520 y chasis de alto peso con batería de 1200mAh.</li>\n</ul>\n<hr>\n<h2 id=\"-autor\">👷 Autor</h2>\n<p><strong>PepeAngell</strong> - <em>Software Engineer</em> - Sinaloa, México. 🇲🇽</p>\n<blockquote>\n<p><em>\"Unir el código con la física: si se desliza, ya es ganancia; si vuela, es gloria.\"</em></p>\n</blockquote>",
     "headings": [
       {
         "depth": 1,
-        "slug": "esp32-tools-finanzas",
-        "text": "ESP32-TOOLS Finanzas"
+        "slug": "-drone-pepeangell-v34-esp32-c3-edition",
+        "text": "🛸 Drone PepeAngell V3.4 (ESP32-C3 Edition)"
       },
       {
         "depth": 2,
-        "slug": "privacidad",
-        "text": "Privacidad"
+        "slug": "-características-principales",
+        "text": "🚀 Características Principales"
       },
       {
         "depth": 2,
-        "slug": "desarrollo-local",
-        "text": "Desarrollo local"
+        "slug": "️-lista-de-componentes",
+        "text": "🛠️ Lista de Componentes"
+      },
+      {
+        "depth": 3,
+        "slug": "el-drone",
+        "text": "El Drone"
+      },
+      {
+        "depth": 3,
+        "slug": "el-control-remoto",
+        "text": "El Control Remoto"
       },
       {
         "depth": 2,
-        "slug": "variables",
-        "text": "Variables"
+        "slug": "-diagrama-de-conexiones-pinout",
+        "text": "🔌 Diagrama de Conexiones (Pinout)"
+      },
+      {
+        "depth": 3,
+        "slug": "drone-esp32-c3-super-mini",
+        "text": "Drone (ESP32-C3 Super Mini)"
+      },
+      {
+        "depth": 3,
+        "slug": "control-remoto-esp32-devkit-v1",
+        "text": "Control Remoto (ESP32 DevKit V1)"
       },
       {
         "depth": 2,
-        "slug": "producción",
-        "text": "Producción"
+        "slug": "️-especificaciones-de-firmware",
+        "text": "⚙️ Especificaciones de Firmware"
+      },
+      {
+        "depth": 3,
+        "slug": "dependencias",
+        "text": "Dependencias"
+      },
+      {
+        "depth": 3,
+        "slug": "lógica-de-estabilización",
+        "text": "Lógica de Estabilización"
+      },
+      {
+        "depth": 2,
+        "slug": "-evolución-del-desarrollo",
+        "text": "📈 Evolución del Desarrollo"
+      },
+      {
+        "depth": 2,
+        "slug": "-autor",
+        "text": "👷 Autor"
       }
     ]
   },
@@ -1106,7 +1146,7 @@
     "readme_html_url": "https://github.com/pepeangell5/PEPEANGELL.DEV/blob/main/README.md",
     "readme_download_url": "https://raw.githubusercontent.com/pepeangell5/PEPEANGELL.DEV/main/README.md",
     "default_branch": "main",
-    "updated_at": "2026-09-29T22:24:30Z",
+    "updated_at": "2026-09-30T05:43:39Z",
     "topics": [],
     "language": "TypeScript",
     "markdown": "# PepeAngell Labs\n\nStatic personal technical website for PepeAngell Labs, focused on ESP32, RF, BLE, WiFi, embedded systems, cyberdecks, web flashers, educational firmware projects and public GitHub repositories.\n\nThe site is built with Astro and deployed on Vercel. It is mostly static, uses public GitHub data generated at build time, and does not require a backend for the main portfolio, firmware, repos, downloads or hardware sections.\n\nProduction domain:\n\n```text\nhttps://www.pepeangell.dev\n```\n\n## Local Setup\n\n```bash\nnpm install\nnpm run dev\nnpm run build\n```\n\nTo update the local GitHub repositories, README JSON, flashers, downloads, hardware wiki and news data:\n\n```bash\nnpm run fetch:github\n```\n\nThe script reads public repositories from:\n\n```text\nhttps://api.github.com/users/pepeangell5/repos?per_page=100&sort=updated\n```\n\nIt writes normalized data to:\n\n```text\npublic/data/repos.json\npublic/data/readmes.json\npublic/data/hardware-wiki.json\nsrc/data/hardware-wiki.generated.json\n```\n\nIf GitHub is unavailable, the script preserves the existing JSON file when possible. In GitHub Actions it can use `GITHUB_TOKEN`, but no token is exposed to the frontend.\n\n## Vercel Deploy\n\nThe production site is deployed from the `main` branch on Vercel.\n\nRecommended Vercel settings:\n\n```text\nFramework Preset: Astro\nRoot Directory: ./\nInstall Command: npm ci\nBuild Command: npm run fetch:github && npm run build\nOutput Directory: dist\n```\n\nEnvironment variables:\n\n```text\nPUBLIC_GOATCOUNTER_CODE=pepeangell\nPUBLIC_SUPABASE_URL=https://bnsilqtypedxwksqopdz.supabase.co\nPUBLIC_SUPABASE_ANON_KEY=your-public-anon-key\n```\n\nVercel rebuilds the site when changes are pushed to GitHub. The build fetches the latest public repository data before generating the static Astro site.\n\n## Shop / Supabase\n\nThe shop uses the Supabase project `pepeangell-shop` from the static Astro frontend. No service role key is used in the site.\n\nInitial setup:\n\n1. Run `supabase/schema.sql` in the Supabase SQL editor.\n2. Configure Supabase Auth email links for the production domain.\n3. Add Pepe as an admin after he signs in once:\n\n```sql\ninsert into public.profiles (id, role) values ('AUTH_USER_UUID_HERE', 'admin');\n```\n\n4. Add these variables in Vercel and locally:\n\n```text\nPUBLIC_SUPABASE_URL=...\nPUBLIC_SUPABASE_ANON_KEY=...\n```\n\nShop routes:\n\n```text\n/shop/            Public catalog with live stock when Supabase is configured\n/shop/checkout/   Shipping checkout for supported countries\n/shop/orders/     Public order lookup by code and email\n/shop/admin/      Private admin for stock, prices, availability and order states\n```\n\nPersonal finance is deployed as an independent private Next.js application and proxied by Vercel at:\n\n```text\n/finanzas/        Private ESP32-TOOLS finance dashboard\n```\n\nSupported checkout countries are Spanish-speaking countries plus United States. Payment remains manual through PayPal and confirmation happens through Telegram at `@pepeangell`.\n\nCreating an order reserves stock immediately. If an admin marks an order as cancelled from `/shop/admin/`, Supabase returns the reserved stock once and records the event in the order history.\n\n## Updating Content\n\nMost visible content is stored in JSON files:\n\n```text\nsrc/data/projects.json\nsrc/data/hardware-catalog.json\nsrc/data/flashers.json\nsrc/data/hardware.json\nsrc/data/lab-notes.json\nsrc/data/roadmap.json\nsrc/data/changelog.json\npublic/data/repos.json\n```\n\nUpdate those files to change project cards, flashers, hardware notes, roadmap entries and changelog items without editing Astro components.\n\n`src/data/hardware-catalog.json` is the curated component database. `npm run fetch:hardware` cross-checks it with public READMEs and updates the hardware wiki.\n\n## Routes\n\n```text\n/\n/support/\n/shop/\n/shop/checkout/\n/shop/orders/\n/shop/admin/\n/firmware/\n/repos/\n/flashers/\n/hardware/\n/hardware-lab/       Public beta for visual ESP32 wiring and perfboard layouts\n/lab-notes/\n/roadmap/\n/changelog/\n/disclaimer/\n/contact/\n/404.html\n```\n\n`/hardware-lab/` stores projects in the visitor's browser. Users can export a JSON backup and send beta feedback through the ESP32 Tools Telegram group.\n\n## Legacy GitHub Pages Workflow\n\nThe repository still contains a GitHub Pages workflow at:\n\n```text\n.github/workflows/deploy.yml\n```\n\nIt was the previous deploy path and runs on:\n\n- Push to `main`\n- Manual `workflow_dispatch`\n- Daily schedule\n\nProduction now uses Vercel. If GitHub Pages is no longer needed, this workflow can be disabled or removed later to avoid maintaining two deploy paths.\n\n## Visitor Counter\n\nThe site uses GoatCounter for privacy-friendly visit counting.\n\nGoatCounter settings:\n\n```text\nSite URL: https://www.pepeangell.dev\nCode: pepeangell\nAllow adding visitor counts on your website: enabled\nSites that can embed GoatCounter: pepeangell.dev\n```\n\nVercel environment variable:\n\n```text\nPUBLIC_GOATCOUNTER_CODE=pepeangell\n```\n\nWhen the variable is present, every page loads GoatCounter and the footer displays the total site visits. GoatCounter counts visits/sessions rather than simple reload hits.\n\n## Custom Domain\n\nThe domain is purchased separately and DNS is managed in Cloudflare.\n\nVercel domains:\n\n```text\nwww.pepeangell.dev -> Production\npepeangell.dev -> 308 redirect to www.pepeangell.dev\npepeangell-dev.vercel.app -> Production fallback\n```\n\nCloudflare DNS records should point to Vercel with proxy disabled:\n\n```text\npepeangell.dev      CNAME  d955fa97d685e0c1.vercel-dns-017.com  DNS only\nwww.pepeangell.dev  CNAME  d955fa97d685e0c1.vercel-dns-017.com  DNS only\n```\n\nKeep Cloudflare proxy off for these records unless the Vercel domain configuration is intentionally changed.\n\n## Folder Structure\n\n```text\nsrc/components/      Reusable UI components\nsrc/data/            Editable site content\nsrc/layouts/         Base page layout\nsrc/pages/           Static Astro routes\nsrc/styles/          Global CSS\npublic/              Static assets, CNAME, robots, sitemap and repo JSON\nscripts/             GitHub repo data generation\n.github/workflows/   Legacy GitHub Pages deployment\n```\n\n## Future Improvements\n\n- Add automatic PayPal webhooks if manual confirmation becomes too much work.\n- Restore or improve visitor analytics if GoatCounter settings change.\n- Replace firmware fallback links with final Web Flasher URLs when those pages are published.\n- Add real project images, wiring photos or screenshots.\n- Expand project detail pages with release notes and hardware compatibility tables.\n- Add generated screenshots or Open Graph images.\n- Replace the static sitemap with generated entries if the number of pages grows.\n",
@@ -1166,6 +1206,47 @@
         "depth": 2,
         "slug": "future-improvements",
         "text": "Future Improvements"
+      }
+    ]
+  },
+  {
+    "name": "FINANZAS-PEPEANGELL",
+    "full_name": "pepeangell5/FINANZAS-PEPEANGELL",
+    "description": "FINANZAS-PEPEANGELL",
+    "html_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL",
+    "readme_html_url": "https://github.com/pepeangell5/FINANZAS-PEPEANGELL/blob/main/README.md",
+    "readme_download_url": "https://raw.githubusercontent.com/pepeangell5/FINANZAS-PEPEANGELL/main/README.md",
+    "default_branch": "main",
+    "updated_at": "2026-09-29T22:27:54Z",
+    "topics": [],
+    "language": "TypeScript",
+    "markdown": "# ESP32-TOOLS Finanzas\n\nPanel personal de finanzas de PepeAngell. Es una aplicación Next.js independiente que se publica detrás de `https://www.pepeangell.dev/finanzas`.\n\n## Privacidad\n\n- No existe registro público.\n- El acceso usa Supabase Auth con correo y contraseña.\n- Todas las tablas financieras tienen RLS y aíslan los datos mediante `auth.uid()`.\n- Los datos viven en el esquema `finance` del proyecto `pepeangell-shop`, separados de las tablas de tienda en `public`.\n- Las páginas envían `noindex`, `nofollow` y `noarchive`.\n- La clave administrativa de Supabase solo se configura como variable privada del servidor.\n\nLa ruta puede ser descubierta; la protección real depende de Supabase Auth, las políticas RLS y una contraseña segura.\n\nSupabase Auth es compartido: cambiar la contraseña de este usuario desde Finanzas también cambia la del admin de tienda asociado al mismo correo.\n\n## Desarrollo local\n\n1. Instala dependencias con `npm ci`.\n2. Crea `.env.local` usando `.env.local.example`.\n3. Ejecuta `npm run dev`.\n4. Abre `http://localhost:3000/finanzas`.\n\n## Variables\n\n```text\nNEXT_PUBLIC_SUPABASE_URL=\nNEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=\nSUPABASE_SECRET_KEY=\nNEXT_PUBLIC_SITE_URL=http://localhost:3000/finanzas\n```\n\n`SUPABASE_SECRET_KEY` nunca debe incluirse en Git, mensajes o código del navegador.\n\n## Producción\n\nLa aplicación se despliega como un proyecto Vercel separado. `PEPEANGELL.DEV` utiliza un rewrite externo para servirla bajo `/finanzas` sin mezclar los runtimes de Astro y Next.js.\n",
+    "html": "<h1 id=\"esp32-tools-finanzas\">ESP32-TOOLS Finanzas</h1>\n<p>Panel personal de finanzas de PepeAngell. Es una aplicación Next.js independiente que se publica detrás de <code>https://www.pepeangell.dev/finanzas</code>.</p>\n<h2 id=\"privacidad\">Privacidad</h2>\n<ul>\n<li>No existe registro público.</li>\n<li>El acceso usa Supabase Auth con correo y contraseña.</li>\n<li>Todas las tablas financieras tienen RLS y aíslan los datos mediante <code>auth.uid()</code>.</li>\n<li>Los datos viven en el esquema <code>finance</code> del proyecto <code>pepeangell-shop</code>, separados de las tablas de tienda en <code>public</code>.</li>\n<li>Las páginas envían <code>noindex</code>, <code>nofollow</code> y <code>noarchive</code>.</li>\n<li>La clave administrativa de Supabase solo se configura como variable privada del servidor.</li>\n</ul>\n<p>La ruta puede ser descubierta; la protección real depende de Supabase Auth, las políticas RLS y una contraseña segura.</p>\n<p>Supabase Auth es compartido: cambiar la contraseña de este usuario desde Finanzas también cambia la del admin de tienda asociado al mismo correo.</p>\n<h2 id=\"desarrollo-local\">Desarrollo local</h2>\n<ol>\n<li>Instala dependencias con <code>npm ci</code>.</li>\n<li>Crea <code>.env.local</code> usando <code>.env.local.example</code>.</li>\n<li>Ejecuta <code>npm run dev</code>.</li>\n<li>Abre <code>http://localhost:3000/finanzas</code>.</li>\n</ol>\n<h2 id=\"variables\">Variables</h2>\n<pre class=\"astro-code github-dark\" style=\"background-color:#24292e;color:#e1e4e8; overflow-x: auto;\" tabindex=\"0\" data-language=\"text\"><code><span class=\"line\"><span>NEXT_PUBLIC_SUPABASE_URL=</span></span>\n<span class=\"line\"><span>NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=</span></span>\n<span class=\"line\"><span>SUPABASE_SECRET_KEY=</span></span>\n<span class=\"line\"><span>NEXT_PUBLIC_SITE_URL=http://localhost:3000/finanzas</span></span></code></pre>\n<p><code>SUPABASE_SECRET_KEY</code> nunca debe incluirse en Git, mensajes o código del navegador.</p>\n<h2 id=\"producción\">Producción</h2>\n<p>La aplicación se despliega como un proyecto Vercel separado. <code>PEPEANGELL.DEV</code> utiliza un rewrite externo para servirla bajo <code>/finanzas</code> sin mezclar los runtimes de Astro y Next.js.</p>",
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "esp32-tools-finanzas",
+        "text": "ESP32-TOOLS Finanzas"
+      },
+      {
+        "depth": 2,
+        "slug": "privacidad",
+        "text": "Privacidad"
+      },
+      {
+        "depth": 2,
+        "slug": "desarrollo-local",
+        "text": "Desarrollo local"
+      },
+      {
+        "depth": 2,
+        "slug": "variables",
+        "text": "Variables"
+      },
+      {
+        "depth": 2,
+        "slug": "producción",
+        "text": "Producción"
       }
     ]
   },
@@ -1755,87 +1836,6 @@
         "depth": 2,
         "slug": "-autor",
         "text": "👨‍💻 Autor"
-      }
-    ]
-  },
-  {
-    "name": "DRONE-FPV-ESP32C3-SUPERMINI",
-    "full_name": "pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI",
-    "description": "Creación de un dron casero con control de comunicación por protocolo ESP-NOW.",
-    "html_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI",
-    "readme_html_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI/blob/main/README.md",
-    "readme_download_url": "https://raw.githubusercontent.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI/main/README.md",
-    "default_branch": "main",
-    "updated_at": "2026-09-17T17:53:52Z",
-    "topics": [],
-    "language": "C++",
-    "markdown": "# 🛸 Drone PepeAngell V3.4 (ESP32-C3 Edition)\n\n![Build Status](https://img.shields.io/badge/Build-V3.4-brightgreen)\n![Platform](https://img.shields.io/badge/Platform-VS%20Code%20%7C%20PlatformIO-blue)\n![MCU](https://img.shields.io/badge/MCU-ESP32--C3%20%26%20ESP32-red)\n![License](https://img.shields.io/badge/License-MIT-yellow)\n![Location](https://img.shields.io/badge/Made%20in-Sinaloa%2C%20M%C3%A9xico-green)\n\nEste proyecto documenta el diseño, fabricación y programación de un micro-drone (quadcopter) y su control remoto personalizado, utilizando el protocolo de comunicación de baja latencia **ESP-NOW**.\n\n## 🚀 Características Principales\n* **Cerebro del Dron:** ESP32-C3 Super Mini (Arquitectura RISC-V).\n* **Cerebro del Control:** ESP32 DevKit V1 (30 pines).\n* **Protocolo de Comunicación:** ESP-NOW (2.4GHz) para latencia mínima.\n* **Estabilización:** Sistema de control basado en IMU MPU6050.\n* **Telemetría:** Monitoreo de batería en tiempo real visualizado en pantalla OLED.\n\n---\n\n## 🛠️ Lista de Componentes\n\n### **El Drone**\n* **Microcontrolador:** ESP32-C3 Super Mini.\n* **Motores:** 4x Coreless 8520 (8.5mm x 20mm) de alto torque.\n* **Sensores:** MPU6050 (Acelerómetro y Giroscopio).\n* **Alimentación:** Batería LiPo 1S (Probado con 1200 mAh para máximo torque).\n* **Chasis:** Estructura personalizada ultraligera.\n\n### **El Control Remoto**\n* **Microcontrolador:** ESP32 DevKit V1.\n* **Joysticks:** 2x Módulos de Joystick analógicos de 2 ejes.\n* **Visualización:** Pantalla OLED SSD1306 (128x64 px).\n* **Regulación:** Módulo Step-up MT3608 (Elevación a 5V estable).\n* **Extras:** Botón multifunción en Pin 13 para cambio de modos de sensibilidad.\n\n---\n\n## 🔌 Diagrama de Conexiones (Pinout)\n\n### **Drone (ESP32-C3 Super Mini)**\n| Componente | Pin ESP32-C3 | Función |\n| :--- | :--- | :--- |\n| **Motor B (Arr. Izq.)** | GPIO 0 | Salida PWM (CCW) |\n| **Motor A (Arr. Der.)** | GPIO 1 | Salida PWM (CW) |\n| **Motor B (Aba. Der.)** | GPIO 2 | Salida PWM (CCW) |\n| **Motor A (Aba. Izq.)** | GPIO 3 | Salida PWM (CW) |\n| **MPU6050 SDA** | GPIO 8 | Bus I2C Data |\n| **MPU6050 SCL** | GPIO 9 | Bus I2C Clock |\n\n### **Control Remoto (ESP32 DevKit V1)**\n| Componente | Pin ESP32 | Función |\n| :--- | :--- | :--- |\n| **Monitor Batería (VP)**| GPIO 36 | Entrada ADC (Divisor 10k/10k) |\n| **Joystick T (Throttle)** | GPIO 34 | Entrada ADC (Palanca Izq.) |\n| **Joystick P (Pitch)** | GPIO 32 | Entrada ADC (Palanca Der.) |\n| **Joystick R (Roll)** | GPIO 33 | Entrada ADC (Palanca Der.) |\n| **Botón (SW)** | GPIO 13 | Entrada Digital (INPUT_PULLUP) |\n| **OLED SDA** | GPIO 21 | Bus I2C Data |\n| **OLED SCL** | GPIO 22 | Bus I2C Clock |\n\n---\n\n## ⚙️ Especificaciones de Firmware\n\n### **Dependencias**\nProyecto desarrollado en **VS Code + PlatformIO**. Librerías requeridas:\n* `Adafruit SSD1306` & `Adafruit GFX`\n* `Wire` (I2C Standard)\n* `esp_now.h` & `WiFi.h`\n\n### **Lógica de Estabilización**\nEl sistema utiliza un algoritmo de control que compensa el peso del chasis mediante la corrección de error de inclinación capturada por el MPU6050. Se implementó una **Prioridad de Mando** mediante la variable `kStick` para permitir que las órdenes del piloto superen la auto-estabilización cuando sea necesario.\n\nFrecuencia PWM configurada a **25kHz** para optimizar el rendimiento de los motores coreless 8520 y eliminar ruido auditivo.\n\n---\n\n## 📈 Evolución del Desarrollo\n* **V1.0:** Establecimiento de enlace ESP-NOW y emparejamiento de MAC.\n* **V2.0:** Implementación de IMU y calibración de centros de joystick (1904).\n* **V2.7:** Adición de sistema de telemetría de batería mediante divisor resistivo.\n* **V3.4:** Optimización final para motores 8520 y chasis de alto peso con batería de 1200mAh.\n\n---\n\n## 👷 Autor\n**PepeAngell** - *Software Engineer* - Sinaloa, México. 🇲🇽\n\n> *\"Unir el código con la física: si se desliza, ya es ganancia; si vuela, es gloria.\"*\n",
-    "html": "<h1 id=\"-drone-pepeangell-v34-esp32-c3-edition\">🛸 Drone PepeAngell V3.4 (ESP32-C3 Edition)</h1>\n<p><img src=\"https://img.shields.io/badge/Build-V3.4-brightgreen\" alt=\"Build Status\">\n<img src=\"https://img.shields.io/badge/Platform-VS%20Code%20%7C%20PlatformIO-blue\" alt=\"Platform\">\n<img src=\"https://img.shields.io/badge/MCU-ESP32--C3%20%26%20ESP32-red\" alt=\"MCU\">\n<img src=\"https://img.shields.io/badge/License-MIT-yellow\" alt=\"License\">\n<img src=\"https://img.shields.io/badge/Made%20in-Sinaloa%2C%20M%C3%A9xico-green\" alt=\"Location\"></p>\n<p>Este proyecto documenta el diseño, fabricación y programación de un micro-drone (quadcopter) y su control remoto personalizado, utilizando el protocolo de comunicación de baja latencia <strong>ESP-NOW</strong>.</p>\n<h2 id=\"-características-principales\">🚀 Características Principales</h2>\n<ul>\n<li><strong>Cerebro del Dron:</strong> ESP32-C3 Super Mini (Arquitectura RISC-V).</li>\n<li><strong>Cerebro del Control:</strong> ESP32 DevKit V1 (30 pines).</li>\n<li><strong>Protocolo de Comunicación:</strong> ESP-NOW (2.4GHz) para latencia mínima.</li>\n<li><strong>Estabilización:</strong> Sistema de control basado en IMU MPU6050.</li>\n<li><strong>Telemetría:</strong> Monitoreo de batería en tiempo real visualizado en pantalla OLED.</li>\n</ul>\n<hr>\n<h2 id=\"️-lista-de-componentes\">🛠️ Lista de Componentes</h2>\n<h3 id=\"el-drone\"><strong>El Drone</strong></h3>\n<ul>\n<li><strong>Microcontrolador:</strong> ESP32-C3 Super Mini.</li>\n<li><strong>Motores:</strong> 4x Coreless 8520 (8.5mm x 20mm) de alto torque.</li>\n<li><strong>Sensores:</strong> MPU6050 (Acelerómetro y Giroscopio).</li>\n<li><strong>Alimentación:</strong> Batería LiPo 1S (Probado con 1200 mAh para máximo torque).</li>\n<li><strong>Chasis:</strong> Estructura personalizada ultraligera.</li>\n</ul>\n<h3 id=\"el-control-remoto\"><strong>El Control Remoto</strong></h3>\n<ul>\n<li><strong>Microcontrolador:</strong> ESP32 DevKit V1.</li>\n<li><strong>Joysticks:</strong> 2x Módulos de Joystick analógicos de 2 ejes.</li>\n<li><strong>Visualización:</strong> Pantalla OLED SSD1306 (128x64 px).</li>\n<li><strong>Regulación:</strong> Módulo Step-up MT3608 (Elevación a 5V estable).</li>\n<li><strong>Extras:</strong> Botón multifunción en Pin 13 para cambio de modos de sensibilidad.</li>\n</ul>\n<hr>\n<h2 id=\"-diagrama-de-conexiones-pinout\">🔌 Diagrama de Conexiones (Pinout)</h2>\n<h3 id=\"drone-esp32-c3-super-mini\"><strong>Drone (ESP32-C3 Super Mini)</strong></h3>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<table><thead><tr><th align=\"left\">Componente</th><th align=\"left\">Pin ESP32-C3</th><th align=\"left\">Función</th></tr></thead><tbody><tr><td align=\"left\"><strong>Motor B (Arr. Izq.)</strong></td><td align=\"left\">GPIO 0</td><td align=\"left\">Salida PWM (CCW)</td></tr><tr><td align=\"left\"><strong>Motor A (Arr. Der.)</strong></td><td align=\"left\">GPIO 1</td><td align=\"left\">Salida PWM (CW)</td></tr><tr><td align=\"left\"><strong>Motor B (Aba. Der.)</strong></td><td align=\"left\">GPIO 2</td><td align=\"left\">Salida PWM (CCW)</td></tr><tr><td align=\"left\"><strong>Motor A (Aba. Izq.)</strong></td><td align=\"left\">GPIO 3</td><td align=\"left\">Salida PWM (CW)</td></tr><tr><td align=\"left\"><strong>MPU6050 SDA</strong></td><td align=\"left\">GPIO 8</td><td align=\"left\">Bus I2C Data</td></tr><tr><td align=\"left\"><strong>MPU6050 SCL</strong></td><td align=\"left\">GPIO 9</td><td align=\"left\">Bus I2C Clock</td></tr></tbody></table>\n<h3 id=\"control-remoto-esp32-devkit-v1\"><strong>Control Remoto (ESP32 DevKit V1)</strong></h3>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<table><thead><tr><th align=\"left\">Componente</th><th align=\"left\">Pin ESP32</th><th align=\"left\">Función</th></tr></thead><tbody><tr><td align=\"left\"><strong>Monitor Batería (VP)</strong></td><td align=\"left\">GPIO 36</td><td align=\"left\">Entrada ADC (Divisor 10k/10k)</td></tr><tr><td align=\"left\"><strong>Joystick T (Throttle)</strong></td><td align=\"left\">GPIO 34</td><td align=\"left\">Entrada ADC (Palanca Izq.)</td></tr><tr><td align=\"left\"><strong>Joystick P (Pitch)</strong></td><td align=\"left\">GPIO 32</td><td align=\"left\">Entrada ADC (Palanca Der.)</td></tr><tr><td align=\"left\"><strong>Joystick R (Roll)</strong></td><td align=\"left\">GPIO 33</td><td align=\"left\">Entrada ADC (Palanca Der.)</td></tr><tr><td align=\"left\"><strong>Botón (SW)</strong></td><td align=\"left\">GPIO 13</td><td align=\"left\">Entrada Digital (INPUT_PULLUP)</td></tr><tr><td align=\"left\"><strong>OLED SDA</strong></td><td align=\"left\">GPIO 21</td><td align=\"left\">Bus I2C Data</td></tr><tr><td align=\"left\"><strong>OLED SCL</strong></td><td align=\"left\">GPIO 22</td><td align=\"left\">Bus I2C Clock</td></tr></tbody></table>\n<hr>\n<h2 id=\"️-especificaciones-de-firmware\">⚙️ Especificaciones de Firmware</h2>\n<h3 id=\"dependencias\"><strong>Dependencias</strong></h3>\n<p>Proyecto desarrollado en <strong>VS Code + PlatformIO</strong>. Librerías requeridas:</p>\n<ul>\n<li><code>Adafruit SSD1306</code> &#x26; <code>Adafruit GFX</code></li>\n<li><code>Wire</code> (I2C Standard)</li>\n<li><code>esp_now.h</code> &#x26; <code>WiFi.h</code></li>\n</ul>\n<h3 id=\"lógica-de-estabilización\"><strong>Lógica de Estabilización</strong></h3>\n<p>El sistema utiliza un algoritmo de control que compensa el peso del chasis mediante la corrección de error de inclinación capturada por el MPU6050. Se implementó una <strong>Prioridad de Mando</strong> mediante la variable <code>kStick</code> para permitir que las órdenes del piloto superen la auto-estabilización cuando sea necesario.</p>\n<p>Frecuencia PWM configurada a <strong>25kHz</strong> para optimizar el rendimiento de los motores coreless 8520 y eliminar ruido auditivo.</p>\n<hr>\n<h2 id=\"-evolución-del-desarrollo\">📈 Evolución del Desarrollo</h2>\n<ul>\n<li><strong>V1.0:</strong> Establecimiento de enlace ESP-NOW y emparejamiento de MAC.</li>\n<li><strong>V2.0:</strong> Implementación de IMU y calibración de centros de joystick (1904).</li>\n<li><strong>V2.7:</strong> Adición de sistema de telemetría de batería mediante divisor resistivo.</li>\n<li><strong>V3.4:</strong> Optimización final para motores 8520 y chasis de alto peso con batería de 1200mAh.</li>\n</ul>\n<hr>\n<h2 id=\"-autor\">👷 Autor</h2>\n<p><strong>PepeAngell</strong> - <em>Software Engineer</em> - Sinaloa, México. 🇲🇽</p>\n<blockquote>\n<p><em>\"Unir el código con la física: si se desliza, ya es ganancia; si vuela, es gloria.\"</em></p>\n</blockquote>",
-    "headings": [
-      {
-        "depth": 1,
-        "slug": "-drone-pepeangell-v34-esp32-c3-edition",
-        "text": "🛸 Drone PepeAngell V3.4 (ESP32-C3 Edition)"
-      },
-      {
-        "depth": 2,
-        "slug": "-características-principales",
-        "text": "🚀 Características Principales"
-      },
-      {
-        "depth": 2,
-        "slug": "️-lista-de-componentes",
-        "text": "🛠️ Lista de Componentes"
-      },
-      {
-        "depth": 3,
-        "slug": "el-drone",
-        "text": "El Drone"
-      },
-      {
-        "depth": 3,
-        "slug": "el-control-remoto",
-        "text": "El Control Remoto"
-      },
-      {
-        "depth": 2,
-        "slug": "-diagrama-de-conexiones-pinout",
-        "text": "🔌 Diagrama de Conexiones (Pinout)"
-      },
-      {
-        "depth": 3,
-        "slug": "drone-esp32-c3-super-mini",
-        "text": "Drone (ESP32-C3 Super Mini)"
-      },
-      {
-        "depth": 3,
-        "slug": "control-remoto-esp32-devkit-v1",
-        "text": "Control Remoto (ESP32 DevKit V1)"
-      },
-      {
-        "depth": 2,
-        "slug": "️-especificaciones-de-firmware",
-        "text": "⚙️ Especificaciones de Firmware"
-      },
-      {
-        "depth": 3,
-        "slug": "dependencias",
-        "text": "Dependencias"
-      },
-      {
-        "depth": 3,
-        "slug": "lógica-de-estabilización",
-        "text": "Lógica de Estabilización"
-      },
-      {
-        "depth": 2,
-        "slug": "-evolución-del-desarrollo",
-        "text": "📈 Evolución del Desarrollo"
-      },
-      {
-        "depth": 2,
-        "slug": "-autor",
-        "text": "👷 Autor"
       }
     ]
   },

@@ -616,6 +616,29 @@
     ]
   },
   {
+    "name": "DRONE FPV ESP32C3 SUPERMINI",
+    "slug": "drone-fpv-esp32c3-supermini",
+    "status": "Repositorio",
+    "board": "ESP32-C3 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32-C3",
+      "ESP32",
+      "ESP-NOW",
+      "Drone"
+    ],
+    "github_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI",
+    "full_name": "pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI",
+    "default_branch": "main",
+    "web_flasher_url": "",
+    "binarios_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI/search?q=extension%3Abin&type=code",
+    "release_tag": "",
+    "release_assets": [],
+    "zip_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI/archive/refs/heads/main.zip",
+    "readme_url": "/firmware/#drone-fpv-esp32c3-supermini",
+    "web_flasher_binaries": []
+  },
+  {
     "name": "FINANZAS PEPEANGELL",
     "slug": "finanzas-pepeangell",
     "status": "Repositorio",
@@ -655,29 +678,6 @@
     "release_assets": [],
     "zip_url": "https://github.com/pepeangell5/ESP32_PC_MONITOR/archive/refs/heads/main.zip",
     "readme_url": "/firmware/#esp32-pc-monitor",
-    "web_flasher_binaries": []
-  },
-  {
-    "name": "DRONE FPV ESP32C3 SUPERMINI",
-    "slug": "drone-fpv-esp32c3-supermini",
-    "status": "Repositorio",
-    "board": "ESP32-C3 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP32-C3",
-      "ESP32",
-      "ESP-NOW",
-      "Drone"
-    ],
-    "github_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI",
-    "full_name": "pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI",
-    "default_branch": "main",
-    "web_flasher_url": "",
-    "binarios_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI/search?q=extension%3Abin&type=code",
-    "release_tag": "",
-    "release_assets": [],
-    "zip_url": "https://github.com/pepeangell5/DRONE-FPV-ESP32C3-SUPERMINI/archive/refs/heads/main.zip",
-    "readme_url": "/firmware/#drone-fpv-esp32c3-supermini",
     "web_flasher_binaries": []
   },
   {
