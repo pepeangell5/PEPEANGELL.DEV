@@ -34,7 +34,7 @@
     "status": "Testing",
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V2.0/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
-    "updated_at": "2026-10-06T16:07:55Z",
+    "updated_at": "2026-10-08T04:58:20Z",
     "source": "manual"
   },
   {
@@ -50,7 +50,7 @@
     "status": "Planned",
     "flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32/",
     "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32",
-    "updated_at": "2026-10-06T16:07:55Z",
+    "updated_at": "2026-10-08T04:58:55Z",
     "source": "manual"
   },
   {
@@ -86,6 +86,57 @@
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32",
     "updated_at": "2026-10-06T05:21:16Z",
     "source": "manual"
+  },
+  {
+    "name": "ESP32 TOOLS PRO 480x320",
+    "slug": "esp32-tools-pro-480x320",
+    "board": "ESP32 compatible",
+    "display": "TFT ILI9488 480x320 SPI",
+    "modules": [
+      "ESP32",
+      "TFT",
+      "IR"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320",
+    "updated_at": "2026-10-08T05:00:50Z",
+    "source": "auto"
+  },
+  {
+    "name": "CYBERDECK MINI ESP32 V2",
+    "slug": "cyberdeck-mini-esp32-v2",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32-V2/",
+    "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2",
+    "updated_at": "2026-10-08T04:59:59Z",
+    "source": "auto"
+  },
+  {
+    "name": "ESP32 TOOLS PRO 480x320 V3",
+    "slug": "esp32-tools-pro-480x320-v3",
+    "board": "ESP32 compatible",
+    "display": "TFT ILI9488 480x320 SPI",
+    "modules": [
+      "ESP32",
+      "WiFi",
+      "BLE",
+      "RF",
+      "NRF24",
+      "CC1101",
+      "TFT",
+      "IR"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V3/",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V3",
+    "updated_at": "2026-10-08T04:59:45Z",
+    "source": "auto"
   },
   {
     "name": "RF KILL ESP32 DEVKIT",
@@ -140,41 +191,6 @@
     "source": "auto"
   },
   {
-    "name": "ESP32 TOOLS PRO 480x320 V3",
-    "slug": "esp32-tools-pro-480x320-v3",
-    "board": "ESP32 compatible",
-    "display": "TFT ILI9488 480x320 SPI",
-    "modules": [
-      "ESP32",
-      "WiFi",
-      "BLE",
-      "RF",
-      "NRF24",
-      "CC1101",
-      "TFT",
-      "IR"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V3/",
-    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V3",
-    "updated_at": "2026-10-01T00:13:49Z",
-    "source": "auto"
-  },
-  {
-    "name": "CYBERDECK MINI ESP32 V2",
-    "slug": "cyberdeck-mini-esp32-v2",
-    "board": "ESP32 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP32"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32-V2/",
-    "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2",
-    "updated_at": "2026-09-23T15:53:14Z",
-    "source": "auto"
-  },
-  {
     "name": "ESP32 TOOLS",
     "slug": "esp32-tools",
     "board": "ESP32 compatible",
@@ -202,22 +218,6 @@
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-MODERN/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-MODERN",
     "updated_at": "2026-08-30T08:01:35Z",
-    "source": "auto"
-  },
-  {
-    "name": "ESP32 TOOLS PRO 480x320",
-    "slug": "esp32-tools-pro-480x320",
-    "board": "ESP32 compatible",
-    "display": "TFT ILI9488 480x320 SPI",
-    "modules": [
-      "ESP32",
-      "TFT",
-      "IR"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320/",
-    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320",
-    "updated_at": "2026-08-30T07:57:24Z",
     "source": "auto"
   }
 ]
