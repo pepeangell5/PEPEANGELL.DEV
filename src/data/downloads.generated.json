@@ -128,7 +128,7 @@
         "name": "BWifiKill-ESP32-V4.0-full.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/releases/download/bwifikill/BWifiKill-ESP32-V4.0-full.bin",
         "size": 1845200,
-        "download_count": 186
+        "download_count": 188
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/archive/refs/heads/main.zip",
@@ -505,37 +505,37 @@
         "name": "bootloader.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/bootloader.bin",
         "size": 15088,
-        "download_count": 1
+        "download_count": 2
       },
       {
         "name": "BWifiKill-CARDPUTER-ADV-full.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/BWifiKill-CARDPUTER-ADV-full.bin",
         "size": 1773616,
-        "download_count": 16
+        "download_count": 17
       },
       {
         "name": "checksums-sha256.txt",
         "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/checksums-sha256.txt",
         "size": 344,
-        "download_count": 1
+        "download_count": 2
       },
       {
         "name": "firmware.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/firmware.bin",
         "size": 1708080,
-        "download_count": 4
+        "download_count": 5
       },
       {
         "name": "partitions.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/partitions.bin",
         "size": 3072,
-        "download_count": 1
+        "download_count": 2
       },
       {
         "name": "README.md",
         "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/README.md",
         "size": 834,
-        "download_count": 6
+        "download_count": 7
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/archive/refs/heads/main.zip",
