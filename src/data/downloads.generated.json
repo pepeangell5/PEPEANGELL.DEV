@@ -170,7 +170,7 @@
         "name": "bootloader.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/bootloader.bin",
         "size": 17536,
-        "download_count": 116
+        "download_count": 117
       },
       {
         "name": "firmware-merged.bin",
@@ -318,7 +318,7 @@
         "name": "rf-kill-esp32-devkit-web-v2.bin",
         "url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT/releases/download/RF-KILL-DEVKIT/rf-kill-esp32-devkit-web-v2.bin",
         "size": 336752,
-        "download_count": 35
+        "download_count": 36
       }
     ],
     "zip_url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT/archive/refs/heads/main.zip",
@@ -517,7 +517,7 @@
         "name": "checksums-sha256.txt",
         "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/checksums-sha256.txt",
         "size": 344,
-        "download_count": 2
+        "download_count": 3
       },
       {
         "name": "firmware.bin",
