@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "test:wardriving": "node --experimental-strip-types --test tests/wardriving.test.mjs",
+    "test:hardware-lab": "node --experimental-strip-types --test tests/hardware-lab-catalog.test.mjs",
     "fetch:repos": "node scripts/fetch-github-repos.mjs",
     "fetch:readmes": "node scripts/fetch-github-readmes.mjs",
     "fetch:flashers": "node scripts/generate-flashers.mjs",

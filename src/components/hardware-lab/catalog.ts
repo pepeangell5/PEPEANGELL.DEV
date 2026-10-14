@@ -140,21 +140,21 @@ const esp32LeftPins = [
 ];
 
 const esp32RightPins = [
-  asOutput(power("3V3", "right", 3.3)),
-  ground("GND-R", "right", "GND"),
-  signal("GPIO15", "right"),
-  signal("GPIO2", "right"),
-  signal("GPIO4", "right"),
-  signal("GPIO16", "right"),
-  signal("GPIO17", "right"),
-  signal("GPIO5", "right"),
-  signal("GPIO18", "right"),
-  signal("GPIO19", "right"),
-  signal("GPIO21", "right"),
-  signal("GPIO3", "right", "RX0/3"),
-  signal("GPIO1", "right", "TX0/1"),
-  signal("GPIO22", "right"),
   signal("GPIO23", "right"),
+  signal("GPIO22", "right"),
+  signal("GPIO1", "right", "TX0/1"),
+  signal("GPIO3", "right", "RX0/3"),
+  signal("GPIO21", "right"),
+  signal("GPIO19", "right"),
+  signal("GPIO18", "right"),
+  signal("GPIO5", "right"),
+  signal("GPIO17", "right"),
+  signal("GPIO16", "right"),
+  signal("GPIO4", "right"),
+  signal("GPIO2", "right"),
+  signal("GPIO15", "right"),
+  ground("GND-R", "right", "GND"),
+  asOutput(power("3V3", "right", 3.3)),
 ];
 
 const esp32U38LeftPins = [
