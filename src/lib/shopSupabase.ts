@@ -79,6 +79,19 @@ export const productDisplayMeta: Record<
       "Firmware RF-KILL instalado"
     ],
     note: "Ideal cuando buscas una placa mas pequena con arranque automatico para montajes compactos."
+  },
+  "bwifikill-bw16-deauther": {
+    status: "Dispositivo programado",
+    board: "BW16 · 2.4/5 GHz",
+    imageAlt: "Dispositivo BWifiKill con modulo BW16, pantalla TFT vertical y tres botones fisicos",
+    parts: [
+      "Modulo Ai-Thinker BW16 / RTL8720DN",
+      "Pantalla TFT ST7735 vertical",
+      "3 botones fisicos de navegacion",
+      "Montaje portatil en placa perforada",
+      "Firmware BWifiKill v0.2 instalado"
+    ],
+    note: "Pensado para investigacion y pruebas en redes propias o expresamente autorizadas."
   }
 };
 

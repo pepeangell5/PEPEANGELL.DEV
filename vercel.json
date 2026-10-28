@@ -23,6 +23,13 @@
       }
     },
     {
+      "src": "^/assets/shop/bwifikill-bw16\\.jpg$",
+      "status": 308,
+      "headers": {
+        "Location": "/assets/optimized/bwifikill-bw16-720.6c79b32a47.webp"
+      }
+    },
+    {
       "src": "^/assets/mascot-neon-cut\\.png$",
       "status": 308,
       "headers": {

@@ -59,21 +59,45 @@ const products = [
     currency: "USD",
     stock: 0,
     is_available: false
+  },
+  {
+    slug: "bwifikill-bw16-deauther",
+    name: "BWifiKill BW16 Deauther",
+    status: "Dispositivo programado",
+    board: "BW16 · 2.4/5 GHz",
+    firmware: "BWifiKill v0.2",
+    repoUrl: "https://github.com/pepeangell5/BWifiKill-BW16-5Ghz",
+    description:
+      "Dispositivo portatil basado en Ai-Thinker BW16 / RTL8720DN, con pantalla TFT y controles fisicos, preparado para analisis WiFi y practicas autorizadas de laboratorio en 2.4 y 5 GHz.",
+    image: shopProductImages["bwifikill-bw16-deauther"],
+    imageAlt: "Dispositivo BWifiKill con modulo BW16, pantalla TFT vertical y tres botones fisicos",
+    parts: [
+      "Modulo Ai-Thinker BW16 / RTL8720DN",
+      "Pantalla TFT ST7735 vertical",
+      "3 botones fisicos de navegacion",
+      "Montaje portatil en placa perforada",
+      "Firmware BWifiKill v0.2 instalado"
+    ],
+    note: "Pensado para investigacion y pruebas en redes propias o expresamente autorizadas.",
+    price: 1500,
+    currency: "MXN",
+    stock: 0,
+    is_available: false
   }
 ];
 ---
 
 <BaseLayout
   title="Tienda"
-  description="Kits fisicos programados por PepeAngell Labs con ESP32, NRF24 PA+LNA y firmware instalado para laboratorio educativo controlado."
+  description="Dispositivos fisicos programados por PepeAngell Labs con ESP32, BW16 y firmware instalado para laboratorio educativo controlado."
 >
   <section class="section shop-hero">
     <div class="container shop-hero-layout">
       <div class="shop-copy">
         <p class="eyebrow">Lab shop</p>
-        <h1>Kits ESP32 programados</h1>
-        <p data-translate-en="Boards prepared with RF-KILL firmware for educational testing, controlled labs and embedded hardware learning. Payments are made through PayPal or Banorte transfer, and availability is confirmed before shipping.">
-          Placas preparadas con firmware RF-KILL para pruebas educativas, laboratorio controlado y aprendizaje
+        <h1>Dispositivos programados</h1>
+        <p data-translate-en="Boards and devices prepared with specialized firmware for educational testing, controlled labs and embedded hardware learning. Payments are made through PayPal or Banorte transfer, and availability is confirmed before shipping.">
+          Placas y dispositivos preparados con firmware especializado para pruebas educativas, laboratorio controlado y aprendizaje
           de hardware embebido. Los pagos se realizan por PayPal o transferencia Banorte y la disponibilidad se
           confirma antes del envio.
         </p>
@@ -136,7 +160,11 @@ const products = [
               </div>
               <h3>{product.name}</h3>
               <div class="shop-purchase-row">
-                <strong class="shop-price">Precio por confirmar</strong>
+                <strong class="shop-price">
+                  {product.price > 0
+                    ? new Intl.NumberFormat("es-MX", { style: "currency", currency: product.currency }).format(product.price)
+                    : "Precio por confirmar"}
+                </strong>
                 <span class="shop-stock">Disponibilidad por confirmar</span>
               </div>
               <div class="shop-firmware">
@@ -155,7 +183,7 @@ const products = [
               <p class="shop-note">{product.note}</p>
               <div class="button-row">
                 <a class="button primary" href={sitePath(`/shop/checkout/?product=${product.slug}`)}>Reservar kit</a>
-                <a class="button" href={product.repoUrl} target="_blank" rel="noreferrer noopener">Ver firmware</a>
+                <a class="button" href={product.repoUrl} target="_blank" rel="noreferrer noopener">Ver repositorio</a>
                 <a class="button" href={sitePath("/contact/")}>Dudas del kit</a>
               </div>
             </article>
@@ -234,7 +262,7 @@ const products = [
     const normalizedProduct = normalizeProduct(product);
     const parts = Array.isArray(normalizedProduct.parts) ? normalizedProduct.parts : [];
     const repoLink = normalizedProduct.repoUrl
-      ? `<a class="button" href="${escapeHtml(normalizedProduct.repoUrl)}" target="_blank" rel="noreferrer noopener">Ver firmware</a>`
+      ? `<a class="button" href="${escapeHtml(normalizedProduct.repoUrl)}" target="_blank" rel="noreferrer noopener">Ver repositorio</a>`
       : "";
     const availability = normalizedProduct.isAvailable && normalizedProduct.stock > 0 ? `${normalizedProduct.stock} en stock` : "Por confirmar";
     const reserveClass = normalizedProduct.isAvailable && normalizedProduct.stock > 0 ? "button primary" : "button";

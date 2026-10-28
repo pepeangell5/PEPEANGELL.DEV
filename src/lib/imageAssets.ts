@@ -37,5 +37,14 @@ export const shopProductImages: Record<string, ResponsiveImageAsset> = {
     webpSrcSet:
       "/assets/optimized/esp32-c3-supermini-kit-480.6dc2e36f8f.webp 480w, /assets/optimized/esp32-c3-supermini-kit-720.19cdd1160f.webp 720w",
     width: 720
+  },
+  "bwifikill-bw16-deauther": {
+    avifSrcSet:
+      "/assets/optimized/bwifikill-bw16-480.e957228727.avif 480w, /assets/optimized/bwifikill-bw16-720.13bd997def.avif 720w",
+    fallback: "/assets/optimized/bwifikill-bw16-720.6c79b32a47.webp",
+    height: 1280,
+    webpSrcSet:
+      "/assets/optimized/bwifikill-bw16-480.269fcb8bc4.webp 480w, /assets/optimized/bwifikill-bw16-720.6c79b32a47.webp 720w",
+    width: 720
   }
 };

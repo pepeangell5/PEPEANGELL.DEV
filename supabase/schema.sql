@@ -571,7 +571,7 @@ grant execute on function public.delete_delivered_shop_order(uuid) to authentica
 grant execute on function public.is_shop_admin() to authenticated;
 
 insert into public.products (
-  slug, name, description, firmware_name, repository_url, image_url
+  slug, name, description, firmware_name, repository_url, image_url, price_mxn
 ) values
 (
   'rf-kill-esp32-devkit',
@@ -579,7 +579,8 @@ insert into public.products (
   'ESP32 DevKit de 30 pines con dos modulos nRF24L01+ PA+LNA, bateria, carga y firmware instalado.',
   'RF-KILL ESP32-WROOM DevKit V2.0',
   'https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT',
-  '/assets/optimized/esp32-devkit-kit-720.9fe47e4cc5.webp'
+  '/assets/optimized/esp32-devkit-kit-720.9fe47e4cc5.webp',
+  0
 ),
 (
   'rf-kill-esp32-c3-supermini',
@@ -587,7 +588,17 @@ insert into public.products (
   'ESP32-C3 Super Mini con dos modulos nRF24L01+ PA+LNA, bateria, carga y firmware instalado.',
   'RF-KILL ESP32-C3 SuperMini',
   'https://github.com/pepeangell5/RF-KILL',
-  '/assets/optimized/esp32-c3-supermini-kit-720.19cdd1160f.webp'
+  '/assets/optimized/esp32-c3-supermini-kit-720.19cdd1160f.webp',
+  0
+),
+(
+  'bwifikill-bw16-deauther',
+  'BWifiKill BW16 Deauther',
+  'Dispositivo portatil con Ai-Thinker BW16 / RTL8720DN, pantalla TFT, tres botones y firmware instalado para laboratorio WiFi autorizado en 2.4 y 5 GHz.',
+  'BWifiKill v0.2',
+  'https://github.com/pepeangell5/BWifiKill-BW16-5Ghz',
+  '/assets/optimized/bwifikill-bw16-720.6c79b32a47.webp',
+  1500
 )
 on conflict (slug) do update
 set
