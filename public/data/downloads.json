@@ -128,7 +128,7 @@
         "name": "BWifiKill-ESP32-V4.0-full.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/releases/download/bwifikill/BWifiKill-ESP32-V4.0-full.bin",
         "size": 1845200,
-        "download_count": 205
+        "download_count": 206
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/archive/refs/heads/main.zip",
@@ -440,7 +440,7 @@
         "name": "firmware_unificado.bin",
         "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/firmware_unificado.bin",
         "size": 323136,
-        "download_count": 6
+        "download_count": 7
       },
       {
         "name": "partitions.bin",
