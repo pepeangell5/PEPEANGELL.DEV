@@ -88,6 +88,21 @@
     "source": "manual"
   },
   {
+    "name": "ESP32 TOOLS",
+    "slug": "esp32-tools",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32",
+      "WiFi"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS/",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS",
+    "updated_at": "2026-11-09T20:32:00Z",
+    "source": "auto"
+  },
+  {
     "name": "CYBERDECK MINI ESP32 V2",
     "slug": "cyberdeck-mini-esp32-v2",
     "board": "ESP32 compatible",
@@ -156,21 +171,6 @@
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V3/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V3",
     "updated_at": "2026-10-27T19:17:49Z",
-    "source": "auto"
-  },
-  {
-    "name": "ESP32 TOOLS",
-    "slug": "esp32-tools",
-    "board": "ESP32 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP32",
-      "WiFi"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS/",
-    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS",
-    "updated_at": "2026-10-23T00:21:58Z",
     "source": "auto"
   },
   {
