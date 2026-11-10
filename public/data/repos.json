@@ -22,9 +22,9 @@
     "homepage": null,
     "default_branch": "main",
     "language": "C++",
-    "stargazers_count": 187,
+    "stargazers_count": 188,
     "forks_count": 31,
-    "updated_at": "2026-11-08T22:47:34Z",
+    "updated_at": "2026-11-10T19:48:31Z",
     "topics": [],
     "archived": false,
     "fork": false
@@ -39,7 +39,7 @@
     "language": "C++",
     "stargazers_count": 115,
     "forks_count": 16,
-    "updated_at": "2026-11-03T20:26:57Z",
+    "updated_at": "2026-11-10T13:44:33Z",
     "topics": [],
     "archived": false,
     "fork": false
@@ -67,9 +67,9 @@
     "homepage": null,
     "default_branch": "main",
     "language": "HTML",
-    "stargazers_count": 25,
+    "stargazers_count": 26,
     "forks_count": 3,
-    "updated_at": "2026-11-03T08:24:55Z",
+    "updated_at": "2026-11-10T12:12:27Z",
     "topics": [],
     "archived": false,
     "fork": false
@@ -120,6 +120,21 @@
     "fork": false
   },
   {
+    "name": "CYBERDECK-MINI-ESP32-V2",
+    "full_name": "pepeangell5/CYBERDECK-MINI-ESP32-V2",
+    "description": "Igual que la V1 pero con mejores graficos y un diseño hecho en LOPAKA",
+    "html_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2",
+    "homepage": null,
+    "default_branch": "main",
+    "language": "C++",
+    "stargazers_count": 6,
+    "forks_count": 1,
+    "updated_at": "2026-11-10T17:01:44Z",
+    "topics": [],
+    "archived": false,
+    "fork": false
+  },
+  {
     "name": "PEPEANGELL.DEV",
     "full_name": "pepeangell5/PEPEANGELL.DEV",
     "description": null,
@@ -129,7 +144,7 @@
     "language": "TypeScript",
     "stargazers_count": 4,
     "forks_count": 0,
-    "updated_at": "2026-11-09T22:31:42Z",
+    "updated_at": "2026-11-10T07:30:21Z",
     "topics": [],
     "archived": false,
     "fork": false
@@ -145,21 +160,6 @@
     "stargazers_count": 20,
     "forks_count": 2,
     "updated_at": "2026-11-09T20:32:00Z",
-    "topics": [],
-    "archived": false,
-    "fork": false
-  },
-  {
-    "name": "CYBERDECK-MINI-ESP32-V2",
-    "full_name": "pepeangell5/CYBERDECK-MINI-ESP32-V2",
-    "description": "Igual que la V1 pero con mejores graficos y un diseño hecho en LOPAKA",
-    "html_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2",
-    "homepage": null,
-    "default_branch": "main",
-    "language": "C++",
-    "stargazers_count": 5,
-    "forks_count": 0,
-    "updated_at": "2026-11-08T23:03:30Z",
     "topics": [],
     "archived": false,
     "fork": false

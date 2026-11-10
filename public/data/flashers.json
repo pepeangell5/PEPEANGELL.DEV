@@ -34,7 +34,7 @@
     "status": "Testing",
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V2.0/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
-    "updated_at": "2026-11-08T22:47:34Z",
+    "updated_at": "2026-11-10T19:48:31Z",
     "source": "manual"
   },
   {
@@ -50,7 +50,7 @@
     "status": "Planned",
     "flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32/",
     "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32",
-    "updated_at": "2026-11-03T20:26:57Z",
+    "updated_at": "2026-11-10T13:44:33Z",
     "source": "manual"
   },
   {
@@ -88,6 +88,38 @@
     "source": "manual"
   },
   {
+    "name": "CYBERDECK MINI ESP32 V2",
+    "slug": "cyberdeck-mini-esp32-v2",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32-V2/",
+    "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2",
+    "updated_at": "2026-11-10T17:01:44Z",
+    "source": "auto"
+  },
+  {
+    "name": "RF KILL",
+    "slug": "rf-kill",
+    "board": "ESP32-C3 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32-C3",
+      "ESP32",
+      "RF",
+      "NRF24",
+      "IR"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/RF-KILL/",
+    "github_url": "https://github.com/pepeangell5/RF-KILL",
+    "updated_at": "2026-11-10T12:12:27Z",
+    "source": "auto"
+  },
+  {
     "name": "ESP32 TOOLS",
     "slug": "esp32-tools",
     "board": "ESP32 compatible",
@@ -100,20 +132,6 @@
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS",
     "updated_at": "2026-11-09T20:32:00Z",
-    "source": "auto"
-  },
-  {
-    "name": "CYBERDECK MINI ESP32 V2",
-    "slug": "cyberdeck-mini-esp32-v2",
-    "board": "ESP32 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP32"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32-V2/",
-    "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2",
-    "updated_at": "2026-11-08T23:03:30Z",
     "source": "auto"
   },
   {
@@ -132,24 +150,6 @@
     "flasher_url": "https://pepeangell5.github.io/RF-KILL-ESP32-DEVKIT/",
     "github_url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT",
     "updated_at": "2026-11-06T07:05:28Z",
-    "source": "auto"
-  },
-  {
-    "name": "RF KILL",
-    "slug": "rf-kill",
-    "board": "ESP32-C3 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP32-C3",
-      "ESP32",
-      "RF",
-      "NRF24",
-      "IR"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/RF-KILL/",
-    "github_url": "https://github.com/pepeangell5/RF-KILL",
-    "updated_at": "2026-11-03T08:24:55Z",
     "source": "auto"
   },
   {
