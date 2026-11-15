@@ -128,7 +128,7 @@
         "name": "BWifiKill-ESP32-V4.0-full.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/releases/download/bwifikill/BWifiKill-ESP32-V4.0-full.bin",
         "size": 1845200,
-        "download_count": 212
+        "download_count": 216
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0/archive/refs/heads/main.zip",
@@ -170,13 +170,13 @@
         "name": "bootloader.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/bootloader.bin",
         "size": 17536,
-        "download_count": 131
+        "download_count": 133
       },
       {
         "name": "firmware-merged.bin",
         "url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0/releases/download/v2.0/firmware-merged.bin",
         "size": 2155568,
-        "download_count": 127
+        "download_count": 129
       },
       {
         "name": "firmware.bin",
@@ -279,7 +279,7 @@
         "name": "full_bwifikill_v3.3.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-ESP32/releases/download/bwifikillV3.3/full_bwifikill_v3.3.bin",
         "size": 1948320,
-        "download_count": 114
+        "download_count": 115
       }
     ],
     "zip_url": "https://github.com/pepeangell5/BWifiKill-ESP32/archive/refs/heads/main.zip",
@@ -381,13 +381,13 @@
         "name": "bootloader.bin",
         "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/bootloader.bin",
         "size": 13216,
-        "download_count": 5
+        "download_count": 6
       },
       {
         "name": "firmware.bin",
         "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/firmware.bin",
         "size": 257600,
-        "download_count": 7
+        "download_count": 9
       },
       {
         "name": "firmware_unificado.bin",
@@ -399,7 +399,7 @@
         "name": "partitions.bin",
         "url": "https://github.com/pepeangell5/RF-KILL/releases/download/rf-kill/partitions.bin",
         "size": 3072,
-        "download_count": 5
+        "download_count": 6
       }
     ],
     "zip_url": "https://github.com/pepeangell5/RF-KILL/archive/refs/heads/main.zip",
