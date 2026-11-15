@@ -13,7 +13,7 @@
     "status": "In Development",
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32-V4.0/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0",
-    "updated_at": "2026-11-13T04:29:17Z",
+    "updated_at": "2026-11-15T05:52:22Z",
     "source": "manual"
   },
   {
@@ -34,7 +34,7 @@
     "status": "Testing",
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V2.0/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V2.0",
-    "updated_at": "2026-11-10T19:48:31Z",
+    "updated_at": "2026-11-15T06:32:14Z",
     "source": "manual"
   },
   {
@@ -50,7 +50,7 @@
     "status": "Planned",
     "flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32/",
     "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32",
-    "updated_at": "2026-11-14T22:05:49Z",
+    "updated_at": "2026-11-15T02:53:32Z",
     "source": "manual"
   },
   {
@@ -88,6 +88,20 @@
     "source": "manual"
   },
   {
+    "name": "CYBERDECK MINI ESP32 V2",
+    "slug": "cyberdeck-mini-esp32-v2",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32-V2/",
+    "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2",
+    "updated_at": "2026-11-15T03:27:45Z",
+    "source": "auto"
+  },
+  {
     "name": "ESP32 TOOLS PRO 480x320 V3",
     "slug": "esp32-tools-pro-480x320-v3",
     "board": "ESP32 compatible",
@@ -106,20 +120,6 @@
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V3/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V3",
     "updated_at": "2026-11-14T22:31:48Z",
-    "source": "auto"
-  },
-  {
-    "name": "CYBERDECK MINI ESP32 V2",
-    "slug": "cyberdeck-mini-esp32-v2",
-    "board": "ESP32 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP32"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32-V2/",
-    "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2",
-    "updated_at": "2026-11-10T17:01:44Z",
     "source": "auto"
   },
   {
