@@ -120,6 +120,36 @@
     "fork": false
   },
   {
+    "name": "ESP32-TOOLS-PRO-480x320-V3",
+    "full_name": "pepeangell5/ESP32-TOOLS-PRO-480x320-V3",
+    "description": "Firmware multifunción para ESP32 con pantalla TFT 480x320 e interfaz diseñada con Lopaka. Incluye herramientas WiFi, Bluetooth, BLE, RF con CC1101 y nRF24L01, análisis infrarrojo, espectro, waterfall, captura de señales, dashboard web y utilidades para aprendizaje, diagnóstico y pruebas autorizadas",
+    "html_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V3",
+    "homepage": null,
+    "default_branch": "main",
+    "language": "C++",
+    "stargazers_count": 9,
+    "forks_count": 1,
+    "updated_at": "2026-11-20T00:57:47Z",
+    "topics": [],
+    "archived": false,
+    "fork": false
+  },
+  {
+    "name": "CYBERDECK-MINI-ESP32-V2",
+    "full_name": "pepeangell5/CYBERDECK-MINI-ESP32-V2",
+    "description": "Igual que la V1 pero con mejores graficos y un diseño hecho en LOPAKA",
+    "html_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2",
+    "homepage": null,
+    "default_branch": "main",
+    "language": "C++",
+    "stargazers_count": 35,
+    "forks_count": 4,
+    "updated_at": "2026-11-20T00:57:18Z",
+    "topics": [],
+    "archived": false,
+    "fork": false
+  },
+  {
     "name": "Documentos-Descargas",
     "full_name": "pepeangell5/Documentos-Descargas",
     "description": "Repositorio dedicado a compartir guías, manuales, diagramas y documentos técnicos de mis dispositivos y proyectos, para que la comunidad pueda consultarlos y descargarlos fácilmente.",
@@ -135,21 +165,6 @@
     "fork": false
   },
   {
-    "name": "CYBERDECK-MINI-ESP32-V2",
-    "full_name": "pepeangell5/CYBERDECK-MINI-ESP32-V2",
-    "description": "Igual que la V1 pero con mejores graficos y un diseño hecho en LOPAKA",
-    "html_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2",
-    "homepage": null,
-    "default_branch": "main",
-    "language": "C++",
-    "stargazers_count": 33,
-    "forks_count": 4,
-    "updated_at": "2026-11-19T09:55:00Z",
-    "topics": [],
-    "archived": false,
-    "fork": false
-  },
-  {
     "name": "pepeangell5",
     "full_name": "pepeangell5/pepeangell5",
     "description": "Mi perfil info",
@@ -160,21 +175,6 @@
     "stargazers_count": 16,
     "forks_count": 1,
     "updated_at": "2026-11-16T15:30:50Z",
-    "topics": [],
-    "archived": false,
-    "fork": false
-  },
-  {
-    "name": "ESP32-TOOLS-PRO-480x320-V3",
-    "full_name": "pepeangell5/ESP32-TOOLS-PRO-480x320-V3",
-    "description": "Firmware multifunción para ESP32 con pantalla TFT 480x320 e interfaz diseñada con Lopaka. Incluye herramientas WiFi, Bluetooth, BLE, RF con CC1101 y nRF24L01, análisis infrarrojo, espectro, waterfall, captura de señales, dashboard web y utilidades para aprendizaje, diagnóstico y pruebas autorizadas",
-    "html_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V3",
-    "homepage": null,
-    "default_branch": "main",
-    "language": "C++",
-    "stargazers_count": 8,
-    "forks_count": 1,
-    "updated_at": "2026-11-14T22:31:48Z",
     "topics": [],
     "archived": false,
     "fork": false
