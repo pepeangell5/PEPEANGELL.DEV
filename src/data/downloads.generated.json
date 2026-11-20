@@ -381,7 +381,7 @@
         "name": "rf-kill-esp32-devkit-web-v2.bin",
         "url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT/releases/download/RF-KILL-DEVKIT/rf-kill-esp32-devkit-web-v2.bin",
         "size": 336752,
-        "download_count": 44
+        "download_count": 45
       }
     ],
     "zip_url": "https://github.com/pepeangell5/RF-KILL-ESP32-DEVKIT/archive/refs/heads/main.zip",
@@ -547,7 +547,7 @@
         "name": "BWifiKill-CARDPUTER-ADV-full.bin",
         "url": "https://github.com/pepeangell5/BWifiKill-CARDPUTER-ADV/releases/download/cardputer-bwifikill/BWifiKill-CARDPUTER-ADV-full.bin",
         "size": 1773616,
-        "download_count": 22
+        "download_count": 23
       },
       {
         "name": "checksums-sha256.txt",
