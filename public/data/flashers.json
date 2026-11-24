@@ -13,7 +13,7 @@
     "status": "In Development",
     "flasher_url": "https://pepeangell5.github.io/BWifiKill-ESP32-V4.0/",
     "github_url": "https://github.com/pepeangell5/BWifiKill-ESP32-V4.0",
-    "updated_at": "2026-11-23T05:05:47Z",
+    "updated_at": "2026-11-23T20:00:44Z",
     "source": "manual"
   },
   {
@@ -88,21 +88,6 @@
     "source": "manual"
   },
   {
-    "name": "ESP32 TOOLS",
-    "slug": "esp32-tools",
-    "board": "ESP32 compatible",
-    "display": "Optional serial/display output",
-    "modules": [
-      "ESP32",
-      "WiFi"
-    ],
-    "status": "Web flasher",
-    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS/",
-    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS",
-    "updated_at": "2026-11-21T22:49:34Z",
-    "source": "auto"
-  },
-  {
     "name": "ESP32 TOOLS PRO 480x320 V3",
     "slug": "esp32-tools-pro-480x320-v3",
     "board": "ESP32 compatible",
@@ -120,7 +105,7 @@
     "status": "Web flasher",
     "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS-PRO-480x320-V3/",
     "github_url": "https://github.com/pepeangell5/ESP32-TOOLS-PRO-480x320-V3",
-    "updated_at": "2026-11-20T00:57:47Z",
+    "updated_at": "2026-11-23T21:12:19Z",
     "source": "auto"
   },
   {
@@ -134,7 +119,22 @@
     "status": "Web flasher",
     "flasher_url": "https://pepeangell5.github.io/CYBERDECK-MINI-ESP32-V2/",
     "github_url": "https://github.com/pepeangell5/CYBERDECK-MINI-ESP32-V2",
-    "updated_at": "2026-11-20T00:57:18Z",
+    "updated_at": "2026-11-23T09:33:39Z",
+    "source": "auto"
+  },
+  {
+    "name": "ESP32 TOOLS",
+    "slug": "esp32-tools",
+    "board": "ESP32 compatible",
+    "display": "Optional serial/display output",
+    "modules": [
+      "ESP32",
+      "WiFi"
+    ],
+    "status": "Web flasher",
+    "flasher_url": "https://pepeangell5.github.io/ESP32-TOOLS/",
+    "github_url": "https://github.com/pepeangell5/ESP32-TOOLS",
+    "updated_at": "2026-11-21T22:49:34Z",
     "source": "auto"
   },
   {
